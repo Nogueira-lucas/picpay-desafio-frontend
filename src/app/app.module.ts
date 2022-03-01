@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { PaymentsComponent } from './payments/payments.component';
@@ -24,7 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule
   ],
   
-  providers: [PaymentsService],
+  providers: [
+    PaymentsService,
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+  ],
   
   bootstrap: [AppComponent]
 })

@@ -6,14 +6,14 @@
     <th>Valor <img class="inverter-btn" src="./../assets/images/icons/inverter.png"></th>
     <th>Pago <img class="inverter-btn" src="./../assets/images/icons/inverter.png"></th>
   </tr>
-  <tr class="line-table">
-    <td>Claudia <br/> <span>@claudia</span></td>
-    <td>Professor 1</td>
-    <td>23 Jun 2020 <br/> <span>11:00 AM</span></td>
-    <td>R$ 100,00</td>
+  <tr class="line-table" *ngFor="let payment of payments">
+    <td>{{ payment.name }} <br/> <span>@{{ payment.username }}</span></td>
+    <td>{{ payment.title }}</td>
+    <td>{{ payment.date | date : 'dd MMM yyyy'}} <br/> <span>{{ payment.date | date : 'HH:mm'}}</span></td>
+    <td>{{ payment.value | currency }}</td>
     <td>
       <label class="chk">
-        <input type="checkbox">
+        <input type="checkbox" value="{{payment.isPayed}}" [checked]="payment.isPayed">
         <span></span>
       </label>
     </td>
