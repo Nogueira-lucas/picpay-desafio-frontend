@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Adicionar pagamento</h4>
+    <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form id="paymentForm" [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+        <div class="input-field">
+            <input type="text" name="username" placeholder="Usuário*" formControlName="username" required>
+            <label class="active">Usuário</label>
+        </div>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+            <div *ngIf="username.errors?.required">
+                username is required.
+            </div>
+        </div>
+        <div class="input-field">
+            <input type="number" name="value" placeholder="Valor*" formControlName="value" required>
+            <label class="active">Valor</label>
+        </div>
+        <div *ngIf="value.invalid && (value.dirty || value.touched)" class="alert alert-danger">
+            <div *ngIf="value.errors?.required">
+                value is required.
+            </div>
+        </div>
+        <div class="input-field">
+            <input type="datetime-local" name="date" formControlName="date" placeholder="Data*" required>
+            <label class="active">Data</label>
+        </div>
+        <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
+            <div *ngIf="date.errors?.required">
+                date is required.
+            </div>
+        </div>
+        <div class="input-field">
+            <input type="text" name="titulo" formControlName="title" placeholder="Título">
+            <label class="active">Titulo</label>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" form="paymentForm" [disabled]="!paymentForm.valid"
+        class="btn btn-outline-dark">Salvar</button>
+</div>

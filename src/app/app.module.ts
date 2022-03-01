@@ -10,33 +10,34 @@ import { PaymentsService } from './payments/payments.service';
 import { AppRoutingModule } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from './modal/modal.component';
+import { PaymentModalComponent } from './payments/payment-modal/payment-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [	
-    AppComponent, 
-    PaymentsComponent, 
-    PaymentListComponent, 
-    NavbarComponent, 
-    ModalComponent, 
+  declarations: [
+    AppComponent,
+    PaymentsComponent,
+    PaymentListComponent,
+    NavbarComponent,
+    PaymentModalComponent,
   ],
 
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
 
-  entryComponents:[
-    ModalComponent
+  entryComponents: [
   ],
-  
+
   providers: [
     PaymentsService,
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
   ],
-  
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

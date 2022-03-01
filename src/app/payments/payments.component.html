@@ -1,8 +1,6 @@
-<app-navbar></app-navbar>
-
 <section class="payments">
   <h1>Meus pagamentos</h1>
-  <button class="btn">adicionar pagamento</button>
+  <button class="btn" (click)="openCreatePaymentModal()">adicionar pagamento</button>
 
   <section class="header-list">
     <div class="d-flex">
@@ -19,6 +17,7 @@
         <p>Exibir</p>
         <select>
           <option>5</option>
+          <option>10</option>
         </select>
       </form>
 
@@ -34,5 +33,5 @@
     </div>
   </section>
 
-  <app-payment-list></app-payment-list>
+  <app-payment-list [payments]="payments"></app-payment-list>
 </section>

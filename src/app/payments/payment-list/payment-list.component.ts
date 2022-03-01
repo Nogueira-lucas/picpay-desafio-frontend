@@ -1,7 +1,9 @@
-import { ModalComponent } from './../../modal/modal.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PaymentsService } from '../payments.service';
+
+import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
+import { PaymentsService } from './../payments.service';
+import { Payment } from './../payment.interface';
 
 @Component({
   selector: 'app-payment-list',
@@ -9,29 +11,30 @@ import { PaymentsService } from '../payments.service';
   styleUrls: ['./payment-list.component.scss']
 })
 export class PaymentListComponent implements OnInit {
-  payments = null;
-  title = 'ng-bootstrap-modal-demo';
+  @Input() payments!: Payment[];
 
   constructor(
     private paymentsService: PaymentsService,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.getPayments();
   }
 
-  // Lista pagamentos
-  private getPayments(): void{
-    this.paymentsService.list().subscribe(result => {
-      this.payments = result;
+  deletePayment(id: number): void {
+    this.paymentsService.deletePayment(id).subscribe(() => {
+      let index = this.payments.findIndex((p) => p.id == id);
+      this.payments.splice(index, 1);
     });
   }
 
-  // Abre a modal
-  open() {
-    const modalRef = this.modalService.open(ModalComponent);
-    modalRef.componentInstance.my_modal_title = 'I your title';
-    modalRef.componentInstance.my_modal_content = 'I am your content';
+  openEditPaymentModal(payment: Payment) {
+    const paymentModalRef = this.modalService.open(PaymentModalComponent);
+    paymentModalRef.componentInstance.payment = payment;
+
+    paymentModalRef.result.then((data: Payment) => {
+      let index = this.payments.findIndex((p) => p.id == payment.id);
+      this.payments.splice(index, 1, data);
+    })
   }
 }

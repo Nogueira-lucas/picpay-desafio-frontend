@@ -7,9 +7,9 @@
     <th>Pago <img class="inverter-btn" src="./../assets/images/icons/inverter.png"></th>
   </tr>
   <tr class="line-table" *ngFor="let payment of payments">
-    <td>{{ payment.name }} <br/> <span>@{{ payment.username }}</span></td>
+    <td>{{ payment.name }} <br /> <span>@{{ payment.username }}</span></td>
     <td>{{ payment.title }}</td>
-    <td>{{ payment.date | date : 'dd MMM yyyy'}} <br/> <span>{{ payment.date | date : 'HH:mm'}}</span></td>
+    <td>{{ payment.date | date : 'dd MMM yyyy'}} <br /> <span>{{ payment.date | date : 'HH:mm'}}</span></td>
     <td>{{ payment.value | currency }}</td>
     <td>
       <label class="chk">
@@ -18,8 +18,10 @@
       </label>
     </td>
     <td class="table-buttons">
-      <button class="table-btn" (click)="open()"><img src="./../assets/images/icons/pen.png"></button>
-      <button class="table-btn"><img src="./../assets/images/icons/delete.png"></button>
+      <button class="table-btn" (click)="openEditPaymentModal(payment)"><img
+          src="./../assets/images/icons/pen.png"></button>
+      <button class="table-btn" (click)="deletePayment(payment.id)"><img
+          src="./../assets/images/icons/delete.png"></button>
     </td>
   </tr>
 </table>
