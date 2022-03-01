@@ -13,8 +13,20 @@ import { PaymentsService } from './payments.service';
 export class PaymentsComponent implements OnInit {
   payments: Payment[]
 
+  userName = ''
   limit = 5
   page = 1
+  totalPayments = 0
+
+  sortSelected = null
+
+  sortOptions = {
+    username: 'desc',
+    title: 'desc',
+    date: 'desc',
+    value: 'desc',
+    isPayed: 'desc'
+  }
 
   constructor(
     private paymentsService: PaymentsService,
@@ -22,23 +34,52 @@ export class PaymentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getPayments({
-      _limit: this.limit,
-      _page: this.page
-    });
+    this.getPayments();
   }
 
-  getPayments(params): void {
-    this.paymentsService.getPayments(params).subscribe((data: Payment[]) => {
-      this.payments = data;
-    });
+  getPayments(): void {
+    if (this.sortSelected) {
+      this.sortOptions[this.sortSelected] = this.sortOptions[this.sortSelected] == 'asc' ? 'desc' : 'asc';
+    }
+
+    this.paymentsService.getPayments({
+      username_like: this.userName,
+      _limit: this.limit,
+      _page: this.page,
+      _sort: this.sortSelected ?? '',
+      _order: this.sortOptions[this.sortSelected] ?? ''
+    })
+      .subscribe(resp => {
+        let payments: Payment[] = resp.body;
+        this.payments = payments;
+
+        let totalPayments = Number(resp.headers.get("X-Total-Count"));
+        this.totalPayments = totalPayments;
+      });
   }
 
   openCreatePaymentModal() {
     const paymentModalRef = this.modalService.open(PaymentModalComponent);
 
-    paymentModalRef.result.then((data: Payment) => {
-      this.payments.unshift(data)
-    })
+    paymentModalRef.result
+      .then((data: Payment) => {
+        this.payments.unshift(data);
+      })
+      .catch(() => { })
+  }
+
+  sortBy(key: string) {
+    this.sortSelected = key;
+    this.getPayments();
+  }
+
+  filterByUserName() {
+    this.page = 1;
+    this.getPayments();
+  }
+
+  changePage(page: number) {
+    this.page = page;
+    this.getPayments();
   }
 }

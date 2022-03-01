@@ -1,19 +1,21 @@
 <table>
   <tr>
-    <th>Usuário <img class="inverter-btn" src="./../assets/images/icons/inverter.png"></th>
-    <th>Título <img class="inverter-btn" src="./../assets/images/icons/inverter.png"></th>
-    <th>Data <img class="inverter-btn" src="./../assets/images/icons/inverter.png"></th>
-    <th>Valor <img class="inverter-btn" src="./../assets/images/icons/inverter.png"></th>
-    <th>Pago <img class="inverter-btn" src="./../assets/images/icons/inverter.png"></th>
+    <th>Usuário <img class="inverter-btn" (click)="sortBy('username')" src="./../assets/images/icons/inverter.png"></th>
+    <th>Título <img class="inverter-btn" (click)="sortBy('title')" src="./../assets/images/icons/inverter.png"></th>
+    <th>Data <img class="inverter-btn" (click)="sortBy('date')" src="./../assets/images/icons/inverter.png"></th>
+    <th>Valor <img class="inverter-btn" (click)="sortBy('value')" src="./../assets/images/icons/inverter.png"></th>
+    <th>Pago <img class="inverter-btn" (click)="sortBy('isPayed')" src="./../assets/images/icons/inverter.png"></th>
   </tr>
-  <tr class="line-table" *ngFor="let payment of payments">
+  <tr class="line-table"
+    *ngFor="let payment of payments | paginate: { itemsPerPage: limit, currentPage: page, totalItems: totalPayments }">
     <td>{{ payment.name }} <br /> <span>@{{ payment.username }}</span></td>
     <td>{{ payment.title }}</td>
     <td>{{ payment.date | date : 'dd MMM yyyy'}} <br /> <span>{{ payment.date | date : 'HH:mm'}}</span></td>
     <td>{{ payment.value | currency }}</td>
     <td>
       <label class="chk">
-        <input type="checkbox" value="{{payment.isPayed}}" [checked]="payment.isPayed">
+        <input type="checkbox" value="{{payment.isPayed}}" (click)="updatePaymentPayed(payment)"
+          [checked]="payment.isPayed">
         <span></span>
       </label>
     </td>

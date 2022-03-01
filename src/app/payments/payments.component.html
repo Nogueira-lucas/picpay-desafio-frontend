@@ -4,34 +4,28 @@
 
   <section class="header-list">
     <div class="d-flex">
-      <form class="search-box">
-        <input type="text" id="search" name="search" placeholder="Pesquisar por usuário">
-        <button class="search-btn"></button>
-      </form>
+      <div class="search-box">
+        <input type="text" [(ngModel)]="userName" placeholder="Pesquisar por usuário">
+        <button class="search-btn" (click)="filterByUserName()"></button>
+      </div>
 
       <button class="btn-filter">Filtrar</button>
     </div>
 
-    <div class="d-flex">
-      <form class="btn-display">
-        <p>Exibir</p>
-        <select>
-          <option>5</option>
-          <option>10</option>
-        </select>
-      </form>
+    <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true" (pageChange)="changePage($event)">
+    </pagination-controls>
 
-      <div class="pagination d-flex">
-        <div class="arrow"><img src="./../assets/images/icons/arrow_left.png"></div>
-        <ul class="d-flex">
-          <li class="active">1</li>
-          <li>2</li>
-          <li>3</li>
-        </ul>
-        <div class="arrow"><img src="./../assets/images/icons/arrow_right.png"></div>
+    <div class="d-flex">
+      <div class="btn-display">
+        <p>Exibir</p>
+        <select [(ngModel)]="limit" (change)="getPayments()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+        </select>
       </div>
     </div>
   </section>
 
-  <app-payment-list [payments]="payments"></app-payment-list>
+  <app-payment-list (onSorted)="sortBy($event)" [payments]="payments" [limit]="limit" [page]="page" [totalPayments]="totalPayments">
+  </app-payment-list>
 </section>

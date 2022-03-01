@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
@@ -12,6 +12,11 @@ import { Payment } from './../payment.interface';
 })
 export class PaymentListComponent implements OnInit {
   @Input() payments!: Payment[];
+  @Input() limit!: number;
+  @Input() page!: number;
+  @Input() totalPayments!: number;
+
+  @Output() onSorted =  new EventEmitter<string>();
 
   constructor(
     private paymentsService: PaymentsService,
@@ -19,6 +24,15 @@ export class PaymentListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  updatePaymentPayed(payment: Payment) {
+    payment.isPayed = !payment.isPayed;
+
+    this.paymentsService.updatePayment(payment).subscribe((data: Payment) => {
+      let index = this.payments.findIndex((p) => p.id == payment.id);
+      this.payments.splice(index, 1, data);
+    });
   }
 
   deletePayment(id: number): void {
@@ -32,9 +46,15 @@ export class PaymentListComponent implements OnInit {
     const paymentModalRef = this.modalService.open(PaymentModalComponent);
     paymentModalRef.componentInstance.payment = payment;
 
-    paymentModalRef.result.then((data: Payment) => {
-      let index = this.payments.findIndex((p) => p.id == payment.id);
-      this.payments.splice(index, 1, data);
-    })
+    paymentModalRef.result
+      .then((data: Payment) => {
+        let index = this.payments.findIndex((p) => p.id == payment.id);
+        this.payments.splice(index, 1, data);
+      })
+      .catch(() => { })
+  }
+
+  sortBy(key: string){
+    this.onSorted.emit(key)
   }
 }

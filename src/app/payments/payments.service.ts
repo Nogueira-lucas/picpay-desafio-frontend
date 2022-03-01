@@ -13,7 +13,7 @@ export class PaymentsService {
   constructor(private http: HttpClient) { }
 
   getPayments(params = {}) {
-    return this.http.get<Payment[]>(`${environment.apiUrl}/tasks`, { params: params });
+    return this.http.get<Payment[]>(`${environment.apiUrl}/tasks`, { params: params, observe: 'response' });
   }
 
   getPaymentById(id: number) {
