@@ -2,14 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PaymentListComponent } from './payment/payment-list/payment-list.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
 @NgModule({
   declarations: [	
-    AppComponent,
-   ],
+    AppComponent, PaymentComponent, PaymentListComponent, NavbarComponent,
+  ],
+
   imports: [
     BrowserModule
   ],
+  
   providers: [],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

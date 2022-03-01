@@ -1,0 +1,36 @@
+<section class="payments">
+  <h1>Meus pagamentos</h1>
+  <button class="btn">adicionar pagamento</button>
+  
+  <section class="header-list">
+    <div class="d-flex">
+      <form class="search-box">
+        <input type="text" id="search" name="search" placeholder="Pesquisar por usuário">
+        <button class="search-btn"></button>
+      </form>
+
+      <button class="btn-filter">Filtrar</button>
+    </div>
+
+    <div class="d-flex">
+      <form class="btn-display">
+        <p>Exibir</p>
+        <select>
+          <option>5</option>
+        </select>
+      </form>
+
+      <div class="pagination d-flex">
+        <div class="arrow"><img src="./../assets/images/icons/arrow_left.png"></div>
+        <ul class="d-flex">
+          <li class="active">1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+        <div class="arrow"><img src="./../assets/images/icons/arrow_right.png"></div>
+      </div>
+    </div>
+  </section>
+
+  <app-payment-list></app-payment-list>
+</section>
