@@ -60,6 +60,7 @@ export class PaymentsComponent implements OnInit {
 
   openCreatePaymentModal() {
     const paymentModalRef = this.modalService.open(PaymentModalComponent);
+    paymentModalRef.componentInstance.title = "Adicionar Pagamento";
 
     paymentModalRef.result
       .then((data: Payment) => {

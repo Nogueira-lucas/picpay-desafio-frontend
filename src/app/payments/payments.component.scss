@@ -1,7 +1,7 @@
 section.payments{
-    max-width: 1440px;
-    margin: 65px auto 0 auto;
-    padding: 0 20px;    
+    max-width: 100%;
+    padding: 65px 20px 40px 20px;
+    background: #F2F2F2;  
 }
 
 section.payments button{
@@ -11,6 +11,7 @@ section.payments button{
 section.payments .btn{
     margin-left: auto;
     display: block;
+    margin-top: 38px;
 }
 
 section.header-list{
@@ -18,9 +19,10 @@ section.header-list{
     display: flex;
     justify-content: space-between;
     position: relative;
-    padding: 16px 14px;
+    padding: 32px 14px 24px 14px;
     border-radius: 8px 8px 0px 0px;
     margin-top: 31px;
+    border-bottom: 2px solid #CFDCE5;
 }
 
 /*search*/
@@ -29,7 +31,6 @@ section.header-list .search-box {
     display: flex;
     align-items: center;
     height: 32px;
-    margin-left: 14px;
     margin-right: 10px;
     border-radius: 6px;
     border: 1px solid #CFDCE5;
@@ -61,26 +62,6 @@ section.header-list .search-box .search-btn {
     background-position: center;
 }
 
-/* Filter button */
-section.header-list .btn-filter{
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 14px;
-    height: 32px;
-    text-align: center;
-    border-radius: 6px;
-    background: #E6ECF0;
-    padding: 4px 6px 4px 28px;
-    border: none;
-    color: #2D3540;
-    background-image: url(./../../assets/images/icons/Shape.png);
-    background-repeat: no-repeat;
-    background-position: 9px;
-    cursor: pointer;
-}
-
 /* Display button */
 section.header-list .btn-display{
     display: flex;
@@ -106,31 +87,22 @@ section.header-list .btn-display select{
     border-radius: 6px;
 }
 
-/* Display pagination */
-section.header-list .pagination{
-    align-items: center;
+/* Pagination */
+article.pagination ::ng-deep .ngx-pagination .current {
+    background-color: #002D69;
+    border-radius: 5px;
+    padding: 6px 12px;
 }
 
-section.header-list .pagination .arrow{
-    margin: 0 24px;
+article.pagination ::ng-deep .ngx-pagination {
+    margin: 0;
 }
 
-section.header-list .pagination ul li{
-    font-family: 'Lato';
-    list-style-type: none;
-    padding: 4px 8px;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 14.4px;
+article.pagination ::ng-deep .ngx-pagination a {
+    font-family: "Lato";
+    padding: 0 12px;
     color: #69788C;
-    cursor: pointer;
-    margin: 0 8px;
-}
-
-section.header-list .pagination ul li.active{
-    background: #007DFE;
-    border-radius: 6px;
-    color: #FFFFFF;
+    border-radius: 5px;
 }
 
 section.header-list .pagination th{

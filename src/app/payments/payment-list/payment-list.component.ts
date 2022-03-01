@@ -44,6 +44,7 @@ export class PaymentListComponent implements OnInit {
 
   openEditPaymentModal(payment: Payment) {
     const paymentModalRef = this.modalService.open(PaymentModalComponent);
+    paymentModalRef.componentInstance.title = "Editar Pagamento";
     paymentModalRef.componentInstance.payment = payment;
 
     paymentModalRef.result

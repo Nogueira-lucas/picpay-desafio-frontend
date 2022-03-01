@@ -1,0 +1,10 @@
+.input-field > input{
+    width: 100%;
+}
+
+.input-field > label.active {
+    background: #FFF;
+    border-left: 3px solid #FFF;
+    border-right: 3px solid #FFF;
+    transform: translateY(-7.5px);
+}

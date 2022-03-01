@@ -1,29 +1,24 @@
 <section class="payments">
-  <h1>Meus pagamentos</h1>
-  <button class="btn" (click)="openCreatePaymentModal()">adicionar pagamento</button>
+  <h3 class="font-weight-bold">Meus pagamentos</h3>
+  <button class="btn btn-primary" (click)="openCreatePaymentModal()">adicionar pagamento</button>
 
   <section class="header-list">
-    <div class="d-flex">
-      <div class="search-box">
-        <input type="text" [(ngModel)]="userName" placeholder="Pesquisar por usuário">
-        <button class="search-btn" (click)="filterByUserName()"></button>
-      </div>
+    <article class="search-box">
+      <input type="text" [(ngModel)]="userName" placeholder="Pesquisar por usuário">
+      <button class="search-btn" (click)="filterByUserName()"></button>
+    </article>
 
-      <button class="btn-filter">Filtrar</button>
-    </div>
-
-    <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true" (pageChange)="changePage($event)">
-    </pagination-controls>
-
-    <div class="d-flex">
+    <article class="pagination">
       <div class="btn-display">
         <p>Exibir</p>
-        <select [(ngModel)]="limit" (change)="getPayments()">
+        <select class="custom-select float-right" [(ngModel)]="limit" (change)="getPayments()">
           <option value="5">5</option>
           <option value="10">10</option>
         </select>
       </div>
-    </div>
+
+      <pagination-controls class="pagination float-right" previousLabel="Prev" nextLabel="Next" [responsive]="true" (pageChange)="changePage($event)"></pagination-controls>
+    </article>
   </section>
 
   <app-payment-list (onSorted)="sortBy($event)" [payments]="payments" [limit]="limit" [page]="page" [totalPayments]="totalPayments">

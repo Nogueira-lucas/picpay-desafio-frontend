@@ -11,6 +11,7 @@ import { PaymentsService } from './../payments.service';
   styleUrls: ['./payment-modal.component.scss']
 })
 export class PaymentModalComponent implements OnInit {
+  @Input() title;
   @Input() payment!: Payment;
 
   paymentForm: FormGroup;
