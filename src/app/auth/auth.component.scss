@@ -1,0 +1,40 @@
+section.auth{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 1440px;
+    display: flex;
+    align-items: inherit;
+    justify-content: center;
+    height: 100%;
+    margin: 0 auto;
+}
+
+section.auth .login{
+    max-width: 540px;
+    padding: 15px 106px;
+    background-color: #F2F2F2;
+    align-items: center;
+    display: flex;
+}
+
+section.auth .input-field .email{
+    margin-bottom: 36px;
+}
+
+section.auth .logo{
+    margin-bottom: 18px;
+}
+
+/*apresentation*/
+section.auth .apresentation{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+section.auth .apresentation img{
+    max-width: 495,86px;
+}
