@@ -9,19 +9,27 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PaymentsService } from './payments/payments.service';
 import { AppRoutingModule } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [	
     AppComponent, 
     PaymentsComponent, 
     PaymentListComponent, 
-    NavbarComponent,
+    NavbarComponent, 
+    ModalComponent, 
   ],
 
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
+  ],
+
+  entryComponents:[
+    ModalComponent
   ],
   
   providers: [

@@ -1,5 +1,6 @@
+import { ModalComponent } from './../../modal/modal.component';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentsService } from '../payments.service';
 
 @Component({
@@ -9,19 +10,28 @@ import { PaymentsService } from '../payments.service';
 })
 export class PaymentListComponent implements OnInit {
   payments = null;
+  title = 'ng-bootstrap-modal-demo';
 
-  constructor(private paymentsService: PaymentsService) { }
+  constructor(
+    private paymentsService: PaymentsService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.getPayments();
   }
 
+  // Lista pagamentos
   private getPayments(): void{
-    console.log('entrou')
     this.paymentsService.list().subscribe(result => {
       this.payments = result;
     });
   }
 
-
+  // Abre a modal
+  open() {
+    const modalRef = this.modalService.open(ModalComponent);
+    modalRef.componentInstance.my_modal_title = 'I your title';
+    modalRef.componentInstance.my_modal_content = 'I am your content';
+  }
 }
