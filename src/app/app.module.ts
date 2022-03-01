@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { PaymentsService } from './payments/payments.service';
 import { AppRoutingModule } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [	
@@ -19,6 +20,7 @@ import { AppRoutingModule } from './app.routing';
 
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   

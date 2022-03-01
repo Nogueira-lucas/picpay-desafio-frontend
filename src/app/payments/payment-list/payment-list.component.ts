@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PaymentsService } from '../payments.service';
 
 @Component({
   selector: 'app-payment-list',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment-list.component.scss']
 })
 export class PaymentListComponent implements OnInit {
+  payments = null;
 
-  constructor() { }
+  constructor(private paymentsService: PaymentsService) { }
 
   ngOnInit(): void {
+    this.getPayments();
   }
 
+  private getPayments(): void{
+    console.log('entrou')
+    this.paymentsService.list().subscribe(result => {
+      this.payments = result;
+    });
+  }
 }
