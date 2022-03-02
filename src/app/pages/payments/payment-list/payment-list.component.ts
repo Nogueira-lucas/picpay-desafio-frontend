@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { PaymentModalComponent } from './../payment-modal/payment-modal.component';
-import { PaymentsService } from './../payments.service';
-import { Payment } from './../payment.interface';
+import { PaymentModalComponent } from '../payment-modal/payment-modal.component';
+import { PaymentsService } from '../../../services/payments.service';
+import { Payment } from '../../../interfaces/payment.interface';
+import { PaymentDeleteModalComponent } from '../payment-delete-modal/payment-delete-modal.component';
 
 @Component({
   selector: 'app-payment-list',
@@ -16,7 +17,7 @@ export class PaymentListComponent implements OnInit {
   @Input() page!: number;
   @Input() totalPayments!: number;
 
-  @Output() onSorted =  new EventEmitter<string>();
+  @Output() onSorted = new EventEmitter<string>();
 
   constructor(
     private paymentsService: PaymentsService,
@@ -33,6 +34,20 @@ export class PaymentListComponent implements OnInit {
       let index = this.payments.findIndex((p) => p.id == payment.id);
       this.payments.splice(index, 1, data);
     });
+  }
+
+  openDeleteModal(payment: Payment) {
+    const paymentDeleteModalRef = this.modalService.open(PaymentDeleteModalComponent)
+
+    paymentDeleteModalRef.componentInstance.payment = payment;
+
+    paymentDeleteModalRef.result
+      .then((confirm: boolean) => {
+        if(confirm){
+          this.deletePayment(payment.id)
+        }
+      })
+      .catch(() => { })
   }
 
   deletePayment(id: number): void {
@@ -55,7 +70,7 @@ export class PaymentListComponent implements OnInit {
       .catch(() => { })
   }
 
-  sortBy(key: string){
+  sortBy(key: string) {
     this.onSorted.emit(key)
   }
 }

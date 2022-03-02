@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PaymentsComponent } from './payments/payments.component';
-import { AuthComponent } from './auth/auth.component';
-
+import { LoggedGuard } from './services/guards/logged.guard';
+import { LoggedOutGuard } from './services/guards/logged-out.guard';
+import { PaymentsComponent } from './pages/payments/payments.component';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/shared/home/home.component';
 
 const routes: Routes = [
-    { path: 'payments', component: PaymentsComponent },
-    { path: 'login', component: AuthComponent },
-    { path: '', redirectTo: '/payments', pathMatch: 'full' },
-    { path: '**', component: PaymentsComponent } // Rota coringa
+    { path: 'login', component: LoginComponent, canActivate: [LoggedOutGuard] },
+    {
+        path: '', component: HomeComponent, canActivate: [LoggedGuard],
+        children: [
+            { path: '', component: PaymentsComponent }
+        ]
+    }
 ];
 
 @NgModule({

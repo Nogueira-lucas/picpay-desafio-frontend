@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { PaymentModalComponent } from './payment-modal/payment-modal.component';
-import { Payment } from './payment.interface';
-import { PaymentsService } from './payments.service';
+import { Payment } from '../../interfaces/payment.interface';
+import { PaymentsService } from '../../services/payments.service';
 
 @Component({
   selector: 'app-payments',

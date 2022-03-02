@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Payment } from './payment.interface';
+import { Payment } from '../interfaces/payment.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +14,6 @@ export class PaymentsService {
 
   getPayments(params = {}) {
     return this.http.get<Payment[]>(`${environment.apiUrl}/tasks`, { params: params, observe: 'response' });
-  }
-
-  getPaymentById(id: number) {
-    return this.http.get<Payment>(`${environment.apiUrl}/tasks/${id}`);
   }
 
   createPayment(payment: Payment): Observable<Payment> {

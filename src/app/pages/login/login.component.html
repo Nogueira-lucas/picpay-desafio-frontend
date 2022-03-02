@@ -1,0 +1,40 @@
+<section class="auth">
+    <div class="login">
+        <div>
+            <img class="logo" src="./../../assets/images/Logo.png">
+            <h4>Bem vindo de volta</h4>
+
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <div class="input-field">
+                    <input type="email" name="email" placeholder="joao@gmail.com" formControlName="email" required>
+                    <label class="active">Email</label>
+                </div>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors?.required">
+                        E-mail é um campo obrigatório
+                    </div>
+                    <div *ngIf="email.errors?.email">
+                        E-mail inválido
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="password" placeholder="******" formControlName="password" required>
+                    <label class="active">Senha</label>
+                </div>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors?.required">
+                        Senha é um campo obrigatório
+                    </div>
+                </div>
+
+                <div *ngIf="loginInvalid" class="alert alert-danger">
+                    E-mail e/ou senha incorretos
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+        </div>
+    </div>
+    <div class="apresentation mobile-reverse">
+        <img src="./../../assets/images/man-doing-online-payment.png">
+    </div>
+</section>

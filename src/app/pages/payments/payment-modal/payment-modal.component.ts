@@ -1,14 +1,16 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Payment } from './../payment.interface';
-import { PaymentsService } from './../payments.service';
+import { Payment } from '../../../interfaces/payment.interface';
+import { PaymentsService } from '../../../services/payments.service';
 
 @Component({
   selector: 'app-payment-modal',
   templateUrl: './payment-modal.component.html',
-  styleUrls: ['./payment-modal.component.scss']
+  styleUrls: ['./payment-modal.component.scss'],
+  providers: [DatePipe]
 })
 export class PaymentModalComponent implements OnInit {
   @Input() title;
@@ -16,6 +18,7 @@ export class PaymentModalComponent implements OnInit {
 
   paymentForm: FormGroup;
 
+  get name() { return this.paymentForm.get('name'); }
   get username() { return this.paymentForm.get('username'); }
   get value() { return this.paymentForm.get('value'); }
   get date() { return this.paymentForm.get('date'); }
@@ -23,7 +26,8 @@ export class PaymentModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private paymentsService: PaymentsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -36,9 +40,10 @@ export class PaymentModalComponent implements OnInit {
 
     this.paymentForm.setValue({
       id: this.payment.id,
+      name: this.payment.name,
       username: this.payment.username,
       value: this.payment.value,
-      date: this.payment.date,
+      date: this.datePipe.transform(new Date(this.payment.date), "yyyy-MM-dd'T'HH:mm:ss") ,
       title: this.payment.title,
     });
   }
@@ -62,6 +67,7 @@ export class PaymentModalComponent implements OnInit {
   private createForm() {
     this.paymentForm = this.formBuilder.group({
       id: [null],
+      name: ['', Validators.required],
       username: ['', Validators.required],
       value: ['', Validators.required],
       date: ['', Validators.required],

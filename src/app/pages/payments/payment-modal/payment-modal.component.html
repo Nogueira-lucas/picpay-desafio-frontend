@@ -7,12 +7,21 @@
 <div class="modal-body">
     <form id="paymentForm" [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
         <div class="input-field">
+            <input type="text" name="name" placeholder="Nome*" formControlName="name" required>
+            <label class="active">Nome</label>
+        </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors?.required">
+                Nome é um campo obrigatório
+            </div>
+        </div>
+        <div class="input-field">
             <input type="text" name="username" placeholder="Usuário*" formControlName="username" required>
             <label class="active">Usuário</label>
         </div>
         <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
             <div *ngIf="username.errors?.required">
-                username is required.
+                Usuário é um campo obrigatório
             </div>
         </div>
         <div class="input-field">
@@ -21,7 +30,7 @@
         </div>
         <div *ngIf="value.invalid && (value.dirty || value.touched)" class="alert alert-danger">
             <div *ngIf="value.errors?.required">
-                value is required.
+                Valor é um campo obrigatório
             </div>
         </div>
         <div class="input-field">
@@ -30,7 +39,7 @@
         </div>
         <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
             <div *ngIf="date.errors?.required">
-                date is required.
+                Data é um campo obrigatório
             </div>
         </div>
         <div class="input-field">
@@ -40,5 +49,6 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="submit" form="paymentForm" [disabled]="!paymentForm.valid" class="btn btn-outline-dark">{{ title }}</button>
+    <button type="submit" form="paymentForm" [disabled]="!paymentForm.valid" class="btn btn-outline-dark">{{ title
+        }}</button>
 </div>

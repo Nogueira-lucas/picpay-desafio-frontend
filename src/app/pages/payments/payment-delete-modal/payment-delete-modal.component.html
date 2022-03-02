@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Excluir Pagamento</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p>Nome: {{payment.name}}</p>
+    <p>Usuário: {{payment.username}}</p>
+    <p>Valor: {{payment.value | currency}}</p>
+    <p>Data: {{payment.date | date : 'dd MMM yyyy'}}</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn" (click)="activeModal.dismiss()">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="activeModal.close(true);">Excluir</button>
+</div>
