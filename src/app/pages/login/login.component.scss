@@ -1,0 +1,35 @@
+@mixin flex() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.payfriends {
+    &-login {
+        @include flex();
+
+        &__form {
+            padding: 7rem;
+        }
+
+        &__img {
+            background-color: #FFFFFF;
+            height: 100vh;
+            @include flex();
+            img {
+                width: inherit;
+                max-height: 50rem;
+            }
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .payfriends {
+        &-login {
+            &__img {
+                display: none;
+            }
+        }
+    }
+}
