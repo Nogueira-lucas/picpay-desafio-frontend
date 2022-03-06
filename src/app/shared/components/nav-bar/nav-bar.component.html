@@ -1,0 +1,18 @@
+<div class="header">
+    <img src="assets/img/logo.svg" alt="PayFriends">
+
+    <div class="profile-img" (click)="show = !show">
+        <img src="assets/img/profile.png" alt="Perfil">
+    </div>
+    <div class="dropdown-menu" *ngIf="show">
+        <ul (click)="show = false">
+            <li class="detail-user">
+                <span>{{ user?.name }}</span>
+                <small>{{ user?.email }}</small>
+            </li>
+            <li class="divider" [routerLink]="['/profile']">perfil</li>
+            <li [routerLink]=" ['/payments']">Meus pagamentos</li>
+            <li class="divider" (click)="goOut()">Sair</li>
+        </ul>
+    </div>
+</div>
