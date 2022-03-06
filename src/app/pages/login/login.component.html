@@ -1,0 +1,40 @@
+<div class="container-login">
+    <section class="form">
+        <form #dataForm="ngForm" novalidate (ngSubmit)="onSubmit($event, dataForm)">
+            
+            <img src="assets/img/logo.svg" alt="PayFriends">
+            <h1>Bem vindo de volta</h1>
+           
+            <fieldset>
+                <label>E-mail</label>
+                <input 
+                   type="text" 
+                   id="email"
+                   name="email"
+                   placeholder="Ex.: nome@email.com" 
+                   required
+                   ngModel
+                >
+            </fieldset>
+            <fieldset>
+                <label>Senha</label>
+                <input 
+                   type="password" 
+                   name="password"
+                   placeholder="******" 
+                   required
+                   minlength="6"
+                   ngModel
+                >
+            </fieldset>
+                        
+            <component-alert></component-alert>
+            <button type="submit" class="btn btn-default btn-login">
+                ENTRAR
+            </button>
+        </form>
+    </section>
+    <section class="img">
+        <img src="assets/img/illustration.svg" alt="Login to PayFriends">
+    </section>
+</div>
