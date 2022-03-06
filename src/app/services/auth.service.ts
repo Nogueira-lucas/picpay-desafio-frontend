@@ -9,24 +9,31 @@ import { encrypt, decrypt } from 'src/app/shared/utils/crypto';
 export class AuthService extends RepositoryService {
   token: string
   user: User
+  paramRedirect = "/payments"
+  paramLogin = "/login"
 
   setUserInStorage(user: User){
     this.user = user
     this.token = encrypt(JSON.stringify(user))
     localStorage.setItem('currentUser', this.token)
+    this._router.navigate([this.paramRedirect])
   }
   
   logout() {
     this.user = null
     localStorage.clear()    
-    this._router.navigate(['/login'])
+    this._router.navigate([this.paramLogin])
   }
 
   isLoggedIn(): boolean {    
     const data = localStorage.getItem('currentUser')
     if (!data) 
-      this.logout() 
-    this.user = JSON.parse(decrypt(data))
+      this.logout()
+    try {      
+      this.user = JSON.parse(decrypt(data))
+    } catch (error) {      
+      this.logout()
+    } 
     return true
   }
 
@@ -34,10 +41,9 @@ export class AuthService extends RepositoryService {
     const params = `account?email=${email}&password=${password}`
     return this.get(params).subscribe(
       (data) =>{
-        if(data && data.length === 1){
+        if(data && data.length === 1)
           this.setUserInStorage(data[0])
-          this._router.navigate(['/payments'])
-        }else
+        else
           this.alert.set("E-mail ou Senha estão invalidos")
       }
     )       

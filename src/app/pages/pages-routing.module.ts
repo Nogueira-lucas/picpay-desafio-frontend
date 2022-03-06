@@ -1,26 +1,27 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import { AuthGuard } from '../core/Interceptor/auth-guard'
 
 import { LoginComponent } from './login/login.component'
 import { PagesComponent } from './pages.component'
 import { PaymentsComponent } from './payments/payments.component'
 
-const routes: Routes = [{path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'home', component: PagesComponent, children:
+const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
+{ path: 'login', component: LoginComponent },
+{
+  path: 'home', component: PagesComponent, canLoad: [AuthGuard], canActivate: [AuthGuard], children:
     [
       { path: 'payments', component: PaymentsComponent },
       { path: 'profile', component: PaymentsComponent },
-      { path: '', redirectTo: 'payments', pathMatch:'full' }
+      { path: '', redirectTo: 'payments', pathMatch: 'full' }
     ]
-  },
-  { path: '**', redirectTo: 'home' }
+},
+{ path: '**', redirectTo: 'home' }
 ]
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 
 export class PagesRoutingModule { }

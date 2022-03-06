@@ -1,35 +1,20 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Authenticate } from 'src/app/domain/authenticate';
-import { AuthenticationService } from 'src/app/service/authenticate/authentication.service';
-import { AuthRouter } from '../auth-router';
+import { CanActivate, Router, CanLoad } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Injectable({
     providedIn: 'root',
 })
 
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
 
-    constructor(private authService: AuthenticationService, private router: Router) { }
+    constructor(private auth: AuthService, private router: Router) { }
 
-    canActivate(
-        next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): boolean {
-        let url: string = state.url;
-        this.CheckLogin(url);
-        return true;
+    canActivate(): boolean {
+        return this.auth.isLoggedIn()
     }
 
-    CheckLogin(url: string): boolean {
-        if (this.authService.isLoggedIn()) {
-            if (AuthRouter.CheckRoutePermission(url, this.authService._typeUser))
-                return true;
-            else
-                this.router.navigate(['/home/not-permission']);
-
-        } else {
-            this.authService.logout();
-            return false;
-        }
+    canLoad(): boolean {
+        return this.auth.isLoggedIn()
     }
 }
