@@ -1,8 +1,21 @@
 <header *ngIf="isUserLoggedIn" class="row payfriends-header">
-        <div class="col-md-2">
-            <img src="assets/images/logo_white.png" alt="Logotipo da aplicação PayFriends">
-        </div>
-        <div class="col-md-10">
-            <a (click)="logout()">logout</a>
-        </div>
+    <div class="col-md-2">
+        <img src="assets/images/logo_white.png" alt="Logotipo da aplicação PayFriends">
+    </div>
+    <div class="col-md-10 payfriends-header__item">
+        <button class="payfriends-header__button" [matMenuTriggerFor]="menu"
+        aria-label="Botão que abre o menu">
+        <img [src]="avatar" alt="Imagem do usuário logado" />
+    </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item  (click)="goTo('profile')">
+                <mat-icon>edit</mat-icon>
+                <span>Ver perfil</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Finalizar sessão</span>
+            </button>
+            </mat-menu>
+    </div>
 </header>

@@ -1,6 +1,24 @@
+@mixin flex() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .payfriends {
     &-header {
-        padding: 3rem 0;
+        padding: 2.5rem 0;
         background-color: #002D69;
+        @include flex();
+
+        &__item {
+            @include flex();
+            justify-content: flex-end;
+        }
+
+        &__button {
+            background: transparent;
+            border: none;
+            color: #FFF;
+        }
     }
 }

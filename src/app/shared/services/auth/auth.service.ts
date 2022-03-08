@@ -1,5 +1,5 @@
 import { StorageService } from './../storage/storage.service';
-import { IUser } from '../../interfaces/user.interface';
+import { IAccountUser } from '../../interfaces/account.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -11,14 +11,14 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  private accountSubject = new BehaviorSubject<IUser>(this.storageService.getStorage("PAYFRIENDS.user_access", 'local'));
+  private accountSubject = new BehaviorSubject<IAccountUser>(this.storageService.getStorage("PAYFRIENDS.user_access", 'local'));
   public accountState$ = this.accountSubject.asObservable();
 
   constructor(private readonly http: HttpClient, private readonly storageService: StorageService) { }
 
-  login(email: string, password: string): Observable<IUser> {
+  login(email: string, password: string): Observable<IAccountUser> {
     const params = new HttpParams().appendAll({email, password});
-    return this.http.get<IUser[]>(`${environment.api}/account`, { params }).pipe(map((response: IUser[]) => {
+    return this.http.get<IAccountUser[]>(`${environment.api}/account`, { params }).pipe(map((response: IAccountUser[]) => {
       this.setSession(response[0]);
       return response ? response[0] : null;
     }))
@@ -33,7 +33,7 @@ export class AuthService {
     this.setSession(null);
   }
 
-  private setSession(user: IUser) {
+  private setSession(user: IAccountUser) {
     this.storageService.setStorage("PAYFRIENDS.user_access", user, 'local');
     this.accountSubject.next(user);
   }

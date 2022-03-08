@@ -1706,6 +1706,7 @@
         "id": 0,
         "name": "usuario",
         "email": "usuario@gmail.com",
+        "avatar": "/assets/images/avatar_user.png",
         "password": "usuario"
       }
     ]
