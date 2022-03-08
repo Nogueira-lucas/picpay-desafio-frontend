@@ -1,7 +1,7 @@
 @import "../../../../assets/scss/modal";
 
 
-form{
+form.form-payment{
     padding: 20px 0;
     .flex-gap{
         display: flex;
@@ -11,6 +11,10 @@ form{
 
         fieldset{
             width: 100%;
+
+            small.error{
+                color: #a33c3b;
+            }
         }
     }
 

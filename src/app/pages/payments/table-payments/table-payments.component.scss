@@ -34,6 +34,22 @@
 
     th{        
         font-weight: bold;
+        cursor: pointer;
+        small{
+            font-size: 9px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        .order-top{
+            position: absolute;
+            margin-top: 0px;
+        }
+        .order-bottom{
+            position: absolute;
+            margin-top: 8px;
+        }
+        .select-top{
+        }
     }
 
     tbody {
@@ -98,10 +114,18 @@
             font-weight: bold;
         }
 
-        li a:hover{
+        li a:hover, li a.active{
             background-color: $default-color;
             border-radius: 4px;
             color:#ffffff;
+        }
+
+        li.disabled{
+            opacity: 0.4;
+            display: inline-block; 
+            pointer-events: none;
+            text-decoration: none;
+            cursor: not-allowed;
         }
 
         select {

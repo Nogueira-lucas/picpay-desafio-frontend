@@ -18,7 +18,7 @@ export class RepositoryService {
     public alert: AlertService){}
 
   get(params: string, url = this.api): Observable<any> {  
-    return this.http.get<any>(`${url}${params}`).pipe(
+    return this.http.get<any>(`${url}${params}`, {observe: 'response'}).pipe(
       map(res => {
         return res;
       })

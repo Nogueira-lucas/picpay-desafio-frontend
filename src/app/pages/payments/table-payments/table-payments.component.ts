@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentsService } from 'src/app/services/payments.service';
+import { getPagination } from 'src/app/shared/utils/utils';
 
 @Component({
   selector: 'app-table-payments',
@@ -9,7 +10,16 @@ import { PaymentsService } from 'src/app/services/payments.service';
 export class TablePaymentsComponent implements OnInit {
   modalStyle = ''
   search: string
-  limitPagination = 5
+
+  pages = [1]
+  page = 1
+  numEndPage = 1
+  limit = 5
+  totalPages = 0
+  pageView = 5
+
+  sort = 'id'
+  order = 'desc'
 
   payments = []
   constructor(private _service: PaymentsService) { }
@@ -17,17 +27,22 @@ export class TablePaymentsComponent implements OnInit {
   ngOnInit(): void {
     this.getAll()
   }
-  
-  private async getAll(): Promise<void> {    
-      this.payments = await this._service.list() as []  
+
+  private async getAll(): Promise<void> {
+    const { headers, body } = await this._service.getAll(this.page, this.limit, this.sort, this.order) as any
+    this.payments = body;
+    this.totalPages = headers.get('X-Total-Count')
+    this.pages = getPagination(this.totalPages,this.limit,this.pageView,this.page)
+    this.numEndPage = this.pages[this.pages.length - 1];
   }
 
-  getByAll(){
+  getByPageAll(event, p) {
+    event.preventDefault();
+    this.getByAll(p)
+  }
+
+  getByAll(p) {
+    this.page = p
     this.getAll()
   }
-
-  changeLimitPagination(e){
-    e.preventDefault()
-  }
-
 }

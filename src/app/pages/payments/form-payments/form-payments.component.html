@@ -4,32 +4,36 @@
     <h2>Adicionar pagamento</h2>
 
 
-    <form #dataForm="ngForm" novalidate (ngSubmit)="onSubmit($event, dataForm)">
+    <form class="form-payment" novalidate [formGroup]="formData" (ngSubmit)="onSubmit($event, formData.value)">
       <div class="flex-container">
         <div class="flex-gap">
           <fieldset>
             <label>Usuário<small>*</small></label>
-            <input type="text" name="name" placeholder="Ex. Lucas Rodrigues" required ngModel>
+            <input type="text" formControlName="name"  placeholder="Ex. Lucas Rodrigues" minlength="3" required >
+            <small class="error" *ngIf="formData?.controls?.name?.invalid" >Usuário é obrigatório</small>
           </fieldset>
           <fieldset>
             <label>Valor (R$)<small>*</small></label>
-            <input type="number" name="value" placeholder="0,00" required ngModel>
+            <input type="number"  formControlName="value" placeholder="0,00" required>
+            <small class="error" *ngIf="formData?.controls?.value?.invalid" >Valor é obrigatório</small>
           </fieldset>
         </div>
         <div class="flex-gap">
           <fieldset>
             <label>Data<small>*</small></label>
-            <input type="date" name="data" placeholder="DD/MM/YYYY" required ngModel>
+            <input type="date" formControlName="date" placeholder="DD/MM/YYYY" required >
+            <small class="error" *ngIf="formData?.controls?.date?.invalid" >Data é obrigatório</small>
           </fieldset>
           <fieldset>
             <label>Título <small>(opcional)</small></label>
-            <input type="text" name="title" placeholder="Título" ngModel>
+            <input type="text" formControlName="title" placeholder="Título" maxlength="100" >
+            <small class="error" *ngIf="formData?.controls?.title?.invalid" >Título não pode ser maior que 100 caracteres</small>
           </fieldset>
         </div>
       </div>
 
       <div class="flex-end">
-        <button type="button" class="btn">CANCELAR</button>
+        <button type="button" class="btn" (click)="onHide()">CANCELAR</button>
         <button type="submit" class="btn btn-default">SALVAR</button>
       </div>
     </form>

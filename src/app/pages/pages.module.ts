@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TablePaymentsComponent } from './payments/table-payments/table-payments.component';
 import { FormPaymentsComponent } from './payments/form-payments/form-payments.component';
 
@@ -24,6 +24,7 @@ import { FormPaymentsComponent } from './payments/form-payments/form-payments.co
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     PagesRoutingModule,
     SharedModule
   ]
