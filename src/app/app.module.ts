@@ -1,3 +1,5 @@
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -32,7 +34,8 @@ const RxJS_Services = [HTTPListener, HTTPStatus];
     RxJS_Services,
     { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true } , 
     { provide: HTTP_INTERCEPTORS, useClass: HTTPListener, multi: true },
-    { provide: ErrorHandler,  useClass: GlobalErrorHandler }
+    { provide: ErrorHandler,  useClass: GlobalErrorHandler },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
   ],
   bootstrap: [AppComponent]
 })

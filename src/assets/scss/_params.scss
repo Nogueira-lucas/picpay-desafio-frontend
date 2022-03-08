@@ -1,0 +1,18 @@
+$bottom-body: #f2f2f2;
+$primary-color: #002D69;
+$default-color: rgba(57, 155, 227, 1);
+$default-hover-color: rgba(57, 156, 227, 0.836);
+$text-color: rgb(39, 46, 54);
+$border-color: rgba(0, 0, 0, 0.185);
+
+@mixin tablets {
+    @media (min-width: 576px) and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin phones {
+    @media (max-width: 575px) {
+        @content;
+    }
+}

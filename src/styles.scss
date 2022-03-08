@@ -1,12 +1,9 @@
+@import "assets/scss/_params.scss";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@200;300;500&display=swap');
 * {
   box-sizing: border-box;
 }
-
-$default-color: rgba(57, 155, 227, 1);
-$default-hover-color: rgba(57, 156, 227, 0.836);
-$text-color: rgb(39, 46, 54);
-$border-color: rgba(0, 0, 0, 0.185);
 
 html,
 body {
@@ -15,6 +12,12 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+.container{
+  width: 100%;
+  max-width: 1248px;
+  margin: 0 auto;
 }
 
 h1{
@@ -35,52 +38,62 @@ h2{
   color: #333333;
 }
 
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.text-left{
+  text-align: left;
+}
+
 
 /*** form ****/
 fieldset {
   border: none;
   padding: 15px 0 10px 0;
   margin: 0 0 1rem 0;
-}
 
-label {
-  display: block;
-  font-weight: 400;
-  margin: -0.9rem 5px;
-  padding: 5px;
-  color: $text-color;
-  font-size: 1rem;
-  position: absolute;
-  background-color: #F2F2F2;
-}
-
-input{
-  background-color: #F2F2F2;
-}
- 
-input:not([type="checkbox"]) {
-  border: 1px solid $border-color;
-  border-radius: 0.25rem;
-  color: $text-color;
-  font-size: 1rem;
-  font-weight: 400;
-  height: 50px;
-  width: 100%;
-  padding: 0 0.5rem;
-
-  &:focus {
-     outline-color: $default-color;
+  label {
+    display: block;
+    font-weight: 400;
+    margin: -0.9rem 5px;
+    padding: 5px;
+    color: $text-color;
+    font-size: 1rem;
+    position: absolute;
+    background-color: #F2F2F2;
   }
-}
 
-input[appTogglePassword] {
-  padding-right: 2.5rem;
 }
+  input{
+    background-color: #F2F2F2;
+  }
+  
+  input:not([type="checkbox"]) {
+    border: 1px solid $border-color;
+    border-radius: 0.25rem;
+    color: $text-color;
+    font-size: 1rem;
+    font-weight: 400;
+    height: 50px;
+    width: 100%;
+    padding: 0 0.5rem;
 
-input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-}
+    &:focus {
+      outline-color: $default-color;
+    }
+  }
+
+  input[appTogglePassword] {
+    padding-right: 2.5rem;
+  }
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
 
 /**** end form *****/
 

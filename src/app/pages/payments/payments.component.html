@@ -1,1 +1,13 @@
-<p>payments works!</p>
+<div class="payments">
+    <div class="container payments">
+        <h2>Meus pagamentos</h2>
+        <section class="add text-right">
+            <button class="btn btn-default" (click)="addPayments = true">ADICIONAR PAGAMENTO</button>
+        </section>
+        <section class="list">
+            <app-table-payments></app-table-payments>
+        </section>
+    </div>
+</div>
+
+<app-form-payments [show]="addPayments" (hide)="addPayments = false" ></app-form-payments>

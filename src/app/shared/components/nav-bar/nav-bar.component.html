@@ -1,5 +1,5 @@
-<div class="header">
-    <img src="assets/img/logo.svg" alt="PayFriends">
+<div class="header" (mouseleave)="show = false">    
+    <logo-svg [cPay]="'#ffffff'" [cFriends]="'#ffffff'"></logo-svg>
 
     <div class="profile-img" (click)="show = !show">
         <img src="assets/img/profile.png" alt="Perfil">
@@ -7,10 +7,10 @@
     <div class="dropdown-menu" *ngIf="show">
         <ul (click)="show = false">
             <li class="detail-user">
-                <span>{{ user?.name }}</span>
+                <p>Olá {{ user?.name }}</p>
                 <small>{{ user?.email }}</small>
             </li>
-            <li class="divider" [routerLink]="['/profile']">perfil</li>
+            <li class="divider" [routerLink]="['/profile']">Perfil</li>
             <li [routerLink]=" ['/payments']">Meus pagamentos</li>
             <li class="divider" (click)="goOut()">Sair</li>
         </ul>

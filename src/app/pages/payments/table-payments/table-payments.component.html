@@ -1,0 +1,73 @@
+<div class="filters-body">
+    <div class="search">
+        <input type="text" placeholder="Pesquisar por usuário" name="search" [(ngModel)]="search"
+            (ngModelChange)="getByAll()">
+    </div>
+
+    <div class="pagination-body">       
+        <ul class="pagination">
+            <li>
+                <div class="li-select">
+                    <small>Exibir</small>&nbsp;&nbsp;
+                    <select class="form-select" name="limitPagination" [(ngModel)]="limitPagination"
+                        (ngModelChange)="changeLimitPagination($event)">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                    </select>
+                </div>
+            </li>
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1"><</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">></a>
+            </li>
+          </ul>
+    </div>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr class="text-left">
+                <th>Usuário&and;&or;</th>
+                <th>Título</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Pago</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let payment of payments">
+                <td>
+                    {{ payment?.name }}<br>
+                    <small>{{ payment?.username }}</small>
+                </td>
+                <td>
+                    {{ payment?.title }}
+                </td>
+                <td>
+                    {{ payment?.date | date }}<br>
+                    <small>{{ payment?.date | date : 'h:mm a' }}</small>
+                </td>
+                <td>
+                    {{ payment?.value | currency}}
+                </td>
+                <td>
+                    <input type="checkbox" [checked]="payment?.isPayed">
+                </td>
+                <td>
+                    ...
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
