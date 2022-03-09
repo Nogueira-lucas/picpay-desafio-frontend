@@ -3,10 +3,10 @@
     align-items: center;
   }
 
-.payfriends-edit-task {
+.payfriends-delete-task {
     h3 {
         font-size: 18px;
-        padding-bottom: 2em;
+        padding-bottom: 1em;
     }
 
     &__footer {
@@ -16,13 +16,5 @@
         button:first-child {
             margin-right: 2rem;
         }
-    }
-}
-
-.mat-datepicker-dialog {
-    background-color: none !important;
-    .mat-dialog-container {
-        background: none !important;
-        box-shadow: none !important;
     }
 }

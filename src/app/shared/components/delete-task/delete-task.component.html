@@ -1,0 +1,12 @@
+<div class="row payfriends-delete-task">
+    <h3 class="col-md-12">Excluir pagamento</h3>
+        <div class="col-md-12">
+                <p>Usuário: {{taskSource.name}}</p>
+                <p>Data: {{taskSource.date | date : 'dd/MM/YYYY'}}</p>
+                <p>Valor: {{taskSource.value | currency : 'BRL'}}</p>
+            </div>
+          <div class="col-md-12 payfriends-delete-task__footer">
+              <button type="button" mat-raised-button (click)="dismiss()">cancelar</button>
+              <button type="submit" mat-raised-button color="primary" (click)="onSubmit()">salvar</button>
+          </div>
+  </div>

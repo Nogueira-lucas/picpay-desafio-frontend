@@ -10,6 +10,7 @@ import ptBr from '@angular/common/locales/pt';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomMatPaginatorIntl } from 'src/app/shared/utils/mat-custom-paginator-intl';
+import { DeleteTaskModule } from '../../shared/components/delete-task/delete-task.module';
 
 registerLocaleData(ptBr);
 
@@ -22,7 +23,8 @@ registerLocaleData(ptBr);
     ReactiveFormsModule,
     HomeRoutingModule,
     SharedModule,
-    EditTaskModule
+    EditTaskModule,
+    DeleteTaskModule
   ],
   exports: [HomeComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' },{

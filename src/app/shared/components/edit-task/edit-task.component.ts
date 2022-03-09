@@ -24,7 +24,6 @@ export class EditTaskComponent implements OnInit {
     this.inputDateFormatted = this.taskSource.date;
     this.form = this.fb.group({
       name: [this.taskSource.name, Validators.required],
-      username: [this.taskSource.username, Validators.required],
       date: [this.taskSource.date, Validators.required],
       title: [this.taskSource.title, Validators.required],
       value: [this.taskSource.value, Validators.required]

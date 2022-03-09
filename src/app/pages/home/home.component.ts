@@ -9,6 +9,12 @@ import { tap } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteTaskComponent } from '../../shared/components/delete-task/delete-task.component';
+
+const COMPONENTS_SCHEMA = {
+  delete: {component: DeleteTaskComponent, width: '25vw'},
+  edit: {component: EditTaskComponent, width: '50vw'}
+};
 
 @Component({
   selector: 'app-home',
@@ -55,7 +61,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.taskService.updateTask(task.id, task).subscribe(_ => this.toastr.success( 'Status de pagamento alterado com êxito.', 'Deu tudo certo!'));
   }
 
-  openDialog(task: ITask) {
-    this.dialog.open(EditTaskComponent, { width: '50vw', data: task });
+  openDialog(name: string, task: ITask) {
+    this.dialog.open(COMPONENTS_SCHEMA[name].component, { width: COMPONENTS_SCHEMA[name].width, data: task });
   }
 }
