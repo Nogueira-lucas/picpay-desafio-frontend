@@ -12,8 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 import { DeleteTaskComponent } from '../../shared/components/delete-task/delete-task.component';
 
 const COMPONENTS_SCHEMA = {
-  delete: {component: DeleteTaskComponent, width: '25vw'},
-  edit: {component: EditTaskComponent, width: '50vw'}
+  delete: { component: DeleteTaskComponent, width: '25vw' },
+  edit: { component: EditTaskComponent, width: '50vw' },
+  add: { component: EditTaskComponent, width: '50vw' },
 };
 
 @Component({
@@ -58,10 +59,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   onChangeCheckbox(event: MatCheckboxChange, task: ITask) {
     task.isPayed = event.checked;
-    this.taskService.updateTask(task.id, task).subscribe(_ => this.toastr.success( 'Status de pagamento alterado com êxito.', 'Deu tudo certo!'));
+    this.taskService.updateTask(task.id, task).subscribe(_ => this.toastr.success('Status de pagamento alterado com êxito.', 'Deu tudo certo!'));
   }
 
   openDialog(name: string, task: ITask) {
-    this.dialog.open(COMPONENTS_SCHEMA[name].component, { width: COMPONENTS_SCHEMA[name].width, data: task });
+    this.dialog.open(COMPONENTS_SCHEMA[name].component, { width: COMPONENTS_SCHEMA[name].width, data: { source: task, type: name} });
   }
 }

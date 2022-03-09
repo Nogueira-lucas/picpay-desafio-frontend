@@ -13,10 +13,10 @@ export class DeleteTaskComponent implements OnInit {
 
   taskSource: ITask;
 
-  constructor(private readonly dialogRef: MatDialogRef<DeleteTaskComponent>, @Inject(MAT_DIALOG_DATA) private readonly data: ITask, private readonly taskService: TaskService, private readonly toastr: ToastrService) { }
+  constructor(private readonly dialogRef: MatDialogRef<DeleteTaskComponent>, @Inject(MAT_DIALOG_DATA) private readonly data, private readonly taskService: TaskService, private readonly toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.taskSource = this.data;
+    this.taskSource = this.data.source;
   }
 
   dismiss() {
@@ -25,7 +25,7 @@ export class DeleteTaskComponent implements OnInit {
 
   onSubmit() {
     this.taskService.deleteTask(this.taskSource.id).subscribe(data => {
-      this.toastr.success( 'Pagamento removido com êxito.', 'Deu tudo certo!');
+      this.toastr.success('Pagamento removido com êxito.', 'Deu tudo certo!');
       this.dialogRef.close();
     });
   }

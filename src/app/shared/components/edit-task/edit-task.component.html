@@ -1,36 +1,36 @@
 <div class="row payfriends-edit-task">
-  <h3 class="col-md-12">Editar pagamento</h3>
-<form [formGroup]="form" class="col-md-12">
-    <div class="row">
-        <mat-form-field appearance="outline" floatLabel="always" class="col-md-6">
-            <mat-label>Usuário</mat-label>
-            <input matInput type="text" formControlName="name" />
-        </mat-form-field>
-        <mat-form-field appearance="outline" floatLabel="always" class="col-md-6">
-            <mat-label>Valor</mat-label>
-            <input matInput type="tel" formControlName="value" currencyMask  />
-        </mat-form-field>
-        <mat-form-field appearance="outline" floatLabel="always" class="col-md-6">
-            <mat-label>Data</mat-label>
-            <input matInput formControlName="date" [ngxMatDatetimePicker]="picker" />
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [stepHour]="true"
-    [stepMinute]="true" [stepSecond]="true" [touchUi]="true" 
-    [enableMeridian]="true" [disableMinute]="false" [hideTime]="false" >
-    <ng-template>
-      <span class="mat-datetime-picker__span">ATUALIZAR</span>
-    </ng-template>
-  </ngx-mat-datetime-picker>
-        </mat-form-field>
-        <mat-form-field appearance="outline" floatLabel="always" class="col-md-6">
-            <mat-label>Título</mat-label>
-            <input matInput type="text" formControlName="title" />
-        </mat-form-field>
-        <div class="col-md-12 payfriends-edit-task__footer">
-            <button type="button" mat-raised-button (click)="dismiss()">cancelar</button>
-            <button type="submit" mat-raised-button color="primary" (click)="onSubmit()"
-                [disabled]="form.invalid">salvar</button>
+    <h3 class="col-md-12">{{dialogType === 'edit' ? 'Editar pagamento': 'Adicionar pagamento'}}</h3>
+    <form [formGroup]="form" class="col-md-12">
+        <div class="row">
+            <mat-form-field appearance="outline" floatLabel="always" class="col-md-6">
+                <mat-label>Usuário</mat-label>
+                <input matInput type="text" formControlName="name" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always" class="col-md-6">
+                <mat-label>Valor</mat-label>
+                <input matInput type="tel" formControlName="value" currencyMask />
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always" class="col-md-6">
+                <mat-label>Data</mat-label>
+                <input matInput formControlName="date" [ngxMatDatetimePicker]="picker" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [stepHour]="true"
+                    [stepMinute]="true" [stepSecond]="true" [touchUi]="true" [enableMeridian]="true"
+                    [disableMinute]="false" [hideTime]="false">
+                    <ng-template>
+                        <span class="mat-datetime-picker__span">ATUALIZAR</span>
+                    </ng-template>
+                </ngx-mat-datetime-picker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always" class="col-md-6">
+                <mat-label>Título</mat-label>
+                <input matInput type="text" formControlName="title" />
+            </mat-form-field>
+            <div class="col-md-12 payfriends-edit-task__footer">
+                <button type="button" mat-raised-button (click)="dismiss()">cancelar</button>
+                <button type="submit" mat-raised-button color="primary" (click)="onSubmit()"
+                    [disabled]="form.invalid">salvar</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 </div>

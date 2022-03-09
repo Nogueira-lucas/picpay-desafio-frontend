@@ -1,3 +1,4 @@
+import { GenerateRandomString } from './../../utils/generate-random-string';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -13,13 +14,20 @@ export class TaskService {
   private accountSubject = new BehaviorSubject<ITask[]>(null);
   public accountState$ = this.accountSubject.asObservable();
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly generator: GenerateRandomString) { }
 
   getTasks(pageIndex: number, pageSize: number): Observable<ITask[]> {
     const params = (pageSize) ? new HttpParams().appendAll({ _page: pageIndex, _limit: pageSize }) : new HttpParams();
     return this.http.get<ITask[]>(`${environment.api}/tasks`, { params }).pipe(map((response: ITask[]) => {
       return response ? response : [];
     }));
+  }
+
+  createTask(body: ITask): Observable<ITask> {
+    body.id = Math.floor(Math.random() * 15) + 170;
+    body.username = this.generator.create(body.name);
+
+    return this.http.post<ITask>(`${environment.api}/tasks`, body);
   }
 
   updateTask(taskId: number, body: ITask): Observable<ITask> {
