@@ -7,8 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CustomMatPaginatorIntl } from './utils/mat-custom-paginator-intl';
 
 const materialModules = [
   MatGridListModule,
@@ -30,6 +31,12 @@ const materialModules = [
   exports: [
     materialModules
   ],
-  declarations: []
+  declarations: [],
+  providers: [
+    {
+      provide: MatPaginatorIntl,
+      useClass: CustomMatPaginatorIntl,
+    },
+  ]
 })
 export class SharedModule { }

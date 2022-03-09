@@ -20,11 +20,13 @@
             </div>
 
             <div class="col-md-12">
-                <table class="width-100" mat-table [dataSource]="tasksSource" matSort matSortActive="username"
-                    matSortDisableClear matSortDirection="asc">
-                    <ng-container matColumnDef="username">
+                <table class="width-100 payfriends-home__table" mat-table [dataSource]="tasksSource" matSort matSortActive="name"
+                matSortDisableClear matSortDirection="asc">
+                    <ng-container matColumnDef="name">
                         <th mat-header-cell mat-sort-header *matHeaderCellDef> Usuário </th>
-                        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+                        <td mat-cell *matCellDef="let element"> 
+                            <p>{{element.name}}</p>
+                            <small>@{{element.username}}</small> </td>
                     </ng-container>
 
                     <ng-container matColumnDef="title">
@@ -34,7 +36,8 @@
 
                     <ng-container matColumnDef="date">
                         <th mat-header-cell mat-sort-header *matHeaderCellDef> Data </th>
-                        <td mat-cell *matCellDef="let element"> {{element.date | date : 'dd MMM YYYY'}} </td>
+                        <td mat-cell *matCellDef="let element"> <p>{{element.date | date : 'dd MMM YYYY'}} </p>
+                        <small>{{element.date | date : 'HH:mm a'}}</small></td>
                     </ng-container>
 
                     <ng-container matColumnDef="value">
