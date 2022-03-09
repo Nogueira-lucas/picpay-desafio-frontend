@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PaymentsService } from 'src/app/services/payments.service';
-import { getPagination } from 'src/app/shared/utils/utils';
+import { AlertService } from 'src/app/shared/components/alert/alert.service';
+import { Payment } from 'src/app/shared/models/payment.model';
+import { convertObjectInArray, getPagination } from 'src/app/shared/utils/utils';
+import { PaymentInterface } from '../paymens.interface';
 
 @Component({
   selector: 'app-table-payments',
@@ -8,32 +11,34 @@ import { getPagination } from 'src/app/shared/utils/utils';
   styleUrls: ['./table-payments.component.scss']
 })
 export class TablePaymentsComponent implements OnInit {
-  modalStyle = ''
+
+  @Output() onEdit = new EventEmitter<Payment>();
+  @Output() onGetAll = new EventEmitter<PaymentInterface>();
+
+  @Input() payments = Array<Payment>()
+  @Input() params: PaymentInterface
+
+  modalStyle = String()
   search: string
+  sortChange = { name: 'none', title: 'none', date: 'none', value: 'none', isPayed: 'none' }
+  showDelete: boolean
+  showConfirmPay: boolean
+  payment = new Payment()
 
-  pages = [1]
-  page = 1
-  numEndPage = 1
-  limit = 5
-  totalPages = 0
-  pageView = 5
-
-  sort = 'id'
-  order = 'desc'
-
-  payments = []
-  constructor(private _service: PaymentsService) { }
+  constructor(private _service: PaymentsService, private alert: AlertService) { }
 
   ngOnInit(): void {
     this.getAll()
   }
 
   private async getAll(): Promise<void> {
-    const { headers, body } = await this._service.getAll(this.page, this.limit, this.sort, this.order) as any
-    this.payments = body;
-    this.totalPages = headers.get('X-Total-Count')
-    this.pages = getPagination(this.totalPages,this.limit,this.pageView,this.page)
-    this.numEndPage = this.pages[this.pages.length - 1];
+    this.onGetAll.emit(this.params);
+  }
+
+  onChangeSearch() {
+    this.params.page = 1
+    this.params.like = `&name_like=${this.search}`
+    this.getAll()
   }
 
   getByPageAll(event, p) {
@@ -42,7 +47,57 @@ export class TablePaymentsComponent implements OnInit {
   }
 
   getByAll(p) {
-    this.page = p
+    this.params.page = p
+    this.getAll()
+  }
+
+  sortBy(property) {
+    eval(`this.sortChange.${property} = (this.sortChange.${property} === 'none') ? 'asc' : ((this.sortChange.${property} === 'asc') ? 'desc' : 'none')`)
+    this.params.sort = Object.keys(this.sortChange).filter(c => this.sortChange[c] !== 'none').join(',')
+    this.params.order = convertObjectInArray(this.sortChange).filter(c => c !== 'none').join(',')
+    if (!Object.keys(this.sortChange).some(c => this.sortChange[c] !== 'none')) this.params.sort = 'id'
+    this.getAll()
+  }
+
+  onResetFilter() {
+    this.params.page = 1
+    this.params.sort = 'id'
+    this.params.order = 'desc'
+    this.sortChange = { name: 'none', title: 'none', date: 'none', value: 'none', isPayed: 'none' }
+    this.params.like = String()
+    this.search = String()
+    this.getAll()
+  }
+
+  edit(row) {
+    this.onEdit.emit(row)
+  }
+
+
+  confirmDelete(row) {
+    this.showDelete = true
+    this.payment = row
+  }
+
+  async delete() {
+    await this._service.remove(this.payment.id)
+    this.showDelete = false
+    this.getAll()
+  }
+
+  confirmPay(e,row) {
+    this.showConfirmPay = true
+    this.payment = row
+    this.payment.isPayed = e.target.checked
+  }
+
+  async savePay() {
+    const result = await this._service.save(this.payment) as Payment
+    if (result?.id)
+      this.alert.success("Salvo com sucesso!")
+    else
+      this.alert.error("Ocorreu um erro, por favor tente novamente!")
+    this.showConfirmPay = false
     this.getAll()
   }
 }

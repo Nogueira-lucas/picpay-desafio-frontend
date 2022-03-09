@@ -1,3 +1,5 @@
+@import "../../../assets/scss/params";
+
 .container-login{
     display: flex;
     align-items: center;
@@ -12,9 +14,17 @@
       padding: 1rem;
       background-color: #F2F2F2;;
 
+      @include tablets {
+         margin:0 auto;
+         flex: 0 0 calc(100%);
+      }
+         
+
       form {
         margin: auto auto;
         width: 330px;
+
+       
 
          img {
             margin-bottom: 1rem;
@@ -29,6 +39,17 @@
             width: 100%;
             margin-top: 5px;
          }
+
+         .icon-ver{
+            position: absolute;
+            margin: 12px -34px;
+            width: 24px;
+            cursor: pointer;
+            opacity: 0.6;
+            :hover{
+               opacity: 0.4;
+            }
+         }
       }
    }
 
@@ -36,5 +57,11 @@
       text-align: center;
       flex: 0 0 calc(55%);
       padding: 2rem;
+
+      @include tablets {
+         display: none;
+      }
+      
    }   
+
 }

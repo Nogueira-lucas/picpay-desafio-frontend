@@ -4,8 +4,16 @@ div.header{
     position: relative;
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
+    padding: 1rem 2rem;
     background: $primary-color;
+    align-items: center;
+
+    .user-img {        
+        img{
+            cursor: pointer;
+            width: 45px;
+        }        
+    }
 
     .dropdown-menu{
         position: fixed;
@@ -14,9 +22,10 @@ div.header{
         border: 1px solid $border-color;
         border-radius: 4px;
         box-shadow: 0px 0px 3px 0px $border-color;
-        top: 5rem;
+        top: 4.5rem;
         animation-name: dropdown;
         animation-duration: 0.3s;
+        font-size: 18px;
         
         ul{
             padding: 0px;

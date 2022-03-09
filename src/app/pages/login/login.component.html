@@ -19,13 +19,16 @@
             <fieldset>
                 <label>Senha</label>
                 <input 
-                   type="password" 
+                   [attr.type]="type" 
                    name="password"
                    placeholder="******" 
                    required
                    minlength="6"
                    ngModel
                 >
+                
+                <img src="assets/img/icons/ver.png" *ngIf="type === 'password'" class="icon-ver" (click)="type = 'text'" alt="Perfil">
+                <img src="assets/img/icons/esconder.png" *ngIf="type === 'text'" class="icon-ver" (click)="type = 'password'" alt="Perfil">
             </fieldset>
                         
             <component-alert></component-alert>

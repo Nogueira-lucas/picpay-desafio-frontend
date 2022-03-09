@@ -7,5 +7,6 @@ import { AlertService } from './alert.service';
   styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent {
+  @Input() fixed: string
   constructor(public service: AlertService){}
 }

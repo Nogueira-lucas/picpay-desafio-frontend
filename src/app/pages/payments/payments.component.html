@@ -5,9 +5,13 @@
             <button class="btn btn-default" (click)="addPayments = true">ADICIONAR PAGAMENTO</button>
         </section>
         <section class="list">
-            <app-table-payments></app-table-payments>
+            <app-table-payments 
+            [params]="params"
+            [payments]="payments"
+            (onGetAll)="onGetAll($event)"
+            (onEdit)="onEdit($event)"></app-table-payments>
         </section>
     </div>
 </div>
 
-<app-form-payments [show]="addPayments" (hide)="addPayments = false" ></app-form-payments>
+<app-form-payments *ngIf="addPayments" [show]="addPayments" [payment]="payment" (hide)="onFormHide()" ></app-form-payments>

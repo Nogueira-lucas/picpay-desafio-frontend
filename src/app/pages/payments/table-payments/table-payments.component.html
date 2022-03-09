@@ -1,14 +1,23 @@
 <div class="filters-body">
     <div class="search">
-        <input type="text" placeholder="Pesquisar por usuário" name="search" [(ngModel)]="search"
-            (ngModelChange)="getByAll(1)">
+        <label class="input-img">
+            <input type="text" placeholder="Pesquisar por usuário" name="search" [(ngModel)]="search"
+                (ngModelChange)="onChangeSearch()">
+            <img src="../../../../assets/img//icons/search.svg" alt="buscar por usuário" />
+        </label>
+
+        <button type="submit" class="btn btn-light" (click)="onResetFilter()">
+            <span>
+                <icon-filter [color]="'none'" [dimension]="12" (click)="edit(payment)"></icon-filter>
+            </span>
+            Limpar</button>
     </div>
-    <div class="pagination-body">       
+    <div class="pagination-body">
         <ul class="pagination">
             <li>
                 <div class="li-select">
                     <small>Exibir</small>&nbsp;&nbsp;
-                    <select class="form-select" name="limit" [(ngModel)]="limit"
+                    <select class="form-select" name="params.limit" [(ngModel)]="params.limit"
                         (ngModelChange)="getByAll(1)">
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -17,16 +26,18 @@
                     </select>
                 </div>
             </li>
-            <li class="page-item {{page !== 1 || 'disabled'}}">
-              <a class="page-link" href="#" (click)="getByPageAll($event, page - 1)"><</a>
+            <li class="page-item {{params.page !== 1 || 'disabled'}}">
+                <a class="page-link" href="#" (click)="getByPageAll($event, params.page - 1)">
+                    < </a>
             </li>
-            <li class="page-item" *ngFor="let p of pages">
-                <a class="page-link {{p !== page || 'active'}}" href="#" (click)="getByPageAll($event, p)">{{p}}</a>
+            <li class="page-item" *ngFor="let p of params.pages">
+                <a class="page-link {{p !== params.page || 'active'}}" href="#"
+                    (click)="getByPageAll($event, p)">{{p}}</a>
             </li>
-            <li class="page-item {{numEndPage !== page || 'disabled'}}">
-              <a class="page-link" href="#" (click)="getByPageAll($event, page + 1)">></a>
+            <li class="page-item {{params.numEndPage !== params.page || 'disabled'}}">
+                <a class="page-link" href="#" (click)="getByPageAll($event, params.page + 1)">></a>
             </li>
-          </ul>
+        </ul>
     </div>
 </div>
 
@@ -34,22 +45,33 @@
     <table class="table table-striped">
         <thead>
             <tr class="text-left">
-                <th>
-                    Usuário
-                    <small class="order-top select-top">&and;</small>
-                    <small class="order-bottom">&or;</small>
+                <th (click)="sortBy('name')">Usuário
+                    <small class="order-top {{sortChange.name !== 'asc' || 'disabled'}}">&and;</small>
+                    <small class="order-bottom {{sortChange.name !== 'desc' || 'disabled'}}">&or;</small>
                 </th>
-                <th>Título</th>
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Pago</th>
+                <th (click)="sortBy('title')">Título
+                    <small class="order-top {{sortChange.title !== 'asc' || 'disabled'}}">&and;</small>
+                    <small class="order-bottom {{sortChange.title !== 'desc' || 'disabled'}}">&or;</small>
+                </th>
+                <th (click)="sortBy('date')">Data
+                    <small class="order-top {{sortChange.date !== 'asc' || 'disabled'}}">&and;</small>
+                    <small class="order-bottom {{sortChange.date !== 'desc' || 'disabled'}}">&or;</small>
+                </th>
+                <th (click)="sortBy('value')">Valor
+                    <small class="order-top {{sortChange.value !== 'asc' || 'disabled'}}">&and;</small>
+                    <small class="order-bottom {{sortChange.value !== 'desc' || 'disabled'}}">&or;</small>
+                </th>
+                <th (click)="sortBy('isPayed')">Pago
+                    <small class="order-top {{sortChange.isPayed !== 'asc' || 'disabled'}}">&and;</small>
+                    <small class="order-bottom {{sortChange.isPayed !== 'desc' || 'disabled'}}">&or;</small>
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let payment of payments">
                 <td>
-                    {{ payment?.id }} - {{ payment?.name }}<br>
+                    {{ payment?.name }}<br>
                     <small>{{ payment?.username }}</small>
                 </td>
                 <td>
@@ -63,13 +85,49 @@
                     {{ payment?.value | currency}}
                 </td>
                 <td>
-                    <input type="checkbox" [checked]="payment?.isPayed">
+                    <input type="checkbox" (change)="confirmPay($event, payment)" [checked]="payment?.isPayed">
                 </td>
-                <td>
-                    ...
+                <td class="action">
+                    <div class="td-icon-flex">
+                        <span>
+                            <icon-edit [color]="'none'" (click)="edit(payment)"></icon-edit>
+                        </span>
+                        <span>
+                            <icon-trash [color]="'none'" (click)="confirmDelete(payment)"></icon-trash>
+                        </span>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 
+<div [style]="(showDelete)?'display:block':''" class="modal">
+    <div class="modal-content content-delete">
+        <span class="close" (click)="showDelete = false">&times;</span>
+        <h2>Excluir pagamento</h2>
+        <p><b>Usuário:</b>&nbsp;{{ payment?.name }}</p>
+        <p><b>Data:</b>&nbsp;{{ payment?.date | date : 'dd/MM/yyyy' }}</p>
+        <p><b>Valor:</b>&nbsp;{{ payment?.value | currency}}</p>
+
+        <div class="display-flex">
+            <button type="button" class="btn" (click)="showDelete=false">CANCELAR</button>
+            <button type="submit" class="btn btn-default" (click)="delete()">SALVAR</button>
+        </div>
+    </div>
+</div>
+
+<div [style]="(showConfirmPay)?'display:block':''" class="modal">
+    <div class="modal-content content-delete">
+        <span class="close" (click)="showConfirmPay = false">&times;</span>
+        <h2>{{payment.isPayed? 'Confimar':'Desconfirmar'}} pagamento</h2>
+        <p><b>Usuário:</b>&nbsp;{{ payment?.name }}</p>
+        <p><b>Data:</b>&nbsp;{{ payment?.date | date : 'dd/MM/yyyy' }}</p>
+        <p><b>Valor:</b>&nbsp;{{ payment?.value | currency}}</p>
+
+        <div class="display-flex">
+            <button type="button" class="btn" (click)="showConfirmPay=false">CANCELAR</button>
+            <button type="submit" class="btn btn-default" (click)="savePay()">SALVAR</button>
+        </div>
+    </div>
+</div>

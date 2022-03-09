@@ -8,13 +8,12 @@ import { RepositoryService } from './repository.service';
 })
 export class PaymentsService extends RepositoryService {
 
-
   async getBy(id: number) {
     return await new Promise((r) => this.get(`tasks/${id}`).subscribe(data => r(data)));
   }
 
-  async getAll(page: number, limit: number, sort: string, order: string) {
-    const params = `tasks?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`
+  async getAll(page: number, limit: number, sort: string, order: string, like: string = "") {
+    const params = `tasks?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}${like}`
     return await new Promise((r) => this.get(params).subscribe(response => {
       r(response)
     })) 
@@ -25,6 +24,10 @@ export class PaymentsService extends RepositoryService {
       return await new Promise((r) => this.put(`tasks/${data.id}`, data).subscribe(data => r(data)))
     else
       return await new Promise((r) => this.post('tasks', data).subscribe(data => r(data)))
+  }
+
+  async remove(id) {
+    return await new Promise((r) => this.delete(`tasks/${id}`).subscribe(data => r(data)))
   }
 
 }

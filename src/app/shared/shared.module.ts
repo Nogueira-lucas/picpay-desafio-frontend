@@ -5,6 +5,9 @@ import { AlertComponent } from './components/alert/alert.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component'
 import { LogoSVGComponent } from './components/logo/logo-svg.component';
+import { IconEditComponent } from './components/icons/edit-svg.component';
+import { IconTrashComponent } from './components/icons/trash-svg.component';
+import { IconFilterComponent } from './components/icons/filter-svg.component';
 
 
 
@@ -13,7 +16,10 @@ import { LogoSVGComponent } from './components/logo/logo-svg.component';
     AlertComponent,
     LoadingComponent,
     NavBarComponent,
-    LogoSVGComponent
+    LogoSVGComponent,
+    IconEditComponent,
+    IconFilterComponent,
+    IconTrashComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +29,10 @@ import { LogoSVGComponent } from './components/logo/logo-svg.component';
     AlertComponent,
     LoadingComponent,
     NavBarComponent,
-    LogoSVGComponent
+    LogoSVGComponent,
+    IconEditComponent,
+    IconFilterComponent,
+    IconTrashComponent
   ]
 })
 export class SharedModule { }

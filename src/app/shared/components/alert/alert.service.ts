@@ -16,4 +16,12 @@ export class AlertService {
     this.message = message    
     setTimeout(() => { this.message = String() }, 5000)
   }
+  
+  success(message){
+    this.set(message, "success")
+  }
+  
+  error(message){
+    this.set(message)
+  }
 }

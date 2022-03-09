@@ -5,18 +5,20 @@ import { AuthGuard } from '../core/Interceptor/auth-guard'
 import { LoginComponent } from './login/login.component'
 import { PagesComponent } from './pages.component'
 import { PaymentsComponent } from './payments/payments.component'
+import { ProfileComponent } from './profile/profile.component'
 
-const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
-{ path: 'login', component: LoginComponent },
-{
-  path: 'home', component: PagesComponent, canLoad: [AuthGuard], canActivate: [AuthGuard], children:
-    [
-      { path: 'payments', component: PaymentsComponent },
-      { path: 'profile', component: PaymentsComponent },
-      { path: '', redirectTo: 'payments', pathMatch: 'full' }
-    ]
-},
-{ path: '**', redirectTo: 'home' }
+const routes: Routes = [
+  { path: '', redirectTo: 'app', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'app', component: PagesComponent, canLoad: [AuthGuard], canActivate: [AuthGuard], children:
+      [
+        { path: 'payments', component: PaymentsComponent },
+        { path: 'profile', component: ProfileComponent },
+        { path: '', redirectTo: 'payments', pathMatch: 'full' }
+      ]
+  },
+  { path: '**', redirectTo: 'app' }
 ]
 
 @NgModule({

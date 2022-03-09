@@ -9,7 +9,7 @@ import { isEmail } from 'src/app/shared/utils/validates';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
+  type = "password"
   user: { email: FormControl, password: FormControl }
 
   constructor(private auth: AuthService) { }
@@ -30,4 +30,5 @@ export class LoginComponent {
 
     this.auth.login(this.user.email.value, this.user.password.value);
   }
+
 }
