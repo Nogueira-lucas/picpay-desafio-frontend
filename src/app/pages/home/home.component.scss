@@ -1,0 +1,64 @@
+@mixin flex() {
+    display: flex;
+    align-items: center;
+  }
+
+.payfriends {
+    &-home {
+        padding: 4rem;
+
+        &__header {
+            @include flex();
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        &__content {
+            background-color: #FFF;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 3rem;
+        }
+
+        &__filter {
+            @include flex();
+            justify-content: flex-start;
+            &-button {
+                background-color: #E6ECF0 !important;
+                background: url('/assets/images/filter.svg') left center no-repeat;
+                background-position: 15% 50%;
+                padding-left: 3rem;
+                width: 9rem;
+                margin: 0.5rem 0 0 1rem;
+                text-align: center;
+            }
+            mat-form-field::ng-deep {
+                .mat-form-field-wrapper {
+                    padding-bottom: 0;
+                }
+                .mat-form-field-outline {
+                    top:1rem !important
+                }
+                .mat-form-field-infix {
+                    padding: 0.8em 0em 0.8em 0;
+                    line-height: 0.5;
+                }
+            }
+        }
+
+        &__table {
+            &-actions {
+                @include flex();
+                justify-content: flex-end;
+                button {
+                    border: none;
+                    background: none;
+                    transition: .5s ease-in;
+                    &:active, &:hover {
+                        opacity: 0.4;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { MaterialModule } from './../../shared/material.module';
+import { SharedModule } from '../../shared/shared.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     LoginRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    SharedModule
   ],
   exports: [LoginComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

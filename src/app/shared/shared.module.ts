@@ -6,6 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const materialModules = [
   MatGridListModule,
@@ -14,7 +17,10 @@ const materialModules = [
   MatIconModule,
   MatInputModule,
   MatMenuModule,
-  MatTableModule
+  MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatCheckboxModule
 ];
 
 @NgModule({
@@ -23,6 +29,7 @@ const materialModules = [
   ],
   exports: [
     materialModules
-  ]
+  ],
+  declarations: []
 })
-export class MaterialModule { }
+export class SharedModule { }

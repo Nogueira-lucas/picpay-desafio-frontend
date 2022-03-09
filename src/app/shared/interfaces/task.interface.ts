@@ -1,4 +1,4 @@
-export interface IPayment {
+export interface ITask {
     id: number;
     name: string;
     username: string;

@@ -1,6 +1,7 @@
 .payfriends {
     &-container {
         background: #F2F2F2;
-        height: 100vh;
+        height: auto;
+        min-height: 100vh;
     }
 }
