@@ -1,0 +1,27 @@
+@mixin flex() {
+    display: flex;
+    align-items: center;
+  }
+
+.payfriends-edit-task {
+    h3 {
+        padding-bottom: 2em;
+    }
+
+    &__footer {
+        @include flex();
+        justify-content: flex-end;
+        padding-top: 2.5em;
+        button:first-child {
+            margin-right: 2rem;
+        }
+    }
+}
+
+.mat-datepicker-dialog {
+    background-color: none !important;
+    .mat-dialog-container {
+        background: none !important;
+        box-shadow: none !important;
+    }
+}

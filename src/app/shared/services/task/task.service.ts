@@ -16,9 +16,17 @@ export class TaskService {
   constructor(private readonly http: HttpClient) { }
 
   getTasks(pageIndex: number, pageSize: number): Observable<ITask[]> {
-    const params = (pageSize) ? new HttpParams().appendAll({_page: pageIndex, _limit: pageSize}) : new HttpParams();
-    return this.http.get<ITask[]>(`${environment.api}/tasks`, {params}).pipe(map((response: ITask[]) => {
+    const params = (pageSize) ? new HttpParams().appendAll({ _page: pageIndex, _limit: pageSize }) : new HttpParams();
+    return this.http.get<ITask[]>(`${environment.api}/tasks`, { params }).pipe(map((response: ITask[]) => {
       return response ? response : [];
     }));
+  }
+
+  updateTask(taskId: number, body: ITask): Observable<ITask> {
+    return this.http.put<ITask>(`${environment.api}/tasks/${taskId}`, body);
+  }
+
+  deleteTask(taskId: number): Observable<ITask> {
+    return this.http.delete<ITask>(`${environment.api}/tasks/${taskId}`);
   }
 }

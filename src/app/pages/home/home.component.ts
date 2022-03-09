@@ -1,3 +1,4 @@
+import { EditTaskComponent } from './../../shared/components/edit-task/edit-task.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { TaskService } from './../../shared/services/task/task.service';
@@ -6,6 +7,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { tap } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +22,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'title', 'date', 'value', 'isPayed', 'actions'];
   tasksSource = new MatTableDataSource([]);
 
-  constructor(private readonly taskService: TaskService) { }
+  constructor(private readonly taskService: TaskService, private readonly dialog: MatDialog, private readonly toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadTasks();
@@ -49,5 +52,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   onChangeCheckbox(event: MatCheckboxChange, task: ITask) {
     task.isPayed = event.checked;
+    this.taskService.updateTask(task.id, task).subscribe(_ => this.toastr.success( 'Status de pagamento alterado com êxito.', 'Deu tudo certo!'));
+  }
+
+  openDialog(task: ITask) {
+    this.dialog.open(EditTaskComponent, { width: '50vw', data: task });
   }
 }

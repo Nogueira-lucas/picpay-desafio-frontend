@@ -1,3 +1,4 @@
+import { EditTaskModule } from './../../shared/components/edit-task/edit-task.module';
 import { SharedModule } from '../../shared/shared.module';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,7 +7,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomMatPaginatorIntl } from 'src/app/shared/utils/mat-custom-paginator-intl';
 
@@ -18,9 +19,10 @@ registerLocaleData(ptBr);
   ],
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     HomeRoutingModule,
-    SharedModule
+    SharedModule,
+    EditTaskModule
   ],
   exports: [HomeComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' },{
