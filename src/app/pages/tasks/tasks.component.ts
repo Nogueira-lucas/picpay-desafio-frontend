@@ -1,15 +1,15 @@
-import { EditTaskComponent } from './../../shared/components/edit-task/edit-task.component';
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { TaskService } from './../../shared/services/task/task.service';
-import { ITask, TaskAction, TaskContract } from '../../shared/interfaces/task.interface';
+import { TaskService } from './services/task/task.service';
+import { ITask, TaskAction, TaskContract } from './interfaces/task.interface';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { tap } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { DeleteTaskComponent } from '../../shared/components/delete-task/delete-task.component';
+import { DeleteTaskComponent } from './components/delete-task/delete-task.component';
 import { Subscription } from 'rxjs';
 
 const COMPONENTS_SCHEMA = {
@@ -19,11 +19,11 @@ const COMPONENTS_SCHEMA = {
 };
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-tasks',
+  templateUrl: './tasks.component.html',
+  styleUrls: ['./tasks.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class TasksComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

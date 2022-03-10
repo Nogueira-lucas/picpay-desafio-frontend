@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from './app-routing.module';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
@@ -7,6 +9,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        AppRoutingModule,
+        CommonModule
+      ]
     }).compileComponents();
   }));
 
@@ -15,5 +21,4 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
-
 });

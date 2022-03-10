@@ -1,5 +1,5 @@
 import { NgxMaskModule } from 'ngx-mask';
-import { customCurrencyMaskConfig, SharedModule } from '../../shared.module';
+import { customCurrencyMaskConfig, SharedModule } from '../../../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

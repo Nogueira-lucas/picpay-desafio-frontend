@@ -1,6 +1,5 @@
 import { ErrorHandlerInterceptor } from './shared/interceptors/error-handler.interceptor';
 import { AppRoutingModule } from './app-routing.module';
-import { PageBuildModule } from './pages/page-build/page-build.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 

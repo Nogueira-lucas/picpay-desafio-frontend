@@ -1,5 +1,5 @@
-import { TaskAction, TaskContract } from './../../interfaces/task.interface';
-import { GenerateRandomString } from './../../utils/generate-random-string';
+import { TaskAction, TaskContract } from '../../interfaces/task.interface';
+import { GenerateRandomString } from '../../../../shared/utils/generate-random-string';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';

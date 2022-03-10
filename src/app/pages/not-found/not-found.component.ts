@@ -13,7 +13,7 @@ export class NotFoundComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToHome() {
+  goToTasks() {
     this.router.navigate([`/`]);
   }
 }
