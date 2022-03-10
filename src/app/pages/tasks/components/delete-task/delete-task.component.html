@@ -6,7 +6,7 @@
                 <p>Valor: {{taskSource.value | currency : 'BRL'}}</p>
             </div>
           <div class="col-md-12 payfriends-delete-task__footer">
-              <button type="button" mat-raised-button (click)="dismiss()">cancelar</button>
-              <button type="submit" mat-raised-button color="primary" (click)="onSubmit()">salvar</button>
+              <button type="button" id="dismiss" mat-raised-button (click)="dismiss()">cancelar</button>
+              <button type="submit" id="save" mat-raised-button color="primary" (click)="onSubmit()">salvar</button>
           </div>
   </div>

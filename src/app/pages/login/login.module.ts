@@ -18,7 +18,6 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     ReactiveFormsModule,
     SharedModule
   ],
-  exports: [LoginComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}]
 })
