@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { ITask } from '../../interfaces/task.interface';
+import { ITask, TaskAction } from '../../interfaces/task.interface';
 import { TaskService } from '../../services/task/task.service';
 
 @Component({
@@ -24,7 +24,8 @@ export class DeleteTaskComponent implements OnInit {
   }
 
   onSubmit() {
-    this.taskService.deleteTask(this.taskSource.id).subscribe(data => {
+    this.taskService.deleteTask(this.taskSource.id).subscribe(_ => {
+      this.taskService.emit(TaskAction.GET_TASKS, null);
       this.toastr.success('Pagamento removido com êxito.', 'Deu tudo certo!');
       this.dialogRef.close();
     });

@@ -1,0 +1,19 @@
+<div
+  *ngIf="transactionTemplate.displayMessage"
+  [@openDismiss]
+  class="payfriends-transaction-status payfriends-transaction-status--{{ transactionTemplate.type }}"
+>
+  <div
+    class="payfriends-transaction-status-wrapper"
+  >
+    <mat-icon class="payfriends-transaction-status-wrapper__icon">{{ templateIcon }}</mat-icon>
+    <span
+      [attr.aria-live]="ariaPolite && !ariaRole ? 'polite' : null"
+      [attr.role]="ariaRole && !ariaPolite ? 'transaction-status' : null"
+      class="payfriends-transaction-status-wrapper__message"
+    >
+      <p>{{transactionTemplate.message}}</p>
+    </span>
+    <mat-icon class="payfriends-transaction-status-wrapper__icon payfriends-transaction-status-wrapper__icon-close" (click)="hide()">close</mat-icon>
+  </div>
+</div>

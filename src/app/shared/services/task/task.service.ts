@@ -1,3 +1,4 @@
+import { TaskAction, TaskContract } from './../../interfaces/task.interface';
 import { GenerateRandomString } from './../../utils/generate-random-string';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,30 +12,40 @@ import { ITask } from '../../interfaces/task.interface';
 })
 export class TaskService {
 
-  private accountSubject = new BehaviorSubject<ITask[]>(null);
-  public accountState$ = this.accountSubject.asObservable();
+  private taskSubject = new BehaviorSubject<TaskContract>(null);
+  public taskState$ = this.taskSubject.asObservable();
 
   constructor(private readonly http: HttpClient, private readonly generator: GenerateRandomString) { }
 
+  emit(action: TaskAction, data = null) {
+    this.taskSubject.next({action, data});
+  }
+
   getTasks(pageIndex: number, pageSize: number): Observable<ITask[]> {
     const params = (pageSize) ? new HttpParams().appendAll({ _page: pageIndex, _limit: pageSize }) : new HttpParams();
-    return this.http.get<ITask[]>(`${environment.api}/tasks`, { params }).pipe(map((response: ITask[]) => {
+    return this.http.get<ITask[]>(`${environment.api}/tasks`, { params }).pipe(map((response: ITask[]) => {      
       return response ? response : [];
     }));
   }
 
   createTask(body: ITask): Observable<ITask> {
-    body.id = Math.floor(Math.random() * 15) + 170;
+    body.id = Math.floor(Math.random() * 100) + 170;
     body.username = this.generator.create(body.name);
 
-    return this.http.post<ITask>(`${environment.api}/tasks`, body);
+    return this.http.post<ITask>(`${environment.api}/tasks`, body).pipe(map((response: ITask) => {
+      return response ? response : null;
+    }));
   }
 
   updateTask(taskId: number, body: ITask): Observable<ITask> {
-    return this.http.put<ITask>(`${environment.api}/tasks/${taskId}`, body);
+    return this.http.put<ITask>(`${environment.api}/tasks/${taskId}`, body).pipe(map((response: ITask) => {
+      return response ? response : null;
+    }));
   }
 
   deleteTask(taskId: number): Observable<ITask> {
-    return this.http.delete<ITask>(`${environment.api}/tasks/${taskId}`);
+    return this.http.delete<ITask>(`${environment.api}/tasks/${taskId}`).pipe(map((response: ITask) => {
+      return response ? response : null;
+    }));
   }
 }

@@ -1,0 +1,42 @@
+
+.payfriends-transaction-status {
+    display: flex;
+    justify-content: space-between;
+    min-height: rem(80);
+    position: relative;
+    height: 4em;
+    padding: 1em;
+  
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      padding: 1em;
+  
+      &__icon {
+        margin-right: 1em;
+        color: #FFF;
+
+        &-close {
+            position: absolute;
+            right: 1em;
+        } 
+      }
+  
+      &__message {
+        color: #FFF;
+        width: 100%;
+      }
+    }
+  
+    &--success {
+      background-color: green;
+    }
+
+    &--warning {
+        background-color: orange;
+      }
+  
+    &--error {
+      background-color: red;
+    }
+}

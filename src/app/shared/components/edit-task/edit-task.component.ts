@@ -1,5 +1,5 @@
 import { TaskService } from '../../services/task/task.service';
-import { ITask, Task } from '../../interfaces/task.interface';
+import { ITask, Task, TaskAction } from '../../interfaces/task.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -17,7 +17,6 @@ export class EditTaskComponent implements OnInit {
   taskSource: ITask;
   dialogType: string;
   inputDateFormatted: string;
-
   constructor(private readonly fb: FormBuilder, private readonly dialogRef: MatDialogRef<EditTaskComponent>, @Inject(MAT_DIALOG_DATA) private readonly data, private readonly taskService: TaskService, private readonly toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -52,11 +51,13 @@ export class EditTaskComponent implements OnInit {
 
     if(this.dialogType === 'edit') {
       this.taskService.updateTask(this.taskSource.id, this.taskSource).subscribe(data => {
+        this.taskService.emit(TaskAction.GET_TASKS, null);
         this.toastr.success( 'Alteração do cadastro feito com êxito.', 'Deu tudo certo!');
         this.dialogRef.close();
       });
     } else {
       this.taskService.createTask(this.taskSource).subscribe(data => {
+        this.taskService.emit(TaskAction.GET_TASKS, null);
         this.toastr.success( 'Pagamento cadastrado com êxito.', 'Deu tudo certo!');
         this.dialogRef.close();
       });

@@ -19,3 +19,12 @@ export class Task {
     image: string = '/assets/images/avatar_default.png';
     isPayed: boolean = false;
 }
+
+export enum TaskAction {
+    GET_TASKS
+}
+
+export interface TaskContract {
+    action: TaskAction;
+    data: any;
+}

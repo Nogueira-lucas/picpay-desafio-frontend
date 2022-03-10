@@ -15,8 +15,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.accountState$.subscribe(response => {
-      this.avatar = (response) ? response.avatar : '/assets/images/avatar_default.png';
+    this.authService.authState$.subscribe(response => {      
+      this.avatar = (response) ? response.usr.avatar : '/assets/images/avatar_default.png';
       this.isUserLoggedIn = (response) ? true : false
     });
   }

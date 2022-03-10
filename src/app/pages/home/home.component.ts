@@ -2,7 +2,7 @@ import { EditTaskComponent } from './../../shared/components/edit-task/edit-task
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { TaskService } from './../../shared/services/task/task.service';
-import { ITask } from '../../shared/interfaces/task.interface';
+import { ITask, TaskAction, TaskContract } from '../../shared/interfaces/task.interface';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { tap } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteTaskComponent } from '../../shared/components/delete-task/delete-task.component';
+import { Subscription } from 'rxjs';
 
 const COMPONENTS_SCHEMA = {
   delete: { component: DeleteTaskComponent, width: '25vw' },
@@ -28,11 +29,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['name', 'title', 'date', 'value', 'isPayed', 'actions'];
   tasksSource = new MatTableDataSource([]);
+  private subscription: Subscription;
 
   constructor(private readonly taskService: TaskService, private readonly dialog: MatDialog, private readonly toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadTasks();
+    this.subscription = this.taskService.taskState$.subscribe(action => this.handleTaskActions(action))
+  }
+
+  ngOnDestroy() {
+    if(this.subscription) 
+      this.subscription.unsubscribe();
   }
 
   ngAfterViewInit() {
@@ -64,5 +72,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   openDialog(name: string, task: ITask) {
     this.dialog.open(COMPONENTS_SCHEMA[name].component, { width: COMPONENTS_SCHEMA[name].width, data: { source: task, type: name} });
+  }
+
+  private handleTaskActions(event: TaskContract) {
+    if(event) {
+      switch (event.action) {
+        case TaskAction.GET_TASKS:
+          this.loadTasks(this.tasksSource.paginator.pageIndex);
+          break;
+      
+        default:
+          break;
+      }
+    }
   }
 }

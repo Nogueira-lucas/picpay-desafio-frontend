@@ -1,3 +1,4 @@
+import { CustomErrorStateMatcher } from './utils/custon-error-state-macher';
 import { CustomNgxDatetimeAdapter } from './utils/ngx-custom-datetime-adapter';
 import { NgModule } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -24,7 +25,7 @@ import {
   NGX_MAT_DATE_FORMATS
 } from '@angular-material-components/datetime-picker';
 import { NGX_MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular-material-components/moment-adapter';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ErrorStateMatcher, MAT_DATE_LOCALE, NativeDateAdapter, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { ToastrModule } from 'ngx-toastr';
 
 export const customCurrencyMaskConfig = {
@@ -69,7 +70,7 @@ const sharedModules = [
   MatDatepickerModule,
   NgxMatDatetimePickerModule,
   NgxMatTimepickerModule,
-  NgxMatNativeDateModule,
+  NgxMatNativeDateModule
 ];
 
 @NgModule({
@@ -87,6 +88,7 @@ const sharedModules = [
   ],
   declarations: [],
   providers: [
+    {provide: CustomErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {
       provide: MatPaginatorIntl,
       useClass: CustomMatPaginatorIntl,
