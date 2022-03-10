@@ -26,7 +26,7 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { NGX_MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular-material-components/moment-adapter';
 import { ErrorStateMatcher, MAT_DATE_LOCALE, NativeDateAdapter, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import { ToastrModule } from 'ngx-toastr';
+import { IndividualConfig, ToastrModule, ToastrService } from 'ngx-toastr';
 
 export const customCurrencyMaskConfig = {
   align: "left",
@@ -75,12 +75,6 @@ const sharedModules = [
 
 @NgModule({
   imports: [
-    ToastrModule.forRoot({
-      progressBar: true,
-      closeButton: true,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true
-    }),
     sharedModules
   ],
   exports: [

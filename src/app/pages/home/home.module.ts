@@ -24,7 +24,7 @@ registerLocaleData(ptBr);
     HomeRoutingModule,
     SharedModule,
     EditTaskModule,
-    DeleteTaskModule
+    DeleteTaskModule,
   ],
   exports: [HomeComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' },{

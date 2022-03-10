@@ -1,11 +1,13 @@
-import { HeaderModule } from './shared/components/header/header.module';
+import { ErrorHandlerInterceptor } from './shared/interceptors/error-handler.interceptor';
+import { AppRoutingModule } from './app-routing.module';
+import { PageBuildModule } from './pages/page-build/page-build.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 @NgModule({
   declarations: [	
     AppComponent,
@@ -15,9 +17,20 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HeaderModule
+    ToastrModule.forRoot({
+      progressBar: true,
+      closeButton: true,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }),
   ],
-  providers: [],
+  providers: [
+    ToastrService,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorHandlerInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

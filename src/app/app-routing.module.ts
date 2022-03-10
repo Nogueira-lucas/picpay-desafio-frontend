@@ -1,4 +1,3 @@
-import { AuthGuard } from './shared/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -6,14 +5,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-    import(`./pages/home/home.module`).then((m) => m.HomeModule),
-    canActivate: [AuthGuard]
-  },
-  {
-  path: 'login',
-  loadChildren: () =>
-  import(`./pages/login/login.module`).then((m) => m.LoginModule),
-}];
+    import(`./pages/page-build/page-build.module`).then((m) => m.PageBuildModule)
+  }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
