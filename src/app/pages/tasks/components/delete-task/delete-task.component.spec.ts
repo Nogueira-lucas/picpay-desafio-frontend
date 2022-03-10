@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SharedModule } from './../../../../shared/shared.module';
+import { SharedModule } from '../../../../shared/shared.module';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DeleteTaskComponent } from './delete-task.component';
@@ -20,6 +20,7 @@ describe('DeleteTaskComponent', () => {
       "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
       "isPayed": true
   };
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ DeleteTaskComponent ],

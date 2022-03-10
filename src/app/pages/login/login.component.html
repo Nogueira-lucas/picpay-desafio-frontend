@@ -9,7 +9,7 @@
                 <form [formGroup]="form" class="row">
                     <mat-form-field appearance="outline" floatLabel="always" class="col-md-12">
                         <mat-label>Email</mat-label>
-                        <input matInput type="email" formControlName="email" />
+                        <input matInput type="email" id="email" formControlName="email" />
                         <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
                             Escreva um e-mail válido, por favor.
                           </mat-error>
@@ -19,7 +19,7 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" floatLabel="always" class="col-md-12">
                         <mat-label>Senha</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" (keydown.Enter)="onKeyEnter($event)">
+                        <input matInput id="password" [type]="hide ? 'password' : 'text'" formControlName="password" (keydown.Enter)="onKeyEnter($event)">
                         <button mat-icon-button matSuffix (click)="hide = !hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
@@ -31,7 +31,7 @@
                           </mat-error>
                     </mat-form-field>
                     <div class="col-md-12">
-                        <button type="submit" mat-raised-button color="primary" class="width-100" (click)="onSubmit()"
+                        <button type="submit" id="btn-submit" mat-raised-button color="primary" class="width-100" (click)="onSubmit()"
                             [disabled]="form.invalid">entrar</button>
                     </div>
                 </form>

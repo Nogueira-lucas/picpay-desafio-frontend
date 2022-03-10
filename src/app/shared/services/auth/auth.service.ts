@@ -12,7 +12,7 @@ import { AuthSession } from '../../models/auth.model';
 })
 export class AuthService {
 
-  private authSubject = new BehaviorSubject<AuthSession>(this.storageService.getStorage("PAYFRIENDS.user_access", 'local'));
+  private authSubject = new BehaviorSubject<AuthSession>(this.storageService.getStorage("PAYFRIENDS.user_access"));
   public authState$ = this.authSubject.asObservable();
 
   constructor(private readonly http: HttpClient, private readonly storageService: StorageService) { }
@@ -27,16 +27,16 @@ export class AuthService {
   }
 
   get isLoggedIn() {    
-    return (this.storageService.getStorage("PAYFRIENDS.user_access", 'local')) ? true : false;
+    return (this.storageService.getStorage("PAYFRIENDS.user_access")) ? true : false;
   }
 
   logout() {
-    this.storageService.clearStorage('local');
+    this.storageService.clearStorage();
     this.setSession(null);
   }
 
   private setSession(user: AuthSession) {
-    this.storageService.setStorage("PAYFRIENDS.user_access", user, 'local');
+    this.storageService.setStorage("PAYFRIENDS.user_access", user);
     this.authSubject.next(user);
   }
 }

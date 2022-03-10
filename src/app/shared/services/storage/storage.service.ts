@@ -7,42 +7,30 @@ export class StorageService {
 
   constructor() { }
 
-  public getStorage(name: string, storageType = 'session') {
-      if(storageType === 'session')
-        return (sessionStorage.getItem(name)) ? JSON.parse(sessionStorage.getItem(name)) : null;
-      else 
-        return (localStorage.getItem(name)) ? JSON.parse(localStorage.getItem(name)) : null;
+  public getStorage(name: string) {
+      return (localStorage.getItem(name)) ? JSON.parse(localStorage.getItem(name)) : null;
   } 
 
-  public setStorage(name: string, content: any, storageType = 'session') {
-    if(storageType === 'session')
-      sessionStorage.setItem(name, JSON.stringify(content));
-    else
-      localStorage.setItem(name, JSON.stringify(content));
+  public setStorage(name: string, content: any) {
+    localStorage.setItem(name, JSON.stringify(content));
   } 
 
-  public updateStorage(name: string, content: any, storageType = 'session') {
+  public updateStorage(name: string, content: any) {
 
-    let sessionData = this.getStorage(name, storageType);
+    let sessionData = this.getStorage(name);
   
     sessionData = Object.assign(sessionData, content);
-    this.setStorage(name, sessionData, storageType);
+    this.setStorage(name, sessionData);
     return sessionData;
   }
 
-  public removeStorage(name: string, storageType = 'session') {
-    if(storageType === 'session') {
-      sessionStorage.removeItem(name);
-    } else {
-      localStorage.removeItem(name);
-    }
+  public removeStorage(name: string) {
+
+    localStorage.removeItem(name);
   }
 
-  public clearStorage(storageType = 'session') {
-    if(storageType === 'session') {
-      sessionStorage.clear();
-    } else {
-      localStorage.clear();
-    }
+  public clearStorage() {
+
+    localStorage.clear();  
   }
 }

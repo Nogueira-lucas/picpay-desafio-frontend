@@ -96,12 +96,14 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "codeCoverageExclude": ["src/app/shared/utils/**.ts", "**/*-routing.module.ts"],
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/styles/bootstrap.min.css"
             ],
             "scripts": []
           }

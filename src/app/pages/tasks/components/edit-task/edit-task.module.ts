@@ -1,4 +1,3 @@
-import { NgxMaskModule } from 'ngx-mask';
 import { customCurrencyMaskConfig, SharedModule } from '../../../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -14,7 +13,6 @@ import { NgxCurrencyModule } from 'ngx-currency';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
     SharedModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
   ],
