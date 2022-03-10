@@ -1,3 +1,4 @@
+import { MessageErrorModule } from './../../shared/components/message-error/message-error.module';
 import { EditTaskModule } from './components/edit-task/edit-task.module';
 import { SharedModule } from '../../shared/shared.module';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -25,6 +26,7 @@ registerLocaleData(ptBr);
     SharedModule,
     EditTaskModule,
     DeleteTaskModule,
+    MessageErrorModule,
   ],
   exports: [TasksComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' },{

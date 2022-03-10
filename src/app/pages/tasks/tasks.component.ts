@@ -30,6 +30,7 @@ export class TasksComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'title', 'date', 'value', 'isPayed', 'actions'];
   tasksSource = new MatTableDataSource([]);
   private subscription: Subscription;
+  messageError = true;
 
   constructor(private readonly taskService: TaskService, private readonly dialog: MatDialog, private readonly toastr: ToastrService) { }
 
@@ -52,9 +53,12 @@ export class TasksComponent implements OnInit, AfterViewInit {
   loadTasks(pageIndex = 0, pageSize = null) {
     this.taskService.getTasks(pageIndex,
       pageSize).subscribe(response => {
+        this.messageError = response ? false : true;
         this.tasksSource = new MatTableDataSource(response);
         this.tasksSource.sort = this.sort;
         if (!pageSize) this.tasksSource.paginator = this.paginator;
+      }, _=> {
+        this.messageError = true;
       });
   }
 

@@ -1,3 +1,4 @@
+import { MessageErrorModule } from './../../shared/components/message-error/message-error.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -23,6 +24,7 @@ describe('TasksComponent', () => {
         SharedModule,
         EditTaskModule,
         DeleteTaskModule,
+        MessageErrorModule,
         ToastrModule.forRoot()
       ]
     })
