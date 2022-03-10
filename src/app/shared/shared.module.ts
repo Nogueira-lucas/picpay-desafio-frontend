@@ -29,14 +29,14 @@ import { ErrorStateMatcher, MAT_DATE_LOCALE, NativeDateAdapter, ShowOnDirtyError
 import { IndividualConfig, ToastrModule, ToastrService } from 'ngx-toastr';
 
 export const customCurrencyMaskConfig = {
-  align: "left",
+  align: 'left',
   allowNegative: true,
   allowZero: true,
-  decimal: ",",
+  decimal: ',',
   precision: 2,
-  prefix: "R$ ",
-  suffix: "",
-  thousands: ".",
+  prefix: 'R$ ',
+  suffix: '',
+  thousands: '.',
   nullable: true,
   min: null,
   max: null,
@@ -45,13 +45,13 @@ export const customCurrencyMaskConfig = {
 
 export const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
   parse: {
-    dateInput: "l, LTS"
+    dateInput: 'l, LTS'
   },
   display: {
-    dateInput: "DD/MM/YYYY HH:mm",
-    monthYearLabel: "MMM YYYY",
-    dateA11yLabel: "DD/MM/YYYY HH:mm",
-    monthYearA11yLabel: "MMMM YYYY"
+    dateInput: 'DD/MM/YYYY HH:mm',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY HH:mm',
+    monthYearA11yLabel: 'MMMM YYYY'
   }
 };
 

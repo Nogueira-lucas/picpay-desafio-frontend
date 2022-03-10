@@ -3,10 +3,10 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { Subject } from 'rxjs';
 
 enum PaginatorParams {
-  ITEMS_PER_PAGE = "Exibir",
+  ITEMS_PER_PAGE = 'Exibir',
   NEXT_PAGE = 'Próxima página',
   PREVIOUS_PAGE = 'Página anterior'
-};
+}
 
 @Injectable()
 export class CustomMatPaginatorIntl extends MatPaginatorIntl
@@ -44,5 +44,5 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl
         : startIndex + pageSize;
     return `${startIndex + 1} - ${endIndex} ${this.OF_LABEL
       } ${length}`;
-  };
+  }
 }

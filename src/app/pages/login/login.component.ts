@@ -13,7 +13,11 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   hide = true;
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private readonly transactionService: TransactionStatusService) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private readonly transactionService: TransactionStatusService) { }
 
   ngOnInit(): void {
     this.authService.logout();
@@ -21,7 +25,7 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
-    
+
   }
 
   onKeyEnter(e: Event) {
@@ -30,12 +34,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.invalid)
+    if (this.form.invalid) {
       return false;
+    }
 
     this.authService.login(this.form.controls.email.value, this.form.controls.password.value).subscribe(_ => {
       this.transactionService.hide();
       this.router.navigate(['/']);
-    }, _ => this.transactionService.show('Não foi possível fazer login, verifique se os dados de e-mail e senha foram escritos corretamente.', BackgroundTemplateTypes.error))
+    }, _ => this.transactionService.show('Não foi possível fazer login, verifique se os dados de e-mail e senha foram escritos corretamente.', BackgroundTemplateTypes.error));
   }
 }

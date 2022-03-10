@@ -13,7 +13,7 @@ describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
   let router: Router;
   let auth: AuthService;
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent],
@@ -35,8 +35,8 @@ describe('HeaderComponent', () => {
     })
       .compileComponents();
 
-      router = TestBed.inject(Router);
-      auth = TestBed.inject(AuthService);
+    router = TestBed.inject(Router);
+    auth = TestBed.inject(AuthService);
   });
 
   beforeEach(() => {

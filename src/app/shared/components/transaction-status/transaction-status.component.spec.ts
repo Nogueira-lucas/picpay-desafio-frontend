@@ -37,7 +37,7 @@ describe('TransactionStatusComponent', () => {
     transaction.transactionStatusState$.subscribe(data => {
       expect(data.displayMessage).toBeTruthy();
     });
-    
+
     expect(spy).toHaveBeenCalled();
   });
 

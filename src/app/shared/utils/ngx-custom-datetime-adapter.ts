@@ -38,6 +38,7 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 
 @Injectable()
 export class CustomNgxDatetimeAdapter extends NgxMatDateAdapter<Moment> {
+  /* tslint:disable */
   private _localeData: {
     firstDayOfWeek: number,
     longMonths: string[],
@@ -153,7 +154,7 @@ export class CustomNgxDatetimeAdapter extends NgxMatDateAdapter<Moment> {
 
   format(date: Moment, displayFormat: string): string {
     date = this.clone(date);
-    
+
     if (!this.isValid(date)) {
       throw Error('MomentDateAdapter: Cannot format invalid date.');
     }
@@ -220,7 +221,7 @@ export class CustomNgxDatetimeAdapter extends NgxMatDateAdapter<Moment> {
     date.hours(value);
   }
   setMinute(date: _moment.Moment, value: number): void {
-    date.minutes(value)
+    date.minutes(value);
   }
   setSecond(date: _moment.Moment, value: number): void {
     date.seconds(value);
@@ -231,7 +232,7 @@ export class CustomNgxDatetimeAdapter extends NgxMatDateAdapter<Moment> {
     format?: MomentFormatSpecification,
     locale?: string,
   ): Moment {
-    const { strict, useUtc }: NgxMatMomentDateAdapterOptions = this._options || {};    
+    const { strict, useUtc }: NgxMatMomentDateAdapterOptions = this._options || {};
     return useUtc
       ? moment.utc(date, format, locale, strict)
       : moment(date, format, locale, strict);

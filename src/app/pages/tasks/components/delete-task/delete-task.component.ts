@@ -13,7 +13,11 @@ export class DeleteTaskComponent implements OnInit {
 
   taskSource: ITask;
 
-  constructor(private readonly dialogRef: MatDialogRef<DeleteTaskComponent>, @Inject(MAT_DIALOG_DATA) private readonly data, private readonly taskService: TaskService, private readonly toastr: ToastrService) { }
+  constructor(
+    private readonly dialogRef: MatDialogRef<DeleteTaskComponent>,
+    @Inject(MAT_DIALOG_DATA) private readonly data,
+    private readonly taskService: TaskService,
+    private readonly toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.taskSource = this.data.source;

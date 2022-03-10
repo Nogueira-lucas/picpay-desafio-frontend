@@ -18,17 +18,17 @@ describe('EditTaskComponent', () => {
   let fixture: ComponentFixture<EditTaskComponent>;
   let taskService: TaskService;
   let debugElement: DebugElement;
-  
-  const TASK_MOCK: ITask = 
+
+  const TASK_MOCK: ITask =
     {
-      "id": 1,
-      "name": "Pennie Dumphries",
-      "username": "pdumphries0",
-      "title": "Dentatist rtest",
-      "value": "0.01",
-      "date": "2020-08-21T05:50:00.000Z",
-      "image": "https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1",
-      "isPayed": true
+      id: 1,
+      name: 'Pennie Dumphries',
+      username: 'pdumphries0',
+      title: 'Dentatist rtest',
+      value: '0.01',
+      date: '2020-08-21T05:50:00.000Z',
+      image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1',
+      isPayed: true
     };
 
   beforeEach(async () => {
@@ -45,7 +45,7 @@ describe('EditTaskComponent', () => {
         provide: MatDialogRef,
         useValue: {}
       },
-      {provide:MAT_DIALOG_DATA,useValue:{}}
+      {provide: MAT_DIALOG_DATA, useValue: {}}
       ]
     })
     .compileComponents();
@@ -68,10 +68,10 @@ describe('EditTaskComponent', () => {
     debugElement = fixture.debugElement;
     spyOn(taskService, 'updateTask').and.callThrough().and.returnValue(from([TASK_MOCK]));
 
-    let nameInput = debugElement.query(By.css('#name')).nativeElement;
-    let valueInput = debugElement.query(By.css('#value')).nativeElement;
-    let titleInput = debugElement.query(By.css('#title')).nativeElement;
-    let dateInput = debugElement.query(By.css('#date')).nativeElement;
+    const nameInput = debugElement.query(By.css('#name')).nativeElement;
+    const valueInput = debugElement.query(By.css('#value')).nativeElement;
+    const titleInput = debugElement.query(By.css('#title')).nativeElement;
+    const dateInput = debugElement.query(By.css('#date')).nativeElement;
 
     nameInput.value = TASK_MOCK.name;
     valueInput.value = TASK_MOCK.value;
@@ -82,7 +82,7 @@ describe('EditTaskComponent', () => {
     valueInput.dispatchEvent(new Event('input'));
     titleInput.dispatchEvent(new Event('input'));
     dateInput.dispatchEvent(new Event('input'));
-    
+
 
     fixture.detectChanges();
 

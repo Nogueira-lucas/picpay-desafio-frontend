@@ -12,7 +12,7 @@ describe('NotFoundComponent', () => {
       declarations: [ NotFoundComponent ],
       imports: [
         RouterTestingModule.withRoutes([
-          {path: '', redirectTo: 'home', pathMatch: 'full'}]),]
+          {path: '', redirectTo: 'home', pathMatch: 'full'}]), ]
     })
     .compileComponents();
   });

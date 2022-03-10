@@ -17,15 +17,15 @@ describe('StorageService', () => {
   it('should set storage', () => {
     const spySetStorage = spyOn(service, 'setStorage').and.callThrough();
 
-    service.setStorage("PAYFRIENDS.account", {});
+    service.setStorage('PAYFRIENDS.account', {});
 
     expect(spySetStorage).toBeDefined();
   });
 
   it('should update storage', () => {
     const spyUpdateStorage = spyOn(service, 'updateStorage').and.callThrough();
-    service.setStorage("PAYFRIENDS.account", {});
-    service.updateStorage("PAYFRIENDS.account", { name: 'Usuário', username: 'user' });
+    service.setStorage('PAYFRIENDS.account', {});
+    service.updateStorage('PAYFRIENDS.account', { name: 'Usuário', username: 'user' });
 
     expect(spyUpdateStorage).toBeDefined();
   });
@@ -33,7 +33,7 @@ describe('StorageService', () => {
   it('should remove storage', () => {
     const spyRemoveStorage = spyOn(service, 'removeStorage').and.callThrough();
 
-    service.removeStorage("PAYFRIENDS.account");
+    service.removeStorage('PAYFRIENDS.account');
 
     expect(spyRemoveStorage).toHaveBeenCalled();
   });
@@ -42,7 +42,7 @@ describe('StorageService', () => {
   it('should get storage', () => {
     const spy = spyOn(service, 'getStorage').and.callThrough().and.returnValue(null);
 
-    service.getStorage("PAYFRIENDS.account");
+    service.getStorage('PAYFRIENDS.account');
 
     expect(spy).toHaveBeenCalled();
   });

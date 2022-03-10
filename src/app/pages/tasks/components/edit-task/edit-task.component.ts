@@ -17,7 +17,12 @@ export class EditTaskComponent implements OnInit {
   taskSource: ITask;
   dialogType: string;
   inputDateFormatted: string;
-  constructor(private readonly fb: FormBuilder, private readonly dialogRef: MatDialogRef<EditTaskComponent>, @Inject(MAT_DIALOG_DATA) private readonly data, private readonly taskService: TaskService, private readonly toastr: ToastrService) { }
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly dialogRef: MatDialogRef<EditTaskComponent>,
+    @Inject(MAT_DIALOG_DATA) private readonly data,
+    private readonly taskService: TaskService,
+    private readonly toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.taskSource = (this.data.source) ? this.data.source : new Task();
@@ -33,7 +38,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   updateDatetime() {
-    let inputDateTime = this.form.get('date').value;
+    const inputDateTime = this.form.get('date').value;
     this.inputDateFormatted = (typeof inputDateTime !== 'string') ? inputDateTime._d : inputDateTime;
     this.taskSource.date = this.inputDateFormatted;
   }
@@ -43,13 +48,14 @@ export class EditTaskComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.invalid)
+    if (this.form.invalid) {
       return false;
+    }
 
-    this.taskSource = { ...this.taskSource, ...this.form.value }; 
+    this.taskSource = { ...this.taskSource, ...this.form.value };
     this.updateDatetime();
 
-    if(this.dialogType === 'edit') {
+    if (this.dialogType === 'edit') {
       this.taskService.updateTask(this.taskSource.id, this.taskSource).subscribe(data => {
         this.taskService.emit(TaskAction.GET_TASKS, null);
         this.toastr.success( 'Alteração do cadastro feito com êxito.', 'Deu tudo certo!');

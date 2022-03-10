@@ -23,7 +23,7 @@ export class TaskService {
 
   getTasks(pageIndex: number, pageSize: number): Observable<ITask[]> {
     const params = (pageSize) ? new HttpParams().appendAll({ _page: pageIndex, _limit: pageSize }) : new HttpParams();
-    return this.http.get<ITask[]>(`${environment.api}/tasks`, { params }).pipe(map((response: ITask[]) => {      
+    return this.http.get<ITask[]>(`${environment.api}/tasks`, { params }).pipe(map((response: ITask[]) => {
       return response ? response : [];
     }));
   }

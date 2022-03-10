@@ -11,13 +11,13 @@ export interface ITask {
 
 export class Task {
     id: number;
-    name: string = '';
-    username: string = '';
-    title: string = '';
-    value: string = '';
-    date: string = '';
-    image: string = '/assets/images/avatar_default.png';
-    isPayed: boolean = false;
+    name = '';
+    username = '';
+    title = '';
+    value = '';
+    date = '';
+    image = '/assets/images/avatar_default.png';
+    isPayed = false;
 }
 
 export enum TaskAction {

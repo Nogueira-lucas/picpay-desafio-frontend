@@ -12,7 +12,16 @@ describe('AuthService', () => {
   let http: HttpClient;
   let storage: StorageService;
 
-  const USER_MOCK: IAccountUser[] = [{ id: 0, name: 'Usuário', avatar: '/assets/images/avatar_user.png', email: 'usuario@gmail.com', password: 'usuario' }]
+  const USER_MOCK: IAccountUser[] = [
+    {
+      id: 0,
+      name: 'Usuário',
+      avatar: '/assets/images/avatar_user.png',
+      email: 'usuario@gmail.com',
+      password: 'usuario'
+    }
+  ];
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -43,7 +52,7 @@ describe('AuthService', () => {
     it('should throws error when executing login request', (done) => {
       spyOn(http, 'get').and.returnValue(throwError(new Error()));
 
-      service.login('usuario@gmail.com', 'teste').subscribe(_ => {},
+      service.login('usuario@gmail.com', 'teste').subscribe(_ => { },
         error => {
           expect(error).toBeDefined();
           done();

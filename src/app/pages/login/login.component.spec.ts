@@ -34,7 +34,7 @@ describe('LoginComponent', () => {
     })
       .compileComponents();
 
-    
+
     authService = TestBed.inject(AuthService);
     http = TestBed.inject(HttpClient);
   });
@@ -52,23 +52,23 @@ describe('LoginComponent', () => {
   describe('Validate Login Suite', () => {
     it('should validate form as invalid', fakeAsync(() => {
       debugElement = fixture.debugElement;
-  
-      let emailInput = debugElement.query(By.css('#email')).nativeElement;
-      let passwordInput = debugElement.query(By.css('#password')).nativeElement;
-  
-  
+
+      const emailInput = debugElement.query(By.css('#email')).nativeElement;
+      const passwordInput = debugElement.query(By.css('#password')).nativeElement;
+
+
       expect(emailInput.value).toEqual('');
       expect(passwordInput.value).toEqual('');
       component.onSubmit();
-  
+
     }));
 
-  it('should execute login method correctly', fakeAsync(() => {
+    it('should execute login method correctly', fakeAsync(() => {
     debugElement = fixture.debugElement;
     const loginSpy = spyOn(authService, 'login').and.callThrough().and.returnValue(from([USER_MOCK]));
 
-    let emailInput = debugElement.query(By.css('#email')).nativeElement;
-    let passwordInput = debugElement.query(By.css('#password')).nativeElement;
+    const emailInput = debugElement.query(By.css('#email')).nativeElement;
+    const passwordInput = debugElement.query(By.css('#password')).nativeElement;
 
     emailInput.value = 'usuario@gmail.com';
     passwordInput.value = 'usuario';
@@ -88,13 +88,13 @@ describe('LoginComponent', () => {
     expect(loginSpy).toHaveBeenCalled();
   }));
 
-  it('should execute login method and throw error', fakeAsync(() => {
+    it('should execute login method and throw error', fakeAsync(() => {
     debugElement = fixture.debugElement;
-    
+
     const loginSpy = spyOn(authService, 'login').and.returnValue(throwError(new Error()));
 
-    let emailInput = debugElement.query(By.css('#email')).nativeElement;
-    let passwordInput = debugElement.query(By.css('#password')).nativeElement;
+    const emailInput = debugElement.query(By.css('#email')).nativeElement;
+    const passwordInput = debugElement.query(By.css('#password')).nativeElement;
 
     emailInput.value = 'usuario@gmail.com';
     passwordInput.value = 'teste123';

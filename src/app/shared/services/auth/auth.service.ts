@@ -12,7 +12,7 @@ import { AuthSession } from '../../models/auth.model';
 })
 export class AuthService {
 
-  private authSubject = new BehaviorSubject<AuthSession>(this.storageService.getStorage("PAYFRIENDS.user_access"));
+  private authSubject = new BehaviorSubject<AuthSession>(this.storageService.getStorage('PAYFRIENDS.user_access'));
   public authState$ = this.authSubject.asObservable();
 
   constructor(private readonly http: HttpClient, private readonly storageService: StorageService) { }
@@ -20,14 +20,14 @@ export class AuthService {
   login(email: string, password: string): Observable<IAccountUser> {
     const params = new HttpParams().appendAll({email, password});
     return this.http.get<IAccountUser[]>(`${environment.api}/account`, { params }).pipe(map((response: IAccountUser[]) => {
-      
+
       this.setSession(new AuthSession({usr: response[0]}));
       return response ? response[0] : null;
-    }))
+    }));
   }
 
-  get isLoggedIn() {    
-    return (this.storageService.getStorage("PAYFRIENDS.user_access")) ? true : false;
+  get isLoggedIn() {
+    return (this.storageService.getStorage('PAYFRIENDS.user_access')) ? true : false;
   }
 
   logout() {
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   private setSession(user: AuthSession) {
-    this.storageService.setStorage("PAYFRIENDS.user_access", user);
+    this.storageService.setStorage('PAYFRIENDS.user_access', user);
     this.authSubject.next(user);
   }
 }

@@ -11,12 +11,12 @@ import { BackgroundTemplateTypes, ITransactionTemplateMessage, TemplateIcons } f
   animations: [
     trigger('openDismiss', [
       transition(':leave', [
-        style({ 'overflow': 'hidden', 'min-height': 0 }),
-        animate('200ms linear', style({ 'height': 0, 'padding-top': 0, 'padding-bottom': 0 })),
+        style({ overflow: 'hidden', 'min-height': 0 }),
+        animate('200ms linear', style({ height: 0, 'padding-top': 0, 'padding-bottom': 0 })),
       ]),
       transition(':enter', [
-        style({ 'height': 0, 'min-height': 0, 'padding-top': 0, 'padding-bottom': 0 }),
-        animate('200ms linear', style({ 'height': '*', 'min-height': '*', 'padding-top': '*', 'padding-bottom': '*' })),
+        style({ height: 0, 'min-height': 0, 'padding-top': 0, 'padding-bottom': 0 }),
+        animate('200ms linear', style({ height: '*', 'min-height': '*', 'padding-top': '*', 'padding-bottom': '*' })),
       ]),
     ]),
   ],
@@ -34,7 +34,7 @@ export class TransactionStatusComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscription = this.transitionStatus.transactionStatusState$.subscribe(data => {
-      if(data) {
+      if (data) {
         this.transactionTemplate = data;
         this.templateIcon = this.transactionTemplate.type;
       }

@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { TaskService } from './services/task/task.service';
 import { ITask, TaskAction, TaskContract } from './interfaces/task.interface';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { tap } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
@@ -23,7 +23,7 @@ const COMPONENTS_SCHEMA = {
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
-export class TasksComponent implements OnInit, AfterViewInit {
+export class TasksComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,12 +36,13 @@ export class TasksComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadTasks();
-    this.subscription = this.taskService.taskState$.subscribe(action => this.handleTaskActions(action))
+    this.subscription = this.taskService.taskState$.subscribe(action => this.handleTaskActions(action));
   }
 
   ngOnDestroy() {
-    if(this.subscription) 
+    if (this.subscription) {
       this.subscription.unsubscribe();
+    }
   }
 
   ngAfterViewInit() {
@@ -56,8 +57,8 @@ export class TasksComponent implements OnInit, AfterViewInit {
         this.messageError = response ? false : true;
         this.tasksSource = new MatTableDataSource(response);
         this.tasksSource.sort = this.sort;
-        if (!pageSize) this.tasksSource.paginator = this.paginator;
-      }, _=> {
+        if (!pageSize) { this.tasksSource.paginator = this.paginator; }
+      }, _ => {
         this.messageError = true;
       });
   }
@@ -65,7 +66,9 @@ export class TasksComponent implements OnInit, AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
 
-    this.tasksSource.filterPredicate = (data: ITask, filter: string) => data.name.concat(data.username).trim().toLowerCase().indexOf(filter) != -1;
+    this.tasksSource.filterPredicate = (data: ITask, filter: string) =>
+    data.name.concat(data.username).trim().toLowerCase().indexOf(filter) !== -1;
+
     this.tasksSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -79,12 +82,12 @@ export class TasksComponent implements OnInit, AfterViewInit {
   }
 
   private handleTaskActions(event: TaskContract) {
-    if(event) {
+    if (event) {
       switch (event.action) {
         case TaskAction.GET_TASKS:
           this.loadTasks(this.tasksSource.paginator.pageIndex);
           break;
-      
+
         default:
           break;
       }

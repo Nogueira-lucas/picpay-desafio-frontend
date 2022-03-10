@@ -19,14 +19,14 @@ describe('DeleteTaskComponent', () => {
   let taskService: TaskService;
 
   const TASK_MOCK: ITask = {
-    "id": 170,
-    "name": "Morganica O'Sheils",
-    "username": "mosheils4p",
-    "title": "Analyst Programmer",
-    "value": "207.4",
-    "date": "2021-05-05T10:22:13Z",
-    "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
-    "isPayed": true
+    id: 170,
+    name: 'Morganica O\'Sheils',
+    username: 'mosheils4p',
+    title: 'Analyst Programmer',
+    value: '207.4',
+    date: '2021-05-05T10:22:13Z',
+    image: 'https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1',
+    isPayed: true
   };
 
   const DIALOG_MOCK = {
@@ -65,23 +65,23 @@ describe('DeleteTaskComponent', () => {
     debugElement = fixture.debugElement;
     const spy = spyOn(TestBed.inject(MatDialogRef), 'close').and.callThrough();
 
-    let dismiss = debugElement.query(By.css('#dismiss')).nativeElement;
+    const dismiss = debugElement.query(By.css('#dismiss')).nativeElement;
 
     dismiss.dispatchEvent(new Event('click'));
 
     fixture.detectChanges();
-    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalled();
   }));
 
   it('should save task edition with success', (() => {
     debugElement = fixture.debugElement;
     const spy = spyOn(taskService, 'deleteTask').and.callThrough().and.returnValue(from([TASK_MOCK]));
 
-    let save = debugElement.query(By.css('#save')).nativeElement;
+    const save = debugElement.query(By.css('#save')).nativeElement;
 
     save.dispatchEvent(new Event('click'));
 
     fixture.detectChanges();
-    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalled();
   }));
 });

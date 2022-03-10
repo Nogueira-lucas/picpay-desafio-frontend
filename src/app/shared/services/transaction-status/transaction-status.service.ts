@@ -13,10 +13,10 @@ export class TransactionStatusService {
   constructor() { }
 
   show(message: string, type: BackgroundTemplateTypes, displayMessage = true) {
-    this.transactionStatusSubject.next({message, type, displayMessage})
+    this.transactionStatusSubject.next({message, type, displayMessage});
   }
 
   hide(message: string = '', type = null, displayMessage = false) {
-    this.transactionStatusSubject.next({message, type, displayMessage})
+    this.transactionStatusSubject.next({message, type, displayMessage});
   }
 }

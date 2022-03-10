@@ -36,7 +36,7 @@ describe('ErrorHandlerInterceptor', () => {
     http = TestBed.inject(HttpClient);
     spyOn(http, 'get').and.returnValue(throwError(new Error()));
 
-    taskService.getTasks(1, 10).subscribe(data => {}, 
+    taskService.getTasks(1, 10).subscribe(data => {},
       error => {
       expect(error).toBeDefined();
     });

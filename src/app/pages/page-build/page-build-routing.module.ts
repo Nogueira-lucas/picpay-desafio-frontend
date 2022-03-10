@@ -20,7 +20,7 @@ export const routes: Routes = [
         import(`../login/login.module`).then((m) => m.LoginModule),
     }
   ]
-}, 
+},
 {
   path: '**',
   loadChildren: () =>

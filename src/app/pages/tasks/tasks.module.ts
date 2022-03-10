@@ -29,9 +29,9 @@ registerLocaleData(ptBr);
     MessageErrorModule,
   ],
   exports: [TasksComponent],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt' },{
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }, {
     provide: MatPaginatorIntl,
     useClass: CustomMatPaginatorIntl,
-  },]
+  }, ]
 })
 export class TasksModule { }

@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
    ],
   imports: [
@@ -28,7 +28,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     {
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorHandlerInterceptor,
-    multi:true
+    multi: true
   }],
   bootstrap: [AppComponent]
 })

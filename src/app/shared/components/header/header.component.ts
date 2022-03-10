@@ -15,9 +15,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.authState$.subscribe(response => {      
+    this.authService.authState$.subscribe(response => {
       this.avatar = (response) ? response.usr.avatar : '/assets/images/avatar_default.png';
-      this.isUserLoggedIn = (response) ? true : false
+      this.isUserLoggedIn = (response) ? true : false;
     });
   }
 
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([`/${routeName}`]);
   }
 
-  logout():void {
+  logout(): void {
     this.authService.logout();
     this.goTo('login');
   }
