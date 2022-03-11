@@ -10,9 +10,17 @@
         background-color: #002D69;
         @include flex();
 
+        &__logo {
+            cursor: pointer;
+        }
+
         &__item {
             @include flex();
             justify-content: flex-end;
+            img {
+                width: 3em;
+                border-radius: 50% 50%;
+            }
         }
 
         &__button {

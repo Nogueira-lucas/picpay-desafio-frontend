@@ -18,6 +18,11 @@ export const routes: Routes = [
       path: 'login',
       loadChildren: () =>
         import(`../login/login.module`).then((m) => m.LoginModule),
+    },
+    {
+      path: 'edit-profile',
+      loadChildren: () =>
+        import(`../edit-profile/edit-profile.module`).then((m) => m.EditProfileModule),
     }
   ]
 },

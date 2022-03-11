@@ -1,0 +1,90 @@
+@mixin flex() {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.payfriends {
+    &-edit-profile {
+        @include flex();
+        min-height: 100vh;
+
+        &__form {
+            padding: 1rem 6rem;
+
+            &--avatar {
+                @include flex();
+
+                img {
+                    width: 8em;
+                }
+            }
+        }
+
+        .mat-toolbar-single-row {
+            height: auto !important;
+            background: transparent;
+            width: 100%;
+            display: flex;
+            justify-content: center
+        }
+        
+        .form-field__avatar::ng-deep {
+            .mat-form-field-infix {
+                padding: 0.3375em 0;
+                text-align: center;
+            }   
+        }
+
+        .mat-toolbar-single-row button {
+            width: 200px;
+        }
+
+        .mat-form-field {
+            width: 100%;
+        }
+
+        #uploadFile {
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            z-index: 9;
+            opacity: 0;
+            height: 100%;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        h1 {
+            padding-bottom: 1em;
+            text-align: center;
+        }
+
+
+        &__item {
+            background-color: #FFFFFF;
+            height: 100vh;
+            @include flex();
+            align-items: center;
+            img {
+                width: inherit;
+                max-height: 50rem;
+            }
+        }
+
+        button,
+        mat-form-field {
+            margin-top: 1rem;
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .payfriends {
+        &-edit-profile {
+            &__item {
+                display: none;
+            }
+        }
+    }
+}

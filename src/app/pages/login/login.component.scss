@@ -2,11 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
 .payfriends {
     &-login {
-        @include flex();   
+        @include flex();
+        min-height: 100vh;
+
         &__form {
             padding: 7rem;
         }
@@ -15,13 +17,15 @@
             background-color: #FFFFFF;
             height: 100vh;
             @include flex();
+
             img {
                 width: inherit;
                 max-height: 50rem;
             }
         }
 
-        button, mat-form-field {
+        button,
+        mat-form-field {
             margin-top: 1rem;
         }
     }
@@ -30,7 +34,7 @@
 @media (max-width:768px) {
     .payfriends {
         &-login {
-            &__img {
+            &__item {
                 display: none;
             }
         }

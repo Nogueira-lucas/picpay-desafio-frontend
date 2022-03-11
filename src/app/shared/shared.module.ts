@@ -13,6 +13,7 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { CustomMatPaginatorIntl } from './utils/mat-custom-paginator-intl';
 import { CurrencyMaskInputMode } from 'ngx-currency';
@@ -59,6 +60,7 @@ const sharedModules = [
   MatGridListModule,
   MatButtonModule,
   MatFormFieldModule,
+  MatToolbarModule,
   MatIconModule,
   MatInputModule,
   MatMenuModule,

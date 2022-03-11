@@ -11,6 +11,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { from, throwError } from 'rxjs';
 import { IAccountUser } from 'src/app/shared/interfaces/account.interface';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -28,7 +29,7 @@ describe('LoginComponent', () => {
         RouterTestingModule.withRoutes([
           { path: '', redirectTo: 'tasks', pathMatch: 'full' }]),
         BrowserAnimationsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         SharedModule],
       providers: []
     })
@@ -64,54 +65,54 @@ describe('LoginComponent', () => {
     }));
 
     it('should execute login method correctly', fakeAsync(() => {
-    debugElement = fixture.debugElement;
-    const loginSpy = spyOn(authService, 'login').and.callThrough().and.returnValue(from([USER_MOCK]));
+      debugElement = fixture.debugElement;
+      const loginSpy = spyOn(authService, 'login').and.callThrough().and.returnValue(from([USER_MOCK]));
 
-    const emailInput = debugElement.query(By.css('#email')).nativeElement;
-    const passwordInput = debugElement.query(By.css('#password')).nativeElement;
+      const emailInput = debugElement.query(By.css('#email')).nativeElement;
+      const passwordInput = debugElement.query(By.css('#password')).nativeElement;
 
-    emailInput.value = 'usuario@gmail.com';
-    passwordInput.value = 'usuario';
-    emailInput.dispatchEvent(new Event('input'));
-    passwordInput.dispatchEvent(new Event('input'));
+      emailInput.value = 'usuario@gmail.com';
+      passwordInput.value = 'usuario';
+      emailInput.dispatchEvent(new Event('input'));
+      passwordInput.dispatchEvent(new Event('input'));
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
-      expect(emailInput.value).toEqual(component.form.get('email').value);
-      expect(passwordInput.value).toEqual(component.form.get('password').value);
-      expect(component.form.errors).toBeNull();
-    });
+      fixture.whenStable().then(() => {
+        expect(emailInput.value).toEqual(component.form.get('email').value);
+        expect(passwordInput.value).toEqual(component.form.get('password').value);
+        expect(component.form.errors).toBeNull();
+      });
 
-    tick(2501);
-    component.onSubmit();
-    expect(loginSpy).toHaveBeenCalled();
-  }));
+      tick(2501);
+      component.onSubmit();
+      expect(loginSpy).toHaveBeenCalled();
+    }));
 
     it('should execute login method and throw error', fakeAsync(() => {
-    debugElement = fixture.debugElement;
+      debugElement = fixture.debugElement;
 
-    const loginSpy = spyOn(authService, 'login').and.returnValue(throwError(new Error()));
+      const loginSpy = spyOn(authService, 'login').and.returnValue(throwError(new Error()));
 
-    const emailInput = debugElement.query(By.css('#email')).nativeElement;
-    const passwordInput = debugElement.query(By.css('#password')).nativeElement;
+      const emailInput = debugElement.query(By.css('#email')).nativeElement;
+      const passwordInput = debugElement.query(By.css('#password')).nativeElement;
 
-    emailInput.value = 'usuario@gmail.com';
-    passwordInput.value = 'teste123';
-    emailInput.dispatchEvent(new Event('input'));
-    passwordInput.dispatchEvent(new Event('input'));
+      emailInput.value = 'usuario@gmail.com';
+      passwordInput.value = 'teste123';
+      emailInput.dispatchEvent(new Event('input'));
+      passwordInput.dispatchEvent(new Event('input'));
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
-      expect(emailInput.value).toEqual(component.form.get('email').value);
-      expect(passwordInput.value).toEqual(component.form.get('password').value);
-      expect(component.form.errors).toBeNull();
-    });
+      fixture.whenStable().then(() => {
+        expect(emailInput.value).toEqual(component.form.get('email').value);
+        expect(passwordInput.value).toEqual(component.form.get('password').value);
+        expect(component.form.errors).toBeNull();
+      });
 
-    tick(2501);
-    component.onSubmit();
-    expect(loginSpy).toHaveBeenCalled();
-  }));
-});
+      tick(2501);
+      component.onSubmit();
+      expect(loginSpy).toHaveBeenCalled();
+    }));
+  });
 });

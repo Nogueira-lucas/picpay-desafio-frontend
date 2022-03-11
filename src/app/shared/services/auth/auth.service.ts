@@ -35,6 +35,13 @@ export class AuthService {
     this.setSession(null);
   }
 
+  updateAccount(user: IAccountUser) {
+    return this.http.put<IAccountUser>(`${environment.api}/account/${user.id}`, user).pipe(map((response: IAccountUser) => {
+      this.setSession(new AuthSession({usr: response}));
+      return response ? response : null;
+    }));
+  }
+
   private setSession(user: AuthSession) {
     this.storageService.setStorage('PAYFRIENDS.user_access', user);
     this.authSubject.next(user);

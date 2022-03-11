@@ -37,6 +37,10 @@ export class TransactionStatusComponent implements OnInit {
       if (data) {
         this.transactionTemplate = data;
         this.templateIcon = this.transactionTemplate.type;
+
+        if (data.displayMessage) {
+          setTimeout(() => this.hide(), 5000);
+        }
       }
     });
   }

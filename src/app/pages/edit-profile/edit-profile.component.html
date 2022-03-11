@@ -1,0 +1,79 @@
+<section class="row payfriends-edit-profile">
+    <div class="col-md-4">
+        <div class="row payfriends-edit-profile__form">
+            <div class="col-md-12">
+                <h1>Editar perfil</h1>
+            </div>
+            <div class="col-md-12" *ngIf="form">
+                <form [formGroup]="form" class="row">
+                    <div class="col-md-12 payfriends-edit-profile__form--avatar">
+                        <img [src]="userAvatar" />
+                    </div>
+                    <mat-form-field appereance="none" floatLabel="always" class="form-field__avatar col-md-12">
+                        <!-- <div> -->
+                            <mat-label>Atualize sua foto de perfil</mat-label>
+                          <mat-toolbar>
+                            <!-- Display files names -->
+                            <input matInput formControlName="avatar" readonly name="avatar" style="display: none;" />
+                            <!-- Browse Button -->
+                            <button mat-flat-button color="primary"><mat-icon mat-icon-button>upload</mat-icon></button>
+                          </mat-toolbar>
+                          <!-- Fetch selected filed on change -->
+                          <input
+                            type="file"
+                            #fileInput
+                            id="uploadFile"
+                            (change)="uploadFile($event)"
+                            name="uploadFile"
+                            multiple="multiple"
+                            accept="image/*"
+                          />
+                        <!-- </div> -->
+                      </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always" class="col-md-12">
+                        <mat-label>Nome</mat-label>
+                        <input matInput type="name" id="name" formControlName="name" />
+                          <mat-error *ngIf="form.get('name').hasError('required')">
+                            O nome é <strong>obrigatório</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always" class="col-md-12">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" id="email" formControlName="email" />
+                        <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+                            Escreva um e-mail válido, por favor.
+                          </mat-error>
+                          <mat-error *ngIf="form.get('email').hasError('required')">
+                            O e-mail é <strong>obrigatório</strong>
+                          </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" floatLabel="always" class="col-md-12">
+                        <mat-label>Senha</mat-label>
+                        <input matInput id="password" [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="form.get('password').hasError('required')">
+                            A senha é <strong>obrigatória</strong>
+                          </mat-error>
+                          <mat-error *ngIf="form.get('password').hasError('minlength')">
+                            A senha tem que ter ser igual ou maior que 6 caractéres.
+                          </mat-error>
+                    </mat-form-field>
+                    <div class="col-md-12">
+                        <button type="submit" id="btn-submit" mat-raised-button color="primary" class="width-100" (click)="onSubmit()"
+                            [disabled]="form.invalid">alterar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 payfriends-edit-profile__item">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="assets/images/edit-profile.png" class="img-responsive"
+                    alt="Ilustração de uma mulher atualizando seu perfil.">
+            </div>
+        </div>
+    </div>
+</section>
