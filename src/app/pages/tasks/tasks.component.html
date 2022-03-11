@@ -12,7 +12,7 @@
                         <mat-icon>search</mat-icon>
                     </button>
                 </mat-form-field>
-                <button mat-button class="payfriends-tasks__filter-button">Filtrar</button>
+                <button mat-button class="payfriends-tasks__filter-button" (click)="openDialog('filter', null)" >Filtrar</button>
             </div>
             <div class="col-md-6 payfriends-tasks__pagination">
                 <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 15]" itemsPerPageLabel="Exibir">

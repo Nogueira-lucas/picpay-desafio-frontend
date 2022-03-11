@@ -1,3 +1,4 @@
+import { FilterComponent } from './components/filter/filter.component';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -16,6 +17,7 @@ const COMPONENTS_SCHEMA = {
   delete: { component: DeleteTaskComponent, width: '25vw' },
   edit: { component: EditTaskComponent, width: '50vw' },
   add: { component: EditTaskComponent, width: '50vw' },
+  filter: { component: FilterComponent, width: '45vw' },
 };
 
 @Component({
@@ -51,9 +53,9 @@ export class TasksComponent implements OnInit, AfterViewInit, OnDestroy {
     this.tasksSource.paginator.page.pipe(tap((res) => this.loadTasks(res.pageIndex + 1, res.pageSize))).subscribe();
   }
 
-  loadTasks(pageIndex = 0, pageSize = null) {
+  loadTasks(pageIndex = 0, pageSize = null, filter = null) {
     this.taskService.getTasks(pageIndex,
-      pageSize).subscribe(response => {
+      pageSize, filter).subscribe(response => {
         this.messageError = response ? false : true;
         this.tasksSource = new MatTableDataSource(response);
         this.tasksSource.sort = this.sort;
@@ -87,6 +89,10 @@ export class TasksComponent implements OnInit, AfterViewInit, OnDestroy {
         case TaskAction.GET_TASKS:
           this.loadTasks(this.tasksSource.paginator.pageIndex);
           break;
+
+          case TaskAction.SEARCH_TASKS:
+            this.loadTasks(0, null, event.data);
+            break;
 
         default:
           break;

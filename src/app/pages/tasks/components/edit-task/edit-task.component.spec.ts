@@ -1,7 +1,7 @@
 import { ReactiveFormsModule } from '@angular/forms';
-import { TaskService } from './../../services/task/task.service';
+import { TaskService } from '../../services/task/task.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SharedModule } from '../../../../shared/shared.module';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 

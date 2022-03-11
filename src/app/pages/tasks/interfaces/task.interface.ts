@@ -21,7 +21,8 @@ export class Task {
 }
 
 export enum TaskAction {
-    GET_TASKS
+    GET_TASKS,
+    SEARCH_TASKS
 }
 
 export interface TaskContract {

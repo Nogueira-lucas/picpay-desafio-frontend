@@ -27,7 +27,7 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { NGX_MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular-material-components/moment-adapter';
 import { ErrorStateMatcher, MAT_DATE_LOCALE, NativeDateAdapter, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import { IndividualConfig, ToastrModule, ToastrService } from 'ngx-toastr';
+import {MatRadioModule} from '@angular/material/radio';
 
 export const customCurrencyMaskConfig = {
   align: 'left',
@@ -67,6 +67,7 @@ const sharedModules = [
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
+  MatRadioModule,
   MatCheckboxModule,
   MatDialogModule,
   MatDatepickerModule,

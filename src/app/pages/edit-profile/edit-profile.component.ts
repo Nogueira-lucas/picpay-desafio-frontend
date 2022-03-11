@@ -27,14 +27,16 @@ export class EditProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.authService.authState$.subscribe(data => {
-      this.userSource = data.usr;
-      this.userAvatar = this.userSource.avatar;
-      this.form = this.fb.group({
-        name: [this.userSource.name, Validators.required],
-        email: [this.userSource.email, [Validators.required, Validators.email]],
-        avatar: [this.userSource.avatar, Validators.required],
-        password: ['', [Validators.required, Validators.minLength(6)]]
-      });
+      if(data) {
+        this.userSource = data.usr;
+        this.userAvatar = this.userSource.avatar;
+        this.form = this.fb.group({
+          name: [this.userSource.name, Validators.required],
+          email: [this.userSource.email, [Validators.required, Validators.email]],
+          avatar: [this.userSource.avatar, Validators.required],
+          password: ['', [Validators.required, Validators.minLength(6)]]
+        });
+      }
     });
 
   }

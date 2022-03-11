@@ -1,3 +1,4 @@
+import { FilterModule } from './components/filter/filter.module';
 import { MessageErrorModule } from './../../shared/components/message-error/message-error.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -25,6 +26,7 @@ describe('TasksComponent', () => {
         EditTaskModule,
         DeleteTaskModule,
         MessageErrorModule,
+        FilterModule,
         ToastrModule.forRoot()
       ]
     })

@@ -1,0 +1,27 @@
+@mixin flex() {
+    display: flex;
+    align-items: center;
+  }
+
+.payfriends-filter {
+    h3 {
+        font-size: 18px;
+        padding-bottom: 2em;
+    }
+    .radio {
+        height: 6em;
+        mat-radio-group {
+            mat-radio-button {
+                margin-left: 1rem
+            }
+        }
+    }
+    &__footer {
+        @include flex();
+        justify-content: flex-end;
+        padding-top: 2.5em;
+        button:first-child {
+            margin-right: 2rem;
+        }
+    }
+}

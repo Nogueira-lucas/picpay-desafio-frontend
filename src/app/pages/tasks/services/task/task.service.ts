@@ -21,15 +21,32 @@ export class TaskService {
     this.taskSubject.next({action, data});
   }
 
-  getTasks(pageIndex: number, pageSize: number): Observable<ITask[]> {
-    const params = (pageSize) ? new HttpParams().appendAll({ _page: pageIndex, _limit: pageSize }) : new HttpParams();
-    return this.http.get<ITask[]>(`${environment.api}/tasks`, { params }).pipe(map((response: ITask[]) => {
+  getTasks(pageIndex: number = 0, pageSize: number = null, filter = null): Observable<ITask[]> {
+
+    let params = {};
+    let searchParams = new HttpParams();
+
+    if (filter) {
+      params = filter;
+    }
+
+    params = (pageSize) ? {...params, ...{ _page: pageIndex, _limit: pageSize }} : params;
+
+    if (params) {
+      for (const [k, v] of Object.entries(params)) {
+        if (v || v === false) {
+          searchParams = searchParams.append(k, v as any);
+        }
+      }
+    }
+
+    return this.http.get<ITask[]>(`${environment.api}/tasks`, { params: searchParams }).pipe(map((response: ITask[]) => {
       return response ? response : [];
     }));
   }
 
   createTask(body: ITask): Observable<ITask> {
-    body.id = Math.floor(Math.random() * 100) + 170;
+    body.id = Math.floor(Math.random() * (300 - 170 + 1) + 170);
     body.username = this.generator.create(body.name);
 
     return this.http.post<ITask>(`${environment.api}/tasks`, body).pipe(map((response: ITask) => {

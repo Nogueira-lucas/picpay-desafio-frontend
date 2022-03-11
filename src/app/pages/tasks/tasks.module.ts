@@ -1,3 +1,4 @@
+import { FilterModule } from './components/filter/filter.module';
 import { MessageErrorModule } from './../../shared/components/message-error/message-error.module';
 import { EditTaskModule } from './components/edit-task/edit-task.module';
 import { SharedModule } from '../../shared/shared.module';
@@ -26,6 +27,7 @@ registerLocaleData(ptBr);
     SharedModule,
     EditTaskModule,
     DeleteTaskModule,
+    FilterModule,
     MessageErrorModule,
   ],
   exports: [TasksComponent],
