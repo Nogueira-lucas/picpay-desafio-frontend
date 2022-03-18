@@ -1,22 +1,60 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FaSort } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti'
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Pagination, { PaginationHandles } from '../../components/Pagination';
+import { api } from '../../services/api';
 
 import { Container, Main, MainHeader, TableContainer, TableContainerHeader, PaymentsTable } from './styles';
 
+interface StatementsProps {
+  id: number;
+  name: string;
+  username: string;
+  title: string;
+  value: number;
+  date: string;
+  image: string;
+  isPayed: boolean;
+}
+
 const Home: React.FC = () => {
   const paginationRef = useRef<PaginationHandles>(null);
+
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(5);
+
+  const [statements, setStatements] = useState<StatementsProps[]>([]);
+  const [totalStatements, setTotalStatements] = useState(0);
+
+  useEffect(() => {
+    api.get<StatementsProps[]>('/tasks', {
+      params: {
+        _start: offset,
+        _limit: limit,
+      }
+    }).then(response => {
+      setTotalStatements(Number(response.headers['x-total-count']));
+      setStatements(response.data);
+    });
+  }, [offset, limit]);
+
+  const handleOffsetAndLimit = useCallback(
+    (_limit: number, _offset: number) => {
+      // setIsLoading(true);
+
+      setLimit(_limit);
+      setOffset(_offset);
+    },
+    [],
+  );
 
   return (
     <Container>
       <Header />
       <Main>
-
-
         <MainHeader>
           <h1>Meus pagamentos</h1>
         </MainHeader>
@@ -41,10 +79,9 @@ const Home: React.FC = () => {
             <div className="pagination">
               <Pagination
                 ref={paginationRef}
-                count={100}
-                limit={10}
-                pageRangeDisplayed={5}
-                onChange={() => { }}
+                count={totalStatements}
+                limit={limit}
+                onChange={handleOffsetAndLimit}
               />
             </div>
           </TableContainerHeader>
@@ -61,75 +98,35 @@ const Home: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <div className="userInfo">
-                    <span>Cláudia</span>
-                    <span className='bottomInfo'>@claudia</span>
-                  </div>
-                </td>
-                <td>Professor 1</td>
-                <td>
-                  <div className="dateInfo">
-                    <span>18 Mar 2022</span>
-                    <span className='bottomInfo'>11:00 AM</span>
-                  </div>
-                </td>
-                <td>R$ 100,00</td>
-                <td>Pago</td>
-                <td className="actions">
-                  <div>
-                    <MdOutlineEdit size={24} />
-                    <TiDeleteOutline size={24}/>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="userInfo">
-                    <span>Cláudia</span>
-                    <span className='bottomInfo'>@claudia</span>
-                  </div>
-                </td>
-                <td>Professor 1</td>
-                <td>
-                  <div className="dateInfo">
-                    <span>18 Mar 2022</span>
-                    <span className='bottomInfo'>11:00 AM</span>
-                  </div>
-                </td>
-                <td>R$ 100,00</td>
-                <td>Pago</td>
-                <td className="actions">
-                  <div>
-                    <MdOutlineEdit size={24} />
-                    <TiDeleteOutline size={24}/>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div className="userInfo">
-                    <span>Cláudia</span>
-                    <span className='bottomInfo'>@claudia</span>
-                  </div>
-                </td>
-                <td>Professor 1</td>
-                <td>
-                  <div className="dateInfo">
-                    <span>18 Mar 2022</span>
-                    <span className='bottomInfo'>11:00 AM</span>
-                  </div>
-                </td>
-                <td>R$ 100,00</td>
-                <td>Pago</td>
-                <td className="actions">
-                  <div>
-                    <MdOutlineEdit size={24} />
-                    <TiDeleteOutline size={24}/>
-                  </div>
-                </td>
-              </tr>
+              {statements.map(statement => (
+                <tr key={statement.id}>
+                  <td>
+                    <div className="userInfo">
+                      <span>{statement.name}</span>
+                      <span className='bottomInfo'>{`@${statement.username}`}</span>
+                    </div>
+                  </td>
+                  <td>{statement.title}</td>
+                  <td>
+                    <div className="dateInfo">
+                      <span>{statement.date}</span>
+                      <span className='bottomInfo'>11:00 AM</span>
+                    </div>
+                  </td>
+                  <td>{statement.value}</td>
+                  <td>Pago</td>
+                  <td className="actions">
+                    <div>
+                      <button type='button'>
+                        <MdOutlineEdit size={24} />
+                      </button>
+                      <button type='button'>
+                        <TiDeleteOutline size={24} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </PaymentsTable>
         </TableContainer>

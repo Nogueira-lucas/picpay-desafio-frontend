@@ -17,6 +17,7 @@ import {
 import { Container, PagesContainer, Page } from './styles';
 
 const pageLimitToShow = [
+  { value: 5, label: '5' },
   { value: 10, label: '10' },
   { value: 25, label: '25' },
   { value: 50, label: '50' },
@@ -26,7 +27,7 @@ const pageLimitToShow = [
 interface PaginationProps {
   count: number;
   limit: number;
-  pageRangeDisplayed: number;
+  pageRangeDisplayed?: number;
   onChange: (limit: number, offset: number) => void;
 }
 
@@ -40,7 +41,7 @@ export interface PaginationHandles {
 const Pagination: React.ForwardRefRenderFunction<
   PaginationHandles,
   PaginationProps
-> = ({ count, limit, pageRangeDisplayed, onChange }, ref) => {
+> = ({ count, limit, pageRangeDisplayed = 5, onChange }, ref) => {
   const [firstPageRangeDisplayed, setFirstPageRangeDisplayed] = useState(0);
   const [pagesDisplayed, setPagesDisplayed] = useState<Array<Number>>([]);
   const [pages, setPages] = useState<Array<Number>>([]);

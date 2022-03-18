@@ -41,15 +41,15 @@ export const TableContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
   border-radius: 8px;
-  padding: 14px;
 `;
 
 export const TableContainerHeader = styled.div`
-  /* padding: 16px 48px 16px 14px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  
+  padding: 0 14px;
+  
   div.search {
     display: flex;
     align-items: center;
@@ -101,13 +101,18 @@ export const PaymentsTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  margin-top: 15px;
 
   th {
     text-align: left;
     height: 40px;
     line-height: 40px;
 
-    border-bottom: 1px solid #d2cfcf;
+    border-bottom: 2px solid #CFDCE5;
+  }
+
+  th {
+    padding: 0 14px;
   }
 
   th.centered {
@@ -118,21 +123,12 @@ export const PaymentsTable = styled.table`
     min-width: 200px;
   }
 
-  div.occurrenceInfo {
-    display: flex;
-    svg {
-      cursor: pointer;
-      margin-left: 10px;
-      color: #be6464;
-    }
+  tr:nth-child(even) {
+    background-color: #F5F8FA;
   }
 
   tbody tr:hover {
     background: #f5f5f5;
-
-    button.openDropAction {
-      background: #f5f5f5;
-    }
 
     td.actions div {
       display: block;
@@ -145,7 +141,7 @@ export const PaymentsTable = styled.table`
     white-space: normal;
     text-align: left;
     height: 81px;
-    padding: 5px;
+    padding: 5px 14px;
     font-size: 14px;
     line-height: 16px;
   }
@@ -156,6 +152,15 @@ export const PaymentsTable = styled.table`
     > div {
       margin-right: 28px;
       display: none;
+
+      button {
+        border: 0;
+        background: transparent;
+      }
+
+      > button {
+        margin-right: 10px;
+      }
     }
   }
 
