@@ -30,6 +30,7 @@ export function number(
   return e;
 }
 
+// XXX.XXX.XXX-XX
 export function cpf(
   e: React.FormEvent<HTMLInputElement>,
 ): React.FormEvent<HTMLInputElement> {
@@ -73,5 +74,25 @@ export function phone(
   value = value.replace(/(\d)(\d{4})$/, '$1-$2');
 
   e.currentTarget.value = value;
+  return e;
+}
+
+export function dateMask(
+  e: React.FormEvent<HTMLInputElement>,
+): React.FormEvent<HTMLInputElement> {
+  e.currentTarget.maxLength = 10;
+  let { value } = e.currentTarget;
+  value = value.replace(/^(\d\d)(\d)$/g, '$1/$2');
+  value = value.replace(/^(\d\d\/\d\d)(\d+)$/g, '$1/$2');
+  value = value.replace(/[^\d/]/g, '');
+  e.currentTarget.value = value;
+  return e;
+}
+
+export function toUpper(
+  e: React.FormEvent<HTMLInputElement>,
+): React.FormEvent<HTMLInputElement> {
+  const { value } = e.currentTarget;
+  e.currentTarget.value = value.toUpperCase();
   return e;
 }

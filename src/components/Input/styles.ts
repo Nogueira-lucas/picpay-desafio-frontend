@@ -21,9 +21,9 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;
 
-  & + div {
+  /* & + div {
     margin-top: 8px;
-  }
+  } */
 
   ${props =>
     props.isErrored &&

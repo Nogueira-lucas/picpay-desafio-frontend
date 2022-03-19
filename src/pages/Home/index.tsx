@@ -13,9 +13,11 @@ import { api } from '../../services/api';
 
 import { Container, Main, MainHeader, TableContainer, TableContainerHeader, PaymentsTable } from './styles';
 import { numberFormatAsCurrency } from '../../utils/numberFormat';
-import { Checkbox, SwitchProps } from '@mui/material';
+import { Checkbox } from '@mui/material';
+import { PaymentModal } from '../../components/PaymentModal';
+import ModalConfirm from '../../components/ModalConfirm';
 
-interface StatementsProps {
+interface IStatementsProps {
   id: number;
   name: string;
   username: string;
@@ -24,9 +26,9 @@ interface StatementsProps {
   date: string;
   image: string;
   isPayed: boolean;
-  // valueFormatted: string;
-  // dateFormatted: string;
-  // hourFormatted: string;
+  valueFormatted: string;
+  dateFormatted: string;
+  hourFormatted: string;
 }
 
 const Home: React.FC = () => {
@@ -35,29 +37,22 @@ const Home: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
 
-  const [statements, setStatements] = useState<StatementsProps[]>([]);
+  const [statements, setStatements] = useState<IStatementsProps[]>([]);
   const [totalStatements, setTotalStatements] = useState(0);
-  // const [checked, setChecked] = useState(true);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showModalDeleteConfirm, setShowModalDeleteConfirm] = useState(false);
+
+  const [selectedStatement, setSelectedStatement] = useState<IStatementsProps | undefined>();
+
 
   useEffect(() => {
-    api.get<StatementsProps[]>('/tasks', {
+    api.get<IStatementsProps[]>('/tasks', {
       params: {
         _start: offset,
         _limit: limit,
       }
     }).then(response => {
       setTotalStatements(Number(response.headers['x-total-count']));
-
-      // const statementsFormatted = response.data.map(statement => {
-      //   return {
-      //     ...statement,
-      //     valueFormatted: numberFormatAsCurrency(statement.value),
-      //     dateFormatted: format(parseISO(statement.date), "dd MMM yyyy", {
-      //       locale: ptBR,
-      //     }),
-      //     hourFormatted: format(parseISO(statement.date), 'HH:mm aa'),
-      //   };
-      // });
 
       setStatements(response.data);
     });
@@ -105,8 +100,44 @@ const Home: React.FC = () => {
     });
   }, [statements]);
 
+  const togglePaymentModal = useCallback(() => {
+    setShowPaymentModal(!showPaymentModal);
+  }, [showPaymentModal]);
+
+  const toggleModalDeleteConfirm = useCallback(() => {
+    setShowModalDeleteConfirm(!showModalDeleteConfirm);
+  }, [showModalDeleteConfirm]);
+
+  const handleStatementRegister = useCallback(async (statement: IStatementsProps) => {
+    console.log(statement);
+  }, []);
+
+  const handleClearStatement = useCallback(() => {
+    setSelectedStatement(undefined);
+  }, []);
+
+  const handleModalDeleteConfirmYes = useCallback(() => {
+    console.log(selectedStatement);
+  }, [selectedStatement]);
+
   return (
     <Container>
+      <PaymentModal
+        statement={selectedStatement}
+        isOpen={showPaymentModal}
+        setIsOpen={togglePaymentModal}
+        handleStatementRegister={handleStatementRegister}
+        handleClearStatement={handleClearStatement}
+      />
+      <ModalConfirm
+        statement={selectedStatement}
+        title="Excluir pagamento?"
+        confirmYes="Excluir"
+        confirmNo="Cancelar"
+        isOpen={showModalDeleteConfirm}
+        setIsOpen={toggleModalDeleteConfirm}
+        handleConfirmYes={handleModalDeleteConfirmYes}
+      />
       <Header />
       <Main>
         <MainHeader>
@@ -114,7 +145,7 @@ const Home: React.FC = () => {
         </MainHeader>
 
         <div className="barControl">
-          <Button style={{ width: '230px' }}>
+          <Button style={{ width: '230px' }} onClick={togglePaymentModal} title='novo'>
             ADICIONAR PAGAMENTO
           </Button>
         </div>
@@ -153,7 +184,7 @@ const Home: React.FC = () => {
             </thead>
             <tbody>
               {formattedStatements.map(statement => (
-                <tr key={statement.id}>
+                <tr key={statement.id} onClick={() => setSelectedStatement(statement)}>
                   <td>
                     <div className="userInfo">
                       <span>{statement.name}</span>
@@ -176,10 +207,10 @@ const Home: React.FC = () => {
                   </td>
                   <td className="actions">
                     <div>
-                      <button type='button'>
+                      <button type='button' onClick={togglePaymentModal} title='Editar'>
                         <MdOutlineEdit size={24} />
                       </button>
-                      <button type='button'>
+                      <button type='button' title='Excluir' onClick={toggleModalDeleteConfirm}>
                         <TiDeleteOutline size={24} />
                       </button>
                     </div>
