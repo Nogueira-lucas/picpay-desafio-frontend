@@ -1,4 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
+import { format, parseISO } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+
 import { FaSort } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti'
@@ -8,6 +12,8 @@ import Pagination, { PaginationHandles } from '../../components/Pagination';
 import { api } from '../../services/api';
 
 import { Container, Main, MainHeader, TableContainer, TableContainerHeader, PaymentsTable } from './styles';
+import { numberFormatAsCurrency } from '../../utils/numberFormat';
+import { Checkbox, SwitchProps } from '@mui/material';
 
 interface StatementsProps {
   id: number;
@@ -18,6 +24,9 @@ interface StatementsProps {
   date: string;
   image: string;
   isPayed: boolean;
+  // valueFormatted: string;
+  // dateFormatted: string;
+  // hourFormatted: string;
 }
 
 const Home: React.FC = () => {
@@ -28,6 +37,7 @@ const Home: React.FC = () => {
 
   const [statements, setStatements] = useState<StatementsProps[]>([]);
   const [totalStatements, setTotalStatements] = useState(0);
+  // const [checked, setChecked] = useState(true);
 
   useEffect(() => {
     api.get<StatementsProps[]>('/tasks', {
@@ -37,19 +47,63 @@ const Home: React.FC = () => {
       }
     }).then(response => {
       setTotalStatements(Number(response.headers['x-total-count']));
+
+      // const statementsFormatted = response.data.map(statement => {
+      //   return {
+      //     ...statement,
+      //     valueFormatted: numberFormatAsCurrency(statement.value),
+      //     dateFormatted: format(parseISO(statement.date), "dd MMM yyyy", {
+      //       locale: ptBR,
+      //     }),
+      //     hourFormatted: format(parseISO(statement.date), 'HH:mm aa'),
+      //   };
+      // });
+
       setStatements(response.data);
     });
   }, [offset, limit]);
 
   const handleOffsetAndLimit = useCallback(
     (_limit: number, _offset: number) => {
-      // setIsLoading(true);
-
       setLimit(_limit);
       setOffset(_offset);
     },
     [],
   );
+
+  const handleCheckPayment = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const statementId = event.target.ariaLabel;
+    const edited = statements.find(statement => statement.id === Number(statementId));
+
+    if (edited) {
+      setStatements(statements.map(
+        statement =>
+          statement.id === Number(statementId) ? {
+            ...edited,
+            isPayed: event.target.checked,
+          } : statement)
+      );
+
+      await api.put(`/tasks/${statementId}`, {
+        ...edited,
+        isPayed: event.target.checked,
+      });
+    }
+
+  }, [statements]);
+
+  const formattedStatements = useMemo(() => {
+    return statements.map(statement => {
+      return {
+        ...statement,
+        valueFormatted: numberFormatAsCurrency(statement.value),
+        dateFormatted: format(parseISO(statement.date), "dd MMM yyyy", {
+          locale: ptBR,
+        }),
+        hourFormatted: format(parseISO(statement.date), 'HH:mm aa'),
+      };
+    });
+  }, [statements]);
 
   return (
     <Container>
@@ -98,7 +152,7 @@ const Home: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {statements.map(statement => (
+              {formattedStatements.map(statement => (
                 <tr key={statement.id}>
                   <td>
                     <div className="userInfo">
@@ -109,12 +163,17 @@ const Home: React.FC = () => {
                   <td>{statement.title}</td>
                   <td>
                     <div className="dateInfo">
-                      <span>{statement.date}</span>
-                      <span className='bottomInfo'>11:00 AM</span>
+                      <span>{statement.dateFormatted}</span>
+                      <span className='bottomInfo'>{statement.hourFormatted}</span>
                     </div>
                   </td>
-                  <td>{statement.value}</td>
-                  <td>Pago</td>
+                  <td>{statement.valueFormatted}</td>
+                  <td>
+                    <Checkbox
+                      inputProps={{ 'aria-label': String(statement.id) }}
+                      checked={statement.isPayed}
+                      onChange={handleCheckPayment} />
+                  </td>
                   <td className="actions">
                     <div>
                       <button type='button'>
