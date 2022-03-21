@@ -1,26 +1,6 @@
 {
   "tasks": [
     {
-      "name": "Pennie Dumphries Edited",
-      "username": "pennie",
-      "title": "Dental Hygienist",
-      "value": 20,
-      "date": "2022-03-21T03:00:00.000Z",
-      "image": "https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1",
-      "isPayed": false,
-      "id": 1
-    },
-    {
-      "id": 2,
-      "name": "Foster Orthmann",
-      "username": "forthmann1",
-      "title": "Professor",
-      "value": 207.36,
-      "date": "2021-01-28T14:01:29Z",
-      "image": "https://robohash.org/quasetqui.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 3,
       "name": "Crissie Summerill",
       "username": "csummerill2",
@@ -211,14 +191,14 @@
       "isPayed": false
     },
     {
-      "id": 22,
-      "name": "Alicia Laybourne",
-      "username": "alaybournel",
+      "name": "Alicia Laybourne edited",
+      "username": "alicia",
       "title": "Staff Accountant IV",
       "value": 105.78,
-      "date": "2020-08-24T22:09:07Z",
+      "date": "2020-08-24T03:00:00.000Z",
       "image": "https://robohash.org/doloremquedoloresprovident.png?size=150x150&set=set1",
-      "isPayed": false
+      "isPayed": false,
+      "id": 22
     },
     {
       "id": 23,
@@ -1733,23 +1713,6 @@
       "value": 3500,
       "date": "2022-03-23T03:00:00.000Z",
       "id": 174
-    },
-    {
-      "name": "Bob",
-      "username": "bob",
-      "title": "Teste",
-      "value": 303,
-      "date": "2023-03-12T03:00:00.000Z",
-      "id": 175,
-      "isPayed": true
-    },
-    {
-      "name": "Maria das Dores",
-      "username": "maria",
-      "title": "Carro",
-      "value": 1000,
-      "date": "2022-03-21T03:00:00.000Z",
-      "id": 176
     }
   ],
   "account": [

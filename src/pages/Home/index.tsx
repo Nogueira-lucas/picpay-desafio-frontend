@@ -1,4 +1,6 @@
 import React, {
+  ChangeEvent,
+  FormEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -32,6 +34,7 @@ import {
 } from '../../utils/numberFormat';
 import { IPaymentFormData, PaymentModal } from '../../components/PaymentModal';
 import ModalConfirm from '../../components/ModalConfirm';
+import Loading from '../../components/Loading';
 
 interface IStatementsProps {
   id: number;
@@ -50,9 +53,12 @@ interface IStatementsProps {
 
 const Home: React.FC = () => {
   const paginationRef = useRef<PaginationHandles>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
+  const [isLoading, setIsLoading] = useState(true);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
+  const [tableRefresh, setTableRefresh] = useState(false);
 
   const [statements, setStatements] = useState<IStatementsProps[]>([]);
   const [totalStatements, setTotalStatements] = useState(0);
@@ -75,11 +81,13 @@ const Home: React.FC = () => {
         setTotalStatements(Number(response.headers['x-total-count']));
 
         setStatements(response.data);
+        setIsLoading(false);
       });
-  }, [offset, limit]);
+  }, [offset, limit, tableRefresh]);
 
   const handleOffsetAndLimit = useCallback(
     (_limit: number, _offset: number) => {
+      setIsLoading(true);
       setLimit(_limit);
       setOffset(_offset);
     },
@@ -138,6 +146,10 @@ const Home: React.FC = () => {
     setShowModalDeleteConfirm(!showModalDeleteConfirm);
   }, [showModalDeleteConfirm]);
 
+  const handleRefreshPage = useCallback(() => {
+    setTableRefresh(!tableRefresh);
+  }, [tableRefresh]);
+
   const handleStatementRegister = useCallback(
     async (statement: IPaymentFormData): Promise<void> => {
       const parts = statement.date.split('/');
@@ -156,11 +168,9 @@ const Home: React.FC = () => {
           image: selectedStatement.image,
           isPayed: selectedStatement.isPayed,
         };
-        console.log('edited', edited);
 
         await api.put(`/tasks/${selectedStatement.id}`, edited);
       } else {
-        console.log('created');
         const newStatement = {
           name: statement.username,
           username: statement.username.split(' ')[0].toLowerCase(),
@@ -171,17 +181,59 @@ const Home: React.FC = () => {
 
         await api.post('/tasks', newStatement);
       }
+
+      handleRefreshPage();
     },
-    [selectedStatement],
+    [selectedStatement, handleRefreshPage],
   );
 
   const handleClearStatement = useCallback(() => {
     setSelectedStatement(undefined);
   }, []);
 
-  const handleModalDeleteConfirmYes = useCallback(() => {
-    console.log(selectedStatement);
-  }, [selectedStatement]);
+  const handleModalDeleteConfirmYes = useCallback(async () => {
+    await api.delete(`/tasks/${selectedStatement?.id}`);
+    handleRefreshPage();
+  }, [selectedStatement, handleRefreshPage]);
+
+  const handleSearchBar = useCallback((e: FormEvent) => {
+    e.preventDefault();
+    if (
+      !searchInputRef.current?.value ||
+      searchInputRef.current?.value.length < 3
+    ) {
+      return;
+    }
+    setIsLoading(true);
+
+    const param = searchInputRef.current?.value.toLowerCase().trim();
+
+    api
+      .get(`tasks`, {
+        params: {
+          username: param,
+        },
+      })
+      .then(response => {
+        setTotalStatements(0);
+
+        setStatements(response.data);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.log(err.message);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const handleInputSearch = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.value.length === 0) {
+        handleRefreshPage();
+      }
+    },
+    [handleRefreshPage],
+  );
 
   return (
     <Container>
@@ -221,98 +273,108 @@ const Home: React.FC = () => {
         <TableContainer>
           <TableContainerHeader>
             <div className="search">
-              <input
-                type="text"
-                className="search-bar"
-                placeholder="Pesquisar por usuário"
-              />
-              <button className="searchButton" type="button">
-                Filtrar
-              </button>
+              <form onSubmit={handleSearchBar}>
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  className="search-bar"
+                  placeholder="Pesquisar por usuário"
+                  onChange={handleInputSearch}
+                />
+                <button className="searchButton" type="submit">
+                  Filtrar
+                </button>
+              </form>
             </div>
 
-            <div className="pagination">
-              <Pagination
-                ref={paginationRef}
-                count={totalStatements}
-                limit={limit}
-                onChange={handleOffsetAndLimit}
-              />
-            </div>
+            {totalStatements > 0 && (
+              <div className="pagination">
+                <Pagination
+                  ref={paginationRef}
+                  count={totalStatements}
+                  limit={limit}
+                  onChange={handleOffsetAndLimit}
+                />
+              </div>
+            )}
           </TableContainerHeader>
 
-          <PaymentsTable>
-            <thead>
-              <tr>
-                <th>
-                  Usuário <FaSort size={15} />
-                </th>
-                <th>
-                  Título <FaSort size={15} />
-                </th>
-                <th>
-                  Data <FaSort size={15} />
-                </th>
-                <th>
-                  Valor <FaSort size={15} />
-                </th>
-                <th>
-                  Pago <FaSort size={15} />
-                </th>
-                <th className="actions" />
-              </tr>
-            </thead>
-            <tbody>
-              {formattedStatements.map(statement => (
-                <tr
-                  key={statement.id}
-                  onClick={() => setSelectedStatement(statement)}
-                >
-                  <td>
-                    <div className="userInfo">
-                      <span>{statement.name}</span>
-                      <span className="bottomInfo">{`@${statement.username}`}</span>
-                    </div>
-                  </td>
-                  <td>{statement.title}</td>
-                  <td>
-                    <div className="dateInfo">
-                      <span>{statement.dateFormattedString}</span>
-                      <span className="bottomInfo">
-                        {statement.hourFormatted}
-                      </span>
-                    </div>
-                  </td>
-                  <td>{statement.valueFormatted}</td>
-                  <td>
-                    <Checkbox
-                      inputProps={{ 'aria-label': String(statement.id) }}
-                      checked={statement?.isPayed}
-                      onChange={handleCheckPayment}
-                    />
-                  </td>
-                  <td className="actions">
-                    <div>
-                      <button
-                        type="button"
-                        onClick={togglePaymentModal}
-                        title="Editar"
-                      >
-                        <MdOutlineEdit size={24} />
-                      </button>
-                      <button
-                        type="button"
-                        title="Excluir"
-                        onClick={toggleModalDeleteConfirm}
-                      >
-                        <TiDeleteOutline size={24} />
-                      </button>
-                    </div>
-                  </td>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <PaymentsTable>
+              <thead>
+                <tr>
+                  <th>
+                    Usuário <FaSort size={15} />
+                  </th>
+                  <th>
+                    Título <FaSort size={15} />
+                  </th>
+                  <th>
+                    Data <FaSort size={15} />
+                  </th>
+                  <th>
+                    Valor <FaSort size={15} />
+                  </th>
+                  <th>
+                    Pago <FaSort size={15} />
+                  </th>
+                  <th className="actions" />
                 </tr>
-              ))}
-            </tbody>
-          </PaymentsTable>
+              </thead>
+              <tbody>
+                {formattedStatements.map(statement => (
+                  <tr
+                    key={statement.id}
+                    onClick={() => setSelectedStatement(statement)}
+                  >
+                    <td>
+                      <div className="userInfo">
+                        <span>{statement.name}</span>
+                        <span className="bottomInfo">{`@${statement.username}`}</span>
+                      </div>
+                    </td>
+                    <td>{statement.title}</td>
+                    <td>
+                      <div className="dateInfo">
+                        <span>{statement.dateFormattedString}</span>
+                        <span className="bottomInfo">
+                          {statement.hourFormatted}
+                        </span>
+                      </div>
+                    </td>
+                    <td>{statement.valueFormatted}</td>
+                    <td>
+                      <Checkbox
+                        inputProps={{ 'aria-label': String(statement.id) }}
+                        checked={statement?.isPayed}
+                        onChange={handleCheckPayment}
+                      />
+                    </td>
+                    <td className="actions">
+                      <div>
+                        <button
+                          type="button"
+                          onClick={togglePaymentModal}
+                          title="Editar"
+                        >
+                          <MdOutlineEdit size={24} />
+                        </button>
+                        <button
+                          type="button"
+                          title="Excluir"
+                          onClick={toggleModalDeleteConfirm}
+                        >
+                          <TiDeleteOutline size={24} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </PaymentsTable>
+          )}
         </TableContainer>
       </Main>
     </Container>

@@ -48,9 +48,13 @@ export const TableContainerHeader = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding: 0 14px;
+  padding: 14px;
 
   div.search {
+    padding: 14px;
+  }
+
+  form {
     display: flex;
     align-items: center;
   }
