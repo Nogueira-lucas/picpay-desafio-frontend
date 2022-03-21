@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import signInBgImg from "../../assets/bg-signin.svg";
+import styled from 'styled-components';
+import signInBgImg from '../../assets/bg-signin.svg';
 
 export const Container = styled.div`
   height: 100vh;
@@ -22,13 +22,13 @@ export const Content = styled.div`
 
     span {
       font-size: 24px;
-      font-family: "Montserrat";
+      font-family: 'Montserrat';
       font-weight: bold;
     }
 
-    span.detailLogo{        
-        font-weight: 600;  
-        color: #2F82DD;
+    span.detailLogo {
+      font-weight: 600;
+      color: #2f82dd;
     }
   }
 

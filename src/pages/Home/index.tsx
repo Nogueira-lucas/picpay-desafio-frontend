@@ -1,20 +1,36 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { format, parseISO } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+import { ptBR } from 'date-fns/locale';
 
 import { FaSort } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
-import { TiDeleteOutline } from 'react-icons/ti'
+import { TiDeleteOutline } from 'react-icons/ti';
+import { Checkbox } from '@mui/material';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Pagination, { PaginationHandles } from '../../components/Pagination';
 import { api } from '../../services/api';
 
-import { Container, Main, MainHeader, TableContainer, TableContainerHeader, PaymentsTable } from './styles';
-import { numberFormatAsCurrency } from '../../utils/numberFormat';
-import { Checkbox } from '@mui/material';
-import { PaymentModal } from '../../components/PaymentModal';
+import {
+  Container,
+  Main,
+  MainHeader,
+  TableContainer,
+  TableContainerHeader,
+  PaymentsTable,
+} from './styles';
+import {
+  currencyFormatAsNumber,
+  numberFormatAsCurrency,
+} from '../../utils/numberFormat';
+import { IPaymentFormData, PaymentModal } from '../../components/PaymentModal';
 import ModalConfirm from '../../components/ModalConfirm';
 
 interface IStatementsProps {
@@ -27,7 +43,8 @@ interface IStatementsProps {
   image: string;
   isPayed: boolean;
   valueFormatted: string;
-  dateFormatted: string;
+  dateFormattedString: string;
+  dateFormattedNormal: string;
   hourFormatted: string;
 }
 
@@ -42,20 +59,23 @@ const Home: React.FC = () => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showModalDeleteConfirm, setShowModalDeleteConfirm] = useState(false);
 
-  const [selectedStatement, setSelectedStatement] = useState<IStatementsProps | undefined>();
-
+  const [selectedStatement, setSelectedStatement] = useState<
+    IStatementsProps | undefined
+  >();
 
   useEffect(() => {
-    api.get<IStatementsProps[]>('/tasks', {
-      params: {
-        _start: offset,
-        _limit: limit,
-      }
-    }).then(response => {
-      setTotalStatements(Number(response.headers['x-total-count']));
+    api
+      .get<IStatementsProps[]>('/tasks', {
+        params: {
+          _start: offset,
+          _limit: limit,
+        },
+      })
+      .then(response => {
+        setTotalStatements(Number(response.headers['x-total-count']));
 
-      setStatements(response.data);
-    });
+        setStatements(response.data);
+      });
   }, [offset, limit]);
 
   const handleOffsetAndLimit = useCallback(
@@ -66,39 +86,49 @@ const Home: React.FC = () => {
     [],
   );
 
-  const handleCheckPayment = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const statementId = event.target.ariaLabel;
-    const edited = statements.find(statement => statement.id === Number(statementId));
-
-    if (edited) {
-      setStatements(statements.map(
-        statement =>
-          statement.id === Number(statementId) ? {
-            ...edited,
-            isPayed: event.target.checked,
-          } : statement)
+  const handleCheckPayment = useCallback(
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const statementId = event.target.ariaLabel;
+      const edited = statements.find(
+        statement => statement.id === Number(statementId),
       );
 
-      await api.put(`/tasks/${statementId}`, {
-        ...edited,
-        isPayed: event.target.checked,
-      });
-    }
+      if (edited) {
+        setStatements(
+          statements.map(statement =>
+            statement.id === Number(statementId)
+              ? {
+                  ...edited,
+                  isPayed: event.target.checked,
+                }
+              : statement,
+          ),
+        );
 
-  }, [statements]);
+        await api.put(`/tasks/${statementId}`, {
+          ...edited,
+          isPayed: event.target.checked,
+        });
+      }
+    },
+    [statements],
+  );
 
-  const formattedStatements = useMemo(() => {
-    return statements.map(statement => {
-      return {
+  const formattedStatements = useMemo(
+    () =>
+      statements.map(statement => ({
         ...statement,
         valueFormatted: numberFormatAsCurrency(statement.value),
-        dateFormatted: format(parseISO(statement.date), "dd MMM yyyy", {
+        dateFormattedString: format(parseISO(statement.date), 'dd MMM yyyy', {
+          locale: ptBR,
+        }),
+        dateFormattedNormal: format(parseISO(statement.date), 'dd/MM/yyyy', {
           locale: ptBR,
         }),
         hourFormatted: format(parseISO(statement.date), 'HH:mm aa'),
-      };
-    });
-  }, [statements]);
+      })),
+    [statements],
+  );
 
   const togglePaymentModal = useCallback(() => {
     setShowPaymentModal(!showPaymentModal);
@@ -108,9 +138,42 @@ const Home: React.FC = () => {
     setShowModalDeleteConfirm(!showModalDeleteConfirm);
   }, [showModalDeleteConfirm]);
 
-  const handleStatementRegister = useCallback(async (statement: IStatementsProps) => {
-    console.log(statement);
-  }, []);
+  const handleStatementRegister = useCallback(
+    async (statement: IPaymentFormData): Promise<void> => {
+      const parts = statement.date.split('/');
+      const year = Number(parts[2]);
+      const month = Number(parts[1]) - 1;
+      const day = Number(parts[0]);
+      const newDate = new Date(year, month, day).toISOString();
+
+      if (selectedStatement) {
+        const edited = {
+          name: statement.username,
+          username: statement.username.split(' ')[0].toLowerCase(),
+          title: statement.title,
+          value: currencyFormatAsNumber(statement.value.toString()),
+          date: newDate,
+          image: selectedStatement.image,
+          isPayed: selectedStatement.isPayed,
+        };
+        console.log('edited', edited);
+
+        await api.put(`/tasks/${selectedStatement.id}`, edited);
+      } else {
+        console.log('created');
+        const newStatement = {
+          name: statement.username,
+          username: statement.username.split(' ')[0].toLowerCase(),
+          title: statement.title,
+          value: currencyFormatAsNumber(statement.value.toString()),
+          date: newDate,
+        };
+
+        await api.post('/tasks', newStatement);
+      }
+    },
+    [selectedStatement],
+  );
 
   const handleClearStatement = useCallback(() => {
     setSelectedStatement(undefined);
@@ -137,6 +200,7 @@ const Home: React.FC = () => {
         isOpen={showModalDeleteConfirm}
         setIsOpen={toggleModalDeleteConfirm}
         handleConfirmYes={handleModalDeleteConfirmYes}
+        handleConfirmNo={handleClearStatement}
       />
       <Header />
       <Main>
@@ -145,7 +209,11 @@ const Home: React.FC = () => {
         </MainHeader>
 
         <div className="barControl">
-          <Button style={{ width: '230px' }} onClick={togglePaymentModal} title='novo'>
+          <Button
+            style={{ width: '230px' }}
+            onClick={togglePaymentModal}
+            title="novo"
+          >
             ADICIONAR PAGAMENTO
           </Button>
         </div>
@@ -158,7 +226,9 @@ const Home: React.FC = () => {
                 className="search-bar"
                 placeholder="Pesquisar por usuário"
               />
-              <button className='searchButton' type='button'>Filtrar</button>
+              <button className="searchButton" type="button">
+                Filtrar
+              </button>
             </div>
 
             <div className="pagination">
@@ -174,43 +244,67 @@ const Home: React.FC = () => {
           <PaymentsTable>
             <thead>
               <tr>
-                <th>Usuário <FaSort size={15} /></th>
-                <th>Título <FaSort size={15} /></th>
-                <th>Data <FaSort size={15} /></th>
-                <th>Valor <FaSort size={15} /></th>
-                <th>Pago <FaSort size={15} /></th>
-                <th className='actions' ></th>
+                <th>
+                  Usuário <FaSort size={15} />
+                </th>
+                <th>
+                  Título <FaSort size={15} />
+                </th>
+                <th>
+                  Data <FaSort size={15} />
+                </th>
+                <th>
+                  Valor <FaSort size={15} />
+                </th>
+                <th>
+                  Pago <FaSort size={15} />
+                </th>
+                <th className="actions" />
               </tr>
             </thead>
             <tbody>
               {formattedStatements.map(statement => (
-                <tr key={statement.id} onClick={() => setSelectedStatement(statement)}>
+                <tr
+                  key={statement.id}
+                  onClick={() => setSelectedStatement(statement)}
+                >
                   <td>
                     <div className="userInfo">
                       <span>{statement.name}</span>
-                      <span className='bottomInfo'>{`@${statement.username}`}</span>
+                      <span className="bottomInfo">{`@${statement.username}`}</span>
                     </div>
                   </td>
                   <td>{statement.title}</td>
                   <td>
                     <div className="dateInfo">
-                      <span>{statement.dateFormatted}</span>
-                      <span className='bottomInfo'>{statement.hourFormatted}</span>
+                      <span>{statement.dateFormattedString}</span>
+                      <span className="bottomInfo">
+                        {statement.hourFormatted}
+                      </span>
                     </div>
                   </td>
                   <td>{statement.valueFormatted}</td>
                   <td>
                     <Checkbox
                       inputProps={{ 'aria-label': String(statement.id) }}
-                      checked={statement.isPayed}
-                      onChange={handleCheckPayment} />
+                      checked={statement?.isPayed}
+                      onChange={handleCheckPayment}
+                    />
                   </td>
                   <td className="actions">
                     <div>
-                      <button type='button' onClick={togglePaymentModal} title='Editar'>
+                      <button
+                        type="button"
+                        onClick={togglePaymentModal}
+                        title="Editar"
+                      >
                         <MdOutlineEdit size={24} />
                       </button>
-                      <button type='button' title='Excluir' onClick={toggleModalDeleteConfirm}>
+                      <button
+                        type="button"
+                        title="Excluir"
+                        onClick={toggleModalDeleteConfirm}
+                      >
                         <TiDeleteOutline size={24} />
                       </button>
                     </div>
@@ -223,6 +317,6 @@ const Home: React.FC = () => {
       </Main>
     </Container>
   );
-}
+};
 
 export default Home;

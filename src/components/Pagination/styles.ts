@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 interface PaginationProps {
   isSelected?: boolean;
@@ -17,12 +17,12 @@ export const Container = styled.div`
     align-items: center;
     margin-right: 20px;
 
-    font-family: "Lato";
+    font-family: 'Lato';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;
-    color: #69788C;
+    color: #69788c;
 
     span {
       margin-right: 5px;
@@ -48,7 +48,7 @@ export const PagesContainer = styled.div`
     justify-content: center;
     width: 30px;
     height: 30px;
-    color: #69788C;
+    color: #69788c;
     margin-right: 10px;
     border: 0;
     background: transparent;
@@ -61,17 +61,17 @@ export const Page = styled.button<PaginationProps>`
   justify-content: center;
   width: 30px;
   height: 30px;
-  color: #69788C;
+  color: #69788c;
   font-size: 12px;
   margin-right: 10px;
   border: 0;
   background: transparent;
   font-size: 15px;
 
-  ${(props) =>
+  ${props =>
     props.isSelected &&
     css`
-      background: #007DFE;
+      background: #007dfe;
       border-radius: 6px;
       color: #fff;
       cursor: default;

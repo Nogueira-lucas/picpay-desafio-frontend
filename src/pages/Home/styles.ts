@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import searchIcon from "../../assets/search.svg";
-import filterIcon from "../../assets/filter-icon.svg";
+import styled from 'styled-components';
+import searchIcon from '../../assets/search.svg';
+import filterIcon from '../../assets/filter-icon.svg';
 
 export const Container = styled.div`
   position: relative;
@@ -28,7 +28,7 @@ export const MainHeader = styled.div`
   /* padding: 0 48px; */
 
   h1 {
-    font-family: "Montserrat";
+    font-family: 'Montserrat';
     font-weight: 600;
     font-size: 36px;
   }
@@ -47,9 +47,9 @@ export const TableContainerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   padding: 0 14px;
-  
+
   div.search {
     display: flex;
     align-items: center;
@@ -88,7 +88,7 @@ export const TableContainerHeader = styled.div`
     padding: 5px 5px 5px 20px;
 
     color: #2d3540;
-    font-family: "Lato";
+    font-family: 'Lato';
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -108,7 +108,7 @@ export const PaymentsTable = styled.table`
     height: 40px;
     line-height: 40px;
 
-    border-bottom: 2px solid #CFDCE5;
+    border-bottom: 2px solid #cfdce5;
   }
 
   th {
@@ -124,7 +124,7 @@ export const PaymentsTable = styled.table`
   }
 
   tr:nth-child(even) {
-    background-color: #F5F8FA;
+    background-color: #f5f8fa;
   }
 
   tbody tr:hover {
@@ -136,7 +136,7 @@ export const PaymentsTable = styled.table`
   }
 
   td {
-    font-family: "Lato";
+    font-family: 'Lato';
     font-weight: 400;
     white-space: normal;
     text-align: left;

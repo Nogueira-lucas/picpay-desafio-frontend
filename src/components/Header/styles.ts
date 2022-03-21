@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.header`
   position: fixed;
@@ -19,7 +19,7 @@ export const Container = styled.header`
 
     span {
       font-size: 24px;
-      font-family: "Montserrat";
+      font-family: 'Montserrat';
       font-weight: 400;
 
       &.detail {
@@ -33,7 +33,6 @@ export const Container = styled.header`
       width: 45px;
       height: 45px;
       border-radius: 50%;
-      
     }
   }
 `;

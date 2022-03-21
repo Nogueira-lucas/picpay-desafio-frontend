@@ -13,7 +13,8 @@ interface IStatementsProps {
   image: string;
   isPayed: boolean;
   valueFormatted: string;
-  dateFormatted: string;
+  dateFormattedString: string;
+  dateFormattedNormal: string;
   hourFormatted: string;
 }
 
@@ -25,6 +26,7 @@ interface ConfirmModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
   handleConfirmYes: () => void;
+  handleConfirmNo: () => void;
 }
 
 const ModalConfirm: React.FC<ConfirmModalProps> = ({
@@ -35,22 +37,24 @@ const ModalConfirm: React.FC<ConfirmModalProps> = ({
   confirmYes,
   confirmNo,
   handleConfirmYes,
+  handleConfirmNo,
 }) => {
-  const handleConfimYes = useCallback(() => {
+  const handleYes = useCallback(() => {
     handleConfirmYes();
     setIsOpen();
   }, [handleConfirmYes, setIsOpen]);
 
-  const handleConfirmNo = useCallback(() => {
+  const handleNo = useCallback(() => {
+    handleConfirmNo();
     setIsOpen();
-  }, [setIsOpen]);
+  }, [handleConfirmNo, setIsOpen]);
 
   return (
     <Modal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      width='405px'
-      height='325px'
+      width="405px"
+      height="325px"
       shouldCloseOnOverlayClick={false}
     >
       <Container>
@@ -59,18 +63,14 @@ const ModalConfirm: React.FC<ConfirmModalProps> = ({
         </header>
         <main>
           <p>{`Usuário: ${statement?.name}`}</p>
-          <p>{`Data: ${statement?.dateFormatted}`}</p>
+          <p>{`Data: ${statement?.dateFormattedNormal}`}</p>
           <p>{`Valor: ${statement?.valueFormatted}`}</p>
         </main>
         <footer>
-          <button className="confirmNo" type="button" onClick={handleConfirmNo}>
+          <button className="confirmNo" type="button" onClick={handleNo}>
             {confirmNo || 'No'}
           </button>
-          <button
-            className="confirmYes"
-            type="button"
-            onClick={handleConfimYes}
-          >
+          <button className="confirmYes" type="button" onClick={handleYes}>
             {confirmYes || 'Yes'}
           </button>
         </footer>

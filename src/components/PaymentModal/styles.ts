@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Form as Unform } from "@unform/web";
+import styled from 'styled-components';
+import { Form as Unform } from '@unform/web';
 
 export const Form = styled(Unform)`
   padding: 30px;
@@ -7,7 +7,7 @@ export const Form = styled(Unform)`
   flex-direction: column;
 
   h3 {
-    font-family: "Montserrat";
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -63,13 +63,13 @@ export const Form = styled(Unform)`
 
   button.cancel {
     color: #333333;
-    background: #f5f5f5;    
+    background: #f5f5f5;
     margin-right: 30px;
   }
 
   button.confirm {
-    color: #FFF;
-    background: #007DFE;
+    color: #fff;
+    background: #007dfe;
   }
 
   .logoErrorInput {

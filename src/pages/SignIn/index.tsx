@@ -23,29 +23,24 @@ const SignIn: React.FC = () => {
       <Content>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <div className="logo">
-            <span className='detailLogo'>Pay</span>
-            <span >Friends</span>
+            <span className="detailLogo">Pay</span>
+            <span>Friends</span>
           </div>
 
           <h1>Bem vindo de volta</h1>
 
           <Input name="email" placeholder="E-mail" />
-          
-          <Input
-            name="password"
-            type="password"
-            placeholder="Senha"
-          />
+
+          <Input name="password" type="password" placeholder="Senha" />
 
           <Button type="submit" loading={isLoading} text_loading="Aguarde...">
             Entrar
           </Button>
         </Form>
-
       </Content>
       <Background />
     </Container>
   );
-}
+};
 
 export default SignIn;
