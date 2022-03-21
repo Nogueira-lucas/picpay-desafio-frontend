@@ -29,6 +29,7 @@
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       "no-unused-expressions": "off",
+      "react/jsx-no-constructed-context-values": "off",
       "react/require-default-props": "off",
       "react/function-component-definition": "off",
       "react/jsx-curly-newline": "off",
@@ -45,6 +46,7 @@
       "@typescript-eslint/no-empty-function": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "prettier/prettier": "error",
+      "import/no-unresolved": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

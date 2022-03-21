@@ -9,6 +9,7 @@ import Input from '../Input';
 
 import { getValidationErrors } from '../../utils/getValidationErrors';
 import { numberFormat } from '../../utils/numberFormat';
+import { useToast } from '../../hooks/toast';
 
 interface IStatementsProps {
   id: number;
@@ -50,6 +51,7 @@ export const PaymentModal: React.FC<IPaymentModalModalProps> = ({
   handleClearStatement,
 }) => {
   const formRef = useRef<FormHandles>(null);
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: IPaymentFormData) => {
@@ -66,14 +68,26 @@ export const PaymentModal: React.FC<IPaymentModalModalProps> = ({
 
         handleStatementRegister(data);
         setIsOpen();
+
+        addToast({
+          type: 'success',
+          title: 'Pagamento registrado com sucesso!',
+        });
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
           formRef.current?.setErrors(errors);
+          return;
         }
+
+        addToast({
+          type: 'error',
+          title: 'Não Permitido',
+          description: 'Erro na solicitação',
+        });
       }
     },
-    [setIsOpen, handleStatementRegister],
+    [setIsOpen, handleStatementRegister, addToast],
   );
 
   const handleCancel = useCallback(() => {

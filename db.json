@@ -1713,24 +1713,23 @@
       "value": 3500,
       "date": "2022-03-23T03:00:00.000Z",
       "id": 174
+    },
+    {
+      "name": "Bernardo",
+      "username": "bernardo",
+      "title": "internet",
+      "value": 230,
+      "date": "2022-03-21T03:00:00.000Z",
+      "id": 175
     }
   ],
   "account": [
     {
-      "id": 0,
+      "id": 1,
       "name": "usuario",
       "email": "usuario@gmail.com",
-      "password": "usuario"
-    },
-    {
-      "email": "usuario@gmail.com",
       "password": "usuario",
-      "id": 1
-    },
-    {
-      "email": "usuario@gmail.com",
-      "password": "usuario",
-      "id": 2
+      "avatar_url": "https://avatars.githubusercontent.com/u/29052049?v=4"
     }
   ]
 }

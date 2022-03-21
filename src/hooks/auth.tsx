@@ -5,6 +5,7 @@ interface IAccount {
   id: string;
   name: string;
   email: string;
+  avatar_url: string;
 }
 
 interface AuthState {
@@ -41,12 +42,14 @@ export const AuthProvider: React.FC = ({ children }) => {
   });
 
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('/account', {
-      email,
-      password,
+    const response = await api.get('/account', {
+      params: {
+        email,
+        password,
+      },
     });
 
-    const account = response.data;
+    const account = response.data[0];
 
     localStorage.setItem(storageKey, JSON.stringify(account));
 
@@ -71,7 +74,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         account: data.account,
         signIn,

@@ -76,10 +76,16 @@ export const SignIn: React.FC = () => {
           <Input
             name="email"
             placeholder="E-mail"
+            icon={FiMail}
             containerStyle={{ marginBottom: '8px' }}
           />
 
-          <Input name="password" type="password" placeholder="Senha" />
+          <Input
+            name="password"
+            type="password"
+            placeholder="Senha"
+            icon={FiLock}
+          />
 
           <Button type="submit" loading={isLoading} text_loading="Aguarde...">
             Entrar
