@@ -51,7 +51,7 @@ interface IStatementsProps {
   hourFormatted: string;
 }
 
-const Home: React.FC = () => {
+export const Home: React.FC = () => {
   const paginationRef = useRef<PaginationHandles>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -380,5 +380,3 @@ const Home: React.FC = () => {
     </Container>
   );
 };
-
-export default Home;

@@ -8,7 +8,7 @@
       "value": 464.54,
       "date": "2020-02-09T18:20:32Z",
       "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
-      "isPayed": true
+      "isPayed": false
     },
     {
       "id": 4,
@@ -1721,6 +1721,16 @@
       "name": "usuario",
       "email": "usuario@gmail.com",
       "password": "usuario"
+    },
+    {
+      "email": "usuario@gmail.com",
+      "password": "usuario",
+      "id": 1
+    },
+    {
+      "email": "usuario@gmail.com",
+      "password": "usuario",
+      "id": 2
     }
   ]
 }
