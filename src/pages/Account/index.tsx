@@ -12,8 +12,8 @@ import { getValidationErrors } from '../../utils/getValidationErrors';
 
 import defaultAvatar from '../../assets/user.svg';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
 
 import { Container, Content, AvatarInput, PlanContainer } from './styles';
 import { useAuth } from '../../hooks/auth';

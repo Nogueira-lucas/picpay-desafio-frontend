@@ -15,7 +15,7 @@ import { FaSort } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { Checkbox } from '@mui/material';
-import Button from '../../components/Button';
+import { Button } from '../../components/Button';
 import Header from '../../components/Header';
 import Pagination, { PaginationHandles } from '../../components/Pagination';
 import { api } from '../../services/api';

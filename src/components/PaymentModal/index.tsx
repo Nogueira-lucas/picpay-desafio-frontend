@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { Form } from './styles';
 
 import Modal from '../Modal';
-import Input from '../Input';
+import { Input } from '../Input';
 
 import { getValidationErrors } from '../../utils/getValidationErrors';
 import { numberFormat } from '../../utils/numberFormat';

@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useContext, useState } from 'react';
 import { api } from '../services/api';
 
 interface IAccount {
-  id: string;
+  id: number;
   name: string;
   email: string;
   avatar_url: string;

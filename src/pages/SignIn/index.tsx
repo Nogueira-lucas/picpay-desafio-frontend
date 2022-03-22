@@ -1,19 +1,18 @@
 import React, { useCallback, useRef, useState } from 'react';
 import * as Yup from 'yup';
-
-import { FiMail, FiLock } from 'react-icons/fi';
-
+import { useHistory } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
+import { FiMail, FiLock } from 'react-icons/fi';
 
-import { useHistory } from 'react-router-dom';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
+import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
+
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
+import { getValidationErrors } from '../../utils/getValidationErrors';
 
 import { Container, Content, Background } from './styles';
-import { useAuth } from '../../hooks/auth';
-import { getValidationErrors } from '../../utils/getValidationErrors';
-import { useToast } from '../../hooks/toast';
 
 interface SingInFormData {
   email: string;
@@ -24,7 +23,6 @@ export const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
   const { addToast } = useToast();
-
   const { signIn } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);

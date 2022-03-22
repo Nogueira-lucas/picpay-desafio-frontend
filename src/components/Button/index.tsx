@@ -1,6 +1,5 @@
 import React, { ButtonHTMLAttributes } from 'react';
 
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { Oval } from 'react-loader-spinner';
 
 import { Container } from './styles';
@@ -10,7 +9,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text_loading?: string;
 };
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   children,
   loading,
   text_loading,
@@ -27,5 +26,3 @@ const Button: React.FC<ButtonProps> = ({
     )}
   </Container>
 );
-
-export default Button;
