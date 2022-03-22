@@ -36,6 +36,7 @@ import {
   TableContainerHeader,
   PaymentsTable,
 } from './styles';
+import { LoadingModal } from '../../components/LoadingModal';
 
 interface IStatementsProps {
   id: number;
@@ -57,6 +58,7 @@ export const Home: React.FC = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [showLoadingModal, setLoadingModal] = useState(false);
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(5);
   const [tableRefresh, setTableRefresh] = useState(false);
@@ -76,6 +78,8 @@ export const Home: React.FC = () => {
         params: {
           _start: offset,
           _limit: limit,
+          _sort: 'id',
+          _order: 'desc',
         },
       })
       .then(response => {
@@ -149,6 +153,7 @@ export const Home: React.FC = () => {
 
   const handleRefreshPage = useCallback(() => {
     setTableRefresh(!tableRefresh);
+    setLoadingModal(false);
   }, [tableRefresh]);
 
   const handleStatementRegister = useCallback(
@@ -158,6 +163,7 @@ export const Home: React.FC = () => {
       const month = Number(parts[1]) - 1;
       const day = Number(parts[0]);
       const newDate = new Date(year, month, day).toISOString();
+      setLoadingModal(true);
 
       if (selectedStatement) {
         const edited = {
@@ -193,7 +199,9 @@ export const Home: React.FC = () => {
   }, []);
 
   const handleModalDeleteConfirmYes = useCallback(async () => {
+    setLoadingModal(true);
     await api.delete(`/tasks/${selectedStatement?.id}`);
+    setSelectedStatement(undefined);
     handleRefreshPage();
   }, [selectedStatement, handleRefreshPage]);
 
@@ -238,6 +246,7 @@ export const Home: React.FC = () => {
 
   return (
     <Container>
+      <LoadingModal isOpen={showLoadingModal} />
       <PaymentModal
         statement={selectedStatement}
         isOpen={showPaymentModal}
@@ -349,7 +358,7 @@ export const Home: React.FC = () => {
                     <td>
                       <Checkbox
                         inputProps={{ 'aria-label': String(statement.id) }}
-                        checked={statement?.isPayed}
+                        checked={statement?.isPayed || false}
                         onChange={handleCheckPayment}
                       />
                     </td>

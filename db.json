@@ -1,56 +1,6 @@
 {
   "tasks": [
     {
-      "id": 5,
-      "name": "Anthea Pundy",
-      "username": "apundy4",
-      "title": "Software Engineer III",
-      "value": 177.19,
-      "date": "2021-01-01T14:09:51Z",
-      "image": "https://robohash.org/quiaautomnis.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 6,
-      "name": "Hurleigh Malitrott",
-      "username": "hmalitrott5",
-      "title": "Developer IV",
-      "value": 43.62,
-      "date": "2020-09-19T00:11:00Z",
-      "image": "https://robohash.org/impeditconsequuntureveniet.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
-      "id": 7,
-      "name": "Lonna Bonney",
-      "username": "lbonney6",
-      "title": "Assistant Media Planner",
-      "value": 285.86,
-      "date": "2020-10-02T23:04:57Z",
-      "image": "https://robohash.org/estquisquamquaerat.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
-      "id": 8,
-      "name": "Gregorio Deex",
-      "username": "gdeex7",
-      "title": "Marketing Assistant",
-      "value": 354.56,
-      "date": "2020-09-12T05:18:50Z",
-      "image": "https://robohash.org/asinthic.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 9,
-      "name": "Sibelle Domenico",
-      "username": "sdomenico8",
-      "title": "Assistant Manager",
-      "value": 175.59,
-      "date": "2021-05-12T05:17:48Z",
-      "image": "https://robohash.org/quismaximefuga.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 10,
       "name": "Arlen Letchford",
       "username": "aletchford9",
@@ -1648,7 +1598,7 @@
       "value": 435.63,
       "date": "2021-01-09T14:00:37Z",
       "image": "https://robohash.org/doloribuslaborequi.png?size=150x150&set=set1",
-      "isPayed": false
+      "isPayed": true
     },
     {
       "id": 170,
@@ -1664,43 +1614,10 @@
       "name": "Jackson Douglas",
       "username": "jackson",
       "title": "Salário",
-      "value": 12000,
-      "date": "2022-03-21T03:00:00.000Z",
+      "value": 5800,
+      "date": "2022-03-22T03:00:00.000Z",
       "id": 171,
       "isPayed": true
-    },
-    {
-      "name": "Jackson Douglas2",
-      "username": "jackson",
-      "title": "Salário",
-      "value": 12000,
-      "date": "2022-03-21T03:00:00.000Z",
-      "isPayed": true,
-      "id": 172
-    },
-    {
-      "name": "Douglas",
-      "username": "douglas",
-      "title": "Teste",
-      "value": 3500,
-      "date": "2022-03-23T03:00:00.000Z",
-      "id": 173
-    },
-    {
-      "name": "Douglas",
-      "username": "douglas",
-      "title": "Teste",
-      "value": 3500,
-      "date": "2022-03-23T03:00:00.000Z",
-      "id": 174
-    },
-    {
-      "name": "Bernardo",
-      "username": "bernardo",
-      "title": "internet",
-      "value": 230,
-      "date": "2022-03-21T03:00:00.000Z",
-      "id": 175
     }
   ],
   "account": [

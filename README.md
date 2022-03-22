@@ -20,17 +20,17 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Setup do projeto
 
-- Angular CLI: 12.1.4
-- Node: 12.20.2
-- Angular: 12.1.4
+- React.js CLI: 17.0.2
+- Node: 16.14.2
 
-A utilização do Angular e Node nas versões acima **é obrigatória**.
+A utilização do React (alterado p/React.js) e Node nas versões acima **é obrigatória**.
 
 ## Como Rodar?
 
-- Instale as dependências usando o comando `npm install`
-- Na raiz do repositório, rode este comando `ng serve` para iniciar o servidor de desenvolvimento.
-- A Aplicação estará disponível na porta `http://localhost:4200/`
+- Instale as dependências usando o comando `yarn`
+- execute o comando `json-server --watch db.json -p 3333 --delay 1000` para subir a fake API do json-server
+- Na raiz do repositório, rode este comando `yarn start` para iniciar o servidor de desenvolvimento.
+- A Aplicação estará disponível na porta `http://localhost:3333/`
 
 <br/>
 
