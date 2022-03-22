@@ -22,6 +22,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 - React.js CLI: 17.0.2
 - Node: 16.14.2
+- Yarn ou NPM
 
 A utilização do React (alterado p/React.js) e Node nas versões acima **é obrigatória**.
 

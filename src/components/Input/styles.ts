@@ -30,8 +30,8 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.isFocused &&
     css`
-      border: 2px solid var(--color-primary);
-      color: var(--color-primary);
+      border: 2px solid #007dfe;
+      color: #007dfe;
     `}
 
   ${props =>

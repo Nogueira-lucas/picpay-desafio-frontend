@@ -35,15 +35,15 @@ describe('Input component', () => {
     fireEvent.focus(inputElement);
 
     await waitFor(() => {
-      expect(containerElement).toHaveStyle('border-color: #007dfe;');
-      expect(containerElement).toHaveStyle('color: #007dfe;');
+      expect(containerElement).toHaveStyle('border-color: #007DFE;');
+      expect(containerElement).toHaveStyle('color: #007DFE;');
     });
 
     fireEvent.blur(inputElement);
 
     await waitFor(() => {
-      expect(containerElement).not.toHaveStyle('border-color: #007dfe;');
-      expect(containerElement).not.toHaveStyle('color: #007dfe;');
+      expect(containerElement).not.toHaveStyle('border-color: #007DFE;');
+      expect(containerElement).not.toHaveStyle('color: #007DFE;');
     });
   });
 });
