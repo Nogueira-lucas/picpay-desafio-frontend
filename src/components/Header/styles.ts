@@ -12,14 +12,15 @@ export const Container = styled.header`
   width: 100%;
   height: 90px;
   padding: 30px;
-  background: #002d69;
+  background: var(--color-header);
 
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
 
   div.logo {
     display: flex;
-    color: #ffffff;
+    color: var(--color-white);
 
     span {
       font-size: 24px;
@@ -41,9 +42,9 @@ export const Container = styled.header`
     align-items: center;
     justify-content: space-between;
     margin-left: auto;
-    background: #002d69;
+    background: var(--color-header);
     border: 0;
-    color: #ffffff;
+    color: var(--color-white);
 
     img {
       width: 50px;
@@ -75,7 +76,7 @@ export const DropdownMenuContent = styled.div<DropdownMenuProps>`
   top: calc(100% + 10px);
   width: 256px;
   padding: 0px;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 5px;
   box-shadow: rgb(0 0 0 / 40%) 4px 4px 4px 2px;
   transition: opacity 0.2s ease 0s, visibility 0.2s ease 0s;
@@ -96,7 +97,7 @@ export const DropdownMenuContent = styled.div<DropdownMenuProps>`
     justify-content: start;
     align-items: center;
     font-size: 16px;
-    color: #a3a3a3;
+    color: var(--color-gray);
     padding: 12px 24px;
     transition: background 0.2s ease 0s;
     cursor: pointer;
@@ -117,8 +118,8 @@ export const DropdownMenuContent = styled.div<DropdownMenuProps>`
     }
 
     &:hover {
-      background: #007dfe;
-      color: #fff;
+      background: var(--color-primary);
+      color: var(--color-white);
     }
   }
 
@@ -131,6 +132,6 @@ export const DropdownMenuContent = styled.div<DropdownMenuProps>`
     height: 0px;
     border-style: solid;
     border-width: 0px 8px 8px;
-    border-color: transparent transparent #fff;
+    border-color: transparent transparent var(--color-white);
   }
 `;

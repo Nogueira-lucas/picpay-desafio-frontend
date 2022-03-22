@@ -12,7 +12,7 @@ export const Form = styled(Unform)`
     font-weight: 700;
     font-size: 18px;
     line-height: 22px;
-    color: #373737;
+    color: var(--color-text);
   }
 
   div {
@@ -62,14 +62,14 @@ export const Form = styled(Unform)`
   }
 
   button.cancel {
-    color: #333333;
-    background: #f5f5f5;
+    color: var(--color-text);
+    background: var(--color-background);
     margin-right: 30px;
   }
 
   button.confirm {
-    color: #fff;
-    background: #007dfe;
+    color: var(--color-white);
+    background: var(--color-primary);
   }
 
   .logoErrorInput {

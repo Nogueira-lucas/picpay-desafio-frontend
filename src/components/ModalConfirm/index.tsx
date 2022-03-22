@@ -29,7 +29,7 @@ interface ConfirmModalProps {
   handleConfirmNo: () => void;
 }
 
-const ModalConfirm: React.FC<ConfirmModalProps> = ({
+export const ModalConfirm: React.FC<ConfirmModalProps> = ({
   statement,
   isOpen,
   setIsOpen,
@@ -78,5 +78,3 @@ const ModalConfirm: React.FC<ConfirmModalProps> = ({
     </Modal>
   );
 };
-
-export default ModalConfirm;

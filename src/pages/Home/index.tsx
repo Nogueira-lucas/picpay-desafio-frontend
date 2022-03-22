@@ -16,9 +16,17 @@ import { MdOutlineEdit } from 'react-icons/md';
 import { TiDeleteOutline } from 'react-icons/ti';
 import { Checkbox } from '@mui/material';
 import { Button } from '../../components/Button';
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
 import Pagination, { PaginationHandles } from '../../components/Pagination';
 import { api } from '../../services/api';
+
+import {
+  currencyFormatAsNumber,
+  numberFormatAsCurrency,
+} from '../../utils/numberFormat';
+import { IPaymentFormData, PaymentModal } from '../../components/PaymentModal';
+import { ModalConfirm } from '../../components/ModalConfirm';
+import { Loading } from '../../components/Loading';
 
 import {
   Container,
@@ -28,13 +36,6 @@ import {
   TableContainerHeader,
   PaymentsTable,
 } from './styles';
-import {
-  currencyFormatAsNumber,
-  numberFormatAsCurrency,
-} from '../../utils/numberFormat';
-import { IPaymentFormData, PaymentModal } from '../../components/PaymentModal';
-import ModalConfirm from '../../components/ModalConfirm';
-import Loading from '../../components/Loading';
 
 interface IStatementsProps {
   id: number;

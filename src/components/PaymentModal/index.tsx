@@ -2,6 +2,7 @@ import React, { useRef, useCallback } from 'react';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import { isDate, parse } from 'date-fns';
 import { Form } from './styles';
 
 import Modal from '../Modal';
@@ -53,13 +54,26 @@ export const PaymentModal: React.FC<IPaymentModalModalProps> = ({
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
 
+  function parseDateString(value: any, originalValue: any) {
+    const parsedDate = isDate(originalValue)
+      ? originalValue
+      : parse(originalValue, 'dd/MM/yyyy', new Date());
+
+    return parsedDate;
+  }
+
   const handleSubmit = useCallback(
     async (data: IPaymentFormData) => {
       try {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          username: Yup.string().required('Usuário é obrigatório'),
+          username: Yup.string()
+            .required('Usuário é obrigatório')
+            .matches(
+              /^[aA-zZ\s]+$/,
+              'Apenas letras são permitidos para este campo',
+            ),
           value: Yup.string().required('Valor é obrigatório'),
           date: Yup.string().required('Data é obrigatória'),
         });
@@ -118,7 +132,7 @@ export const PaymentModal: React.FC<IPaymentModalModalProps> = ({
             name="value"
             placeholder="Valor*"
             mask="currency"
-            defaultValue={numberFormat(statement?.value || 0)}
+            defaultValue={statement?.value && numberFormat(statement?.value)}
           />
         </div>
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import signInBgImg from '../../assets/bg-signin.svg';
 
 export const Container = styled.div`
@@ -15,6 +15,21 @@ export const Content = styled.div`
   justify-content: center;
   width: 100%;
   max-width: 540px;
+`;
+
+const appearFromLeft = keyframes`
+  from{
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  animation: ${appearFromLeft} 1s;
 
   div.logo {
     display: flex;
@@ -24,10 +39,10 @@ export const Content = styled.div`
       font-size: 24px;
       font-family: 'Montserrat';
       font-weight: 400;
-      color: #2f82dd;
+      color: var(--color-logo);
 
       &.detailLogo {
-        color: #002d69;
+        color: var(--color-header);
         font-weight: 800;
       }
     }
@@ -42,5 +57,5 @@ export const Background = styled.div`
   flex: 1;
   background: url(${signInBgImg}) no-repeat center;
   background-size: 500px;
-  background-color: #fff;
+  background-color: var(--color-white);
 `;

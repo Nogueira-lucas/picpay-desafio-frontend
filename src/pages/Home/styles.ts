@@ -38,7 +38,7 @@ export const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  background: #ffffff;
+  background: var(--color-white);
   box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
   border-radius: 8px;
 `;
@@ -66,13 +66,13 @@ export const TableContainerHeader = styled.div`
     padding-left: 10px;
     padding-right: 35px;
     font-size: 12px;
-    border: 1px solid #cfdce5;
+    border: 1px solid var(--color-border);
     border-radius: 5px;
-    background: url(${searchIcon}) no-repeat 190px center, #fff;
+    background: url(${searchIcon}) no-repeat 190px center, var(--color-white);
     background-size: 20px;
 
     ::placeholder {
-      color: #a3a3a3;
+      color: var(--color-gray);
     }
   }
 
@@ -84,14 +84,13 @@ export const TableContainerHeader = styled.div`
     height: 28px;
     width: 66px;
 
-    /* background: #E6ECF0; */
-    background: url(${filterIcon}) no-repeat 5px center, #e6ecf0;
+    background: url(${filterIcon}) no-repeat 5px center, var(--color-border);
     border-radius: 6px;
     border: 0;
     height: 30px;
     padding: 5px 5px 5px 20px;
 
-    color: #2d3540;
+    color: var(--color-text);
     font-family: 'Lato';
     font-style: normal;
     font-weight: 600;
@@ -112,7 +111,7 @@ export const PaymentsTable = styled.table`
     height: 40px;
     line-height: 40px;
 
-    border-bottom: 2px solid #cfdce5;
+    border-bottom: 2px solid var(--color-border);
   }
 
   th {
@@ -128,11 +127,11 @@ export const PaymentsTable = styled.table`
   }
 
   tr:nth-child(even) {
-    background-color: #f5f8fa;
+    background-color: var(--color-table);
   }
 
   tbody tr:hover {
-    background: #f5f5f5;
+    background: var(--color-hover);
 
     td.actions div {
       display: block;

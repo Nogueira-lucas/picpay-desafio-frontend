@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import Tooltip from '../Tooltip';
+import { Tooltip } from '../Tooltip';
 
 interface ContainerProps {
   isFocused: boolean;
@@ -9,39 +9,35 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: #fff;
+  background: var(--color-white);
   border-radius: 5px;
   padding: 15px;
   width: 100%;
   height: 56px;
 
-  border: 2px solid #e8ebf2;
-  color: #666360;
+  border: 2px solid var(--color-border);
+  color: var(--color-gray);
 
   display: flex;
   align-items: center;
 
-  /* & + div {
-    margin-top: 8px;
-  } */
-
   ${props =>
     props.isErrored &&
     css`
-      border-color: #c53030;
+      border-color: var(--color-warning);
     `}
 
   ${props =>
     props.isFocused &&
     css`
-      border: 2px solid #007dfe;
-      color: #007dfe;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
     `}
 
   ${props =>
     props.isFilled &&
     css`
-      color: #007dfe;
+      color: var(--color-primary);
     `}
 
   input {
@@ -51,7 +47,7 @@ export const Container = styled.div<ContainerProps>`
     color: #000000;
 
     &::placeholder {
-      color: #b7b7cc;
+      color: var(--color-placeholder);
     }
   }
 
@@ -65,6 +61,7 @@ export const Container = styled.div<ContainerProps>`
     justify-content: center;
     background: transparent;
     border: 0;
+    color: var(--color-gray);
   }
 `;
 
@@ -77,11 +74,11 @@ export const Error = styled(Tooltip)`
   }
 
   span {
-    background: #c53030;
-    color: #fff;
+    background: var(--color-warning);
+    color: var(--color-white);
 
     &::before {
-      border-color: #c53030 transparent;
+      border-color: var(--color-warning) transparent;
     }
   }
 `;

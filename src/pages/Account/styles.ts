@@ -4,7 +4,7 @@ import { shade } from 'polished';
 export const Container = styled.div`
   > header {
     height: 144px;
-    background: #002d69;
+    background: var(--color-header);
     display: flex;
     align-items: center;
 
@@ -14,7 +14,7 @@ export const Container = styled.div`
       margin: 0 auto;
 
       svg {
-        color: #fff;
+        color: var(--color-white);
         width: 24px;
         height: 24px;
       }
@@ -43,17 +43,6 @@ export const Content = styled.div`
       text-align: left;
     }
 
-    a {
-      color: #f4ede8;
-      display: block;
-      margin-top: 24px;
-      text-decoration: none;
-      transition: color 0.2s;
-      &:hover {
-        color: ${shade(0.2, '#f4ede8')};
-      }
-    }
-
     input[name='old_password'] {
       margin-top: 24px;
     }
@@ -79,7 +68,7 @@ export const AvatarInput = styled.div`
     position: absolute;
     width: 48px;
     height: 48px;
-    background: #ff9000;
+    background: var(--color-cam-icon);
     border-radius: 50%;
     right: 0;
     bottom: 0;
@@ -99,10 +88,10 @@ export const AvatarInput = styled.div`
     svg {
       width: 20px;
       height: 20px;
-      color: #312e38;
+      color: #fff;
     }
     &:hover {
-      background: ${shade(0.2, '#ff9000')};
+      background: ${shade(0.2, '#487eb0')};
     }
   }
 `;
@@ -117,28 +106,11 @@ export const PlanContainer = styled.article`
     line-height: 32px;
   }
 
-  a {
-    display: flex;
-    height: 40px;
-    width: 178px;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    background: #007dfe;
-    border: 0;
-    border-radius: 20px;
-    text-decoration: none;
-
-    &:hover {
-      background: ${shade(0.2, '#02c697')};
-    }
-  }
-
   div.planCard {
     margin: 40px 0;
     width: 400px;
     border-radius: 4px;
-    border: 1px solid #d9dadc;
+    border: 1px solid var(--color-border);
     overflow: hidden;
   }
 
@@ -167,5 +139,6 @@ export const PlanContainer = styled.article`
 
   div.cardBody {
     padding: 24px;
+    background: var(--color-white);
   }
 `;

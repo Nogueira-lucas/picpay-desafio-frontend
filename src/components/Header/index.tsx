@@ -6,7 +6,7 @@ import { OutSideClick } from '../../hooks/outSideClick';
 
 import { Container, DropdownMenu, DropdownMenuContent } from './styles';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { account, signOut } = useAuth();
   const { visible, setVisible, ref } = OutSideClick(false);
 
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
             src="https://avatars.githubusercontent.com/u/29052049?v=4"
             alt="User Logo"
           />
-          <span>{account.name}</span>
+          <span>{account?.name}</span>
           <FaAngleDown className="open-drop" />
 
           <DropdownMenuContent isVisible={visible}>
@@ -49,5 +49,3 @@ const Header: React.FC = () => {
     </Container>
   );
 };
-
-export default Header;

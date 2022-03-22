@@ -17,7 +17,7 @@ export const Container = styled.div`
 
     letter-spacing: 0.15px;
 
-    color: #000000;
+    color: var(--color-text);
   }
 
   footer {
@@ -38,14 +38,14 @@ export const Container = styled.div`
     }
 
     button.confirmNo {
-      color: #333333;
-      background: #f5f5f5;
+      color: var(--color-text);
+      background: var(--color-background);
       margin-right: 30px;
     }
 
     button.confirmYes {
-      color: #fff;
-      background: #007dfe;
+      color: var(--color-white);
+      background: var(--color-primary);
     }
   }
 `;

@@ -22,7 +22,7 @@ interface ToastProps {
   style: object;
 }
 
-const Toast: React.FC<ToastProps> = ({ message, style }) => {
+export const Toast: React.FC<ToastProps> = ({ message, style }) => {
   const { removeToast } = useToast();
 
   useEffect(() => {
@@ -54,5 +54,3 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
     </Container>
   );
 };
-
-export default Toast;

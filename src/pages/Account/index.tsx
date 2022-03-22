@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FiMail, FiUser, FiLock, FiCamera, FiArrowLeft } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -28,15 +28,18 @@ interface ProfileFormData {
 
 export const Account: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { addToast } = useToast();
   const history = useHistory();
 
+  const { addToast } = useToast();
   const { account, updateAccount } = useAuth();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = useCallback(
     async (data: ProfileFormData) => {
       try {
         formRef.current?.setErrors({});
+        setIsLoading(true);
 
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome Perfil obrigatório'),
@@ -75,8 +78,6 @@ export const Account: React.FC = () => {
 
         const response = await api.put(`/account/${formData.id}`, formData);
 
-        console.log(response.data);
-
         updateAccount(response.data);
 
         history.push('/tasks');
@@ -91,9 +92,11 @@ export const Account: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
+          setIsLoading(false);
           return;
         }
 
+        setIsLoading(false);
         addToast({
           type: 'error',
           title: 'Erro no atualização',
@@ -162,7 +165,9 @@ export const Account: React.FC = () => {
             placeholder="Confirmar Senha"
           />
 
-          <Button type="submit">Confirmar mudanças</Button>
+          <Button type="submit" loading={isLoading}>
+            Confirmar mudanças
+          </Button>
         </Form>
 
         <PlanContainer>

@@ -6,12 +6,12 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  background: #007dfe;
+  background: var(--color-primary);
   height: 36px;
   border-radius: 5px;
   border: 0;
   padding: 0 16px;
-  color: #fff;
+  color: var(--color-white);
   width: 100%;
   font-weight: 500;
   margin-top: 16px;

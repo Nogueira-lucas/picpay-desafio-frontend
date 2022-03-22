@@ -12,7 +12,7 @@ import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 import { getValidationErrors } from '../../utils/getValidationErrors';
 
-import { Container, Content, Background } from './styles';
+import { Container, Content, Background, AnimationContainer } from './styles';
 
 interface SingInFormData {
   email: string;
@@ -31,6 +31,7 @@ export const SignIn: React.FC = () => {
     async (data: SingInFormData) => {
       try {
         formRef.current?.setErrors({});
+        setIsLoading(true);
 
         const schema = Yup.object().shape({
           email: Yup.string()
@@ -41,19 +42,17 @@ export const SignIn: React.FC = () => {
 
         await schema.validate(data, { abortEarly: false });
 
-        setIsLoading(true);
-
         await signIn({
           email: data.email,
           password: data.password,
         });
 
-        setIsLoading(false);
         history.push('/tasks');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
+          setIsLoading(false);
           return;
         }
 
@@ -72,33 +71,35 @@ export const SignIn: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <div className="logo">
-            <span className="detailLogo">Pay</span>
-            <span>Friends</span>
-          </div>
+        <AnimationContainer>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <div className="logo">
+              <span className="detailLogo">Pay</span>
+              <span>Friends</span>
+            </div>
 
-          <h1>Bem vindo de volta</h1>
+            <h1>Bem vindo de volta</h1>
 
-          <Input
-            name="email"
-            placeholder="E-mail"
-            icon={FiMail}
-            containerStyle={{ marginBottom: '8px' }}
-          />
+            <Input
+              name="email"
+              placeholder="E-mail"
+              icon={FiMail}
+              containerStyle={{ marginBottom: '8px' }}
+            />
 
-          <Input
-            name="password"
-            type="password"
-            placeholder="Senha"
-            icon={FiLock}
-            showPasswordViewButton
-          />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Senha"
+              icon={FiLock}
+              showPasswordViewButton
+            />
 
-          <Button type="submit" loading={isLoading} text_loading="Aguarde...">
-            Entrar
-          </Button>
-        </Form>
+            <Button type="submit" loading={isLoading} text_loading="Aguarde...">
+              Entrar
+            </Button>
+          </Form>
+        </AnimationContainer>
       </Content>
       <Background />
     </Container>
