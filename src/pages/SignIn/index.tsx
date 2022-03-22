@@ -13,6 +13,7 @@ import Input from '../../components/Input';
 import { Container, Content, Background } from './styles';
 import { useAuth } from '../../hooks/auth';
 import { getValidationErrors } from '../../utils/getValidationErrors';
+import { useToast } from '../../hooks/toast';
 
 interface SingInFormData {
   email: string;
@@ -22,6 +23,8 @@ interface SingInFormData {
 export const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
+  const { addToast } = useToast();
+
   const { signIn } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -57,9 +60,15 @@ export const SignIn: React.FC = () => {
         }
 
         setIsLoading(false);
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação',
+          description:
+            'Ocorreu um erro na autenticação verifique as credenciais',
+        });
       }
     },
-    [signIn, history],
+    [signIn, history, addToast],
   );
 
   return (
@@ -85,6 +94,7 @@ export const SignIn: React.FC = () => {
             type="password"
             placeholder="Senha"
             icon={FiLock}
+            showPasswordViewButton
           />
 
           <Button type="submit" loading={isLoading} text_loading="Aguarde...">

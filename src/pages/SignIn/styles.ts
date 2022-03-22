@@ -18,17 +18,18 @@ export const Content = styled.div`
 
   div.logo {
     display: flex;
-    margin-bottom: 23px;
+    margin-bottom: 16px;
 
     span {
       font-size: 24px;
       font-family: 'Montserrat';
-      font-weight: bold;
-    }
-
-    span.detailLogo {
-      font-weight: 600;
+      font-weight: 400;
       color: #2f82dd;
+
+      &.detailLogo {
+        color: #002d69;
+        font-weight: 800;
+      }
     }
   }
 

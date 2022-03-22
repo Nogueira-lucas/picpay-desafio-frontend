@@ -51,6 +51,10 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     const account = response.data[0];
 
+    if (!account) {
+      throw new Error('Not found');
+    }
+
     localStorage.setItem(storageKey, JSON.stringify(account));
 
     setData({ account });

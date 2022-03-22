@@ -4,10 +4,12 @@ import React, {
   useRef,
   useState,
   useCallback,
+  HTMLInputTypeAttribute,
 } from 'react';
 
 import { IconBaseProps } from 'react-icons';
 import { FiAlertCircle } from 'react-icons/fi';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { useField } from '@unform/core';
 
 import { Container, Error } from './styles';
@@ -25,6 +27,8 @@ import {
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   containerStyle?: object;
+  showPasswordViewButton?: boolean;
+  type?: HTMLInputTypeAttribute | undefined;
   mask?:
     | 'cep'
     | 'currency'
@@ -41,6 +45,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({
   name,
   containerStyle = {},
+  showPasswordViewButton,
+  type,
   mask,
   icon: Icon,
   ...rest
@@ -48,8 +54,10 @@ const Input: React.FC<InputProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
 
-  const { fieldName, defaultValue, error, registerField } = useField(name);
+  const { fieldName, defaultValue, error, registerField, clearError } =
+    useField(name);
 
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
@@ -105,6 +113,14 @@ const Input: React.FC<InputProps> = ({
     [mask],
   );
 
+  const togglePassword = useCallback(() => {
+    setPasswordShown(!passwordShown);
+  }, [passwordShown]);
+
+  const handleInput = useCallback(() => {
+    clearError();
+  }, []);
+
   return (
     <Container
       style={containerStyle}
@@ -115,17 +131,28 @@ const Input: React.FC<InputProps> = ({
     >
       {Icon && <Icon size={20} />}
       <input
+        type={passwordShown ? 'text' : type}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         defaultValue={defaultValue}
         ref={inputRef}
         onKeyUp={handleKeyUp}
+        onChange={handleInput}
         {...rest}
       />
       {error && (
         <Error className="logoErrorInput" title={error}>
           <FiAlertCircle color="#c53030" size={20} />
         </Error>
+      )}
+      {showPasswordViewButton && !error && (
+        <button className="showPassword" type="button" onClick={togglePassword}>
+          {passwordShown ? (
+            <AiFillEyeInvisible size={20} />
+          ) : (
+            <AiFillEye size={20} />
+          )}
+        </button>
       )}
     </Container>
   );

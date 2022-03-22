@@ -55,14 +55,22 @@ export const Container = styled.div<ContainerProps>`
     }
   }
 
-  svg {
+  > svg {
     margin-right: 16px;
+  }
+
+  button.showPassword {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
   }
 `;
 
 export const Error = styled(Tooltip)`
   height: 20px;
-  margin-left: 16px;
+  margin-left: 0px;
 
   svg {
     margin-right: 0;

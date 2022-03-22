@@ -7,10 +7,12 @@ export const Container = styled.div`
     background: #002d69;
     display: flex;
     align-items: center;
+
     div {
       width: 100%;
       max-width: 1120px;
       margin: 0 auto;
+
       svg {
         color: #fff;
         width: 24px;
@@ -26,6 +28,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
   margin: -176px auto 0;
+
   width: 100%;
   form {
     margin: 80px 0px 40px 0px;
@@ -33,11 +36,13 @@ export const Content = styled.div`
     text-align: center;
     display: flex;
     flex-direction: column;
+
     h1 {
       margin-bottom: 24px;
       font-size: 20px;
       text-align: left;
     }
+
     a {
       color: #f4ede8;
       display: block;
@@ -48,8 +53,13 @@ export const Content = styled.div`
         color: ${shade(0.2, '#f4ede8')};
       }
     }
+
     input[name='old_password'] {
       margin-top: 24px;
+    }
+
+    div[data-testid='input-container'] {
+      margin-bottom: 8px;
     }
   }
 `;
