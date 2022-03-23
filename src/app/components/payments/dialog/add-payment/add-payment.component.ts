@@ -14,7 +14,7 @@ export class AddPaymentComponent implements OnInit {
   payment: Payment = {
     username: '',
     value: null,
-    date: new Date(),
+    date: '',
     title: ''
   }
 
