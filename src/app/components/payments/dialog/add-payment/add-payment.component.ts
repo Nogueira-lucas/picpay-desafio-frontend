@@ -12,9 +12,9 @@ export class AddPaymentComponent implements OnInit {
 
   payment: Payment = {
     userName: '',
-    value: 0,
+    value: null,
     date: new Date(),
-    title: 'teste'
+    title: ''
   }
 
   constructor(

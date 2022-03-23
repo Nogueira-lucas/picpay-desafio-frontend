@@ -18,7 +18,7 @@ export class PaymentsComponent implements OnInit {
 
   openDialog(): void{
     const dialogRef = this.dialog.open(AddPaymentComponent, {
-      width: '250px'
+      width: '550px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
