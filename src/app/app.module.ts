@@ -13,6 +13,9 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddPaymentComponent } from './components/payments/dialog/add-payment/add-payment.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [	
     AppComponent, HeaderComponent, HomeComponent, PaymentsComponent, AddPaymentComponent
@@ -23,7 +26,9 @@ import { AddPaymentComponent } from './components/payments/dialog/add-payment/ad
     BrowserAnimationsModule,
     AppRoutingModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
