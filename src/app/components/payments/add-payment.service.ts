@@ -1,8 +1,9 @@
-import { Payment } from './payment.model';
+
  import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
  import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { Payment } from './payment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class AddPaymentService {
 
   create(payment: Payment): Observable<Payment>{
     return this.http.post<Payment>(this.baseUrl, payment);
+  }
+
+  read(): Observable<Payment[]>{
+    return this.http.get<Payment[]>(this.baseUrl);
   }
 }

@@ -1,7 +1,7 @@
 export interface Payment {
     id?: number,
     name?: string,
-    userName: string,
+    username: string,
     title?: string,
     value: number,
     date: Date,
