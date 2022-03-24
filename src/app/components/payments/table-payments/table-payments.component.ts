@@ -20,7 +20,7 @@ export class TablePaymentsComponent implements AfterViewInit {
   payments: Payment[]
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name','title'];
+  displayedColumns = ['username','title', 'date', 'value', 'isPayed', 'action'];
   
   constructor(private addPaymentService: AddPaymentService) {
     this.addPaymentService.read().subscribe(payments => {
