@@ -1,37 +1,44 @@
+import { Payment } from './../payment.model';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-
-// TODO: Replace this with your own data model type
-export interface TablePaymentsItem {
-  name: string;
-  id: number;
-}
+import { AddPaymentService } from '../add-payment.service';
+import { OnInit } from '@angular/core';
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: TablePaymentsItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+var EXAMPLE_DATA: Payment[] = [
+  {
+    "id": 1,
+    "name": "Pennie Dumphries",
+    "username": "pdumphries0",
+    "title": "Dental Hygienist",
+    "value": 19.96,
+    "date": "2020-07-21T05:53:20Z",
+    "image": "https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1",
+    "isPayed": true
+  },
+  {
+    "id": 2,
+    "name": "Foster Orthmann",
+    "username": "forthmann1",
+    "title": "Professor",
+    "value": 207.36,
+    "date": "2021-01-28T14:01:29Z",
+    "image": "https://robohash.org/quasetqui.png?size=150x150&set=set1",
+    "isPayed": true
+  },
+  {
+    "id": 3,
+    "name": "Crissie Summerill",
+    "username": "csummerill2",
+    "title": "VP Product Management",
+    "value": 464.54,
+    "date": "2020-02-09T18:20:32Z",
+    "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
+    "isPayed": false
+  },
 ];
 
 /**
@@ -39,61 +46,72 @@ const EXAMPLE_DATA: TablePaymentsItem[] = [
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class TablePaymentsDataSource extends DataSource<TablePaymentsItem> {
-  data: TablePaymentsItem[] = EXAMPLE_DATA;
+export class TablePaymentsDataSource extends DataSource<Payment> {
+  
+  data: Payment[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
-
-  constructor() {
+  
+  constructor(private addPaymentService: AddPaymentService) {
     super();
+    //this.read();
   }
 
-  /**
+  // read(){
+  //   //ou .subscribe()?
+  //   this.addPaymentService.read().toPromise().then(data => {
+  //     this.data = data;
+  //     console.log('this.data', this.data);
+  //   })
+  // }
+      
+      /**
    * Connect this data source to the table. The table will only update when
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
-   */
-  connect(): Observable<TablePaymentsItem[]> {
-    if (this.paginator && this.sort) {
-      // Combine everything that affects the rendered data into one update
-      // stream for the data-table to consume.
-      return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
-        .pipe(map(() => {
-          return this.getPagedData(this.getSortedData([...this.data ]));
-        }));
-    } else {
-      throw Error('Please set the paginator and sort on the data source before connecting.');
-    }
-  }
-
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
-  disconnect(): void {}
-
-  /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getPagedData(data: TablePaymentsItem[]): TablePaymentsItem[] {
-    if (this.paginator) {
-      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      return data.splice(startIndex, this.paginator.pageSize);
-    } else {
-      return data;
-    }
-  }
-
+       */
+      connect(): Observable<Payment[]> {
+        if (this.paginator && this.sort) {
+          // Combine everything that affects the rendered data into one update
+          // stream for the data-table to consume.
+          console.log('oi');
+          return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
+          .pipe(map(() => {
+            return this.getPagedData(this.getSortedData([...this.data ]));
+          }));
+        } else {
+          throw Error('Please set the paginator and sort on the data source before connecting.');
+        }
+      }
+      
+      /**
+       *  Called when the table is being destroyed. Use this function, to clean up
+       * any open connections or free any held resources that were set up during connect.
+       */
+      disconnect(): void {}
+      
+      /**
+       * Paginate the data (client-side). If you're using server-side pagination,
+       * this would be replaced by requesting the appropriate data from the server.
+       */
+      private getPagedData(data: Payment[]): Payment[] {
+        if (this.paginator) {
+          const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+          return data.splice(startIndex, this.paginator.pageSize);
+        } else {
+          return data;
+        }
+      }
+  
   /**
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: TablePaymentsItem[]): TablePaymentsItem[] {
+  private getSortedData(data: Payment[]): Payment[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }
-
+    
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
@@ -103,6 +121,8 @@ export class TablePaymentsDataSource extends DataSource<TablePaymentsItem> {
       }
     });
   }
+
+
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
