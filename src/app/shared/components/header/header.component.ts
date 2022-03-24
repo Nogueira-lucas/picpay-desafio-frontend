@@ -10,16 +10,24 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   isUserLoggedIn = false;
+  avatar = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
-    this.authService.accountState$.subscribe(response => this.isUserLoggedIn = (response) ? true : false);
+    this.authService.accountState$.subscribe(response => {
+      this.avatar = (response) ? response.avatar : '/assets/images/avatar_default.png';
+      this.isUserLoggedIn = (response) ? true : false
+    });
   }
 
-  logout() {
+  goTo(routeName: string) {
+    this.router.navigate([`/${routeName}`]);
+  }
+
+  logout():void {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.goTo('login');
   }
 }
