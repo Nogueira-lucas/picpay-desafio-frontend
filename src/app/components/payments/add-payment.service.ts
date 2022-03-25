@@ -29,4 +29,19 @@ export class AddPaymentService {
   read(): Observable<Payment[]>{
     return this.http.get<Payment[]>(this.baseUrl);
   }
+
+  readById(id: string): Observable<Payment>{
+    const url = `${this.baseUrl}/${id}`
+    return this.http.get<Payment>(url);
+  }
+
+  update(payment: Payment): Observable<Payment>{
+    const url = `${this.baseUrl}/${payment.id}`
+    return this.http.put<Payment>(url, payment);
+  }
+
+  delete(id: string): Observable<Payment>{
+    const url = `${this.baseUrl}/${id}`
+    return this.http.delete<Payment>(url);
+  }
 }
