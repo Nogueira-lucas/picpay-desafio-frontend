@@ -1,0 +1,25 @@
+<div class="content">
+    <div class="formLogin">
+        <img src="./../../../assets/LogoAzul.png" alt="logo" class="logo"/>
+        
+        <mat-card-title class="titleForm">Bem vindo de volta</mat-card-title>
+        <form>
+            <mat-form-field>
+                <input matInput placeholder="Email"  [(ngModel)]="user.email" name="email" mat-error required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Senha"  [(ngModel)]="user.password" name="password" mat-error required>
+            </mat-form-field>
+        </form>
+        
+        
+        <div mat-dialog-actions>
+            <button mat-button  class="buttonPayment">Salvar</button>
+        </div>
+    </div>
+    <div class="boxImg">
+        <img src="./../../../assets/man-doing-online-payment 1.svg" class="imgLogin" alt="logo"/>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

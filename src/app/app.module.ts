@@ -26,11 +26,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { UpdatePaymentComponent } from './components/payments/dialog/update-payment/update-payment.component';
 import { DeletePaymentComponent } from './components/payments/dialog/delete-payment/delete-payment.component';
+import { LoginComponent } from './views/login/login.component';
 
 
 @NgModule({
   declarations: [	
-    AppComponent, HeaderComponent, HomeComponent, PaymentsComponent, AddPaymentComponent, ListPaymentsComponent, TablePaymentsComponent, UpdatePaymentComponent, DeletePaymentComponent
+    AppComponent, HeaderComponent, HomeComponent, PaymentsComponent, AddPaymentComponent, ListPaymentsComponent, TablePaymentsComponent, UpdatePaymentComponent, DeletePaymentComponent, LoginComponent
    ],
   imports: [
     BrowserModule,

@@ -2,7 +2,8 @@
  import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
  import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Payment } from './payment.model';
 
 @Injectable({
@@ -23,7 +24,15 @@ export class AddPaymentService {
   }
 
   create(payment: Payment): Observable<Payment>{
-    return this.http.post<Payment>(this.baseUrl, payment);
+    return this.http.post<Payment>(this.baseUrl, payment).pipe(
+      map(obj => obj),
+      catchError(e => this.errorHandler(e))
+    );
+  }
+
+  errorHandler(e: any): Observable<any> {
+    this.showMessage('Ocorreu um erro!')
+    return EMPTY
   }
 
   read(): Observable<Payment[]>{

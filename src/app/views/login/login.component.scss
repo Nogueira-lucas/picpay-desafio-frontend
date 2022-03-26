@@ -1,0 +1,38 @@
+.content{
+    height: 100%;
+    display: flex;
+    background-color: #F2F2F2;
+}
+.formLogin{
+    width: 35%;
+    margin: auto;
+    padding-left: 9%;
+    padding-right: 9%;
+}
+.logo{
+    display: flex;
+    margin-bottom: 18px;
+}
+.boxImg{
+    display: flex;
+    width: 65%;
+    background-color: #fff;
+}
+.imgLogin{
+    width: 737px;
+    height: 579px;
+    margin: auto;
+}
+.buttonPayment{
+    color: #FFF;
+    background-color: #007DFE;
+    display: block;
+    width: 100%;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 7px;
+    margin-bottom: 15px;
+
+}
