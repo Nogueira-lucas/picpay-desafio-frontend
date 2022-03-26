@@ -29,6 +29,7 @@ import { DeletePaymentComponent } from './components/payments/dialog/delete-paym
 import { LoginComponent } from './views/login/login.component';
 
 
+
 @NgModule({
   declarations: [	
     AppComponent, HeaderComponent, HomeComponent, PaymentsComponent, AddPaymentComponent, ListPaymentsComponent, TablePaymentsComponent, UpdatePaymentComponent, DeletePaymentComponent, LoginComponent

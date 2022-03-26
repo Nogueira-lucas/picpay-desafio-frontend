@@ -13,7 +13,7 @@ export class AddPaymentService {
 
   baseUrl = 'http://localhost:3000/tasks';
 
-  constructor(private snackBar: MatSnackBar, private http:HttpClient) { }
+  constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
   showMessage(msg:string): void {
     this.snackBar.open(msg, 'x', {

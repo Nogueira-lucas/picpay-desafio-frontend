@@ -7,11 +7,11 @@ import { LoginComponent } from "./views/login/login.component";
 const routes: Routes = [
     {
         path: "",
-        component: HomeComponent
+        component: LoginComponent
     },
     {
-        path: "login",
-        component: LoginComponent
+        path: "pagamentos",
+        component: HomeComponent
     }
 ];
 
