@@ -24,4 +24,15 @@ export class DeletePaymentComponent implements OnInit {
       this.payment = payment;
     });
   }
+
+  deletePayment(): void {
+    this.addPaymentService.delete(this.payment.id).subscribe(() => {
+      this.addPaymentService.showMessage('Pagamento excluído com sucesso!');
+      this.closeDialog();
+    });
+  }
+
+  closeDialog(){
+    this.dialogRef.close();
+  }
 }

@@ -181,16 +181,6 @@
       "isPayed": true
     },
     {
-      "id": 19,
-      "name": "Bruce Martyn",
-      "username": "bmartyni",
-      "title": "Structural Analysis Engineer",
-      "value": 201.28,
-      "date": "2021-02-15T18:14:35Z",
-      "image": "https://robohash.org/dolorautest.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 20,
       "name": "Joey Ferronel",
       "username": "jferronelj",
@@ -1699,27 +1689,6 @@
       "date": "2021-05-05T10:22:13Z",
       "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
       "isPayed": true
-    },
-    {
-      "userName": "",
-      "value": 0,
-      "date": "2022-03-23T00:58:09.602Z",
-      "title": "teste",
-      "id": 171
-    },
-    {
-      "userName": "fe",
-      "value": "3",
-      "date": "2022-03-23T01:37:40.262Z",
-      "title": "fe teste",
-      "id": 172
-    },
-    {
-      "userName": "fe fe",
-      "value": "4",
-      "date": "2022-03-23T02:03:42.626Z",
-      "title": "fe",
-      "id": 173
     }
   ],
   "account": [

@@ -40,7 +40,7 @@ export class AddPaymentService {
     return this.http.put<Payment>(url, payment);
   }
 
-  delete(id: string): Observable<Payment>{
+  delete(id: number): Observable<Payment>{
     const url = `${this.baseUrl}/${id}`
     return this.http.delete<Payment>(url);
   }
