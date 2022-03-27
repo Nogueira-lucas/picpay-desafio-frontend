@@ -1,0 +1,13 @@
+<div class="mat-elevation-z4 profileContent">
+    <div>
+        <img src="assets/profile.png" class="profileImg" alt="profile"/>
+    </div>
+    <div class="profileTxt">
+        <h2 class="textPrimary">{{user.name}}</h2>
+        <h3 class="textSecondary">{{user.email}}</h3>
+        <p>Você já adicionou {{payments.length}} pagamentos!</p>
+    </div>
+</div>
+<div routerLink="/pagamentos">
+    <button mat-raised-button class="buttonPayment">VOLTAR</button>
+  </div>

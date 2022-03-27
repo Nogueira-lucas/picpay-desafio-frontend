@@ -9,7 +9,6 @@ import { HeaderComponent } from './components/template/header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HomeComponent } from './views/home/home.component';
 import { AppRoutingModule } from './app-routing.modules';
-import { PaymentsComponent } from './components/payments/payments.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddPaymentComponent } from './components/payments/dialog/add-payment/add-payment.component';
@@ -26,11 +25,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { UpdatePaymentComponent } from './components/payments/dialog/update-payment/update-payment.component';
 import { DeletePaymentComponent } from './components/payments/dialog/delete-payment/delete-payment.component';
 import { LoginComponent } from './views/login/login.component';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import { ProfileComponent } from './views/profile/profile.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [	
-    AppComponent, HeaderComponent, HomeComponent, PaymentsComponent, AddPaymentComponent, TablePaymentsComponent, UpdatePaymentComponent, DeletePaymentComponent, LoginComponent
+    AppComponent, HeaderComponent, HomeComponent, AddPaymentComponent, TablePaymentsComponent, UpdatePaymentComponent, DeletePaymentComponent, LoginComponent, ProfileComponent, MyProfileComponent
    ],
   imports: [
     BrowserModule,
@@ -47,7 +49,9 @@ import { LoginComponent } from './views/login/login.component';
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

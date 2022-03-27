@@ -1,9 +1,8 @@
 .header{
     display: flex;
     background-color: #002D69;
-    padding: 20px;
+    padding: 30px;
     align-items: center;
-    
 }
 .header a {
     display: flex;
@@ -12,4 +11,8 @@
 }
 .logo{
     width: 100%;
+}
+.profile{
+    // margin-top: 20px;
+    // margin-bottom: 20px;
 }
