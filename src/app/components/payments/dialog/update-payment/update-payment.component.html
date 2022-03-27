@@ -6,7 +6,8 @@
             <input matInput placeholder="Usuário" [(ngModel)]="payment.username" name="username" required>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Valor" [(ngModel)]="payment.value" name="value" required>
+            <input matInput placeholder="Valor" type="number" class="alignInput" [(ngModel)]="payment.value" name="value" required>
+            <span matPrefix>R$&nbsp;</span>
         </mat-form-field>
         <mat-form-field class="inputForm">
             <input matInput placeholder="Data" [(ngModel)]="payment.date" name="date" required>

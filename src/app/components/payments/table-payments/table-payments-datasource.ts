@@ -4,7 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { AddPaymentService } from '../add-payment.service';
 
 var EXAMPLE_DATA: Payment[] = [
   {
@@ -45,7 +44,7 @@ export class TablePaymentsDataSource extends DataSource<Payment> {
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
   
-  constructor(private addPaymentService: AddPaymentService) {
+  constructor() {
     super();
   }
       

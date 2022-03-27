@@ -94,6 +94,9 @@ export class TablePaymentsComponent implements AfterViewInit {
         this.getData();
       });
     });
+  }
 
+  filterData($event: any){
+    this.dataSource.filter = $event.target.value;
   }
 }
