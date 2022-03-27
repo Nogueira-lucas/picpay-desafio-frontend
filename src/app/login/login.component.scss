@@ -1,0 +1,33 @@
+#login {
+    display: flex;
+}
+
+#login .login-form {
+    width: 35%;
+    background-color: var(--light-gray-color);
+    height: 100vh;
+    position: relative;
+}
+
+#login .login-form .login-form-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#login .login-form .login-form-content .subtitle {
+    font-weight: 600;
+}
+
+#login .login-call {
+    width: 65%;
+    position: relative;
+}
+
+#login .login-call img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -7,4 +7,17 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --indigo-color: #002d69;
+  --purple-color: #4200ff;
+  --blue-color: #2f82dd;
+  --light-gray-color: #f2f2f2;
 }
