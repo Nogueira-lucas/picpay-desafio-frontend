@@ -19,15 +19,12 @@ export class TablePaymentsComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Payment>;
   dataSource = new MatTableDataSource<Payment>()
-  //dataSource: TablePaymentsDataSource;
   payments: Payment[]
-
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  payment: Payment
   displayedColumns = ['username','title', 'date', 'value', 'isPayed', 'action'];
   
   constructor(private addPaymentService: AddPaymentService, public dialog: MatDialog) {
     this.getData();
-    //this.dataSource = new TablePaymentsDataSource(addPaymentService);
   }
   getData(){
     this.addPaymentService.read().subscribe(payments => {
@@ -66,5 +63,26 @@ export class TablePaymentsComponent implements AfterViewInit {
       console.log('Dialog was closed');
       this.getData();
     });
+  }
+
+  updateCheckbox(e: any, id: number): void{
+    this.addPaymentService.readById(id).subscribe(payment => {
+      this.payment = payment;
+
+      let valueCheck;
+      if(e.target.checked){
+        valueCheck=true
+      }
+      else{
+        valueCheck=false
+      }
+      this.payment.isPayed = valueCheck;
+
+      this.addPaymentService.update(this.payment).subscribe(() => {
+        this.addPaymentService.showMessage('Pagamento atualizado com sucesso!');
+      });
+      this.getData();
+    });
+
   }
 }

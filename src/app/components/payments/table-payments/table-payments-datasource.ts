@@ -5,9 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import { AddPaymentService } from '../add-payment.service';
-import { OnInit } from '@angular/core';
 
-// TODO: replace this with real data from your application
 var EXAMPLE_DATA: Payment[] = [
   {
     "id": 1,
@@ -41,11 +39,6 @@ var EXAMPLE_DATA: Payment[] = [
   },
 ];
 
-/**
- * Data source for the TablePayments view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
 export class TablePaymentsDataSource extends DataSource<Payment> {
   
   data: Payment[] = [];
@@ -54,16 +47,7 @@ export class TablePaymentsDataSource extends DataSource<Payment> {
   
   constructor(private addPaymentService: AddPaymentService) {
     super();
-    //this.read();
   }
-
-  // read(){
-  //   //ou .subscribe()?
-  //   this.addPaymentService.read().toPromise().then(data => {
-  //     this.data = data;
-  //     console.log('this.data', this.data);
-  //   })
-  // }
       
       /**
    * Connect this data source to the table. The table will only update when
@@ -74,7 +58,6 @@ export class TablePaymentsDataSource extends DataSource<Payment> {
         if (this.paginator && this.sort) {
           // Combine everything that affects the rendered data into one update
           // stream for the data-table to consume.
-          console.log('oi');
           return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
           .pipe(map(() => {
             return this.getPagedData(this.getSortedData([...this.data ]));

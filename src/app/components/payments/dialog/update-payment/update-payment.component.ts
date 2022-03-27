@@ -30,7 +30,6 @@ export class UpdatePaymentComponent implements OnInit {
       this.addPaymentService.showMessage('Pagamento atualizado com sucesso!');
       this.closeDialog();
     });
-
   }
 
   closeDialog(){

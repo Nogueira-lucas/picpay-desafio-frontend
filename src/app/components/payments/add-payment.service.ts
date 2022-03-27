@@ -39,7 +39,7 @@ export class AddPaymentService {
     return this.http.get<Payment[]>(this.baseUrl);
   }
 
-  readById(id: string): Observable<Payment>{
+  readById(id: number): Observable<Payment>{
     const url = `${this.baseUrl}/${id}`
     return this.http.get<Payment>(url);
   }

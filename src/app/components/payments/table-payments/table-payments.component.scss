@@ -3,9 +3,29 @@
 }
 
 .tablePayments{
-  margin-right: 50px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .actionIcons{
   margin-left: 10px;
+}
+
+.bodyText{
+  size: 14px;
+  margin-bottom: 0;
+  margin-top: 12px;
+}
+.secondaryText{
+  size: 12px;
+  color: #69788C;
+}
+.colMedium{
+  width: 22%;
+}
+.colSmall{
+  width: 12%;
+}
+.iconsAction{
+  text-align: -webkit-right;
 }
