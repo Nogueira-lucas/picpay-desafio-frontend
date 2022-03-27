@@ -1,7 +1,7 @@
 # **Desafio Frontend PicPay**
 
 Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
-Abaixo você encontrará todos as informações necessárias para iniciar o seu teste.
+Abaixo você encontrará todos as informações necessárias para iniciar o seu teste. ;)
 
 ## Avisos antes de começar
 
