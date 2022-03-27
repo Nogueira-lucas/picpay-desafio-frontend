@@ -3,18 +3,27 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LogoComponent } from './logo/logo.component';
 import { HeaderComponent } from './header/header.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { PageTitleComponent } from './page-title/page-title.component';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        MatIconModule,
+        MatMenuModule
     ],
     declarations: [
         LogoComponent,
-        HeaderComponent
+        HeaderComponent,
+        PageTitleComponent
     ],
     exports: [
         CommonModule,
         FormsModule,
-        LogoComponent]
+        LogoComponent,
+        HeaderComponent,
+        PageTitleComponent
+    ]
 })
 export class SharedModule { }

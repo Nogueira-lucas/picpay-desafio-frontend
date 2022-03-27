@@ -1,0 +1,15 @@
+#tasks {
+  background-color: var(--light-gray-color);
+  height: 100vh;
+  padding: 50px 20px;
+}
+
+#tasks .tasks-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-field-size {
+    min-width: 200px;
+    max-height: 35px;
+}

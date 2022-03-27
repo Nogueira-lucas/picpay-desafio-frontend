@@ -1,1 +1,14 @@
-<p>header works!</p>
+<nav id="header">
+  <pf-logo></pf-logo>
+  <img src="assets/avatar.jpg" class="avatar" [matMenuTriggerFor]="menu" (click)="openProfileMenu()" />
+  <mat-menu #menu="matMenu"  yPosition="above">
+    <button style="min-width: 150px !important;" mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Perfil</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>power_settings_new</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</nav>

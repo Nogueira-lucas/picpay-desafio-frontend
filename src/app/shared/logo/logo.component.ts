@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'pf-logo',
@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class LogoComponent implements OnInit {
 
   constructor() { }
+
+  @Input('type')
+  type: 'dark'
 
   ngOnInit(): void {
   }

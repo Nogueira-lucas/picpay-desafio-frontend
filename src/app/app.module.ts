@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 
+import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +30,7 @@ import { AppRoutingModule } from './app.routes';
     SharedModule,
     AppRoutingModule,
     
+    MatMenuModule,
     MatIconModule,
     MatInputModule,
     MatButtonModule,

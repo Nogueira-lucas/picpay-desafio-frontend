@@ -1,7 +1,25 @@
+.logo {
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 0;
+}
+
+.logo strong {
+  font-weight: 700;
+}
+
+.logo span {
+  font-weight: 300;
+}
+
 .logo-dark strong {
-    color: var(--indigo-color);
+  color: var(--indigo-color);
 }
 
 .logo-dark span {
-    color: var(--blue-color);
+  color: var(--blue-color);
+}
+
+.logo-white strong,
+.logo-white span {
+  color: white;
 }

@@ -12,4 +12,5 @@ export class AuthService {
     authenticate = (data: any): void => this.setLocalStorageToken(this.generateToken(data));
     generateToken = (data: any): string => JSON.stringify(data);
     setLocalStorageToken = (token: string): void => localStorage.setItem('token', token);
+    logout = (): void => localStorage.removeItem('token');
 }
