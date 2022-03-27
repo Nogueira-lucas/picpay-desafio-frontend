@@ -1,12 +1,16 @@
-<form>
+<form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline" class="mat-field-size">
     <mat-label>E-mail</mat-label>
-    <input matInput placeholder="E-mail" value="usuario@gmail.com" />
+    <input matInput placeholder="E-mail" formControlName="email" />
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="mat-field-size">
     <mat-label>Senha</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" value="usuario" />
+    <input
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      formControlName="password"
+    />
     <button
       mat-icon-button
       matSuffix
@@ -17,4 +21,12 @@
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
   </mat-form-field>
+  <button
+    mat-flat-button
+    class="mat-field-size mat-button-primary"
+    type="submit"
+    [disabled]="!loginFormGroup.valid"
+  >
+    Entrar
+  </button>
 </form>

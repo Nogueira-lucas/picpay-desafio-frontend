@@ -19,5 +19,13 @@ body {
   --indigo-color: #002d69;
   --purple-color: #4200ff;
   --blue-color: #2f82dd;
+  --primary-color: #007DFE;
   --light-gray-color: #f2f2f2;
+}
+
+.mat-button-primary {
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: var(--primary-color);
 }
