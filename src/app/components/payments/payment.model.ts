@@ -4,7 +4,7 @@ export interface Payment {
     username?: string,
     title?: string,
     value?: number,
-    date?: string,
+    date?: any,
     image?: string,
     isPayed?: boolean
 }

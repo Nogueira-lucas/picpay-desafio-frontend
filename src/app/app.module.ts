@@ -19,7 +19,6 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { ListPaymentsComponent } from './components/payments/list-payments/list-payments.component';
 import { TablePaymentsComponent } from './components/payments/table-payments/table-payments.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -32,7 +31,7 @@ import { LoginComponent } from './views/login/login.component';
 
 @NgModule({
   declarations: [	
-    AppComponent, HeaderComponent, HomeComponent, PaymentsComponent, AddPaymentComponent, ListPaymentsComponent, TablePaymentsComponent, UpdatePaymentComponent, DeletePaymentComponent, LoginComponent
+    AppComponent, HeaderComponent, HomeComponent, PaymentsComponent, AddPaymentComponent, TablePaymentsComponent, UpdatePaymentComponent, DeletePaymentComponent, LoginComponent
    ],
   imports: [
     BrowserModule,

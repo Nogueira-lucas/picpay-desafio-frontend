@@ -13,8 +13,8 @@ import { User } from './user.model';
 })
 export class LoginComponent implements OnInit {
   user: User = {
-    email: 'usuario@gmail.com',
-    password: 'usuario'
+    email: '',
+    password: ''
   }
 
   hide = true;
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getLogin(email, password): void {
+  getLogin(): void {
     this.loginService.getAccount().subscribe(account => {
       if(this.user.email == account[0].email){
         if(this.user.password == account[0].password){

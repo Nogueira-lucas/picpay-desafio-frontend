@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AddPaymentService } from '../../add-payment.service';
 
-
 @Component({
   selector: 'app-add-payment',
   templateUrl: './add-payment.component.html',
@@ -14,7 +13,7 @@ export class AddPaymentComponent implements OnInit {
   payment: Payment = {
     username: '',
     value: null,
-    date: '',
+    date: new Date(),
     title: ''
   }
 

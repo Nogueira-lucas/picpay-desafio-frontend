@@ -1,13 +1,13 @@
 import { MatDialog } from '@angular/material/dialog';
 import { AddPaymentService } from './../add-payment.service';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Payment } from '../payment.model';
-import { TablePaymentsDataSource } from './table-payments-datasource';
 import { UpdatePaymentComponent } from '../dialog/update-payment/update-payment.component';
 import { DeletePaymentComponent } from '../dialog/delete-payment/delete-payment.component';
+import { AddPaymentComponent } from '../dialog/add-payment/add-payment.component';
 
 @Component({
   selector: 'app-table-payments',
@@ -39,6 +39,17 @@ export class TablePaymentsComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
 
+  createPaymentDialog(): void{
+    const dialogRef = this.dialog.open(AddPaymentComponent, {
+      width: '550px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog was closed');
+      this.getData();
+    });
+  }
+  
   updatePaymentDialog(id): void {
     const dialogRef = this.dialog.open(UpdatePaymentComponent, {
       width: '550px'
@@ -80,8 +91,8 @@ export class TablePaymentsComponent implements AfterViewInit {
 
       this.addPaymentService.update(this.payment).subscribe(() => {
         this.addPaymentService.showMessage('Pagamento atualizado com sucesso!');
+        this.getData();
       });
-      this.getData();
     });
 
   }
