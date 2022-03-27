@@ -1,13 +1,29 @@
-.buttonPayment{
+.buttonPrimary{
     color: #FFF;
     background-color: #007DFE;
     float: right;
-    margin-right: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.buttonSecondary{
+    background-color: #F5F5F5;
+    float: right;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 mat-card-title{
     margin-bottom: 40px;
     display: flex;
 }
 mat-form-field{
+    width: 45%;
+}
+.inputForm{
     margin-right: 40px;
+}
+.content{
+    margin: 16px;
+}
+.mat-dialog-actions{
+    justify-content: right;
 }

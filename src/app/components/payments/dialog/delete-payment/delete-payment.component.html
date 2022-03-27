@@ -1,24 +1,11 @@
+<div class="content">
     <mat-card-title class="titleForm">Excluir pagamento</mat-card-title>
     <p>Usuário: {{payment.username}}</p>
     <p>Data: {{payment.date | date: 'dd/MM/yyyy'}}</p>
     <p>Valor: {{payment.value | currency: 'BRL'}}</p>
-    <!-- <form>
-        <mat-form-field>
-            <input matInput placeholder="Usuário*" [(ngModel)]="payment.username" name="username">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Valor*" [(ngModel)]="payment.value" name="value">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Data*" [(ngModel)]="payment.date" name="date">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Título" [(ngModel)]="payment.title" name="title">
-        </mat-form-field>
-    </form> -->
-
-
-<div mat-dialog-actions>
-    <button mat-button (click)="closeDialog()">Cancelar</button>
-    <button mat-button (click)="deletePayment()" class="buttonPayment">Confirmar</button>
+     
+    <div mat-dialog-actions>
+        <button mat-button (click)="closeDialog()" class="buttonSecondary">Cancelar</button>
+        <button mat-button (click)="deletePayment()" class="buttonPrimary">Confirmar</button>
+    </div>
 </div>

@@ -54,7 +54,7 @@ export class TablePaymentsComponent implements AfterViewInit {
 
   deletePaymentDialog(id): void {
     const dialogRef = this.dialog.open(DeletePaymentComponent, {
-      width: '550px'
+      width: 'auto'
     });
 
     dialogRef.componentInstance.getDataDialog(id);
