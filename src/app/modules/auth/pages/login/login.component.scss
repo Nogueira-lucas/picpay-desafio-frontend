@@ -1,0 +1,30 @@
+@import '~/src/scss/base/variables';
+
+:host {  
+  display: flex;
+  flex-direction: row;
+
+  .login-form{    
+    height: 100vh;
+    background-color: $primary-background-color;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    form{
+      margin: auto 107px;
+      width: 326px;
+      display: flex;
+      flex-direction: column;      
+    }
+
+  }
+
+  .login-panel {
+    flex: 1 1 auto;
+    background: url('~/src/assets/img/man-doing-online-payment.svg') no-repeat center;
+    background-size: auto;
+  }
+}
