@@ -1,0 +1,75 @@
+<p class="modal-title">
+  {{ isEdit ? "Editar pagamento" : "Adicionar pagamento" }}
+</p>
+
+<div mat-dialog-content>
+  <form [formGroup]="addPaymentFormGroup">
+    <div class="flex-form">
+      <mat-form-field appearance="outline" class="mat-field-size">
+        <input
+          matInput
+          placeholder="Usuário"
+          formControlName="username"
+          class="mat-input-size"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="mat-field-size">
+        <input
+          matInput
+          placeholder="Valor"
+          type="number"
+          formControlName="value"
+          class="mat-input-size"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="flex-form">
+      <mat-form-field appearance="outline" class="mat-field-size">
+        <mat-label>Data</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="date"
+          class="mat-input-size"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          class="mat-datepicker-custom"
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="mat-field-size">
+        <input
+          matInput
+          placeholder="Titulo"
+          formControlName="title"
+          class="mat-input-size"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <div class="flex-form">
+    <button
+      mat-button
+      class="mat-button-secondary mat-field-size"
+      (click)="cancel()"
+    >
+      Cancelar
+    </button>
+    <button
+      mat-button
+      class="mat-button-primary mat-field-size"
+      (click)="save()"
+      cdkFocusInitial
+    >
+      {{ isEdit ? "Editar" : "Adicionar" }}
+    </button>
+  </div>
+</div>

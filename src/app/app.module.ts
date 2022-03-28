@@ -19,6 +19,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -29,12 +32,16 @@ import { MatPaginatorIntlBR } from '@core/mat-paginator.service';
 import { MomentPipe } from '@core/moment.pipe';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { TaskModalComponent } from './tasks/task-modal/task-modal.component';
+import { TaskDeleteConfirmModalComponent } from './tasks/task-delete-confirm-modal/task-delete-confirm-modal.component';
 
 registerLocaleData(localePt);
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, LoginFormComponent, TasksComponent, TasksTableComponent,
-    MomentPipe
+    MomentPipe,
+    TaskModalComponent,
+    TaskDeleteConfirmModalComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,10 @@ registerLocaleData(localePt);
     MatTableModule,
     MatSortModule,
     MatTooltipModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlBR },

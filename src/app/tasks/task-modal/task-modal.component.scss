@@ -1,0 +1,19 @@
+.mat-field-size {
+  width: calc(50% - 5px);
+  margin: 0 !important;
+}
+
+.mat-input-size {
+  height: 30px;
+}
+
+.flex-form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+::ng-deep .flex-form .mat-form-field-wrapper .mat-form-field-prefix,
+::ng-deep .flex-form .mat-form-field-wrapper .mat-form-field-suffix {
+  top: -0.1rem !important;
+}

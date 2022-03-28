@@ -24,16 +24,16 @@ export class LoginFormComponent implements OnInit {
   });
 
   constructor(
-    private accountService: AccountService,
-    private authService: AuthService,
+    private _accountService: AccountService,
+    private _authService: AuthService,
+    private _snackBar: MatSnackBar,
     public router: Router,
-    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void { }
 
   onSubmit() {
-    this.accountService.getAccounts()
+    this._accountService.getAccounts()
       .pipe(take(1))
       .subscribe((accounts: Array<AccountModel>) => {
         const { email, password } = this.loginFormGroup.value;
@@ -49,7 +49,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   redirectToApplication(account: AccountModel) {
-    this.authService.authenticate(account);
+    this._authService.authenticate(account);
     this.router.navigateByUrl('/tasks');
     this._snackBar.open('Login efetuado com sucesso!');
   }

@@ -16,14 +16,14 @@ import { PageTitleComponent } from './page-title/page-title.component';
     declarations: [
         LogoComponent,
         HeaderComponent,
-        PageTitleComponent
+        PageTitleComponent,
     ],
     exports: [
         CommonModule,
         FormsModule,
         LogoComponent,
         HeaderComponent,
-        PageTitleComponent
+        PageTitleComponent,
     ]
 })
 export class SharedModule { }

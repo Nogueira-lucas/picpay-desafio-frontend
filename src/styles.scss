@@ -19,9 +19,9 @@ body {
   --indigo-color: #002d69;
   --purple-color: #4200ff;
   --blue-color: #2f82dd;
-  --primary-color: #007DFE;
+  --primary-color: #007dfe;
   --light-gray-color: #f2f2f2;
-  --secondary-color: #F5F8FA;
+  --secondary-color: #f5f8fa;
 }
 
 .mat-button-primary {
@@ -30,4 +30,22 @@ body {
   text-transform: uppercase;
   background-color: var(--primary-color);
   letter-spacing: 1px;
+}
+
+.mat-button-secondary {
+  color: black;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: var(--light-gray-color);
+  letter-spacing: 1px;
+}
+
+.modal-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0em;
+  text-align: left;
+  padding-bottom: 15px;
 }

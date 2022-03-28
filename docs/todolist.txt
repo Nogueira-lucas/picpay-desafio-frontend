@@ -1,0 +1,2 @@
+- Tela de perfil do usuário
+- Atualizar lista no back-end após fazer ações (editar, adicionar e remover)

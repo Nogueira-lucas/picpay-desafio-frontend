@@ -1,0 +1,27 @@
+<p class="modal-title">Excluir pagamento</p>
+
+<div mat-dialog-content>
+  <p>Usuário: {{ data.username }}</p>
+  <p>Data: {{ data.date | dateFormat: "L" }}</p>
+  <p>Valor: {{ data.value | currency: "BRL" }}</p>
+</div>
+
+<div mat-dialog-actions>
+  <div class="flex-form">
+    <button
+      mat-button
+      class="mat-button-secondary"
+      (click)="cancel()"
+    >
+      Cancelar
+    </button>
+    <button
+      mat-button
+      class="mat-button-primary"
+      cdkFocusInitial
+      (click)="deleteTask()"
+    >
+      Salvar
+    </button>
+  </div>
+</div>
