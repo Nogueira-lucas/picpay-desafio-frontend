@@ -2,9 +2,96 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Montserrat';
+  src: url('assets/fonts/Montserrat-Regular.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('assets/fonts/Roboto-Regular.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('assets/fonts/Lato-Regular.ttf') format('opentype');
+}
+
+
+.form-control.ng-invalid.ng-touched{
+  border: solid 1px red !important;
+}
+
+.bt{
+  font-size: 15px;
+  border: 0;
+  border-radius: 4px;
+  height: 36px;
+  width: auto;
+  font-family: 'Roboto';
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  @media screen and (max-width: 1024px) {
+    height: auto !important;
+  }
+  &-blue{
+    background: #007DFE;
+    color: #ffffff;
+    border: solid 1px #007DFE;
+    &:hover{
+        border: solid 1px #007DFE;
+        background: #FFFFFF;
+        color: #007DFE;
+    }
+  }
+  &-gray{
+    background: #F5F5F5;
+    color: #333333;
+    border: solid 1px #F5F5F5;
+    &:hover{
+        border: solid 1px #333333;
+        background: #333333;
+        color: #FFFFFF;
+    }
+  }
+}
+
+.text-black{
+  color: #333333;
+  font-family: 'Montserrat';
+}
+.text-gray{
+  color: #69788C;
+}
+.text-gray-dark{
+  color: #2D3540;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.lato{
+  font-family: 'Lato';
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.f-12{
+  font-size: 12px;
+}
+.f-14{
+  font-size: 14px;
+}
+
 html,
 body {
-  font-family: sans-serif;
+  font-family: 'Montserrat';
   margin: 0;
   padding: 0;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", 'Montserrat'; }

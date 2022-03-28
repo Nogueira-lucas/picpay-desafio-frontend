@@ -1,0 +1,29 @@
+<form [formGroup]="formLogin" (ngSubmit)="submit()">
+<div class="background">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-xl-4 col-lg-6 d-flex justify-content-center align-items-center bg-gray p-md-0 p-2">
+                <div class="">
+                    <img src="assets/icons/logo.svg" alt="Logomarca">
+                    <h4 class="text-black bold mt-3">Bem-vindo(a) de volta</h4>
+                    <mat-form-field class="example-full-width w-100 mt-4" appearance="fill">
+                        <mat-label>E-mail</mat-label>
+                        <input type="email" formControlName="email" matInput  placeholder="Ex. mail@email.com">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width w-100 mt-4 position-relative" appearance="fill">
+                        <mat-label>Senha</mat-label>
+                        <input [type]="typePassword" formControlName="password" matInput  placeholder="* * * * * *">
+                        <a (click)="changePassword()" class="eye cursor-pointer">
+                            <img src="assets/icons/eye.svg" alt="">
+                          </a>
+                    </mat-form-field>
+                    <button type="submit" class="bt bt-blue text-uppercase w-100 mt-4">entrar</button>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-6 d-flex justify-content-center align-items-center p-0">
+                <img class="bg-login" src="assets/icons/imgLogin.svg">
+            </div>
+        </div>
+    </div>
+</div>
+</form>

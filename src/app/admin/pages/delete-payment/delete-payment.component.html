@@ -1,0 +1,19 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-black bold">Excluir pagamento</h2>
+            <p class="text-black">Usuário: {{ task?.name }} </p>
+            <p class="text-black">Data: {{ task?.date | date: 'dd/MM/yyyy' }} </p>
+            <p class="text-black">valor: {{ task?.value | currency: 'BRL' }} </p>
+            <div class="d-flex justify-content-center">
+                <div class="col-md-6">
+                    <button (click)="dialogRef.close()" type="button" class="bt bt-gray w-100 text-uppercase">Cancelar</button>
+                </div>
+                <div class="col-md-6">
+                    <button (click)="deleteTask()" type="button" class="bt bt-blue w-100 text-uppercase">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

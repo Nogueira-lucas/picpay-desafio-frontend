@@ -1,0 +1,23 @@
+.background{
+    background: #FFFFFF;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.bg-gray{
+    background: #F2F2F2;
+}
+
+.eye{
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+@media screen and (max-width: 550px){
+  .bg-login{
+    width: 100%;
+  }
+}
