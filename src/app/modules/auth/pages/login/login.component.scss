@@ -1,10 +1,10 @@
-@import '~/src/scss/base/variables';
+@import "~/src/scss/base/variables";
 
-:host {  
+:host {
   display: flex;
   flex-direction: row;
 
-  .login-form{    
+  .login-form {
     height: 100vh;
     background-color: $primary-background-color;
 
@@ -12,19 +12,70 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   
-    form{
+
+    form {
       margin: auto 107px;
       width: 326px;
       display: flex;
-      flex-direction: column;      
-    }
+      flex-direction: column;
 
+      .input-text-container {
+        position: relative;
+        display: flex;
+        margin-bottom: 35px;
+      
+        .floating-label {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          
+          font-size: 16px;
+          line-height: 24px;
+          letter-spacing: 0.15px;
+          color: rgba(0, 0, 0, 0.6);
+          
+      
+          pointer-events: none;
+          transition: 0.2s ease all;
+        }
+      
+        input:focus ~ .floating-label,
+        input:not(:placeholder-shown) ~ .floating-label
+        {
+          top: -8px;
+          left: 13px;
+          font-size: 12px;
+          line-height: 1.33;    
+          opacity: 1;
+          padding: 0 2px;
+          background-color: $primary-background-color;
+        }
+      
+        input {
+          flex: 1 1 auto;
+          padding: 15px;
+          font-size: 0.8889rem;
+          border-radius: 4px;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          background-color: $primary-background-color;
+        }
+      }
+
+      .error {
+        color: $error-color;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px;
+      }
+    }
   }
 
   .login-panel {
     flex: 1 1 auto;
-    background: url('~/src/assets/img/man-doing-online-payment.svg') no-repeat center;
-    background-color: $tertiary-background-color;    
+    background: url("~/src/assets/img/man-doing-online-payment.svg") no-repeat
+      center;
+    background-color: $tertiary-background-color;
   }
 }

@@ -12,13 +12,13 @@ import { ButtonComponent } from './components/ui/button/button.component';
     HeaderComponent,
     LogoComponent,
     PageTitleComponent,
-    ButtonComponent
+    ButtonComponent,
   ],
   exports: [
     HeaderComponent,
     LogoComponent,
     PageTitleComponent,
-    ButtonComponent
+    ButtonComponent,
   ],
   imports: [
     CommonModule

@@ -1,10 +1,22 @@
 <section class="login-form">
-  <form action="">
+  <form [formGroup]="formAuth" (ngSubmit)="submitForm()">
     <app-logo></app-logo>
     <app-page-title>Bem vindo de volta</app-page-title>
-    <input type="email" name="" id="" />
-    <input type="password" name="" id="" />
-    <app-button type="submit">Entrar</app-button>
+    <div class="input-text-container">
+      <input formControlName="email" type="email" required placeholder=" " />
+      <span class="floating-label">Email</span>
+    </div>
+    <div class="input-text-container">
+      <input
+        formControlName="password"
+        type="password"
+        required
+        placeholder=" "
+      />
+      <span class="floating-label">Senha</span>
+    </div>
+    <app-button type="submit" [disabled]="formAuth.invalid">Entrar</app-button>
+    <p class="error" *ngIf="errorMessage">* {{errorMessage}} *</p>
   </form>
 </section>
 <section class="login-panel"></section>
