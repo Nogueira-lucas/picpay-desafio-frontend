@@ -3,11 +3,43 @@
 
 * {
   box-sizing: border-box;
+  font-family: "Montserrat-Regular";
 }
 
 html,
 body {
-  font-family: sans-serif;
   margin: 0;
   padding: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@font-face {
+  font-family: "Montserrat-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat-ExtraBold";
+  font-style: bolder;
+  font-weight: bolder;
+  src: url("./assets/fonts/Montserrat-ExtraBold.ttf");
+}
+
+.task-modal {
+  --height: 52vh;
+}
+
+.profile-modal {
+  --height: 35vh;
+}
+
+.ag-header-cell-label {
+  justify-content: center;
 }
