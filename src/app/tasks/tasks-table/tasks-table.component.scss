@@ -1,0 +1,63 @@
+table {
+  width: 100%;
+}
+
+.mat-border-radius {
+  border-radius: 8px !important;
+}
+
+.mat-border-radius-paginator {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.mat-border-radius-wrapper {
+  border-radius: 0 0 8px 8px !important;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.empty-table-message {
+  padding: 20px;
+  opacity: 0.6;
+}
+
+.mat-table .mat-row:nth-child(even) {
+  background-color: var(--secondary-color);
+}
+
+.mat-table {
+  background-color: transparent !important;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table tr:last-child td /*To remove the last border*/ {
+  border-bottom: 0 solid;
+}
+
+.table-wrapper {
+  background-color: white;
+}
+
+::ng-deep .mat-form-field-infix  {
+  padding: .5em 0 !important;
+}
+
+.mat-column-action {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.mat-cell-secondary {
+  display: block;
+  opacity: 0.6;
+}
+
+.mat-row {
+  height: 80px !important;
+}
