@@ -25,6 +25,6 @@
   .login-panel {
     flex: 1 1 auto;
     background: url('~/src/assets/img/man-doing-online-payment.svg') no-repeat center;
-    background-size: auto;
+    background-color: $tertiary-background-color;    
   }
 }

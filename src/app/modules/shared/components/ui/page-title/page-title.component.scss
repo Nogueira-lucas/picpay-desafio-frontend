@@ -1,0 +1,10 @@
+@import "~/src/scss/base/variables";
+
+:host {
+  h1 { 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: $secondary-text-color;
+  }
+}

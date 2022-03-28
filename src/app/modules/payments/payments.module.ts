@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PaymentsRoutingModule } from './payments-routing.module';
 import { ListComponent } from './pages/list/list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ListComponent } from './pages/list/list.component';
   ],
   imports: [
     CommonModule,
-    PaymentsRoutingModule
+    PaymentsRoutingModule,
+    SharedModule
   ]
 })
 export class PaymentsModule { }
