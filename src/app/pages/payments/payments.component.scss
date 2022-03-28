@@ -1,0 +1,54 @@
+.bg-page{
+  background-color: #f2f2f2;
+  padding: 50px;
+}
+.content{
+  background-color: #ffffff;
+  
+}
+.title, .btn-add{
+  display: flex;
+  padding: 10px 0 10px 0;
+  
+}
+.title{
+  justify-content: left;
+}
+.btn-add{
+  justify-content: right;
+}
+.table-menu{
+padding: 10px;
+}
+
+h2{
+  font-weight: bold;
+}
+.cell-group-col *{
+  display: grid;
+  place-items: left;
+}
+.cell-group-row *{
+  display: inline-grid;
+  place-items: center;
+}
+
+tbody tr:nth-child(even){
+  background-color: #F5F8FA;
+}
+
+.bi{
+  width: 32px;
+  height: 32px;
+  //padding: 2px;
+}
+.link-icons{
+visibility: hidden;
+text-decoration-line: none;
+}
+
+tr:hover .link-icons{
+  visibility: visible;
+  cursor: pointer;
+
+  }
