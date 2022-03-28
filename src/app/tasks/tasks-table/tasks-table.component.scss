@@ -44,8 +44,8 @@ table tr:last-child td /*To remove the last border*/ {
   background-color: white;
 }
 
-::ng-deep .mat-form-field-infix  {
-  padding: .5em 0 !important;
+::ng-deep .mat-form-field-infix {
+  padding: 0.1rem 0 0.4rem !important;
 }
 
 .mat-column-action {
@@ -60,4 +60,21 @@ table tr:last-child td /*To remove the last border*/ {
 
 .mat-row {
   height: 80px !important;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 8px 8px 0 0;
+}
+
+.mat-form-search-field {
+  margin: 15px 15px 0;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-prefix,
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 0.35rem !important;
 }

@@ -2,14 +2,27 @@
   class="mat-elevation-z2 mat-border-radius"
   (matSortChange)="announceSortChange($event)"
 >
-  <!-- Paginação -->
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-    aria-label="Lista de pagamentos"
-    class="mat-border-radius-paginator"
-  >
-  </mat-paginator>
+  <div class="table-header">
+    <!-- Busca -->
+    <mat-form-field appearance="outline" class="mat-form-search-field">
+      <mat-icon matSuffix>search</mat-icon>
+      <input
+        matInput
+        type="search"
+        placeholder="Pesquisar por usuário"
+        class="search-input"
+        [ngModel]="searchInput" (ngModelChange)="searchUsername($event)"
+      />
+    </mat-form-field>
+    <!-- Paginação -->
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Lista de pagamentos"
+      class="mat-border-radius-paginator"
+    >
+    </mat-paginator>
+  </div>
 
   <div class="table-wrapper mat-border-radius-wrapper">
     <table
@@ -98,7 +111,11 @@
           Pago
         </th>
         <td mat-cell *matCellDef="let element">
-          <mat-checkbox color="primary" [(ngModel)]="element.isPayed" (click)="pay(element)"></mat-checkbox>
+          <mat-checkbox
+            color="primary"
+            [(ngModel)]="element.isPayed"
+            (click)="pay(element)"
+          ></mat-checkbox>
         </td>
       </ng-container>
 

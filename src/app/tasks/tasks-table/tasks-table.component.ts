@@ -17,6 +17,7 @@ export class TasksTableComponent implements OnInit {
   tasks: Array<TaskModel> = [];
   displayedColumns: string[] = ['username', 'title', 'date', 'value', 'isPayed', 'action'];
   dataSource = new MatTableDataSource<TaskModel>(this.tasks);
+  searchInput = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -58,5 +59,9 @@ export class TasksTableComponent implements OnInit {
 
   pay(task: TaskModel) {
     console.log('pay', task);
+  }
+
+  searchUsername(event: Event) {
+    console.log(event);
   }
 }
