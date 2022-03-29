@@ -109,9 +109,8 @@ export class PaymentsListComponent implements OnInit, OnDestroy {
 
     private resetHeaders(column: string) {
         this.headers.forEach((header) => {
-            if (this.sortColumn !== column) {
+            if (header.sortable !== column) {
                 header.direction = '';
-                this.sortColumn = '';
             }
         });
     }
