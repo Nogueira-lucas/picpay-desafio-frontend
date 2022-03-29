@@ -5,13 +5,14 @@ import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
     private apiURL = environment.api;
-    constructor(private http: HttpClient, private alertService: AlertService) {}
+    constructor(private http: HttpClient, private alertService: AlertService, private readonly router: Router) {}
 
     login(email: string, password: string): Observable<User> {
         const params = new URLSearchParams({ email, password } as { [key: string]: string }).toString();
@@ -28,5 +29,10 @@ export class AuthService {
                 return undefined;
             })
         );
+    }
+
+    logout() {
+        sessionStorage.removeItem('currentUser');
+        this.router.navigate(['/login']);
     }
 }

@@ -18,3 +18,40 @@
     color: white;
     font-size: 1.5rem;
 }
+
+.bi {
+    font-size: 2.25rem;
+    color: #ffffff;
+}
+.navbar-logout {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    color: #ffffff;
+    margin: 0 20px 0 20px;
+
+    & label {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 800;
+    }
+
+    & small {
+        font-size: 0.8rem;
+    }
+}
+
+.logout-icon {
+    display: grid;
+    place-items: center;
+}
+
+.img-log-out {
+    font-size: 1.25rem;
+}

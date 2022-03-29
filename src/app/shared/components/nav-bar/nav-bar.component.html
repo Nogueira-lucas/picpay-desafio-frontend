@@ -3,5 +3,14 @@
         <label class="title font-weight-bold">Pay</label>
         <label class="title">Friends</label>
     </span>
-    <img src="../../../assets/images/eu.jpg" alt=" " class="photo" />
+    <span class="navbar-logout">
+        <span class="user-info">
+            <label>{{ user.name }}</label>
+            <small>{{ user.email }}</small>
+        </span>
+
+        <a href="#" class="logout-icon" title="Sair" (click)="out()">
+            <img class="img-log-out" src="../../../../assets/icons/log-out.svg" alt="Logout" />
+        </a>
+    </span>
 </div>
