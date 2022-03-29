@@ -1,17 +1,76 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-html, body { height: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-@import "~bootstrap-icons/font/bootstrap-icons.css";
+select {
+    margin: 5px !important;
+}
+
+input[type='text'],
+input[type='password'] {
+    padding: 5px;
+}
+
+.border {
+    border: 2px solid #dee2e6;
+    border-radius: 5px;
+}
+
+.to-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-input {
+    display: flex;
+}
+
+@mixin th-icon {
+    content: '';
+    display: inline-block;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    transform: translate(5px, 5px);
+}
+
+th[sortable] {
+    cursor: pointer;
+
+    &:not(.asc, .desc)::after {
+        background: url('assets/icons/chevron-expand.svg');
+        @include th-icon();
+    }
+
+    &.asc::after {
+        background: url('assets/icons/chevron-up.svg');
+        @include th-icon();
+    }
+
+    &.desc::after {
+        background: url('assets/icons/chevron-down.svg');
+        @include th-icon();
+    }
+}
