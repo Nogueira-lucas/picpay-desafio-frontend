@@ -1,0 +1,7 @@
+<div *ngIf="field?.invalid && (field?.dirty || field?.touched)" class="error-text">
+    <small *ngIf="field?.errors?.required"> Campo Obrigátorio </small>
+
+    <small *ngIf="field?.errors?.email"> Email inválido </small>
+
+    <small *ngIf="field?.errors?.minlength"> {{ name }} precisa ter no mínimo {{ prop }} caracteres </small>
+</div>

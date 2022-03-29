@@ -1,0 +1,13 @@
+.error-text {
+    color: var(--danger);
+    font-weight: 400;
+    font-size: 0.75rem;
+
+    margin-top: 0.5rem;
+    margin-left: 3px;
+
+    small {
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+}
