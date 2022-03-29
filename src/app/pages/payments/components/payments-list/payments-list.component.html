@@ -1,0 +1,88 @@
+<app-nav-bar></app-nav-bar>
+<div class="bg-page">
+    <span class="title">
+        <h2>Meus pagamentos</h2>
+    </span>
+    <span class="btn-add">
+        <button class="btn btn-primary btn-sm p-2 text-sm-center" (click)="openPaymentModal()">
+            ADICIONAR PAGAMENTO
+        </button>
+    </span>
+
+    <div class="content content-style">
+        <div class="form-group table-menu">
+            <span class="image-input">
+                <input
+                    [ngModelOptions]="{ standalone: true }"
+                    [(ngModel)]="search"
+                    (keyup)="listPayments()"
+                    type="text"
+                    class="border form-input"
+                    placeholder="Pesquisar por Usuário"
+                />
+                <button class="btn-icon">
+                    <i class="bi bi-search"></i>
+                </button>
+            </span>
+
+            <span class="group-row">
+                <label for="items">Exibir</label>
+                <select
+                    id="items"
+                    name="items"
+                    class="border form-select"
+                    style="width: auto"
+                    [(ngModel)]="pageSize"
+                    (ngModelChange)="listPayments()"
+                >
+                    <option [ngValue]="5">5</option>
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                </select>
+
+                <ngb-pagination
+                    [collectionSize]="100"
+                    [(page)]="page"
+                    [pageSize]="pageSize"
+                    [maxSize]="5"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    (pageChange)="listPayments()"
+                ></ngb-pagination>
+            </span>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th (sort)="sortPayments($event)" sortable="name" scope="col" class="th-6">Usuário</th>
+                    <th (sort)="sortPayments($event)" sortable="title" scope="col">Título</th>
+                    <th (sort)="sortPayments($event)" sortable="date" scope="col">Data</th>
+                    <th (sort)="sortPayments($event)" sortable="value" scope="col">Valor</th>
+                    <th (sort)="sortPayments($event)" scope="col">Pago</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr scope="row" *ngFor="let payment of filteredPayments">
+                    <td class="group-col">
+                        <span>{{ payment.name }}</span>
+                        <small>@{{ payment.username ?? payment.name }}</small>
+                    </td>
+                    <td>{{ payment.title }}</td>
+                    <td class="group-col">
+                        <span>{{ payment.date | date: 'dd/MM/yyyy' }}</span>
+                        <small>{{ payment.date | date: 'h:mm a' }}</small>
+                    </td>
+                    <td>{{ payment.value | currency: 'BRL' }}</td>
+                    <td><input type="checkbox" [checked]="payment.isPayed" (change)="markAsPaid(payment)" /></td>
+                    <td class="group-row">
+                        <a class="link-icons" (click)="openPaymentModal(payment)"><i class="bi bi-pencil"></i></a>
+                        <a class="link-icons" (click)="openDeleteModal(payment)"><i class="bi bi-x-circle"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

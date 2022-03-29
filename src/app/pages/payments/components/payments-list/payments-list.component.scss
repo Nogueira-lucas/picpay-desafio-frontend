@@ -1,0 +1,85 @@
+.bg-page{
+  background-color: #f2f2f2;
+  padding: 50px;
+}
+.content{
+  background-color: #ffffff;
+}
+.content-style{
+  border-radius: 10px;
+}
+
+.title, .btn-add{
+  display: flex;
+  padding: 10px 0 10px 0;
+  
+}
+.title{
+  justify-content: left;
+}
+.btn-add{
+  justify-content: right;
+}
+.table-menu{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+padding: 20px;
+}
+
+h2{
+  font-weight: bold;
+}
+.group-col *{
+  display: grid;
+  place-items: left;
+}
+.group-row *{
+  display: inline-grid;
+  place-items: center;
+}
+
+tbody tr:nth-child(even){
+  background-color: #F5F8FA;
+}
+
+.bi{
+  width: 32px;
+  height: 32px;
+  //padding: 2px;
+}
+.link-icons{
+visibility: hidden;
+text-decoration-line: none;
+}
+.form-select, .form-input{
+  height: 40px !important;  
+ 
+}
+.form-select{  
+  background-color: #ffffff;
+  width: 75px !important;
+  margin: 0 20px 0 10px !important;
+}
+.form-input{
+  position: relative;
+  width: 300px;
+  margin-right: 0 !important;
+  padding-right: 30px !important;
+}
+
+.btn-icon{
+  position: relative;
+  right: 25px;  
+  background-color: #ffffff;
+  border-style: none;
+  height: 30px;
+  margin: 2px 0 0 0 ;
+  padding: 5px 2px 2px 2px;
+}
+
+tr:hover .link-icons{
+  visibility: visible;
+  cursor: pointer;
+
+  }
