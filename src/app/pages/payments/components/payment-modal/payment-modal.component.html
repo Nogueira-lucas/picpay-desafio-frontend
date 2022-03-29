@@ -1,0 +1,63 @@
+<div class="p-4">
+    <p class="font-weight-bold mb-4">{{ payment?.id ? 'Editar pagamento' : 'Adicionar pagamento' }}</p>
+    <form [formGroup]="paymentForm" class="payment-form mt-4">
+        <div class="form-group">
+            <input
+                type="text"
+                id="user"
+                name="user"
+                class="form-control"
+                formControlName="name"
+                placeholder="Usuário"
+                [required]="true"
+            />
+
+            <app-error-message [field]="name"></app-error-message>
+        </div>
+        <div class="form-group">
+            <input
+                currencyMask
+                type="text"
+                id="value"
+                name="value"
+                class="form-control"
+                formControlName="value"
+                placeholder="Valor"
+                [required]="true"
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+            />
+
+            <app-error-message [field]="value"></app-error-message>
+        </div>
+        <div class="form-group">
+            <input
+                type="datetime-local"
+                id="date"
+                name="date"
+                class="form-control"
+                formControlName="date"
+                placeholder="Data"
+                [required]="true"
+            />
+
+            <app-error-message [field]="date"></app-error-message>
+        </div>
+        <div class="form-group">
+            <input
+                type="text"
+                id="title"
+                name="title"
+                class="form-control"
+                formControlName="title"
+                placeholder="Título"
+                [required]="true"
+            />
+
+            <app-error-message [field]="title"></app-error-message>
+        </div>
+    </form>
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-light btn-sm col-md-3 mr-4" (click)="closeModal()">CANCELAR</button>
+        <button class="btn btn-primary btn-sm col-md-3" (click)="save()">SALVAR</button>
+    </div>
+</div>

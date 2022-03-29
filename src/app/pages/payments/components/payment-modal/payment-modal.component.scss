@@ -1,0 +1,6 @@
+.payment-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 3.75rem);
+    gap: 1rem;
+}
