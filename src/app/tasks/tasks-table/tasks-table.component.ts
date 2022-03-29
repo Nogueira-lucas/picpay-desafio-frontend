@@ -104,5 +104,6 @@ export class TasksTableComponent implements OnInit {
   setTasksData(tasks: Array<TaskModel>) {
     this.dataSource = new MatTableDataSource<TaskModel>(tasks)
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }
