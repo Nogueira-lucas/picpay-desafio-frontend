@@ -1,0 +1,20 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #002d69;
+    height: 80px;
+}
+
+.photo {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    border-style: none;
+}
+
+.title {
+    color: white;
+    font-size: 1.5rem;
+}
