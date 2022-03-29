@@ -1,0 +1,33 @@
+<div class="content-page">
+    <form (submit)="login()" [formGroup]="loginForm" class="left">
+        <span class="form-space w-100">
+            <span class="inpt-header-login">Login</span>
+            <input
+                type="email"
+                id="login"
+                name="email"
+                class="form-field"
+                formControlName="email"
+                placeholder="Email"
+            />
+            <app-error-message [field]="email" [prop]="5" name="Email"></app-error-message>
+        </span>
+        <span class="form-space w-100">
+            <span class="inpt-header-password">Senha</span>
+            <input
+                id="password"
+                name="password"
+                type="password"
+                class="form-field"
+                formControlName="password"
+                placeholder="Senha"
+            />
+            <app-error-message [field]="password" [prop]="4" name="Senha"></app-error-message>
+        </span>
+
+        <button value="ENTRAR" type="submit" class="btn btn-primary btn-sm mx-n4 my-4 w-100">ENTRAR</button>
+    </form>
+    <div class="right">
+        <img class="logo-right" src="../../../assets/images/online-payment.svg" alt="" />
+    </div>
+</div>
