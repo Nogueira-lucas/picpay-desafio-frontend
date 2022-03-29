@@ -1,0 +1,12 @@
+<div class="form p-4">
+    <div class="form-group">
+        <span class="form-control font-weight-bold">Excluir Pagamento</span>
+        <span class="form-control">Usuário: {{ payment.name }}</span>
+        <span class="form-control">Data: {{ payment.date | date: 'dd/MM/yyyy' }}</span>
+        <span class="form-control">Valor: ${{ payment.value }}</span>
+    </div>
+    <div class="d-flex justify-content-around py-2">
+        <button (click)="closeModal()" class="btn btn-light btn-sm col-md-5">CANCELAR</button>
+        <button (click)="deletePayment(payment)" class="btn btn-primary btn-sm col-md-5">SALVAR</button>
+    </div>
+</div>
