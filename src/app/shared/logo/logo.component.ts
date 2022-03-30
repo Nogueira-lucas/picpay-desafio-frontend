@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pf-logo',
@@ -7,12 +8,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class LogoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _router: Router
+  ) { }
 
   @Input('type')
   type: 'dark'
 
   ngOnInit(): void {
+  }
+
+  goToTasks() {
+    this._router.navigateByUrl('/tasks');
   }
 
 }

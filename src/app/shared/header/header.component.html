@@ -1,11 +1,35 @@
 <nav id="header">
   <pf-logo></pf-logo>
-  <img src="assets/avatar.jpg" class="avatar" [matMenuTriggerFor]="menu" (click)="openProfileMenu()" />
-  <mat-menu #menu="matMenu"  yPosition="above">
-    <button style="min-width: 150px !important;" mat-menu-item>
-      <mat-icon>person</mat-icon>
-      <span>Perfil</span>
-    </button>
+  <img
+    src="assets/avatar.jpg"
+    class="avatar"
+    [matMenuTriggerFor]="menu"
+    (click)="openProfileMenu()"
+  />
+  <mat-menu #menu="matMenu" yPosition="above">
+    <!-- Tela de tasks - exibir perfil -->
+    <ng-container *ngIf="currentRoute === '/tasks'">
+      <button
+        style="min-width: 150px !important"
+        mat-menu-item
+        (click)="goToUrl('/profile')"
+      >
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+    </ng-container>
+    <!-- Tela de perfil - exibir tasks -->
+    <ng-container *ngIf="currentRoute === '/profile'">
+      <button
+        style="min-width: 150px !important"
+        mat-menu-item
+        (click)="goToUrl('/tasks')"
+      >
+        <mat-icon>payment</mat-icon>
+        <span>Pagamentos</span>
+      </button>
+    </ng-container>
+    <!-- Logout -->
     <button mat-menu-item (click)="logout()">
       <mat-icon>power_settings_new</mat-icon>
       <span>Logout</span>
