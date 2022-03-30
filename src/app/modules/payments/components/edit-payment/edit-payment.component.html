@@ -3,22 +3,21 @@
   <mat-dialog-content class="mat-typography">
     <form class="new-payment-form">
       <div class="input-text-container">
-        <input formControlName="name" type="text" required placeholder=" " />
+        <input formControlName="name" type="text" required placeholder=" " [value]="data.name" />
         <span class="floating-label">Usuário*</span>
       </div>
       <div class="input-text-container">
-        <input formControlName="value" type="number" required placeholder=" " />
+        <input formControlName="value" type="number" required placeholder=" " [value]="data.value" />
         <span class="floating-label">Valor*</span>
       </div>
       <div class="input-text-container">
-        <input formControlName="date" type="text" required placeholder=" " />
+        <input formControlName="date" type="text" required placeholder=" " [value]="data.date" />
         <span class="floating-label">Data*</span>
       </div>
       <div class="input-text-container">
-        <input formControlName="title" type="text" required placeholder=" " />
+        <input formControlName="title" type="text" required placeholder=" " [value]="data.title" />
         <span class="floating-label">Título</span>
-      </div>
-      
+      </div>      
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

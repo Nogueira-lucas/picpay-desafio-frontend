@@ -7,6 +7,7 @@ import { PaymentsService } from "../../../../services/payments.service";
 import { ErrorDialogComponent } from "../../../shared/components/error-dialog/error-dialog.component";
 import { Task } from "../../models/task";
 import { DeletePaymentComponent } from "../delete-payment/delete-payment.component";
+import { EditPaymentComponent } from '../edit-payment/edit-payment.component';
 
 @Component({
   selector: "app-task-list",
@@ -41,6 +42,12 @@ export class TaskListComponent implements OnInit {
   
   deletePayment(data: Task) {
     this.dialog.open(DeletePaymentComponent, {
+      data 
+    });
+  }
+
+  editPayment(data: Task) {
+    this.dialog.open(EditPaymentComponent, {
       data 
     });
   }
