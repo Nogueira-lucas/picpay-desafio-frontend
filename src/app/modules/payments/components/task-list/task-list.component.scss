@@ -71,6 +71,11 @@
     }
   }
 
+  ::ng-deep .mat-checkbox-frame {
+    background-color: #0091EA;
+    border: none;
+  }
+
   .loading-spinner {
     display: flex;
     justify-content: center;

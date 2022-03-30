@@ -17,6 +17,12 @@
     transition: 0.5s ease-out;
     cursor: pointer;
 
+    &.secondary {
+      transition:none;
+      background-color: $secondary-color;
+      color: $secondary-text-color;
+    }
+
     &:disabled {
       opacity: 0.4;
       cursor: not-allowed;

@@ -1,0 +1,32 @@
+:host {
+  .new-payment-modal {
+    width: 80vh;
+    max-width: 700px;
+
+    input,
+    input:focus ~ .floating-label,
+    input:not(:placeholder-shown) ~ .floating-label {
+      background-color: white;
+    }
+
+    ::ng-deep app-button:first-of-type {
+      padding-right: 29px;
+    }
+  }
+
+  .new-payment-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    .input-text-container {
+      width: calc(50% - 21px);
+      margin-bottom: 42px;
+    }
+  }
+
+  ::ng-deep .mat-dialog-content {
+    padding-top: 10px;
+  }
+}

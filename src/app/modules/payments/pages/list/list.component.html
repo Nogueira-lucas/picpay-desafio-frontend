@@ -2,7 +2,7 @@
 <section>
   <app-page-title>Meus Pagamentos</app-page-title>
   <div class="payment-button-add">
-    <app-button>Adicionar Pagamentos</app-button>
+    <app-button (click)="newPayment()">Adicionar Pagamentos</app-button>
   </div>
   <div class="payments-table">    
    <app-task-list></app-task-list>

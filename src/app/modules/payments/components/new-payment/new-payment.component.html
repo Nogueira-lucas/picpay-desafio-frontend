@@ -1,0 +1,28 @@
+<div class="new-payment-modal">
+  <h2 mat-dialog-title>Adicionar pagamento</h2>
+  <mat-dialog-content class="mat-typography">
+    <form class="new-payment-form">
+      <div class="input-text-container">
+        <input formControlName="email" type="text" required placeholder=" " />
+        <span class="floating-label">Usuário*</span>
+      </div>
+      <div class="input-text-container">
+        <input formControlName="value" type="number" required placeholder=" " />
+        <span class="floating-label">Valor*</span>
+      </div>
+      <div class="input-text-container">
+        <input formControlName="date" type="text" required placeholder=" " />
+        <span class="floating-label">Data*</span>
+      </div>
+      <div class="input-text-container">
+        <input formControlName="title" type="text" required placeholder=" " />
+        <span class="floating-label">Título</span>
+      </div>
+      
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <app-button mat-dialog-close buttonStyle="secondary" class="btn-cancel" >Cancelar</app-button>
+    <app-button>Salvar</app-button>
+  </mat-dialog-actions>
+</div>
