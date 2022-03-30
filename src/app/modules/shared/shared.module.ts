@@ -1,13 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatIconModule } from "@angular/material/icon";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
-import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
-import { ButtonComponent } from './components/ui/button/button.component';
-import { HeaderComponent } from './components/ui/header/header.component';
-import { LogoComponent } from './components/ui/logo/logo.component';
-import { PageTitleComponent } from './components/ui/page-title/page-title.component';
+import { ErrorDialogComponent } from "./components/error-dialog/error-dialog.component";
+import { ButtonComponent } from "./components/ui/button/button.component";
+import { HeaderComponent } from "./components/ui/header/header.component";
+import { LogoComponent } from "./components/ui/logo/logo.component";
+import { PageTitleComponent } from "./components/ui/page-title/page-title.component";
+import { CurrencyPipe } from './pipes/currency.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { PageTitleComponent } from './components/ui/page-title/page-title.compon
     PageTitleComponent,
     ButtonComponent,
     ErrorDialogComponent,
+    CurrencyPipe,
   ],
   exports: [
     HeaderComponent,
@@ -23,7 +26,9 @@ import { PageTitleComponent } from './components/ui/page-title/page-title.compon
     PageTitleComponent,
     ButtonComponent,
     ErrorDialogComponent,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule,
+    CurrencyPipe
   ],
   imports: [CommonModule, MatDialogModule],
 })

@@ -14,6 +14,6 @@ export class PaymentsService {
 
   public getTasks(): Observable<Task[] | any> {
     return this.http.get<Task[]>(`${this.url}/tasks`)
-    .pipe(delay(3000));
+    .pipe(delay(1000));
   }
 }

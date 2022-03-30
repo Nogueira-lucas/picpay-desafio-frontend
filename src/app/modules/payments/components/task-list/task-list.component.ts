@@ -15,7 +15,7 @@ import { Task } from "../../models/task";
 export class TaskListComponent implements OnInit {
   public tasks$: Observable<Task[]>;
 
-  public displayedColumns = ["username", "title", "date", "value", "isPayed"];
+  public displayedColumns = ["name", "title", "date", "value", "isPayed"];
 
   constructor(
     private paymentService: PaymentsService,

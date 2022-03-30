@@ -2,13 +2,53 @@
   table {
     width: 100%;
     border-radius: 4px;
- 
+
+    tr:nth-child(even) {
+      background:#F5F8FA;
+    }
+
+    th {
+      font-weight: bold;
+      color: #2d3540;
+    }
+
+    th, td {
+      padding: 16px 10px;
+    }
+
+    td.user-name, td.date-time {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+
+      p {
+        margin: 0;
+        &:first-of-type {
+          font-size: 14px;
+          color: #2d3540;
+          margin-bottom: 4px;
+        }
+
+        &:last-of-type {
+          font-size: 12px;
+          color: #69788c;
+        }
+      }
+    }
   }
 
   ::ng-deep .task-card {
     width: 100%;
     padding: 0;
     margin-top: 20px;
+
+    th.mat-header-cell {
+      border-width: 2px;
+    }
+
+    td.mat-cell {
+      border: none;
+    }
 
     tr.mat-header-row,
     tr.mat-header-row th:first-of-type {

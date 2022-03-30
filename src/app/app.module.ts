@@ -1,25 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import localePT from '@angular/common/locales/pt';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http'
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorDialogComponent } from './modules/components/error-dialog/error-dialog.component';
 
+registerLocaleData(localePT);
+
 @NgModule({
-  declarations: [	
-    AppComponent, ErrorDialogComponent, 
-   ],
+  declarations: [AppComponent, ErrorDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
