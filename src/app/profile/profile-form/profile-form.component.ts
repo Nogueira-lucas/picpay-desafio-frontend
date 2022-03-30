@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AccountService } from '@core/account.service';
+import { NotificationService } from '@core/notification.service';
 import { take } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -30,7 +31,7 @@ export class ProfileFormComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _accountService: AccountService,
-    private _snackBar: MatSnackBar
+    private _notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -41,14 +42,14 @@ export class ProfileFormComponent implements OnInit {
 
   edit() {
     if (!this.profileFormGroup.valid) {
-      this._snackBar.open('Todos os campos são obrigatórios.');
+      this._notificationService.open('Todos os campos são obrigatórios.');
       return;
     }
 
     const { password, confirmPassword } = this.profileFormGroup.value;
 
     if (password !== confirmPassword) {
-      this._snackBar.open('Os campos de senha não conferem.');
+      this._notificationService.open('Os campos de senha não conferem.');
       return;
     }
 
@@ -62,8 +63,8 @@ export class ProfileFormComponent implements OnInit {
     })
       .pipe(take(1))
       .subscribe(_ => {
-        this._snackBar.open('Informações do perfil atualizadas com sucesso!');
-      }, _ => this._snackBar.open('Ocorreu um erro ao tentar atualizar dados do perfil.'));
+        this._notificationService.open('Informações do perfil atualizadas com sucesso!');
+      }, _ => this._notificationService.open('Ocorreu um erro ao tentar atualizar dados do perfil.'));
   }
 
 }

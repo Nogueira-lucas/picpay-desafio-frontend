@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '@core/notification.service';
 import { TaskService } from '@core/task.service';
 import { TaskModel } from '@models/task.model';
 import { take } from 'rxjs/operators';
@@ -32,7 +33,7 @@ export class TaskModalComponent implements OnInit {
     public dialogRef: MatDialogRef<TaskModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TaskModel,
     private _taskService: TaskService,
-    private _snackBar: MatSnackBar
+    private _notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +50,7 @@ export class TaskModalComponent implements OnInit {
 
   save() {
     if (!this.addPaymentFormGroup.valid) {
-      this._snackBar.open('Todos os campos são obrigatórios.');
+      this._notificationService.open('Todos os campos são obrigatórios.');
       return;
     }
 
@@ -57,16 +58,16 @@ export class TaskModalComponent implements OnInit {
       this._taskService.updateTask({ ...this.data, ...this.addPaymentFormGroup.value })
         .pipe(take(1))
         .subscribe(_ => {
-          this._snackBar.open('Pagamento atualizado com sucesso!');
+          this._notificationService.open('Pagamento atualizado com sucesso!');
           this.dialogRef.close();
-        }, _ => this._snackBar.open('Ocorreu um erro ao tentar atualizar o pagamento'));
+        }, _ => this._notificationService.open('Ocorreu um erro ao tentar atualizar o pagamento'));
     } else {
       this._taskService.createTask({ ...this.addPaymentFormGroup.value })
         .pipe(take(1))
         .subscribe(_ => {
-          this._snackBar.open('Pagamento criado com sucesso!');
+          this._notificationService.open('Pagamento criado com sucesso!');
           this.dialogRef.close();
-        }, _ => this._snackBar.open('Ocorreu um erro ao tentar criar um pagamento'));
+        }, _ => this._notificationService.open('Ocorreu um erro ao tentar criar um pagamento'));
     }
   }
 

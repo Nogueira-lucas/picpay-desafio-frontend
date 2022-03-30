@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '@core/notification.service';
 import { TaskService } from '@core/task.service';
 import { TaskModel } from '@models/task.model';
 import { take } from 'rxjs/operators';
@@ -16,7 +17,7 @@ export class TaskDeleteConfirmModalComponent implements OnInit {
     public dialogRef: MatDialogRef<TaskDeleteConfirmModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TaskModel,
     private _taskService: TaskService,
-    private _snackBar: MatSnackBar
+    private _notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -30,8 +31,8 @@ export class TaskDeleteConfirmModalComponent implements OnInit {
     this._taskService.deleteTask(this.data.id)
       .pipe(take(1))
       .subscribe((_) => {
-        this._snackBar.open('Pagamento excluído com sucesso!');
+        this._notificationService.open('Pagamento excluído com sucesso!');
         this.dialogRef.close();
-      }, _ => this._snackBar.open('Ocorreu um erro ao excluir o pagamento.'));
+      }, _ => this._notificationService.open('Ocorreu um erro ao excluir o pagamento.'));
   }
 }

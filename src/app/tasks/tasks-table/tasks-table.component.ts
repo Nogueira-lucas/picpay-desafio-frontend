@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { NotificationService } from '@core/notification.service';
 import { TaskService } from '@core/task.service';
 import { TaskModel } from '@models/task.model';
 import { take } from 'rxjs/operators';
@@ -29,7 +30,7 @@ export class TasksTableComponent implements OnInit {
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
     private _taskService: TaskService,
-    private _snackBar: MatSnackBar,
+    private _notificationService: NotificationService,
     public dialog: MatDialog
   ) { }
 
@@ -83,10 +84,10 @@ export class TasksTableComponent implements OnInit {
       .pipe(take(1))
       .subscribe(_ => {
         if (task.isPayed)
-          this._snackBar.open('Pagamento marcado como pago.');
+          this._notificationService.open('Pagamento marcado como pago.');
         else
-          this._snackBar.open('Pagamento desmarcado como pago.');
-      }, _ => this._snackBar.open('Ocorreu um erro ao tentar marcar esse pagamento como pago.'),
+          this._notificationService.open('Pagamento desmarcado como pago.');
+      }, _ => this._notificationService.open('Ocorreu um erro ao tentar marcar esse pagamento como pago.'),
         () => this._taskService.triggerGetAll());
   }
 

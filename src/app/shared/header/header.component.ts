@@ -3,6 +3,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '@core/notification.service';
 @Component({
   selector: 'pf-header',
   templateUrl: './header.component.html',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _router: Router,
-    private _snackBar: MatSnackBar 
+    private _notificationService: NotificationService 
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this._authService.logout();
-    this._snackBar.open('Logout feito com sucesso!');
+    this._notificationService.open('Logout feito com sucesso!');
     this._router.navigateByUrl('/login');
   }
 }

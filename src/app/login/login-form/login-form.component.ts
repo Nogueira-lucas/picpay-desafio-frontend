@@ -6,6 +6,7 @@ import { AccountModel } from '@models/account.model';
 import { take } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '@core/notification.service';
 @Component({
   selector: 'pf-login-form',
   templateUrl: './login-form.component.html',
@@ -26,7 +27,7 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private _accountService: AccountService,
     private _authService: AuthService,
-    private _snackBar: MatSnackBar,
+    private _notificationService: NotificationService,
     public router: Router,
   ) { }
 
@@ -42,15 +43,15 @@ export class LoginFormComponent implements OnInit {
         if (account)
           this.redirectToApplication(account);
         else
-          this._snackBar.open('Usuário ou senha incorretos!');
+          this._notificationService.open('Usuário ou senha incorretos!');
       }, (err) => {
-        this._snackBar.open('Não foi possível efetuar o login!');
+        this._notificationService.open('Não foi possível efetuar o login!');
       });
   }
 
   redirectToApplication(account: AccountModel) {
     this._authService.authenticate(account);
     this.router.navigateByUrl('/tasks');
-    this._snackBar.open('Login efetuado com sucesso!');
+    this._notificationService.open('Login efetuado com sucesso!');
   }
 }
