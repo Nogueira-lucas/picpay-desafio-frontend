@@ -1,4 +1,16 @@
 :host {
+  nav {
+    padding: 12px;
+
+    .input-filter {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 4px;
+      padding: 10px 15px;
+      color: #69788c;
+      width: 190px;     
+    }   
+  }
+
   table {
     width: 100%;
     border-radius: 4px;
@@ -41,7 +53,7 @@
     .task-actions {
       display: flex;
       justify-content: flex-end;
-      
+
       img {
         margin-right: 20px;
         cursor: pointer;

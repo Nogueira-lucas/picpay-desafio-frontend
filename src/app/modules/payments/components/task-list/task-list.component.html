@@ -1,5 +1,8 @@
 <mat-card class="task-card">
-  <div *ngIf="tasks$ | async as tasks; else loading">   
+  <div *ngIf="tasks$ | async as tasks; else loading">  
+    <nav>
+      <input type="text" placeholder="Pesquisar por usuário" class="input-filter">
+    </nav> 
     <table mat-table [dataSource]="tasks" class="">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Usuário</th>
