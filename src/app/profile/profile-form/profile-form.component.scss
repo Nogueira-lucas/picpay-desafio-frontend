@@ -1,0 +1,16 @@
+#profile-form {
+    background-color: white;
+    border-radius: 8px;
+    min-width: 100%;
+    padding: 20px;
+}
+
+#profile-form .profile-form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#profile-form .mat-field-size {
+    min-width: calc(50% - 10px);
+}

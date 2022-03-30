@@ -1,0 +1,68 @@
+<section id="profile-form" class="mat-elevation-z2">
+  <form [formGroup]="profileFormGroup" class="profile-form-group">
+    <!-- Nome -->
+    <mat-form-field appearance="outline" class="mat-field-size">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        placeholder="Nome"
+        formControlName="name"
+      />
+    </mat-form-field>
+    <!-- E-mail -->
+    <mat-form-field appearance="outline" class="mat-field-size">
+      <mat-label>E-mail</mat-label>
+      <input
+        matInput
+        placeholder="E-mail"
+        type="email"
+        formControlName="email"
+      />
+    </mat-form-field>
+    <!-- Senha -->
+    <mat-form-field appearance="outline" class="mat-field-size">
+      <mat-label>Senha</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Esconder senha'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <!-- Confirmar senha -->
+    <mat-form-field appearance="outline" class="mat-field-size">
+      <mat-label>Confirmar senha</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="confirmPassword"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Esconder senha'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <!-- Editar -->
+  <button
+    mat-button
+    class="mat-button-primary"
+    (click)="edit()"
+    cdkFocusInitial
+  >
+    Editar perfil
+  </button>
+</section>

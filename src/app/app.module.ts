@@ -35,6 +35,7 @@ import { registerLocaleData } from '@angular/common';
 import { TaskModalComponent } from './tasks/task-modal/task-modal.component';
 import { TaskDeleteConfirmModalComponent } from './tasks/task-delete-confirm-modal/task-delete-confirm-modal.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
 
 registerLocaleData(localePt);
 @NgModule({
@@ -43,7 +44,8 @@ registerLocaleData(localePt);
     MomentPipe,
     TaskModalComponent,
     TaskDeleteConfirmModalComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileFormComponent
   ],
   imports: [
     BrowserModule,

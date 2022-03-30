@@ -1,69 +1,65 @@
-table {
-  width: 100%;
-}
-
-.mat-border-radius {
-  border-radius: 8px !important;
-}
-
-.mat-border-radius-paginator {
-  border-radius: 8px 8px 0 0 !important;
-}
-
-.mat-border-radius-wrapper {
-  border-radius: 0 0 8px 8px !important;
-}
-
-th.mat-sort-header-sorted {
-  color: black;
-}
-
-.empty-table-message {
-  padding: 20px;
-  opacity: 0.6;
-}
-
-.mat-table .mat-row:nth-child(even) {
-  background-color: var(--secondary-color);
-  border-radius: 0 0 8px 8px !important;
-}
-
-.mat-table {
-  background-color: transparent !important;
-}
-
-table {
+#tasks-table table {
   width: 100%;
   border-collapse: collapse;
 }
 
-table tr:last-child td /*To remove the last border*/ {
+#tasks-table .mat-border-radius {
+  border-radius: 8px !important;
+}
+
+#tasks-table .mat-border-radius-paginator {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+#tasks-table .mat-border-radius-wrapper {
+  border-radius: 0 0 8px 8px !important;
+}
+
+#tasks-table th.mat-sort-header-sorted {
+  color: black;
+}
+
+#tasks-table .empty-table-message {
+  padding: 20px;
+  opacity: 0.6;
+}
+
+#tasks-table .mat-table .mat-row:nth-child(even) {
+  background-color: var(--secondary-color);
+  border-radius: 0 0 8px 8px !important;
+}
+
+#tasks-table .mat-table {
+  background-color: transparent !important;
+}
+
+#tasks-table table tr:last-child td /*To remove the last border*/ {
   border-bottom: 0 solid;
 }
 
-.table-wrapper {
+#tasks-table .table-wrapper {
   background-color: white;
 }
 
-::ng-deep .mat-form-field-infix {
+::ng-deep #tasks-table .mat-form-field-infix {
   padding: 0.1rem 0 0.4rem !important;
 }
 
-.mat-column-action {
+#tasks-table .mat-column-action {
   text-align: right;
   justify-content: flex-end;
 }
 
-.mat-cell-secondary {
+#tasks-table .mat-cell-secondary {
   display: block;
   opacity: 0.6;
 }
 
-.mat-row {
+#tasks-table .mat-row {
   height: 80px !important;
 }
 
-.table-header {
+#tasks-table .table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,11 +67,11 @@ table tr:last-child td /*To remove the last border*/ {
   border-radius: 8px 8px 0 0;
 }
 
-.mat-form-search-field {
+#tasks-table .mat-form-search-field {
   margin: 15px 15px 0;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-prefix,
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix {
+::ng-deep #tasks-table .mat-form-field-appearance-outline .mat-form-field-prefix,
+::ng-deep #tasks-table .mat-form-field-appearance-outline .mat-form-field-suffix {
   top: 0.35rem !important;
 }

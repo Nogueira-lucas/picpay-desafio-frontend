@@ -10,15 +10,15 @@ const PATH = 'tasks';
 export class TaskService {
     refreshGetAll = new Subject<void>();
 
-    constructor(private httpService: HttpService) { }
+    constructor(private _httpService: HttpService) { }
 
-    getAllTasks = (): Observable<Array<TaskModel>> => this.httpService.get(`${PATH}`);
+    getAllTasks = (): Observable<Array<TaskModel>> => this._httpService.get(`${PATH}`);
     createTask = (task: TaskModel): Observable<TaskModel> =>
-        this.httpService.post(`${PATH}`, task);
+        this._httpService.post(`${PATH}`, task);
     updateTask = (task: TaskModel): Observable<TaskModel> =>
-        this.httpService.put(`${PATH}/${task.id}`, task);
+        this._httpService.put(`${PATH}/${task.id}`, task);
     deleteTask = (taskId: number): Observable<{}> =>
-        this.httpService.delete(`${PATH}/${taskId}`);
+        this._httpService.delete(`${PATH}/${taskId}`);
     
     triggerGetAll = () => this.refreshGetAll.next(void 0);
 }

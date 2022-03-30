@@ -8,7 +8,9 @@ const PATH = 'account';
     providedIn: 'root'
 })
 export class AccountService {
-    constructor(private httpService: HttpService) { }
+    constructor(private _httpService: HttpService) { }
 
-    getAccounts = (): Observable<Array<AccountModel>> => this.httpService.get(`${PATH}`);
+    getAccounts = (): Observable<Array<AccountModel>> => this._httpService.get(`${PATH}`);
+    updateAccount = (account: AccountModel): Observable<AccountModel> =>
+        this._httpService.put(`${PATH}/${account.id}`, account);
 }
