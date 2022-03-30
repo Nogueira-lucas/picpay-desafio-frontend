@@ -16,7 +16,8 @@ import {
   InputLabel
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { useHistory } from 'react-router-dom'
 
 const Login = () => {
 
@@ -46,6 +47,8 @@ const Login = () => {
     })
   }
 
+  const history = useHistory()
+
   return (
     <Wrapper>
       <ContainerLogin>
@@ -74,7 +77,9 @@ const Login = () => {
                 />
             </FormControl>
           </WrapperInputs>
-          <Button variant="contained">ENTRAR</Button>
+            <Button variant="contained" onClick={() => history.push("meus-pagamentos")}>
+              ENTRAR
+            </Button>
       </ContainerLogin>
       <ManPayment />
     </Wrapper>
