@@ -4,7 +4,7 @@ import Login from '../components/pages/Login'
 
 const Routes = () => (
   <Switch>
-	<Route exact path='/' component={Login} />
+    <Route exact path='/' component={Login} />
   </Switch>
 )
 
