@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TaskService } from '@core/task.service';
 import { TaskModalComponent } from './task-modal/task-modal.component';
 
 @Component({
@@ -9,7 +10,10 @@ import { TaskModalComponent } from './task-modal/task-modal.component';
 })
 export class TasksComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private _taskService: TaskService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -21,9 +25,7 @@ export class TasksComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log({ result });
-      // this.animal = result;
+      this._taskService.triggerGetAll();
     });
   }
 }

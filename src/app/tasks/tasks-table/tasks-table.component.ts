@@ -34,17 +34,22 @@ export class TasksTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getAllTasks();
+    this._taskService.refreshGetAll.subscribe(_ => this.getAllTasks());
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  getAllTasks = () => {
     this._taskService.getAllTasks()
       .pipe(take(1))
       .subscribe(tasks => {
         this.tasks = tasks;
         this.setTasksData(tasks);
       });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   announceSortChange(sortState: Sort) {
@@ -56,34 +61,24 @@ export class TasksTableComponent implements OnInit {
   }
 
   openEditModal(task: TaskModel) {
-    console.log('openEditModal', task);
-
     const dialogRef = this.dialog.open(TaskModalComponent, {
       width: '50%',
       data: { ...task },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('openEditModalResult', result);
-    });
+    dialogRef.afterClosed().subscribe(_ => this._taskService.triggerGetAll());
   }
 
   openDeleteConfirmModal(task: TaskModel) {
-    console.log('openDeleteConfirmModal', task);
-
     const dialogRef = this.dialog.open(TaskDeleteConfirmModalComponent, {
       width: '30%',
       data: { ...task },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('openDeleteConfirmModalResult', result);
-    });
+    dialogRef.afterClosed().subscribe(_ => this._taskService.triggerGetAll());
   }
 
   pay(task: TaskModel) {
-    console.log('pay', task);
-
     this._taskService.updateTask({ ...task, isPayed: !task.isPayed })
       .pipe(take(1))
       .subscribe(_ => {
@@ -91,12 +86,11 @@ export class TasksTableComponent implements OnInit {
           this._snackBar.open('Pagamento marcado como pago.');
         else
           this._snackBar.open('Pagamento desmarcado como pago.');
-      }, _ => this._snackBar.open('Ocorreu um erro ao tentar marcar esse pagamento como pago.'));
+      }, _ => this._snackBar.open('Ocorreu um erro ao tentar marcar esse pagamento como pago.'),
+        () => this._taskService.triggerGetAll());
   }
 
   searchUsername(event: string) {
-    console.log('searchUsername', event);
-
     const tasks = this.tasks.filter(t => t.username.includes(event));
     this.setTasksData(tasks);
   }

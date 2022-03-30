@@ -13,7 +13,7 @@ export const ROUTES: Routes = [
         component: TasksComponent,
         canActivate: [AuthGuard]
     },
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
