@@ -6,6 +6,7 @@ import { catchError } from "rxjs/operators";
 import { PaymentsService } from "../../../../services/payments.service";
 import { ErrorDialogComponent } from "../../../shared/components/error-dialog/error-dialog.component";
 import { Task } from "../../models/task";
+import { DeletePaymentComponent } from "../delete-payment/delete-payment.component";
 
 @Component({
   selector: "app-task-list",
@@ -35,6 +36,12 @@ export class TaskListComponent implements OnInit {
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg,
+    });
+  }
+  
+  deletePayment(data: Task) {
+    this.dialog.open(DeletePaymentComponent, {
+      data 
     });
   }
 

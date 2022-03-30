@@ -1,0 +1,16 @@
+<div class="delete-payment-modal">
+  <h2 mat-dialog-title>Excluir pagamento</h2>
+  <mat-dialog-content class="mat-typography">
+    <mat-list>
+      <mat-list-item> <strong>Usuário:&nbsp;</strong> {{data.name}}</mat-list-item>
+      <mat-list-item> <strong>Data:&nbsp;</strong> {{data.date | date: "dd/MM/yyyy"}}</mat-list-item>
+      <mat-list-item> <strong>Valor:&nbsp;</strong> {{data.value | currency}}</mat-list-item>
+    </mat-list>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <app-button mat-dialog-close buttonStyle="secondary" class="btn-cancel"
+      >Cancelar</app-button
+    >
+    <app-button>Salvar</app-button>
+  </mat-dialog-actions>
+</div>

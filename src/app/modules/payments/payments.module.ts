@@ -11,10 +11,11 @@ import { NewPaymentComponent } from './components/new-payment/new-payment.compon
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { ListComponent } from './pages/list/list.component';
 import { PaymentsRoutingModule } from './payments-routing.module';
+import { DeletePaymentComponent } from './components/delete-payment/delete-payment.component';
 
 
 @NgModule({
-  declarations: [ListComponent, TaskListComponent, NewPaymentComponent],
+  declarations: [ListComponent, TaskListComponent, NewPaymentComponent, DeletePaymentComponent],
   imports: [
     CommonModule,
     PaymentsRoutingModule,

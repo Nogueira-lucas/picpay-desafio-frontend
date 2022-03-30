@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import {MatListModule} from '@angular/material/list';
 
 import { ErrorDialogComponent } from "./components/error-dialog/error-dialog.component";
 import { ButtonComponent } from "./components/ui/button/button.component";
@@ -28,7 +29,8 @@ import { CurrencyPipe } from './pipes/currency.pipe';
     ErrorDialogComponent,
     MatIconModule,
     MatCheckboxModule,
-    CurrencyPipe
+    CurrencyPipe,
+    MatListModule
   ],
   imports: [CommonModule, MatDialogModule],
 })
