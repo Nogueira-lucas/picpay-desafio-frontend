@@ -1,10 +1,5 @@
 import styled from "styled-components"
 
-export const Wrapper = styled.div`
-	max-width: 1440px;
-	margin: 0 auto;
-	display: flex;
-`
 export const ContainerLogin = styled.div`
 	background-color: #f2f2f2;
 	max-width: 540px;

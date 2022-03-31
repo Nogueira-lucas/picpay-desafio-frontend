@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import {
     ContainerLogin,
-    Wrapper,
     Title,
     WrapperInputs
 } from './Login.style'
@@ -50,7 +49,7 @@ const Login = () => {
   const history = useHistory()
 
   return (
-    <Wrapper>
+    <>
       <ContainerLogin>
           <Logo />
           <Title>Bem vindo de volta</Title>
@@ -82,7 +81,7 @@ const Login = () => {
             </Button>
       </ContainerLogin>
       <ManPayment />
-    </Wrapper>
+    </>
   )
 }
 
