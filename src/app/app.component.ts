@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './services/authentication/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   title: string;
 
+  constructor(public authenticationService: AuthenticationService) {
+  }
+  
+
   ngOnInit() {
-   this.title = 'Desafio Picpay Front-end';
   }
 }

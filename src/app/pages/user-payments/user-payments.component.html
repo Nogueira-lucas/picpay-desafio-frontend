@@ -1,0 +1,194 @@
+<div class="container-fluid bg-default page-full">
+    <p class="title pt-5">Meus Pagamentos</p>
+    <div class="d-flex flex-row-reverse">
+        <div class="p-1">
+            <button class="btn btn-primary" type="button" (click)="showModalCreate()">Adicionar Pagamento</button>
+        </div>
+        <div class="p-1">
+            <button class="btn btn-secondary" type="button" (click)="toggleFilter()" aria-expanded="!isFilterCollapsed" aria-controls="filterCollapse"><i class="bi bi-sliders2-vertical"></i> Filtrar</button>
+        </div>
+    </div>
+    <div id="filterCollapse" [collapse]="isFilterCollapsed" [isAnimated]="true" class="filter-area mt-2">
+        <form role="form" [formGroup]="filterForm">
+            <div class="row row-cols-4 p-2 pt-3">
+                <div class="col">
+                    <span class="h6">Por usuário</span>
+                    <div class="input-group mt-1">
+                        <input type="text" class="form-control" formControlName="name" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <span class="h6">Por período</span>
+                        <input type="text" class="form-control mt-1" formControlName="dateRange" bsDaterangepicker required [bsConfig]="{ rangeInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }">
+                    </div>
+                </div>
+                <div class="col">
+                    <span class="h6">Por título</span>
+                    <div class="input-group mt-1">
+                        <input type="text" class="form-control" formControlName="title" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="col">
+                    <span class="h6">Por valor</span>
+                    <div class="input-group mt-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="">De</span>
+                        </div>
+                        <input type="number" min="0" class="form-control" formControlName="minValue">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="">até</span>
+                        </div>
+                        <input type="number" min="0" class="form-control" formControlName="maxValue">
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-row-reverse">
+                <div class="p-2">
+                    <button class="btn btn-primary" type="button" (click)="search()"><i
+                            class="bi bi-search pr-1"></i> Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="bg-white round-edge-area mt-2" *ngIf="rows && rows.length > 0">
+        <ngx-datatable *ngIf="!loading" class="table table-hover material table-condensed striped mb-0"
+            [loadingIndicator]="loading" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [summaryPosition]="'top'"
+            [rowHeight]="'auto'" [externalPaging]="true" [count]="page.totalElements" [offset]="page.pageNumber"
+            [limit]="page.size" (page)='setPage($event)'>
+            <ngx-datatable-column name="name" [sortable]="true">
+                <ng-template let-column="column" ngx-datatable-header-template>Usuário</ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template><p class="mb-0">{{row.name}}</p><small class="text-muted">@{{row.username}}</small></ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="date" [sortable]="true">
+                <ng-template let-column="column" ngx-datatable-header-template>Data</ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template><p>{{value | date:'dd/MM/yyyy'}}</p><p class="blockquote-footer">{{value | date:'shortTime'}}</p></ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="title" [sortable]="true">
+                <ng-template let-column="column" ngx-datatable-header-template>Título</ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>{{value}}</ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="value" [sortable]="true">
+                <ng-template let-column="column" ngx-datatable-header-template>Valor</ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>{{value | currency : 'BRL'}}</ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="id" [sortable]="false" [resizeable]="false">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    <div>Detalhe</div>
+                </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <button class="btn btn-link btn-xs" (click)="showModalUpdate(row)">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-link btn-xs" (click)="showModalDelete(row)">
+                        <i class="bi bi-x-circle"></i>
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+    <div class="card w-100 text-center mt-2 mb-1" *ngIf="!(rows && rows.length > 0)">
+        <div class="card-body">
+            <h1><i class="bi bi-search"></i></h1>
+            <h4 class="card-title mb-0 mt-4">Pagamentos não encontrado</h4>
+            <p class="card-text text-muted">Dica: tente usar nossos filtros</p>
+            <button class="btn btn-primary mt-2" type="button" (click)="toggleFilter()" aria-expanded="!isFilterCollapsed"
+                aria-controls="filterCollapse"><i class="bi bi-sliders2-vertical"></i> Filtrar</button>
+        </div>
+    </div>
+</div>
+<ng-template #mdStickUpCreate>
+    <form role="form" [ngClass]="{'was-validated': submitted}"  [formGroup]="paymentForm" (ngSubmit)="addUpdatePayment()">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <span *ngIf="!getFormControl('id').value" class="title-2">Adicionar pagamento</span>
+                <span *ngIf="getFormControl('id').value" class="title-2">Editar pagamento</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="openModal?.hide()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label">Usuário</label>
+                            <input type="text" class="form-control" formControlName="name" required>
+                            <div class="invalid-feedback">
+                                Informe o usuário
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label">Valor</label>
+                            <input type="number" min="0" class="form-control" formControlName="value" required>
+                            <div class="invalid-feedback">
+                                Informe o valor pago
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label">Data</label>
+                            <input type="text" class="form-control" formControlName="date" bsDatepicker required [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                            <div class="invalid-feedback">
+                                Informe a data do pagamento
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label">Título</label>
+                            <input type="text" class="form-control" formControlName="title" required>
+                            <div class="invalid-feedback">
+                                Informe um título
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-sm btn-light w-25" (click)="openModal?.hide()">Cancelar</button>
+                <button type="submit" class="btn btn-sm btn-primary w-25">Salvar</button>
+            </div>
+        </div>
+    </form>
+</ng-template>
+<ng-template #mdStickUpDelete>
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <span class="title-2">Excluir pagamento</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="openModal?.hide()"></button>
+            </div>
+            <div class="modal-body">
+                <span><strong>Usuário:</strong> {{selectedPayment.username}}</span>
+                <br>
+                <span><strong>Data:</strong> {{selectedPayment.date | date:'dd/MM/yyyy HH:mm'}}</span>
+                <br>
+                <span><strong>Valor:</strong> {{ selectedPayment.value | currency : 'BRL'}}</span>
+            </div>
+            <div class="modal-footer border-top-0">
+                <div class="p-1 flex-fill">
+                    <button type="button" class="btn btn-sm btn-light w-100" (click)="openModal?.hide()">Cancelar</button>
+                </div>
+                <div class="p-1 flex-fill">
+                    <button type="button" class="btn btn-sm btn-primary w-100" (click)="delete()">Salvar</button>
+                </div>
+            </div>
+        </div>
+</ng-template>
+<ng-template #mdStickUpFeedback>
+    <div class="modal-content">
+        <div class="modal-body text-center">
+            <h4 class="card-title">{{modalActionText}}</h4>
+            <p class="card-text text-muted"></p>
+        </div>
+        <div class="modal-footer border-top-0">
+            <div class="p-1 flex-fill">
+                <button type="button" class="btn btn-sm btn-primary w-100" (click)="openModal?.hide()">Fechar</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
