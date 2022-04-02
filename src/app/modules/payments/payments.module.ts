@@ -7,16 +7,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 
 import { SharedModule } from '../shared/shared.module';
+import { DeletePaymentComponent } from './components/delete-payment/delete-payment.component';
+import { EditPaymentComponent } from './components/edit-payment/edit-payment.component';
 import { NewPaymentComponent } from './components/new-payment/new-payment.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { ListComponent } from './pages/list/list.component';
 import { PaymentsRoutingModule } from './payments-routing.module';
-import { DeletePaymentComponent } from './components/delete-payment/delete-payment.component';
-import { EditPaymentComponent } from './components/edit-payment/edit-payment.component';
-
 
 @NgModule({
-  declarations: [ListComponent, TaskListComponent, NewPaymentComponent, DeletePaymentComponent, EditPaymentComponent],
+  declarations: [
+    ListComponent,
+    TaskListComponent,
+    NewPaymentComponent,
+    DeletePaymentComponent,
+    EditPaymentComponent,
+  ],
   imports: [
     CommonModule,
     PaymentsRoutingModule,
@@ -25,7 +30,7 @@ import { EditPaymentComponent } from './components/edit-payment/edit-payment.com
     MatCardModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
   ],
 })
 export class PaymentsModule {}
