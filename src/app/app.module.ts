@@ -2,14 +2,15 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localePT from '@angular/common/locales/pt';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MaterialModule } from './material/material.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ErrorDialogComponent } from './modules/components/error-dialog/error-dialog.component';
-import { FormsModule } from '@angular/forms';
 
 
 registerLocaleData(localePT);
@@ -22,7 +23,8 @@ registerLocaleData(localePT);
     AuthModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   bootstrap: [AppComponent],
 })
