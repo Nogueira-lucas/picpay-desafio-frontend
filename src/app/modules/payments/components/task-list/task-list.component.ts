@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from "@angular/material/sort";
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
@@ -34,6 +34,8 @@ export class TaskListComponent implements OnInit {
     "id",
   ];
 
+  public filterValue: string = "";
+
   constructor(
     private paymentService: PaymentsService,
     public dialog: MatDialog
@@ -55,22 +57,11 @@ export class TaskListComponent implements OnInit {
         this.tasks.filterPredicate = (data: Task, filter: string) => {
           return data.name.toLowerCase().includes(filter);
         };
-
-        this.pageNavigation()
       });
   }
 
-  pageList =[]
-
-  pageNavigation() {
-    this.paginator.ngOnInit = ()=>{console.log(`sdss`)}
-  }
-
-  
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.tasks.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    this.tasks.filter = this.filterValue.trim().toLowerCase();
   }
 
   onError(errorMsg: string) {
@@ -84,12 +75,12 @@ export class TaskListComponent implements OnInit {
       data,
     });
   }
-  
-  setPage(index){
-      this.paginator.pageIndex = index;
-      this.paginator._changePageSize(this.paginator.pageSize);
+
+  setPage(index) {
+    this.paginator.pageIndex = index;
+    this.paginator._changePageSize(this.paginator.pageSize);
   }
-  
+
   editPayment(data: Task) {
     this.dialog.open(EditPaymentComponent, {
       data,
