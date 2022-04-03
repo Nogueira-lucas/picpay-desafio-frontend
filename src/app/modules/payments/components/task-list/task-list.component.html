@@ -6,7 +6,7 @@
           matInput
           type="text"
           [(ngModel)]="filterValue"
-          (keyup)="applyFilter()"
+          (keyup)="applyFilter();"
           placeholder="Pesquisar por usuário"
         />
         <button
@@ -24,15 +24,36 @@
       </mat-form-field>
       <button mat-flat-button class="btn-filter">Filtrar</button>
     </div>
-
-    <mat-paginator
-      class="paginator"
-      #page
-      [pageSize]="5"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-      showFirstLastButtons
-    >
-    </mat-paginator>
+    <div class="custom-paginator">
+      <mat-paginator
+        (page)="onPaginateChange($event)"
+        class="paginator"
+        #paginator
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+      >
+      </mat-paginator>
+      <button
+        [disabled]="!paginator.hasPreviousPage()"
+        (click)="paginator.previousPage()"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button
+        color="accent"
+        [ngClass]="{ 'active-page': item.isActive }"
+        *ngFor="let item of customPaginator"
+        (click)="setPage(item.pageIndex);"
+      >
+        {{ item.pageLabel }}
+      </button>
+      <button
+        [disabled]="!paginator.hasNextPage()"
+        (click)="paginator.nextPage()"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
   </nav>
   <table mat-table [dataSource]="tasks" matSort>
     <ng-container matColumnDef="name">

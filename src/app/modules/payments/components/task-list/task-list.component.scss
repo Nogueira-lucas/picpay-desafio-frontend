@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px;
+    padding: 0 12px;
 
     .filters {
       display: flex;
@@ -32,7 +32,48 @@
           line-height: 14px;
           margin-left: 4px;
         }
-      }     
+      }
+    }
+
+    .custom-paginator {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        background-color: transparent;
+        border: none;
+        border-radius: 6px;
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+        font-size: 12px;
+        font-family: "Lato";
+        font-weight: 700;
+        font-style: normal;
+        color: #69788c;
+        margin: 0 3px;
+
+        &:hover:not(.active-page) {
+          background-color: #ebeeee;
+        }
+
+        &:first-of-type,
+        &:last-of-type {
+          margin: 0 8px;
+
+          .material-icons {
+            font-size: 19px;
+            line-height: 23px;
+          }
+        }
+
+        &.active-page {
+          background: #007dfe;
+          color: #ffffff;
+        }
+      }
     }
   }
 
@@ -98,12 +139,26 @@
   }
 
   ::ng-deep {
+    .mat-paginator-range-actions {
+      display: none;
+    }
+
+    .mat-paginator-page-size-select {
+      margin: 0;
+      width: 64px;
+    }
+
     .task-card {
       width: 100%;
       padding: 0;
       margin-top: 20px;
 
       th.mat-header-cell {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
         border-width: 2px;
       }
 
@@ -160,11 +215,12 @@
       padding: 1px;
     }
 
-    .mat-form-field-flex{
+    .mat-form-field-flex {
       align-items: center;
     }
 
-    .mat-form-field-prefix, .mat-form-field-suffix{
+    .mat-form-field-prefix,
+    .mat-form-field-suffix {
       position: absolute;
       right: 0px;
       font-size: 12px;
@@ -182,7 +238,6 @@
       width: 230px;
       background-color: transparent;
     }
-    
   }
 
   .loading-spinner {
