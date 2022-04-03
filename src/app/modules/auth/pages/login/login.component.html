@@ -6,17 +6,22 @@
       <input formControlName="email" type="email" required placeholder=" " />
       <span class="floating-label">Email</span>
     </div>
-    <div class="input-text-container">
+    <div class="input-text-container password">
       <input
         formControlName="password"
-        type="password"
+        [type]="passwordVisibility ? 'text' : 'password'"
         required
         placeholder=" "
       />
       <span class="floating-label">Senha</span>
+      <mat-icon 
+      (pointerdown)="passwordVisibility = true"
+      (pointerup)="passwordVisibility = false"
+        >remove_red_eye</mat-icon
+      >
     </div>
     <app-button type="submit" [disabled]="formAuth.invalid">Entrar</app-button>
-    <p class="error" *ngIf="errorMessage">* {{errorMessage}} *</p>
+    <p class="error" *ngIf="errorMessage">* {{ errorMessage }} *</p>
   </form>
 </section>
 <section class="login-panel"></section>

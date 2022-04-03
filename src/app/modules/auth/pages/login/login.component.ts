@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   public errorMessage: string = "";
 
+  public passwordVisibility: boolean= false;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,

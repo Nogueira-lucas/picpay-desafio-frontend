@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { LoginComponent } from "./pages/login/login.component";
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from "@angular/forms";
+import { MaterialModule } from '../../material/material.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { ReactiveFormsModule } from "@angular/forms";
   imports: [
     CommonModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
 })
 export class AuthModule {}
