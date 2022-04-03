@@ -54,6 +54,7 @@ const Table = ({ rows }) => {
        rowHeight={81}
        columns={columns}
        rows={rows}
+       rowsPerPageOptions={[5, 10, 15, 50, 100]}
        components={{
          Toolbar: GridToolbar,
        }}
