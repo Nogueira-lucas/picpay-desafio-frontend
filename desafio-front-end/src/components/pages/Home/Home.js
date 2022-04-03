@@ -15,7 +15,6 @@ import {authValidate} from '../../../utils/authValidade'
 
 const { MY_PAYMENTS } = TITLE_PAGES
 
-authValidate()
 
 const Home = () => {
   
@@ -23,6 +22,7 @@ const Home = () => {
   const [rows, setRows] = useState({})
   
   useEffect(() => {
+    authValidate()
     axios.get('http://localhost:3001/tasks').then(res => setRows(res.data))
   },[])
 
