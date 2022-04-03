@@ -7,11 +7,16 @@ import { WrapperIcons } from './Table.style'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined'
 
-const Table = ({ rows, setOpenAddPayment, setPaymentInformations }) => {
+const Table = ({ rows, setOpenAddPayment, setPaymentInformations, setOpenDeleteModal }) => {
 
   const renderEditPayment = ({ row }) => {
     setPaymentInformations(row)
     setOpenAddPayment(true)
+  }
+
+  const renderDeletePayment = ({ row }) => {
+    setPaymentInformations(row)
+    setOpenDeleteModal(true)
   }
 
   const columns = [
@@ -52,7 +57,7 @@ const Table = ({ rows, setOpenAddPayment, setPaymentInformations }) => {
             <IconButton onClick={() => renderEditPayment(data)} >
               <CreateOutlinedIcon />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={() => renderDeletePayment(data)} >
               <CloseOutlinedIcon />
             </IconButton>
           </WrapperIcons>
