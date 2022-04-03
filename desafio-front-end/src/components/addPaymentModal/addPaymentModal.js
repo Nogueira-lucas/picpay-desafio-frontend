@@ -16,6 +16,8 @@ const AddPaymentModal = ({ openAddPayment, setOpenAddPayment, payload }) => {
 
   const handleClose = () => setOpenAddPayment(false)
 
+  console.log(payload)
+
   const style = {
     position: 'absolute',
     top: '50%',
@@ -52,10 +54,31 @@ const AddPaymentModal = ({ openAddPayment, setOpenAddPayment, payload }) => {
           Adicionar pagamento
         </Typography>
         <WrapperInputs className={classesInput.root}>
-          <TextField id="outlined-basic" required label="Usuário" variant="outlined" />
-          <TextField id="outlined-basic" required label="Valor" variant="outlined" />
-          <TextField id="outlined-basic" required label="Data" variant="outlined" />
-          <TextField id="outlined-basic" required label="Título" variant="outlined" />
+          <TextField 
+            defaultValue={payload && payload.name}
+            required 
+            label="Usuário" 
+            variant="outlined" />
+
+          <TextField 
+            required
+           label="Valor"
+           variant="outlined"
+           defaultValue={payload && payload.value} />
+
+          <TextField 
+            required 
+            label="Data" 
+            variant="outlined" 
+            defaultValue={payload && payload.date} />
+
+          <TextField 
+            required 
+            label="Título" 
+            variant="outlined"
+            defaultValue={payload && payload.title}
+            />
+
         </WrapperInputs>
         <WrapperButtons>
           <Button variant='contained' >Salvar</Button>

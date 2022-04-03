@@ -20,6 +20,7 @@ const Home = () => {
   
   const [openAddPayment, setOpenAddPayment] = useState(false)
   const [rows, setRows] = useState({})
+  const [paymentInformations, setPaymentInformations] = useState()
   
   useEffect(() => {
     authValidate()
@@ -27,7 +28,10 @@ const Home = () => {
   },[])
 
 
-  const renderAddPaymentModal = () => setOpenAddPayment(true)
+  const renderAddPaymentModal = () => {
+    setOpenAddPayment(true)
+    setPaymentInformations()
+  }
 
   return (
     <Wrapper>
@@ -37,9 +41,9 @@ const Home = () => {
           <Title title={MY_PAYMENTS} />
           <Button variant='contained' onClick={() => renderAddPaymentModal()} >ADICIONAR PAGAMENTO</Button>
         </Header>
-        <Table rows={rows} />
+        <Table rows={rows} setOpenAddPayment={setOpenAddPayment} setPaymentInformations={setPaymentInformations}/>
       </ContainerInformations>
-      <AddPaymentModal openAddPayment={openAddPayment} setOpenAddPayment={setOpenAddPayment} />
+      <AddPaymentModal openAddPayment={openAddPayment} setOpenAddPayment={setOpenAddPayment} payload={paymentInformations} />
     </Wrapper>
   )
 }

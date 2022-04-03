@@ -1,18 +1,24 @@
 import React from 'react'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
-import { Paper, Checkbox } from '@mui/material'
+import { Paper, Checkbox, IconButton } from '@mui/material'
 import formatPrice from '../../utils/formatPrice'
 import formatDate from '../../utils/formatDate'
+import { WrapperIcons } from './Table.style'
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined'
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined'
 
-const Table = ({ rows }) => {
+const Table = ({ rows, setOpenAddPayment, setPaymentInformations }) => {
 
-  console.log(rows)
+  const renderEditPayment = ({ row }) => {
+    setPaymentInformations(row)
+    setOpenAddPayment(true)
+  }
 
   const columns = [
     {
       field: 'name',
       headerName: 'Usuário',
-      width: 350,
+      width: 350
     },
     {
       field: 'title',
@@ -38,8 +44,20 @@ const Table = ({ rows }) => {
     {
       field: 'isPayed',
       headerName: 'Pago',
-      renderCell: ({ value }) => (
-        <Checkbox checked={value && true}/>
+      width: 300,
+      renderCell: (data) => (
+        <div style={{display: 'flex', alignItems: 'center', width: '340px', justifyContent: 'space-between'}}>
+          <Checkbox checked={data.value && true}/>
+          <WrapperIcons>
+            <IconButton onClick={() => renderEditPayment(data)} >
+              <CreateOutlinedIcon />
+            </IconButton>
+            <IconButton>
+              <CloseOutlinedIcon />
+            </IconButton>
+          </WrapperIcons>
+        </div>
+
       )
     }
   ]
@@ -55,6 +73,7 @@ const Table = ({ rows }) => {
        columns={columns}
        rows={rows}
        rowsPerPageOptions={[5, 10, 15, 50, 100]}
+       disableSelectionOnClick
        components={{
          Toolbar: GridToolbar,
        }}
