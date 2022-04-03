@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import {
   Box,
   Button,
@@ -6,6 +7,9 @@ import {
   Modal,
   TextField
 } from '@mui/material'
+import DateTimePicker from '@mui/lab/DateTimePicker'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
 import {
   WrapperInputs,
   WrapperButtons
@@ -13,10 +17,46 @@ import {
 import { makeStyles } from '@mui/styles'
 
 const AddPaymentModal = ({ openAddPayment, setOpenAddPayment, payload }) => {
+  const [user, setUser] = useState('')
+  const [value, setValue] = useState('')
+  const [date, setDate] = useState(new Date())
+  const [title, setTitle] = useState('')
 
-  const handleClose = () => setOpenAddPayment(false)
+  const handleCleanInputs = () => {
+    setUser()
+    setValue()
+    setDate()
+    setTitle()
+  }
 
-  console.log(payload)
+  const handleSalve = data => {
+    axios.post('http://localhost:3001/tasks', data)
+    handleCleanInputs()
+  }
+  
+  const handleClose = () => {
+    setOpenAddPayment(false)
+  }
+
+  const handleEdit = data => {
+
+  }
+
+  const handleChangeUser = event => {
+    setUser(event.target.value)
+  }
+
+  const handleChangeValue = event => {
+    setValue(event.target.value)
+  }
+
+  const handleChangeDate = newValue => {
+    setDate(newValue)
+  }
+
+  const handleChangeTitle = event => {
+    setTitle(event.target.value)
+  }
 
   const style = {
     position: 'absolute',
@@ -54,34 +94,52 @@ const AddPaymentModal = ({ openAddPayment, setOpenAddPayment, payload }) => {
           Adicionar pagamento
         </Typography>
         <WrapperInputs className={classesInput.root}>
-          <TextField 
-            defaultValue={payload && payload.name}
+          <TextField
+            onChange={handleChangeUser}
+            defaultValue={payload ? payload.name : user}
             required 
             label="Usuário" 
             variant="outlined" />
 
-          <TextField 
+          <TextField
+            onChange={handleChangeValue}
             required
-           label="Valor"
-           variant="outlined"
-           defaultValue={payload && payload.value} />
+            label="Valor"
+            variant="outlined"
+            type='Number'
+            defaultValue={payload ? payload.value : value} />
 
-          <TextField 
-            required 
-            label="Data" 
-            variant="outlined" 
-            defaultValue={payload && payload.date} />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DateTimePicker
+              required
+              label="Data"
+              inputFormat="dd/MM/yyyy HH:MM"
+              defaultValue={payload ? payload.date : date}
+              onChange={handleChangeDate}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
 
-          <TextField 
+          <TextField
+            onChange={handleChangeTitle}
             required 
             label="Título" 
             variant="outlined"
-            defaultValue={payload && payload.title}
+            defaultValue={payload ? payload.title : title}
             />
 
         </WrapperInputs>
         <WrapperButtons>
-          <Button variant='contained' >Salvar</Button>
+          <Button 
+            variant='contained'
+            disabled={!(user !== '' && value !== '' && date !== '' && title !== '')}
+            onClick={() => handleSalve({
+              name: user,
+              value: value,
+              date: date,
+              title: title
+            })}
+          >Salvar</Button>
           <Button 
             variant='contained'
             color='inherit' 

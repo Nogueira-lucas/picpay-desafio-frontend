@@ -25,7 +25,7 @@ const Home = () => {
   useEffect(() => {
     authValidate()
     axios.get('http://localhost:3001/tasks').then(res => setRows(res.data))
-  },[])
+  },[openAddPayment])
 
 
   const renderAddPaymentModal = () => {
