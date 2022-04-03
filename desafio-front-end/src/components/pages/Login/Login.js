@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import {
     ContainerLogin,
     Title,
@@ -30,23 +31,46 @@ const Login = () => {
 
   const classesInput = useStyles()
 
-  const [values, setValues] = useState({
+  const [passwordValues, setPasswordValues] = useState({
     password: '',
     showPassword: false,
   })
 
-  const handleChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value })
+  const [email, setEmail] = useState()
+
+  const handleChangeEmail = event => {
+    setEmail(event.target.value)
+  }
+
+  const handleChangePassword = prop => event => {
+    setPasswordValues({ ...passwordValues, [prop]: event.target.value })
   }
 
   const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
+    setPasswordValues({
+      ...passwordValues,
+      showPassword: !passwordValues.showPassword,
     })
   }
 
   const history = useHistory()
+
+  const [response, setResponse] = useState()
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/account').then(res => setResponse(res.data))
+  },[])
+
+  const validateLogin = (email, password) => {
+    response.map(item => {
+      if (item.email === email && item.password === password) {
+        localStorage.setItem('hasPermition', true)
+        history.push("meus-pagamentos")
+      } else {
+        alert('email ou senha incorretos')
+      }
+    })
+  }
 
   return (
     <>
@@ -54,15 +78,21 @@ const Login = () => {
           <Logo />
           <Title>Bem vindo de volta</Title>
           <WrapperInputs>
-            <TextField className={classesInput.root} id="outlined-basic" label="Email" variant="outlined" />
+            <TextField 
+              className={classesInput.root}  
+              id="outlined-basic" 
+              label="Email" 
+              variant="outlined" 
+              onChange={handleChangeEmail}
+              />
             <FormControl variant="outlined"  className={classesInput.root}>
               <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
               <OutlinedInput 
                 id="outlined-adornment-weight" 
-                value={values.password}
-                onChange={handleChange('password')}
+                value={passwordValues.password}
+                onChange={handleChangePassword('password')}
                 label="Senha" 
-                type={values.showPassword ? 'text' : 'password'}
+                type={passwordValues.showPassword ? 'text' : 'password'}
                 variant="outlined" 
                 endAdornment={
                   <IconButton
@@ -70,13 +100,13 @@ const Login = () => {
                     onClick={handleClickShowPassword}
                     edge="end"
                   >
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    {passwordValues.showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 }
                 />
             </FormControl>
           </WrapperInputs>
-            <Button variant="contained" onClick={() => history.push("meus-pagamentos")}>
+            <Button variant="contained" onClick={() => validateLogin(email, passwordValues.password)}>
               ENTRAR
             </Button>
       </ContainerLogin>
