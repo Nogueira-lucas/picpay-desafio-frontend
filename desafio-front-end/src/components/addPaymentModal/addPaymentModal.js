@@ -39,7 +39,8 @@ const AddPaymentModal = ({ openAddPayment, setOpenAddPayment, payload }) => {
   }
 
   const handleEdit = data => {
-
+    axios.put('http://localhost:3001/tasks', data)
+    handleCleanInputs()
   }
 
   const handleChangeUser = event => {
@@ -132,8 +133,13 @@ const AddPaymentModal = ({ openAddPayment, setOpenAddPayment, payload }) => {
         <WrapperButtons>
           <Button 
             variant='contained'
-            disabled={!(user !== '' && value !== '' && date !== '' && title !== '')}
-            onClick={() => handleSalve({
+            disabled={payload ? false : !(user !== '' && value !== '' && date !== '' && title !== '')}
+            onClick={() => payload ? handleEdit({
+              name: user,
+              value: value,
+              date: date,
+              title: title
+            }) : handleSalve({
               name: user,
               value: value,
               date: date,
