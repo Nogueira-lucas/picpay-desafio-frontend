@@ -11,8 +11,11 @@ import { TITLE_PAGES } from '../../../config/constants'
 import { Button } from '@mui/material'
 import AddPaymentModal from '../../addPaymentModal/addPaymentModal'
 import Table from '../../Table/Table'
+import {authValidate} from '../../../utils/authValidade'
 
 const { MY_PAYMENTS } = TITLE_PAGES
+
+authValidate()
 
 const Home = () => {
   
