@@ -29,18 +29,20 @@ const AddPaymentModal = ({ openAddPayment, setOpenAddPayment, payload }) => {
     setTitle()
   }
 
-  const handleSalve = data => {
-    axios.post('http://localhost:3001/tasks', data)
-    handleCleanInputs()
-  }
-  
   const handleClose = () => {
     setOpenAddPayment(false)
   }
 
-  const handleEdit = data => {
-    axios.put('http://localhost:3001/tasks', data)
+  const handleSalve = data => {
+    axios.post('http://localhost:3001/tasks', data)
     handleCleanInputs()
+    handleClose()
+  }
+
+  const handleEdit = data => {
+    axios.put(`http://localhost:3001/tasks/${data.id}`, data)
+    handleCleanInputs()
+    handleClose()
   }
 
   const handleChangeUser = event => {
@@ -135,10 +137,11 @@ const AddPaymentModal = ({ openAddPayment, setOpenAddPayment, payload }) => {
             variant='contained'
             disabled={payload ? false : !(user !== '' && value !== '' && date !== '' && title !== '')}
             onClick={() => payload ? handleEdit({
-              name: user,
-              value: value,
-              date: date,
-              title: title
+              id: payload.id,
+              name: user ? user : payload.name,
+              value: value ? value : payload.value,
+              date: date ? date : payload.date,
+              title: title ? title : payload.title
             }) : handleSalve({
               name: user,
               value: value,
