@@ -9,7 +9,11 @@ import { Task } from '../../models/task';
 })
 export class EditPaymentComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Task) { }
+  public date:string = ''
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Task) {
+   this.date = new Date(data.date).toLocaleDateString();
+  }
 
   ngOnInit(): void {
   }

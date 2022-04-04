@@ -97,13 +97,13 @@
 
     td.user-name,
     td.date-time {
-      font-family: "Lato";
-      font-style: normal;
-      font-weight: 400;
-
       p {
         margin: 0;
         &:first-of-type {
+          font-family: "Lato";
+          font-style: normal;
+          font-weight: 400;
+          
           font-size: 14px;
           color: #2d3540;
           margin-bottom: 4px;
@@ -111,7 +111,7 @@
 
         &:last-of-type {
           font-size: 12px;
-          color: #69788c;
+          color: #69788C;
         }
       }
     }
@@ -154,12 +154,15 @@
       margin-top: 20px;
 
       th.mat-header-cell {
+        border-width: 2px;
+      }
+
+      .mat-sort-header-content {
         font-family: "Lato";
         font-style: normal;
         font-weight: 700;
         font-size: 14px;
         line-height: 17px;
-        border-width: 2px;
       }
 
       td.mat-cell {
