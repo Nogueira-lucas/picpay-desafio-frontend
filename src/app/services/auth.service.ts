@@ -12,29 +12,33 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   public sign(payload: { email: string; password: string }): Observable<any> {
-    localStorage.removeItem('access_token')
-    
+    localStorage.removeItem("access_token");
+
     return this.http
       .get(`${this.url}/account`, {
         params: payload,
       })
       .pipe(
         map((data) => {
-          if(typeof data[0] === 'undefined'){
+          if (typeof data[0] === "undefined") {
             throw Error("Usuário ou senha inválidos");
           }
-          localStorage.setItem('access_token', `fakeJWT${btoa(data[0])}`)
+          localStorage.setItem("access_token", `fakeJWT${btoa(data[0])}`);
         }),
         catchError((err) => {
-          if(err.message) return throwError(err.message)
+          if (err.message) return throwError(err.message);
           return throwError("Serviço indisponível no momento!");
         })
       );
   }
 
-  public isAuthenticated(): boolean {
-    const token = localStorage.getItem('access_token')
+  public logout(): void {
+    localStorage.removeItem("access_token");
+  }
 
-    return !!token
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem("access_token");
+
+    return !!token;
   }
 }

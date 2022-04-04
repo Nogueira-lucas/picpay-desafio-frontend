@@ -1,4 +1,16 @@
 <header>
   <app-logo [lightMode]="true"></app-logo>
-  <img src="../../../../../../assets/img/girl-avatar.svg" alt="Avatar">
+  <img
+    [matMenuTriggerFor]="menu"
+    src="../../../../../../assets/img/eu-avatar.png"
+    alt="Avatar"
+  />
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>person_outline</mat-icon>Profile
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>Sair
+    </button>
+  </mat-menu>
 </header>

@@ -7,13 +7,19 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    flex: 1 1 auto;    
+    flex: 1 1 auto;
     min-height: 90px;
     background-color: $tertiary-color;
     padding-left: 30px;
     padding-right: 30px;
 
-    img, app-logo {
+    img {
+      height: 45px;
+      border-radius: 50%;
+    }
+
+    img,
+    app-logo {
       cursor: pointer;
     }
   }
