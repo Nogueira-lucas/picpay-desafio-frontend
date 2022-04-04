@@ -1,0 +1,24 @@
+:host {
+  section {
+    width: 70vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  img {
+    height: 170px;
+    border-radius: 50%;
+    animation: zooom 1s infinite alternate;
+  }
+}
+
+@keyframes zooom {
+  from {
+    transform:  scale(0.5);
+  }
+  to {
+    transform:  scale(1.2);
+  }
+}

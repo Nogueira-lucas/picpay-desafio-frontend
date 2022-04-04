@@ -8,6 +8,7 @@ import { LogoComponent } from './components/ui/logo/logo.component';
 import { PageTitleComponent } from './components/ui/page-title/page-title.component';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { MaterialModule } from '../../material/material.module';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MaterialModule } from '../../material/material.module';
     ButtonComponent,
     ErrorDialogComponent,
     CurrencyPipe,
+    ProfileComponent,
   ],
   exports: [
     HeaderComponent,
@@ -27,6 +29,6 @@ import { MaterialModule } from '../../material/material.module';
     ErrorDialogComponent,
     CurrencyPipe,
   ],
-  imports: [CommonModule,MaterialModule],
+  imports: [CommonModule, MaterialModule],
 })
 export class SharedModule {}

@@ -1,12 +1,16 @@
 <header>
   <app-logo [lightMode]="true"></app-logo>
-  <img
-    [matMenuTriggerFor]="menu"
-    src="../../../../../../assets/img/eu-avatar.png"
-    alt="Avatar"
-  />
+  <div class="profile-actions">
+    <img     
+      src="../../../../../../assets/img/eu-avatar.png"
+      alt="Avatar"
+    />
+    <button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="viewProfile()">
       <mat-icon>person_outline</mat-icon>Profile
     </button>
     <button mat-menu-item (click)="logout()">

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
+import { UserProfile } from '../modules/auth/model/profile';
 
 @Injectable({
   providedIn: "root",
@@ -23,7 +24,10 @@ export class AuthService {
           if (typeof data[0] === "undefined") {
             throw Error("Usuário ou senha inválidos");
           }
-          localStorage.setItem("access_token", `fakeJWT${btoa(data[0])}`);
+
+          const userData = JSON.stringify(data[0])
+
+          localStorage.setItem("access_token", `fakeJWT${btoa(userData)}`);
         }),
         catchError((err) => {
           if (err.message) return throwError(err.message);
@@ -40,5 +44,17 @@ export class AuthService {
     const token = localStorage.getItem("access_token");
 
     return !!token;
+  }
+
+  public getUserData(): UserProfile {
+    const userData = JSON.parse(atob(
+      localStorage.getItem("access_token").replace("fakeJWT", "")
+    ));
+
+    return {
+      id: userData.id,
+      name: userData.name,
+      email: userData.email,
+    }
   }
 }
