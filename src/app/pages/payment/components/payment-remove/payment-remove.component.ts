@@ -17,8 +17,10 @@ export class PaymentRemoveComponent implements OnInit {
   }
 
   removePayment() {
-    this.paymentFacade.removePayment(this.payment.id)
-    this.modal.close()
+    try {
+      this.paymentFacade.removePayment(this.payment.id)
+      this.modal.close()
+    } catch {}
   }
 
 }

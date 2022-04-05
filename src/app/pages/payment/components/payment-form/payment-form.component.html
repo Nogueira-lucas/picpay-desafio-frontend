@@ -22,7 +22,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label">Data</label>
-                        <input type="date" class="form-control" name="date" #date="ngModel" [(ngModel)]="payment.date" required>
+                        <input type="datetime-local" class="form-control" name="date" #date="ngModel" [(ngModel)]="payment.date" required>
                         <div class="invalid-feedback"> O campo obrigatorio</div>
                     </div>
                 </div>

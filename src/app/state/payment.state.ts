@@ -10,8 +10,8 @@ export class PaymentState {
     return this.payments$.asObservable();
   }
 
-  setPayments(payment: Payment[]) {
-    this.payments$.next(payment);
+  setPayments(payments: Payment[]) {
+    this.payments$.next(payments);
   }
 
   getPaymentId(paymentId: number) {

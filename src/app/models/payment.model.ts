@@ -3,7 +3,7 @@ export class Payment {
     name?: string;
     username?: string;
     value?: number;
-    date?: Date;
+    date?: string;
     image?:string;
     isPayed?: boolean;
     title?: string;
