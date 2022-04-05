@@ -1,1 +1,4 @@
-<p>filter works!</p>
+<div class="input-group mb-3 filter">
+    <input type="text" class="form-control" [(ngModel)]="search" placeholder="Pesquisar por usuario" aria-label="pesquisa" aria-describedby="pesquisa">
+    <button class="btn btn-outline-primary"  (click)="filter()">Filtrar</button>
+</div>

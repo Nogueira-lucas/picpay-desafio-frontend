@@ -1,3 +1,48 @@
-<div *ngFor="let payment of paymentList$ | async; index as i">
-    {{ i + 1 }}. {{ payment.name }}
-</div>
+<section class="payments">
+    <div class="payments__title">
+        Meus pagamentos
+    </div>
+    <div class="payments__add-button">
+        <button type="button" class="btn btn-primary px-4" (click)="openPayment()">
+            Adicionar pagamento
+        </button>
+    </div>
+    <div class="payments__container">
+        <app-filter (changedSearch)="changedSearch($event)"></app-filter>
+        <ngx-datatable class="bootstrap table-responsive-md" [rows]="paymentList$ | async" columnMode="force" rowHeight="auto" 
+        [messages]="{ emptyMessage: 'Nenhum registro encontrado' }"  [limit]="20" [footerHeight]="50">
+            <ngx-datatable-column name="Usuário" [sortable]="true" prop="username">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.name}}
+                    <div><small class="text-muted">@{{row.username}}</small></div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [minWidth]="200" name="Título" prop="title" [sortable]="true"></ngx-datatable-column>
+            <ngx-datatable-column name="Data" [sortable]="true">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.date | date:'dd MMM y'}}
+                    <div><small class="text-muted">{{row.date | date:'shortTime'}}</small></div>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Valor" [sortable]="true" prop="value">
+                <ng-template let-row="row" ngx-datatable-cell-template>{{row.value | currency : 'BRL'}}</ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Pago" [sortable]="true" prop="isPayed">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <input type="checkbox" [(ngModel)]="row.isPayed" (change)="updateIsPayed(row)">
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <button class="btn" (click)="openPayment(row)">
+                        <em class="bi bi-pencil"></em>
+                    </button>
+                    <button class="btn" (click)="removePayment(row)">
+                        <em class="bi bi-x-circle"></em>
+                    </button>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+</section>
+

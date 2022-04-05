@@ -12,8 +12,9 @@ export class PaymentService {
 
   constructor(private http: HttpClient) { }
 
-  getPayments(currentPage: number = 0): Observable<Payment[]> {
-    return this.http.get<Payment[]>(`${this.API}/tasks?_page=${currentPage}&_limit=20`);
+  getPayments(userName = null): Observable<Payment[]> {
+    let param = !!userName ? "?name_like=" + userName : "";
+    return this.http.get<Payment[]>(`${this.API}/tasks${param}`);
   }
 
   createPayment(payment: Payment): Observable<any> {
@@ -22,5 +23,9 @@ export class PaymentService {
 
   updatePayment(payment: Payment): Observable<any> {
     return this.http.put(`${this.API}/tasks/${payment.id}`, payment);
+  }
+
+  removePayment(paymentId: number) {
+    return this.http.delete(`${this.API}/tasks/${paymentId}`);
   }
 }

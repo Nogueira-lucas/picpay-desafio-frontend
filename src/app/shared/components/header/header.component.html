@@ -1,1 +1,17 @@
-<p>header works!</p>
+<nav class="navbar navbar-dark header">
+    <a class="navbar-brand">
+        <img
+          src="assets/img/logo-light.svg"
+          alt="Logo"
+          loading="lazy"
+        />
+    </a>
+    <div ngbDropdown class="d-inline-block">
+        <a id="dropdownBasic1" ngbDropdownToggle>
+            <img src="assets/img/profile.png" alt="perfil" loading="lazy"/>
+        </a>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="right: 0;">
+          <button ngbDropdownItem (click)="logout()">Sair</button>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,25 @@
+.payments {
+    margin: 65px 48px;
+    padding-bottom: 21px;
+
+    &__label {
+        font-size: small;
+        color: grey;
+    }
+
+    &__title {
+        font-size:36px;
+    }
+
+    &__add-button {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__container {
+        background-color: white;
+        border-radius: 8px;
+        margin-top: 21px;
+        padding: 15px;
+    }
+}

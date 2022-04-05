@@ -1,1 +1,13 @@
-<p>modal works!</p>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">
+        <ng-content select="[modal-title]"></ng-content>
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <ng-content select="[modal-body]"></ng-content>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-light px-4" (click)="modal.dismiss('cancel click')">Cancelar</button>
+    <button type="button" ngbAutofocus class="btn btn-primary px-4" (click)="saveModal.emit()">Salvar</button>
+</div>

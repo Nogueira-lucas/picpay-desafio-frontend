@@ -12,20 +12,22 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private userFacade: UserFacade) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
-  }
+  pagePayments(form) {
+    const { username, password } = form.controls
 
-  pagePayments() {
-    this.userFacade.login('usuario@gmail.com', 'usuario').subscribe(
-      (user) => {
-        if (user) {
-          this.router.navigate(['page/payments'])
+    if(username.value && password.value) {
+      this.userFacade.login(username.value, password.value).subscribe(
+        (user) => {
+          if (user) {
+            this.router.navigate(['page/payments'])
+          }
+        },
+        (error) => {
+          throwError(error)
         }
-      },
-      (error) => {
-        throwError(error)
-      }
-    )
+      )
+    }
   }
 }

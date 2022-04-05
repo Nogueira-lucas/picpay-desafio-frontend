@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserFacade } from 'src/app/facade/user.facade';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userFacade: UserFacade) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.userFacade.logout();
   }
 
 }

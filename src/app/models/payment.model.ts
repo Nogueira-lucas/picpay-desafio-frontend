@@ -6,4 +6,5 @@ export class Payment {
     date?: Date;
     image?:string;
     isPayed?: boolean;
+    title?: string;
 }

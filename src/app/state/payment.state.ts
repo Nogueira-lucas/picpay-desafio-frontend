@@ -10,8 +10,8 @@ export class PaymentState {
     return this.payments$.asObservable();
   }
 
-  setPayments(categories: Payment[]) {
-    this.payments$.next(categories);
+  setPayments(payment: Payment[]) {
+    this.payments$.next(payment);
   }
 
   getPaymentId(paymentId: number) {
@@ -38,8 +38,8 @@ export class PaymentState {
     this.payments$.next([...payments]);
   }
 
-  removePayment(paymentRemove: Payment) {
+  removePayment(paymentId: number) {
     const currentValue = this.payments$.getValue();
-    this.payments$.next(currentValue.filter(payment => payment !== paymentRemove));
+    this.payments$.next(currentValue.filter(payment => payment.id !== paymentId));
   }
 }

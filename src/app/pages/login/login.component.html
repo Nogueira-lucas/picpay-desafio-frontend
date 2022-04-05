@@ -1,2 +1,31 @@
-<p>login works!</p>
-<button (click)="pagePayments()">click aqui</button>
+<div class="container-fluid mt-0">
+    <div class="row align-items-center">
+        <div class="col-12 col-md-4 bg-default">
+            <form role="form" #form="ngForm" class="row login-form"
+                [ngClass]="{'was-validated': form.dirty && form.invalid}" (ngSubmit)="pagePayments(form)">
+                <div class="col-md-10 offset-md-1 align-self-center">
+                    <img alt="logo" src="assets/img/logo-blue.svg">
+                    <div class="h3 mt-3">Bem vindo de volta</div>
+                    <div class="form-group mt-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="username" #username="ngModel" ngModel required>
+                        <div class="invalid-feedback">O campo email eh obrigatorio</div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Senha</label>
+                        <input type="password" class="form-control" name="password" #password="ngModel" ngModel required>
+                        <div class="invalid-feedback"> O campo senha eh obrigatorio </div>
+                    </div>
+                    <div class="d-grid gap-2 mt-3">
+                        <button class="btn btn-primary" type="submit">Entrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="text-center">
+                <img alt="img" class="img-fluid" src="assets/img/img-login.svg">
+            </div>
+        </div>
+    </div>
+</div>

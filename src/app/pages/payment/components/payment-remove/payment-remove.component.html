@@ -1,0 +1,8 @@
+<app-modal id="modalRemove" (saveModal)="removePayment()">
+    <div modal-title>Exluir pagamento</div>
+    <div modal-body>
+        <div>Usuario: {{payment.name}}</div>
+        <div>Data: {{payment.date | date: 'dd/MM/yyyy'}}</div>
+        <div>Valor: {{payment.value | currency : 'BRL'}}</div>
+    </div>
+</app-modal>

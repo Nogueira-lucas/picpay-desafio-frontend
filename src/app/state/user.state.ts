@@ -10,11 +10,18 @@ export class UserState {
     return this.user$.value;
   }
 
+  getUserStorage() {
+    const user = sessionStorage.getItem('user');
+    return !!user ? JSON.parse(user) : null
+  }
+
   setUser(user: User) {
     this.user$.next(user);
+    sessionStorage.setItem('user', JSON.stringify(user));
   }
 
   removeUser() {
       this.user$.next(null)
+      sessionStorage.removeItem('user');
   }
 }

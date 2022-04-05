@@ -13,7 +13,7 @@ import { PaymentFacade } from './facade/payment.facade';
 import { PaymentState } from './state/payment.state';
 import { UserFacade } from './facade/user.facade';
 import { UserState } from './state/user.state';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [	
@@ -25,7 +25,8 @@ import { UserState } from './state/user.state';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot()
   ],
   providers: [PaymentFacade, PaymentState, UserFacade, UserState],
   bootstrap: [AppComponent]
