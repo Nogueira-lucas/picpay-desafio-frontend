@@ -13,13 +13,17 @@ import { PaymentRemoveComponent } from '../payment-remove/payment-remove.compone
 })
 export class PaymentListComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
-  paymentList$: Observable<Payment[]>;
+  paymentList$ = new Observable<Payment[]>();
 
   constructor(private paymentFacade: PaymentFacade, private modalService: NgbModal) {
     this.paymentList$ = this.paymentFacade.getPayments$();
   }
 
   ngOnInit() {
+    this.loadPayments();
+  }
+
+  loadPayments() {
     this.subscriptions.push(this.paymentFacade.loadPayments().subscribe());
   }
 

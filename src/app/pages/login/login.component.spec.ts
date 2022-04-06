@@ -1,14 +1,14 @@
-import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { FormBuilder, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { UserFacade } from 'src/app/facade/user.facade';
 import { UserState } from 'src/app/state/user.state';
 
 import { LoginComponent } from './login.component';
 
-const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
+const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 const loginFacadeSpy = jasmine.createSpyObj('UserFacade', ['login']);
 
 const validUser = { username: 'usuario@gmail.com', password: 'usuario' };
@@ -30,14 +30,14 @@ describe('Login Component Isolated Test', () => {
     expect(component).toBeTruthy();
   });
 
-  it('form value should update from when u change the input', (() => {
+  it('Form value should update from when u change the input', (() => {
     updateForm(validUser.username, validUser.password);
     expect(component.form.value).toEqual(validUser);
   }));
 
   it('Form invalid should be true when form is invalid', (() => {
     updateForm(blankUser.username, blankUser.password);
-    expect(component.form.invalid).toBeTruthy();
+    expect(component.form.invalid).toBeTrue();
   }));
 });
 
@@ -61,13 +61,13 @@ describe('Login Component Shallow Test', () => {
         { provide: Router, useValue: routerSpy },
         FormBuilder,
       ],
-      declarations: [LoginComponent, NgForm],
+      declarations: [LoginComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
   }));
 
-  it('created a form with username and password input and login button', () => {
+  it('Created a form with username and password input and login button', () => {
     const usernameContainer = fixture.debugElement.nativeElement.querySelector('#username-container');
     const passwordContainer = fixture.debugElement.nativeElement.querySelector('#password-container');
     const loginBtnContainer = fixture.debugElement.nativeElement.querySelector('#login-btn-container');
@@ -111,8 +111,7 @@ describe('Login Component Integrated Test', () => {
       providers: [
         { provide: UserFacade, useValue: loginFacadeSpy },
         { provide: Router, useValue: routerSpy },
-        FormBuilder,
-        UserState
+        FormBuilder
       ],
       declarations: [LoginComponent],
     }).compileComponents();
@@ -120,13 +119,16 @@ describe('Login Component Integrated Test', () => {
     fixture = TestBed.createComponent(LoginComponent);
   }));
 
-  it('loginFacade login() should called ', fakeAsync(() => {
+  it('loginFacade login() should called ', () => {
     updateForm(validUser.username, validUser.password);
     fixture.detectChanges();
+
+    loginFacadeSpy.login.and.returnValue(of([validUser]));
+    
     const button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();
-    fixture.detectChanges();
 
-    expect(loginFacadeSpy.login).toHaveBeenCalled();
-  }));
+    expect(loginFacadeSpy.login.calls.any()).toBeTruthy();
+    expect(loginFacadeSpy.login).toHaveBeenCalledWith(validUser.username, validUser.password);
+  });
 });

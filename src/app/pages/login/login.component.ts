@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.subscription = this.userFacade.login(username, password).subscribe(
       users => {
-        if (users) { this.router.navigateByUrl('/page/payments'); }
+        if (users) { this.router.navigate(['page/payments']); }
       },
       error => console.error(error)
     );

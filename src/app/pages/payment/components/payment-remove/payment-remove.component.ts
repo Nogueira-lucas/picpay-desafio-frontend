@@ -11,17 +11,19 @@ import { Payment } from 'src/app/models/payment.model';
 })
 export class PaymentRemoveComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
-  payment: Payment;
+  payment: Payment = new Payment();
 
   constructor(private paymentFacade: PaymentFacade, public modal: NgbActiveModal) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   removePayment() {
     try {
-      this.subscriptions.push( this.paymentFacade.removePayment(this.payment.id));
-      this.modal.close();
+      const request = this.paymentFacade.removePayment(this.payment.id);
+      this.subscriptions.push(request.subscribe((sub) => {
+        this.subscriptions.push(sub);
+        this.modal.close();
+      }));
     } catch (error) {
       console.error(error);
     }

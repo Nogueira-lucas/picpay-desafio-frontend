@@ -69,17 +69,22 @@ export class PaymentFacade {
     });
   }
 
-  removePayment(paymentId: number): Subscription {
-    return this.paymentService.removePayment(paymentId)
+  removePayment(paymentId: number): Observable<Subscription> {
+    debugger
+    return new Observable((observer) => {
+      const request = this.paymentService.removePayment(paymentId)
       .subscribe(
         () => {
           this.paymentState.removePayment(paymentId);
           this.notifyService.showSuccess('Pagamento excluido com sucesso.');
+          observer.next(request);
         },
         (error) => {
           this.notifyService.showError('Algo deu erro.', 'Ops!');
+          observer.next(request);
           throwError(error);
         }
       );
+    })
   }
 }
