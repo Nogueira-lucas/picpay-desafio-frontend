@@ -6,11 +6,11 @@
           loading="lazy"
         />
     </a>
-    <div ngbDropdown class="d-inline-block">
+    <div ngbDropdown class="d-inline-block header__avatar" >
         <a id="dropdownBasic1" ngbDropdownToggle>
             <img src="assets/img/profile.png" alt="perfil" loading="lazy"/>
         </a>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="right: 0;">
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="header__drop-menu">
           <button ngbDropdownItem (click)="logout()">Sair</button>
         </div>
     </div>

@@ -1,32 +1,33 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { tap } from "rxjs/operators";
-import { User } from "../models/user.model";
-import { NotificationService } from "../services/notification.service";
-import { UserService } from "../services/user.service";
-import { UserState } from "../state/user.state";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { User } from '../models/user.model';
+import { NotificationService } from '../services/notification.service';
+import { UserService } from '../services/user.service';
+import { UserState } from '../state/user.state';
 
 @Injectable()
 export class UserFacade {
 
-  constructor(private userService: UserService, 
-              private userState: UserState, 
-              private router: Router, 
+  constructor(private userService: UserService,
+              private userState: UserState,
+              private router: Router,
               private notifyService: NotificationService) { }
 
-  getUser() {
+  getUser(): User {
     return this.userState.getUser() ?? this.userState.getUserStorage();
   }
 
-  login(email: string, password:string) {
+  login(email: string, password: string): Observable<User[]> {
     return this.userService.getUsers(email, password)
       .pipe(tap(users => {
-        if(users?.length) {
-          this.userState.setUser(users[0])
+        if (users?.length) {
+          this.userState.setUser(users[0]);
         } else {
-          this.notifyService.showError("Email ou senha incorretos.", "Ops!")
+          this.notifyService.showError('Email ou senha incorretos.', 'Ops!');
         }
-    }))
+    }));
   }
 
   logout() {

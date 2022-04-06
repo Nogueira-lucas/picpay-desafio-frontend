@@ -18,7 +18,7 @@
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column [minWidth]="200" name="Título" prop="title" [sortable]="true"></ngx-datatable-column>
-            <ngx-datatable-column name="Data" [sortable]="true">
+            <ngx-datatable-column name="Data" [sortable]="true" prop="date">
                 <ng-template let-row="row" ngx-datatable-cell-template>
                     {{row.date | date:'dd MMM y'}}
                     <div><small class="text-muted">{{row.date | date:'shortTime'}}</small></div>
@@ -34,10 +34,10 @@
             </ngx-datatable-column>
             <ngx-datatable-column [sortable]="false">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    <a class="link-dark fs-6 p-2 payments__link" (click)="openPayment(row)">
+                    <a class="link-dark fs-6 p-2 payments__link" (click)="openPayment(row)" title="Editar">
                         <em class="bi bi-pencil"></em>
                     </a>
-                    <a class="link-dark fs-6 p-2 payments__link" (click)="removePayment(row)">
+                    <a class="link-dark fs-6 p-2 payments__link" (click)="removePayment(row)" title="Excluir">
                         <em class="bi bi-x-circle"></em>
                     </a>
                 </ng-template>

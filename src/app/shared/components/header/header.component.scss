@@ -1,4 +1,12 @@
 .header {
     background-color: #002D69;
     padding: 20px 30px;
+    
+    &__drop-menu {
+        right: 0;
+    }
+
+    &__avatar {
+        cursor: pointer;
+    }
 }

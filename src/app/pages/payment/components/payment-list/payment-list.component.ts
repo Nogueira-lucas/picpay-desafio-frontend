@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { PaymentFacade } from 'src/app/facade/payment.facade';
 import { Payment } from 'src/app/models/payment.model';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
@@ -11,32 +11,41 @@ import { PaymentRemoveComponent } from '../payment-remove/payment-remove.compone
   templateUrl: './payment-list.component.html',
   styleUrls: ['./payment-list.component.scss']
 })
-export class PaymentListComponent implements OnInit {
-  paymentList$: Observable<Payment[]>
+export class PaymentListComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
+  paymentList$: Observable<Payment[]>;
 
   constructor(private paymentFacade: PaymentFacade, private modalService: NgbModal) {
     this.paymentList$ = this.paymentFacade.getPayments$();
   }
 
-  async ngOnInit() {
-    await this.paymentFacade.loadPayments().toPromise();
+  ngOnInit() {
+    this.subscriptions.push(this.paymentFacade.loadPayments().subscribe());
   }
 
   updateIsPayed(payment: Payment) {
-    this.paymentFacade.updatePayment(payment);
+    const request = this.paymentFacade.updatePayment(payment)
+    this.subscriptions.push(request.subscribe(sub => this.subscriptions.push(sub)));
   }
 
   openPayment(payment: Payment = null) {
-    const modal = this.modalService.open(PaymentFormComponent)
-    modal.componentInstance.payment = JSON.parse(JSON.stringify(payment ?? new Payment()))
+    this.openModal(payment, PaymentFormComponent);
   }
 
   removePayment(payment: Payment) {
-    const modal = this.modalService.open(PaymentRemoveComponent)
-    modal.componentInstance.payment = JSON.parse(JSON.stringify(payment))
+    this.openModal(payment, PaymentRemoveComponent);
   }
 
-  async changedSearch(filter) {
-    await this.paymentFacade.loadPaymentsByUser(filter).toPromise()
+  openModal(payment: Payment = null, component) {
+    const modal = this.modalService.open(component);
+    modal.componentInstance.payment = JSON.parse(JSON.stringify(payment)) as Payment;
+  }
+
+  changedSearch(filter: string) {
+    this.subscriptions.push(this.paymentFacade.loadPaymentsByUser(filter).subscribe());
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe())
   }
 }

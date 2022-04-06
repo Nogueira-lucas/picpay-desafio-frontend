@@ -14,9 +14,20 @@ import { PaymentState } from './state/payment.state';
 import { UserFacade } from './facade/user.facade';
 import { UserState } from './state/user.state';
 import { ToastrModule } from 'ngx-toastr';
+import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+    align: "right",
+    allowNegative: true,
+    decimal: ",",
+    precision: 2,
+    prefix: "R$ ",
+    suffix: "",
+    thousands: "."
+};
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent, AuthLayoutComponent, PageLayoutComponent,
    ],
   imports: [
@@ -26,9 +37,16 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    CurrencyMaskModule
   ],
-  providers: [PaymentFacade, PaymentState, UserFacade, UserState],
+  providers: [
+    PaymentFacade, 
+    PaymentState, 
+    UserFacade, 
+    UserState,
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

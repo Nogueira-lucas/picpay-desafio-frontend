@@ -1,4 +1,6 @@
-<div class="input-group mb-3 filter">
-    <input type="text" class="form-control" [(ngModel)]="search" placeholder="Pesquisar por usuario" aria-label="pesquisa" aria-describedby="pesquisa">
-    <button class="btn btn-outline-primary"  (click)="filter()">Filtrar</button>
-</div>
+<form #form="ngForm" (ngSubmit)="filter(form.value.search)">
+    <div class="input-group mb-3 filter">
+        <input type="text" class="form-control" name="search" #search ngModel placeholder="Pesquisar por usuário" aria-label="pesquisa" aria-describedby="pesquisa">
+        <button class="btn btn-outline-primary" type="submit">Filtrar</button>
+    </div>
+</form>

@@ -7,11 +7,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class FilterComponent {
   @Output() changedSearch = new EventEmitter();
-  search = null
 
   constructor() { }
 
-  filter() {
-    this.changedSearch.emit(this.search)
+  filter(search?: string) {
+    this.changedSearch.emit(search);
   }
 }
