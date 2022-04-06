@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
-import { Payment } from "../models/payment.model";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Payment } from '../models/payment.model';
 
 @Injectable()
 export class PaymentState {
   private payments$ = new BehaviorSubject<Payment[]>(null);
 
-  getPayments$() {
+  getPayments$(): Observable<Payment[]> {
     return this.payments$.asObservable();
   }
 
@@ -14,9 +14,9 @@ export class PaymentState {
     this.payments$.next(payments);
   }
 
-  getPaymentId(paymentId: number) {
+  getPaymentId(paymentId: number): Payment {
     const payments = this.payments$.getValue();
-    return payments.find(payment => payment.id === paymentId)
+    return payments.find(payment => payment.id === paymentId);
   }
 
   addPayment(payment: Payment) {

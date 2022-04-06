@@ -10,7 +10,6 @@ export class ModalComponent implements OnInit {
   @Output() saveModal = new EventEmitter();
   constructor(public modal: NgbActiveModal) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() { }
 
 }

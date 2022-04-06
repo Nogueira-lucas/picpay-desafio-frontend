@@ -27,7 +27,7 @@ export class PaymentFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if(this.payment) {
+    if (this.payment) {
       this.form = this.formBuilder.group({
         name: [this.payment.name],
         value: [this.payment.value],
@@ -38,7 +38,7 @@ export class PaymentFormComponent implements OnInit, OnDestroy {
   }
 
   savePayment() {
-    this.submitted = true
+    this.submitted = true;
     if (!this.form.invalid) {
       const paymentData: Payment = this.form.value;
       this.payment = {
@@ -46,13 +46,13 @@ export class PaymentFormComponent implements OnInit, OnDestroy {
         ...paymentData,
         date: moment.utc(moment(paymentData.date).toDate()).format(),
         username: paymentData.name.replace(/ /g, '.')
-      }
+      };
 
       if (this.payment.id) {
-        this.requestFacade(this.paymentFacade.updatePayment(this.payment))
+        this.requestFacade(this.paymentFacade.updatePayment(this.payment));
       } else {
         this.payment.id = Math.floor(Math.random() * 10000);
-        this.requestFacade(this.paymentFacade.addPayment(this.payment))
+        this.requestFacade(this.paymentFacade.addPayment(this.payment));
       }
     }
   }
@@ -65,6 +65,6 @@ export class PaymentFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe())
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }

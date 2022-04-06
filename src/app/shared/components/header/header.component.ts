@@ -10,8 +10,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private userFacade: UserFacade) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() { }
 
   logout() {
     this.userFacade.logout();

@@ -10,13 +10,13 @@ const appRoutes: Routes = [
       redirectTo: 'auth',
       pathMatch: 'full',
     },
-    { 
-      path: 'auth', component: AuthLayoutComponent, data: { title: 'auth Views' }, 
+    {
+      path: 'auth', component: AuthLayoutComponent, data: { title: 'auth Views' },
       children: [
         { path: '', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) }
       ]
     },
-    { 
+    {
       path: 'page', component: PageLayoutComponent, data: { title: 'page Views' }, canActivate: [AuthGuard],
       children: [
         { path: 'payments', loadChildren: () => import('./pages/payment/payment.module').then(m => m.PaymentModule) }
@@ -24,12 +24,12 @@ const appRoutes: Routes = [
     },
     { path: '**', redirectTo: '/auth' }
   ];
-  
-  @NgModule({
+
+@NgModule({
     imports: [RouterModule.forRoot(appRoutes, { scrollPositionRestoration: 'disabled', relativeLinkResolution: 'legacy' })],
     exports: [RouterModule]
   })
-  
+
   export class AppRoutingModule {
-  
+
   }

@@ -39,15 +39,15 @@ export class PaymentFacade {
           (addedPaymentWithId: Payment) => {
             this.paymentState.updatePaymentId(payment, addedPaymentWithId);
             this.notifyService.showSuccess('Pagamento criado com sucesso.');
-            observer.next(request)
+            observer.next(request);
           },
           (error) => {
             this.paymentState.removePayment(payment.id);
             this.notifyService.showError('Algo deu erro.', 'Ops!');
-            observer.next(request)
+            observer.next(request);
             throwError(error);
           }
-        )
+        );
     });
   }
 
@@ -58,15 +58,15 @@ export class PaymentFacade {
           () => {
             this.paymentState.updatePayment(payment);
             this.notifyService.showSuccess('Pagamento atualizado com sucesso.');
-            observer.next(request)
+            observer.next(request);
           },
           (error) => {
             this.notifyService.showError('Algo deu erro.', 'Ops!');
-            observer.next(request)
+            observer.next(request);
             throwError(error);
           }
-        )
-    })
+        );
+    });
   }
 
   removePayment(paymentId: number): Subscription {

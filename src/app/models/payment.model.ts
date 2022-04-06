@@ -4,7 +4,7 @@ export class Payment {
     username?: string;
     value?: number;
     date?: string;
-    image?:string;
+    image?: string;
     isPayed?: boolean;
     title?: string;
 }

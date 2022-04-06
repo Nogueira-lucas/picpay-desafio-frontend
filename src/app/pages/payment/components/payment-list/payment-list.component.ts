@@ -24,7 +24,7 @@ export class PaymentListComponent implements OnInit, OnDestroy {
   }
 
   updateIsPayed(payment: Payment) {
-    const request = this.paymentFacade.updatePayment(payment)
+    const request = this.paymentFacade.updatePayment(payment);
     this.subscriptions.push(request.subscribe(sub => this.subscriptions.push(sub)));
   }
 
@@ -46,6 +46,6 @@ export class PaymentListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe())
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }

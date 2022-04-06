@@ -17,13 +17,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-    align: "right",
+    align: 'right',
     allowNegative: true,
-    decimal: ",",
+    decimal: ',',
     precision: 2,
-    prefix: "R$ ",
-    suffix: "",
-    thousands: "."
+    prefix: 'R$ ',
+    suffix: '',
+    thousands: '.'
 };
 
 @NgModule({
@@ -41,9 +41,9 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     CurrencyMaskModule
   ],
   providers: [
-    PaymentFacade, 
-    PaymentState, 
-    UserFacade, 
+    PaymentFacade,
+    PaymentState,
+    UserFacade,
     UserState,
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
   ],

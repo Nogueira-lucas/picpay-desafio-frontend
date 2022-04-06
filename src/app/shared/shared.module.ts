@@ -8,8 +8,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
-  declarations: [HeaderComponent, ModalComponent, FilterComponent,],
-  exports: [HeaderComponent, ModalComponent, FilterComponent,],
+  declarations: [HeaderComponent, ModalComponent, FilterComponent, ],
+  exports: [HeaderComponent, ModalComponent, FilterComponent, ],
   imports: [
     CommonModule,
     FormsModule,

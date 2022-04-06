@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
-import { User } from "../models/user.model";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class UserState {
@@ -10,9 +10,9 @@ export class UserState {
     return this.user$.value;
   }
 
-  getUserStorage() {
+  getUserStorage(): User {
     const user = sessionStorage.getItem('user');
-    return !!user ? JSON.parse(user) : null
+    return user ? JSON.parse(user) as User : null;
   }
 
   setUser(user: User) {
@@ -21,7 +21,7 @@ export class UserState {
   }
 
   removeUser() {
-      this.user$.next(null)
-      sessionStorage.removeItem('user');
+    this.user$.next(null);
+    sessionStorage.removeItem('user');
   }
 }
