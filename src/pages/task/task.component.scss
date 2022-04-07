@@ -1,0 +1,312 @@
+:host {
+
+  .container {
+    display: flex;
+    // align-items: center;
+    height: 100%;
+
+    h2 {
+      position: absolute;
+      width: 376px;
+      height: 60px;
+      margin-left: 48px;
+      margin-top: 65px;
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 44px;
+      color: #333333;
+    }
+
+    .content-card {
+      display: flex;
+      flex-direction: column;
+      flex: 1 0 auto;
+      overflow: hidden;
+      margin-top: 160px;
+      margin-left: 48px;
+      margin-right: 48px;
+      margin-bottom: 250px;
+
+
+      .toolbar {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        height: 64px;
+        min-height: 64px;
+        max-height: 64px;
+      }
+
+
+      .tasks-table {
+        flex: 1 1 auto;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        overflow: auto;
+        max-height: 459px;
+
+        .label-header {
+          position: static;
+          width: 49px;
+          height: 17px;
+          left: 12px;
+          top: 17.5px;
+
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 17px;
+          /* identical to box height */
+
+          display: flex;
+          align-items: center;
+
+          /* Body Text */
+
+          color: #2D3540;
+
+
+          /* Inside auto layout */
+
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+          margin: 0px 4px;
+        }
+
+        .label-name {
+          position: static;
+          left: 12px;
+          top: 16px;
+
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 17px;
+          /* identical to box height */
+
+          display: flex;
+          align-items: center;
+
+          /* Body Text */
+
+          color: #2D3540;
+
+
+          /* Inside auto layout */
+
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+          margin: 4px 0px;
+        }
+
+        .label-username {
+          position: static;
+          left: 12px;
+          top: 37px;
+
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 20px;
+          /* identical to box height, or 167% */
+
+          display: flex;
+          align-items: center;
+          letter-spacing: -0.2px;
+
+          /* Secondary Text */
+
+          color: #69788C;
+
+
+          /* Inside auto layout */
+
+          flex: none;
+          order: 1;
+          flex-grow: 0;
+          margin: 4px 0px;
+        }
+
+        p {
+          margin: 0 0 0px;
+        }
+
+        // mat-checkbox {
+        //   background: #007DFE;
+        // }
+
+
+
+        .label-date {
+          position: static;
+          left: 0px;
+          top: 16px;
+
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 17px;
+          /* identical to box height */
+
+          display: flex;
+          align-items: center;
+
+          /* Body Text */
+
+          color: #2D3540;
+
+
+          /* Inside auto layout */
+
+          flex: none;
+          order: 0;
+          align-self: stretch;
+          flex-grow: 0;
+          margin: 4px 0px;
+        }
+
+        .label-time {
+          position: static;
+          left: 0px;
+          top: 37px;
+
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 14px;
+          display: flex;
+          align-items: center;
+
+          /* Secondary Text */
+
+          color: #69788C;
+
+
+          /* Inside auto layout */
+
+          flex: none;
+          order: 1;
+          align-self: stretch;
+          flex-grow: 0;
+          margin: 4px 0px;
+        }
+
+        .label-title {
+          position: static;
+          left: 12px;
+          top: 16px;
+
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 17px;
+          /* identical to box height */
+
+          display: flex;
+          align-items: center;
+
+          /* Body Text */
+
+          color: #2D3540;
+
+
+          /* Inside auto layout */
+
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+          margin: 0px 4px;
+        }
+
+        .label-money {
+          position: static;
+          left: 0px;
+          top: 16px;
+
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 17px;
+          /* identical to box height */
+
+          display: flex;
+          align-items: center;
+
+          /* Body Text */
+
+          color: #2D3540;
+
+
+          /* Inside auto layout */
+
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+          margin: 0px 4px;
+        }
+
+        .mat-header-row {
+          min-height: 81px;
+          display: flex;
+          justify-content: flex-end;
+          //border-bottom-style: none;
+          //border: none !important;
+
+
+        }
+
+        .mat-header-cell {
+          border-bottom-style: none;
+          border: none !important;
+        }
+
+        .mat-row:nth-child(even) {
+          background-color: #FFFFFF;
+        }
+
+        .mat-row:nth-child(odd) {
+          background-color: #F5F8FA;
+        }
+
+        .task {
+          position: relative;
+          cursor: pointer;
+          height: 81px;
+        }
+
+        // .mat-cell {
+        //   min-width: 0;
+        //   display: flex;
+        //   align-items: center;
+        //   border: none !important;
+        //   border-bottom-style: none;
+
+        // }
+
+        .header-align-right {
+          display: flex;
+          padding: 21px 0;
+          justify-content: flex-end;
+        }
+
+
+      }
+
+    }
+
+
+
+  }
+
+}

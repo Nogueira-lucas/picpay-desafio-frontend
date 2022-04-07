@@ -8,7 +8,9 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -46,3 +48,30 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+.mat-checkbox-checked.mat-accent {
+ 
+  .mat-checkbox-ripple .mat-ripple-element {
+      background-color: #007DFE !important;
+  }
+
+  .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+      background-color: #007DFE;
+   }
+}
+
+.mat-checkbox.mat-accent {
+
+  .mat-checkbox-background {
+    background-color: #007DFE;
+  }
+
+  .mat-checkbox-ripple .mat-ripple-element {
+      background-color: #007DFE !important;
+  }
+}

@@ -1,0 +1,29 @@
+<mat-toolbar class="p-0 mat-elevation-z1">
+
+
+
+  <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+
+    <img class="img-logo" src="assets/task/svg/logo_white.svg" alt="Pay Friends">
+
+    <button class="menu-perfil" id="userMenu" mat-button [matMenuTriggerFor]="userMenu"
+      style="padding: right 10px !important;">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <img class="avatar" src="assets/task/svg/perfil.svg">
+      </div>
+    </button>
+
+    <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sair</span>
+      </button>
+
+    </mat-menu>
+
+  </div>
+
+
+
+</mat-toolbar>

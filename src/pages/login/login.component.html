@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="left">
+
+    <!-- <form>
+       
+    </form> -->
+
+    <form name="loginForm"  (ngSubmit)="login()" novalidate class="login-form">
+
+      <img src="assets/login/svg/pay-friends.svg" alt="Pay Friends">
+      <h1>Bem vindo de volta</h1>
+
+      <mat-form-field class="login-input" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+          placeholder="Ex. pat@example.com">
+
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Por favor insira um endereço de e-mail válido
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          O e-mail é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="login-input" appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
+          placeholder="Senha">
+
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          A Senha é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button class="login-button" mat-raised-button color="primary">
+        <div class="login-label">ENTRAR</div>
+      </button>
+    </form>
+  </div>
+  <div class="right">
+
+    <div class="image">
+      <img src="assets/login/svg/man-doing-online-payment.svg" alt="Man Doing Online Payment">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+:host {
+
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  z-index: 4;
+
+
+  .img-logo {
+    position: absolute;
+    width: 137px;
+    height: 29px;
+    left: 30px;
+    top: 31px;
+  }
+
+  .menu-perfil {
+    position: fixed;
+    top: 22px;
+    right: 30px; 
+  }
+
+  .mat-toolbar {
+    background: inherit;
+    color: inherit;
+    position: relative;
+    height: 90px;
+    background-color: #002D69;
+
+    .loading-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    .logo-icon {
+      width: 38px;
+    }
+  }
+
+  .padding-button {
+    padding-right: 50px !important;
+  }
+
+}
