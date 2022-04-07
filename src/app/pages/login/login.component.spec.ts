@@ -140,7 +140,7 @@ describe('Login Component Integrated Test', () => {
     fixture.detectChanges();
 
     loginFacadeSpy.login.and.returnValue(of([validUser]));
-    
+
     const button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();
 

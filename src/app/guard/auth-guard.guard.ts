@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
   user: User;
 
   constructor(private router: Router, private userFacade: UserFacade) { }
-  
+
   canActivate(): boolean {
     this.user = this.userFacade.getUser();
 

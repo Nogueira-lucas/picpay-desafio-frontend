@@ -70,7 +70,6 @@ export class PaymentFacade {
   }
 
   removePayment(paymentId: number): Observable<Subscription> {
-    debugger
     return new Observable((observer) => {
       const request = this.paymentService.removePayment(paymentId)
       .subscribe(
@@ -85,6 +84,6 @@ export class PaymentFacade {
           throwError(error);
         }
       );
-    })
+    });
   }
 }

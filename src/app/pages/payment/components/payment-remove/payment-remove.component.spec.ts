@@ -6,7 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PaymentRemoveComponent } from './payment-remove.component';
 
 const paymentFacadeSpy = jasmine.createSpyObj('PaymentFacade', ['removePayment']);
-const mockPayment = { id: 1, name: 'IronMan', value: 8, title: 'test title' }
+const mockPayment = { id: 1, name: 'IronMan', value: 8, title: 'test title' };
 
 describe('PaymentRomove Component Isolated Test', () => {
   let component: PaymentRemoveComponent;
@@ -20,7 +20,7 @@ describe('PaymentRomove Component Isolated Test', () => {
   });
 
   it('Property value must be updated from when you change input', (() => {
-    component.payment = mockPayment
+    component.payment = mockPayment;
     expect(component.payment).toEqual(mockPayment);
   }));
 });
@@ -45,12 +45,12 @@ describe('PaymentRomove Component Integrated Test', () => {
   });
 
   it('paymentFacade removePayment() should called ', fakeAsync(() => {
-    component.payment = { id: 5 }
-    
+    component.payment = { id: 5 };
+
     spyOn(component, 'removePayment').and.callThrough();
     component.removePayment();
 
     expect(paymentFacadeSpy.removePayment.calls.any()).toBeTruthy();
-    expect(paymentFacadeSpy.removePayment).toHaveBeenCalled(); 
+    expect(paymentFacadeSpy.removePayment).toHaveBeenCalled();
   }));
 });

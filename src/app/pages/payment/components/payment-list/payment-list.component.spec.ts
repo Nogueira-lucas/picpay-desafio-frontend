@@ -15,7 +15,7 @@ const mockPayments: Payment[] = [
   { id: 2, name: 'Batman', value: 8, title: 'test title' },
   { id: 3, name: 'CaptainAmerica', value: 7, title: 'test title' },
   { id: 4, name: 'SuperMan', value: 9, title: 'test title' }
-]
+];
 
 const paymentFacadeSpy = jasmine.createSpyObj('PaymentFacade', ['getPayments$', 'loadPayments', 'loadPaymentsByUser']);
 
@@ -34,7 +34,7 @@ describe('PaymentRomove Component Isolated Test', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaymentListComponent);
-    component = fixture.componentInstance
+    component = fixture.componentInstance;
   }));
 
   it('Component successfully created', () => {
@@ -42,8 +42,8 @@ describe('PaymentRomove Component Isolated Test', () => {
   });
 
   it('Property value must be updated from when you change input', (() => {
-    component.paymentList$ = of(mockPayments)
-    component.paymentList$.subscribe(payments => {expect(payments).toEqual(mockPayments); })
+    component.paymentList$ = of(mockPayments);
+    component.paymentList$.subscribe(payments => {expect(payments).toEqual(mockPayments); });
   }));
 });
 
@@ -62,14 +62,14 @@ describe('PaymentRomove Component Shallow Test', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaymentListComponent);
-    component = fixture.componentInstance
+    component = fixture.componentInstance;
   }));
 
   it('Created a datatable with four rows', () => {
     paymentFacadeSpy.loadPayments.and.returnValue(of());
-    component.ngOnInit()
+    component.ngOnInit();
     fixture.detectChanges();
-    
+
     component.paymentList$ = of(mockPayments);
     fixture.detectChanges();
 
@@ -92,12 +92,12 @@ describe('PaymentList Component Integrated Test', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaymentListComponent);
-    component = fixture.componentInstance
+    component = fixture.componentInstance;
   }));
 
   it('paymentFacadeSpy loadPayments() should called ', () => {
     paymentFacadeSpy.loadPayments.and.returnValue(of());
-    component.ngOnInit()
+    component.ngOnInit();
     fixture.detectChanges();
 
     expect(paymentFacadeSpy.loadPayments.calls.any()).toBeTruthy();
@@ -106,7 +106,7 @@ describe('PaymentList Component Integrated Test', () => {
 
   it('paymentFacadeSpy loadPaymentsByUser() should called ', () => {
     paymentFacadeSpy.loadPaymentsByUser.and.returnValue(of(mockPayments));
-    
+
     spyOn(component, 'changedSearch').and.callThrough();
     component.changedSearch('CaptainAmerica');
 

@@ -11,7 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PaymentFormComponent } from './payment-form.component';
 
 const paymentFacadeSpy = jasmine.createSpyObj('PaymentFacade', ['updatePayment', 'addPayment']);
-const mockPayment: Payment = { name: 'IronMan', value: 8, title: 'test title', date:'2021-01-28T11:01' }
+const mockPayment: Payment = { name: 'IronMan', value: 8, title: 'test title', date: '2021-01-28T11:01' };
 
 describe('PaymentForm Component Isolated Test', () => {
   let fixture: ComponentFixture<PaymentFormComponent>;
@@ -41,7 +41,7 @@ describe('PaymentForm Component Isolated Test', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaymentFormComponent);
-    component = fixture.componentInstance
+    component = fixture.componentInstance;
   }));
 
   it('Component successfully created', () => {
@@ -87,7 +87,7 @@ describe('PaymentForm Component Shallow Test', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaymentFormComponent);
-    component = fixture.componentInstance
+    component = fixture.componentInstance;
   }));
 
   it('Created a form with input username, date, value and title', () => {
@@ -150,12 +150,12 @@ describe('PaymentForm Component Integrated Test', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaymentFormComponent);
-    component = fixture.componentInstance
+    component = fixture.componentInstance;
   }));
 
   it('PaymentFacade addPayment() should called ', () => {
     const addPay = { ...mockPayment, id: 25523 };
-    
+
     updateForm(mockPayment);
     fixture.detectChanges();
 
@@ -163,7 +163,7 @@ describe('PaymentForm Component Integrated Test', () => {
 
     spyOn(component, 'savePayment').and.callThrough();
     component.savePayment();
-    
+
     expect(paymentFacadeSpy.addPayment.calls.any()).toBeTruthy();
     expect(paymentFacadeSpy.addPayment).toHaveBeenCalled();
   });
@@ -179,7 +179,7 @@ describe('PaymentForm Component Integrated Test', () => {
 
     spyOn(component, 'savePayment').and.callThrough();
     component.savePayment();
-    
+
     expect(paymentFacadeSpy.updatePayment.calls.any()).toBeTruthy();
     expect(paymentFacadeSpy.updatePayment).toHaveBeenCalled();
   });

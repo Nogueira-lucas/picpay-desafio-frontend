@@ -30,7 +30,7 @@ describe('AuthGuard', () => {
   });
 
   it('not be able to hit route when user is not logged in', () => {
-    userFacadeSpy.getUser.and.returnValue(null)
+    userFacadeSpy.getUser.and.returnValue(null);
     expect(guard.canActivate()).toBeFalse();
   });
 });

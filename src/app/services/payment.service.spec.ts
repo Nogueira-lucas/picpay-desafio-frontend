@@ -21,7 +21,7 @@ describe('Payment Service Test', () => {
   });
 
   it('getPayments() should return data', () => {
-    const nameUser = 'Viviyan'
+    const nameUser = 'Viviyan';
     service.getPayments(nameUser).subscribe((res) => {
       expect(res.length).toBe(2);
     });
@@ -32,7 +32,7 @@ describe('Payment Service Test', () => {
   });
 
   it('createPayment() should POST and return data', () => {
-    const mockPayment: Payment = { name: 'IronMan', value: 8, title: 'test title', date:'2021-01-28T11:01' }
+    const mockPayment: Payment = { name: 'IronMan', value: 8, title: 'test title', date: '2021-01-28T11:01' };
 
     service.createPayment(mockPayment).subscribe((res) => {
       expect(res).toEqual(mockPayment);
@@ -45,5 +45,5 @@ describe('Payment Service Test', () => {
 
   afterEach(() => {
     httpMock.verify();
-  });  
+  });
 });
