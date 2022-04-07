@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, flush, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -108,7 +108,7 @@ describe('PaymentList Component Integrated Test', () => {
     paymentFacadeSpy.loadPaymentsByUser.and.returnValue(of(mockPayments));
     
     spyOn(component, 'changedSearch').and.callThrough();
-    component.changedSearch('CaptainAmerica')
+    component.changedSearch('CaptainAmerica');
 
     expect(paymentFacadeSpy.loadPaymentsByUser.calls.any()).toBeTruthy();
     expect(paymentFacadeSpy.loadPaymentsByUser).toHaveBeenCalled();

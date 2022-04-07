@@ -19,9 +19,9 @@ export class PaymentFormComponent implements OnInit, OnDestroy {
 
   constructor(private paymentFacade: PaymentFacade, private formBuilder: FormBuilder, public modal: NgbActiveModal) {
     this.form = this.formBuilder.group({
-      name: [''],
-      value: [''],
-      date: [''],
+      name: ['', Validators.required],
+      value: ['', Validators.required],
+      date: ['', Validators.required],
       title: [''],
     });
   }
@@ -29,9 +29,9 @@ export class PaymentFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.payment) {
       this.form = this.formBuilder.group({
-        name: [this.payment.name],
-        value: [this.payment.value],
-        date: [moment(this.payment.date).format('YYYY-MM-DDTHH:mm')],
+        name: [this.payment.name, Validators.required],
+        value: [this.payment.value, Validators.required],
+        date: [moment(this.payment.date).format('YYYY-MM-DDTHH:mm'), Validators.required],
         title: [this.payment.title],
       });
     }

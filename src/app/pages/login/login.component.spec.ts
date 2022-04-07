@@ -15,6 +15,7 @@ const validUser = { username: 'usuario@gmail.com', password: 'usuario' };
 const blankUser = { username: '', password: '' };
 
 describe('Login Component Isolated Test', () => {
+  let fixture: ComponentFixture<LoginComponent>;
   let component: LoginComponent;
 
   function updateForm(userEmail, userPassword) {
@@ -22,9 +23,24 @@ describe('Login Component Isolated Test', () => {
     component.form.controls.password.setValue(userPassword);
   }
 
-  beforeEach(() => {
-    component = new LoginComponent(routerSpy, new FormBuilder(), loginFacadeSpy);
-  });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FormsModule
+      ],
+      providers: [
+        { provide: UserFacade, useValue: loginFacadeSpy },
+        { provide: Router, useValue: routerSpy },
+        FormBuilder,
+      ],
+      declarations: [LoginComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+  }));
 
   it('Component successfully created', () => {
     expect(component).toBeTruthy();
@@ -76,7 +92,7 @@ describe('Login Component Shallow Test', () => {
     expect(loginBtnContainer).toBeDefined();
   });
 
-  it('When username and password is blank, password field should display red outline', () => {
+  it('When username and password is blank, the inputs should display red outline', () => {
     updateForm(blankUser.username, blankUser.password);
     fixture.detectChanges();
 

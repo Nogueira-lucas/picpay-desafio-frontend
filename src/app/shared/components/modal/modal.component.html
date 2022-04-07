@@ -8,6 +8,6 @@
     <ng-content select="[modal-body]"></ng-content>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-light px-4" (click)="modal.dismiss('cancel click')">Cancelar</button>
-    <button type="button" ngbAutofocus class="btn btn-primary px-4" (click)="saveModal.emit()">Salvar</button>
+    <button type="button" name="cancel" class="btn btn-light px-4" (click)="modal.dismiss('cancel click')">Cancelar</button>
+    <button type="button" name="save" class="btn btn-primary px-4" (click)="saveModal.emit()">Salvar</button>
 </div>

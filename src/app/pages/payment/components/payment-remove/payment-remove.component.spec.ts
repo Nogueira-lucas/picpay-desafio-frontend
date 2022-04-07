@@ -33,7 +33,7 @@ describe('PaymentRomove Component Integrated Test', () => {
     await TestBed.configureTestingModule({
       declarations: [ PaymentRemoveComponent ],
       providers: [ { provide: PaymentFacade, useValue: paymentFacadeSpy }, NgbActiveModal],
-      imports: [SharedModule]
+      imports: [ SharedModule ]
     })
     .compileComponents();
   });
@@ -44,16 +44,11 @@ describe('PaymentRomove Component Integrated Test', () => {
     fixture.detectChanges();
   });
 
-  it('Component successfully created', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('paymentFacade removePayment() should called ', fakeAsync(() => {
     component.payment = { id: 5 }
+    
     spyOn(component, 'removePayment').and.callThrough();
     component.removePayment();
-
-    expect(component.removePayment).toHaveBeenCalled();
 
     expect(paymentFacadeSpy.removePayment.calls.any()).toBeTruthy();
     expect(paymentFacadeSpy.removePayment).toHaveBeenCalled(); 
