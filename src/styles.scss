@@ -24,3 +24,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .ngx-datatable.bootstrap .datatable-footer .datatable-pager a {
   color: #424242; 
 }
+
+ngb-pagination {
+  ul > li:not(.active) > a {
+    color: black;
+     //não queria fazer isso, mas não achei outra opção
+    border-color: #fff !important;
+  }
+
+  ul > li.active > a,
+  ul > li > a:focus,
+  ul > li > a:hover {
+    box-shadow: none;
+    border-radius: 6px;
+  }
+
+  .sr-only {
+    display: none;
+  }
+}

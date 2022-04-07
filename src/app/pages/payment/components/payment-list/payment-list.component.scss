@@ -1,7 +1,4 @@
 .payments {
-    margin: 65px 48px;
-    padding-bottom: 21px;
-
     &__label {
         font-size: small;
         color: grey;
@@ -25,5 +22,12 @@
 
     &__link {
         cursor: pointer;
+    }
+
+    &__count-rows {
+        display: flex;
+        align-items: center;
+        height: min-content;
+        margin-right: 30px;
     }
 }

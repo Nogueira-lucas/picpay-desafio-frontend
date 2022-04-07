@@ -17,7 +17,7 @@ const mockPayments: Payment[] = [
   { id: 4, name: 'SuperMan', value: 9, title: 'test title' }
 ];
 
-const paymentFacadeSpy = jasmine.createSpyObj('PaymentFacade', ['getPayments$', 'loadPayments', 'loadPaymentsByUser']);
+const paymentFacadeSpy = jasmine.createSpyObj('PaymentFacade', ['getPayments$', 'loadPayments']);
 
 describe('PaymentRomove Component Isolated Test', () => {
   let fixture: ComponentFixture<PaymentListComponent>;
@@ -102,15 +102,5 @@ describe('PaymentList Component Integrated Test', () => {
 
     expect(paymentFacadeSpy.loadPayments.calls.any()).toBeTruthy();
     expect(paymentFacadeSpy.loadPayments).toHaveBeenCalled();
-  });
-
-  it('paymentFacadeSpy loadPaymentsByUser() should called ', () => {
-    paymentFacadeSpy.loadPaymentsByUser.and.returnValue(of(mockPayments));
-
-    spyOn(component, 'changedSearch').and.callThrough();
-    component.changedSearch('CaptainAmerica');
-
-    expect(paymentFacadeSpy.loadPaymentsByUser.calls.any()).toBeTruthy();
-    expect(paymentFacadeSpy.loadPaymentsByUser).toHaveBeenCalled();
   });
 });

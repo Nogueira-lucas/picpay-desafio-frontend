@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscription } from 'rxjs';
 import { PaymentFacade } from 'src/app/facade/payment.facade';
+import { Pagination } from 'src/app/models/pagination.model';
 import { Payment } from 'src/app/models/payment.model';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { PaymentRemoveComponent } from '../payment-remove/payment-remove.component';
@@ -14,6 +15,8 @@ import { PaymentRemoveComponent } from '../payment-remove/payment-remove.compone
 export class PaymentListComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   paymentList$ = new Observable<Payment[]>();
+  page: Pagination = { pageCurrent: 1, pageSize: 20 };
+  search: string;
 
   constructor(private paymentFacade: PaymentFacade, private modalService: NgbModal) {
     this.paymentList$ = this.paymentFacade.getPayments$();
@@ -24,7 +27,7 @@ export class PaymentListComponent implements OnInit, OnDestroy {
   }
 
   loadPayments() {
-    this.subscriptions.push(this.paymentFacade.loadPayments().subscribe());
+    this.subscriptions.push(this.paymentFacade.loadPayments(this.page, this.search).subscribe());
   }
 
   updateIsPayed(payment: Payment) {
@@ -46,7 +49,13 @@ export class PaymentListComponent implements OnInit, OnDestroy {
   }
 
   changedSearch(filter: string) {
-    this.subscriptions.push(this.paymentFacade.loadPaymentsByUser(filter).subscribe());
+    this.search = filter;
+    this.page.pageCurrent = 1;
+    this.loadPayments();
+  }
+
+  getPremiumData(){
+
   }
 
   ngOnDestroy() {

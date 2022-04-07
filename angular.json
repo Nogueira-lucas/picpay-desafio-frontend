@@ -30,9 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/sass/app.scss",
-              "node_modules/ngx-toastr/toastr.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/sass/app.scss"
             ],
             "scripts": [],
             "vendorChunk": true,

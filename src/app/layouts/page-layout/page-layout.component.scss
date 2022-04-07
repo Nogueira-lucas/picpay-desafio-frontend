@@ -1,3 +1,12 @@
 .page-layout {
     background-color: #F2F2F2; min-height: 100%;
+
+    &__content {
+        margin: 65px 48px;
+        padding-bottom: 21px;
+
+        @media (max-width: 640px) {
+            margin: 20px 10px;
+        }
+    }
 }

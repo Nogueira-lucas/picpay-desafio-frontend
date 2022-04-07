@@ -8,9 +8,24 @@
         </button>
     </div>
     <div class="payments__container">
-        <app-filter (changedSearch)="changedSearch($event)"></app-filter>
-        <ngx-datatable class="bootstrap table-responsive-md" [rows]="paymentList$ | async" columnMode="force" rowHeight="auto" 
-        [messages]="{ emptyMessage: 'Nenhum registro encontrado' }"  [limit]="20" [footerHeight]="50">
+        <div class="d-lg-flex justify-content-between">
+            <app-filter (changedSearch)="changedSearch($event)"></app-filter>
+            <div class="d-lg-flex">
+                <div class="payments__count-rows">
+                    <span>Exibir</span>
+                    <select class="form-select ms-2" [(ngModel)]="page.pageSize" (ngModelChange)="loadPayments();">
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="15">15</option>
+                        <option [ngValue]="20">20</option>
+                    </select>
+                </div>
+                <ngb-pagination size="sm" class="border-0" [collectionSize]="172" [(page)]="page.pageCurrent" maxSize="5"
+                    [pageSize]="page.pageSize" (pageChange)="loadPayments()">
+                 </ngb-pagination>
+            </div>
+        </div>
+        <ngx-datatable class="bootstrap table-responsive-md" [rows]="paymentList$ | async" columnMode="force"
+            [messages]="{ emptyMessage: 'Nenhum registro encontrado' }" [rowHeight]="'auto'" [scrollbarH]="true">
             <ngx-datatable-column name="Usuário" [sortable]="true" prop="username">
                 <ng-template let-row="row" ngx-datatable-cell-template>
                     {{row.name}}
@@ -27,7 +42,7 @@
             <ngx-datatable-column name="Valor" [sortable]="true" prop="value">
                 <ng-template let-row="row" ngx-datatable-cell-template>{{row.value | currency : 'BRL'}}</ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Pago" [sortable]="true" prop="isPayed">
+            <ngx-datatable-column name="Pago" [sortable]="true" prop="isPayed" cellClass="ngx-datatable-cell-center">
                 <ng-template let-row="row" ngx-datatable-cell-template>
                     <input type="checkbox" [(ngModel)]="row.isPayed" (change)="updateIsPayed(row)">
                 </ng-template>

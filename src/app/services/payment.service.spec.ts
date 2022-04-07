@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { PaymentService } from './payment.service';
 import { environment } from 'src/environments/environment';
 import { Payment } from '../models/payment.model';
+import { Pagination } from '../models/pagination.model';
 
 describe('Payment Service Test', () => {
   let injector: TestBed;
@@ -22,11 +23,12 @@ describe('Payment Service Test', () => {
 
   it('getPayments() should return data', () => {
     const nameUser = 'Viviyan';
-    service.getPayments(nameUser).subscribe((res) => {
+    const pagination: Pagination = {pageCurrent: 1, pageSize: 1};
+    service.getPayments(pagination, nameUser).subscribe((res) => {
       expect(res.length).toBe(2);
     });
 
-    const req = httpMock.expectOne(`${environment.API}/tasks?name_like=${nameUser}`);
+    const req = httpMock.expectOne(`${environment.API}/tasks?_page=${pagination.pageCurrent}&_limit=${pagination.pageSize}&name_like=${nameUser}`);
     expect(req.request.method).toBe('GET');
     req.flush([new Payment(), new Payment()]);
   });

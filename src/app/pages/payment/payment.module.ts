@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PaymentRemoveComponent } from './components/payment-remove/payment-remove.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PaymentRemoveComponent } from './components/payment-remove/payment-remo
     FormsModule,
     NgxDatatableModule,
     CurrencyMaskModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ]
 })
 export class PaymentModule { }

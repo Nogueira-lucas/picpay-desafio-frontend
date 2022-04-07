@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Pagination } from '../models/pagination.model';
 import { Payment } from '../models/payment.model';
 import { NotificationService } from '../services/notification.service';
 import { PaymentService } from '../services/payment.service';
@@ -17,13 +18,8 @@ export class PaymentFacade {
     return this.paymentState.getPayments$();
   }
 
-  loadPayments(): Observable<Payment[]> {
-    return this.paymentService.getPayments()
-      .pipe(tap(payments => this.paymentState.setPayments(payments)));
-  }
-
-  loadPaymentsByUser(userName): Observable<Payment[]> {
-    return this.paymentService.getPayments(userName)
+  loadPayments(pagination: Pagination, filter: string): Observable<Payment[]> {
+    return this.paymentService.getPayments(pagination, filter)
       .pipe(tap(payments => this.paymentState.setPayments(payments)));
   }
 
