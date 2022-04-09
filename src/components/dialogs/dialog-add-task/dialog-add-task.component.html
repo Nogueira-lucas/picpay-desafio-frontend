@@ -1,0 +1,49 @@
+<mat-dialog-content class="container">
+
+    <h2 class="h2">{{data == null ? 'Adicionar pagamento' : 'Editar pagamento'}}</h2>
+
+    <form #inputForm="ngForm" [formGroup]="taskForm" class="container-form">
+
+        <div fxLayout="row" fxLayoutAlign="start center" class="container-input">
+            <mat-form-field class="left-input" appearance="outline">
+                <mat-label>Usuário</mat-label>
+                <input type="text" matInput formControlName="name" required placeholder="Usuário*">
+            </mat-form-field>
+
+            <mat-form-field class="right-input" appearance="outline">
+                <mat-label>Valor</mat-label>
+                <input type="text" [min]="minValue" currencyMask matInput formControlName="value" required placeholder="Valor*"
+                    [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" class="container-input">
+            <mat-form-field class="left-input" appearance="outline">
+                <mat-label>Data</mat-label>
+                <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="date" required
+                    placeholder="Data*">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="right-input" appearance="outline">
+                <mat-label>Título</mat-label>
+                <input type="text" matInput formControlName="title" required placeholder="Título*">
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start end" class="container-button">
+            <button class="cancel-button" mat-raised-button color="primary" (click)="cancel()">
+                <div class="label-cancel">cancelar</div>
+            </button>
+
+            <button class="save-button" mat-raised-button color="primary" (click)="onSubmit()"
+                [disabled]="!taskForm.valid">
+                <div class="label-save">Salvar</div>
+            </button>
+        </div>
+
+
+
+    </form>
+</mat-dialog-content>

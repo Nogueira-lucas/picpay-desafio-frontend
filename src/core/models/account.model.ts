@@ -1,11 +1,11 @@
-import { Deserializable } from "./deserializable.model";
+import { Deserializable } from './deserializable.model';
 
 export class Account implements Deserializable<Account>{
 
-    "id": number
-    "name": string
-    "email": string
-    "password": string
+    'id': number;
+    'name': string;
+    'email': string;
+    'password': string;
 
     deserialize(input: any): Account {
         Object.assign(this, input);

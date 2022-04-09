@@ -12,10 +12,10 @@ import { MaterialModule } from 'src/core/material/material.module';
     CommonModule,
     MaterialModule
   ],
-  entryComponents:[
+  entryComponents: [
     ToolbarComponent
   ],
-  exports:[
+  exports: [
     ToolbarComponent
   ]
 })

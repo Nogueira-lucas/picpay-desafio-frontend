@@ -7,9 +7,9 @@ const routes: Routes = [
   {
     path: '',
     component: TaskComponent,
-    canActivate:[LoginGuard]
+    canActivate: [LoginGuard]
   }
-]
+];
 
 @NgModule({
   declarations: [],

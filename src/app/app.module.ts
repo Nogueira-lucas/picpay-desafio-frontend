@@ -11,6 +11,8 @@ import { ToolbarModule } from 'src/components/toolbar/toolbar.module';
 import { LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { DialogsModule } from '../components/dialogs/dialogs.module';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 registerLocaleData(localePt, 'pt');
 
@@ -31,12 +33,14 @@ registerLocaleData(localePt, 'pt');
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CurrencyMaskModule,
     BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
     LoginModule,
     TaskModule,
-    ToolbarModule
+    ToolbarModule,
+    DialogsModule
   ],
   bootstrap: [AppComponent]
 })

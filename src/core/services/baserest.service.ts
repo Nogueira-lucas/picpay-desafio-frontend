@@ -1,7 +1,7 @@
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Injector } from "@angular/core";
-import { environment } from "src/environments/environment";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Injector } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 export abstract class BaseRestService<T> {
 
@@ -17,14 +17,18 @@ export abstract class BaseRestService<T> {
     }
 
     getById(id: number): Observable<any> {
-        return this.http.get<any>(`${this.serverURL}/${this.baseURL}/${id}`)
+        return this.http.get<any>(`${this.serverURL}/${this.baseURL}/${id}`);
+    }
+
+    create(body: any): Observable<any> {
+        return this.http.post<any>(`${this.serverURL}/${this.baseURL}`, body);
     }
 
     update(id: number, body: any): Observable<any> {
-        return this.http.patch<any>(`${this.serverURL}/${this.baseURL}/${id}`, body)
+        return this.http.patch<any>(`${this.serverURL}/${this.baseURL}/${id}`, body);
     }
 
     delete(id: number): Observable<any> {
-        return this.http.delete<any>(`${this.serverURL}/${this.baseURL}/${id}`)
+        return this.http.delete<any>(`${this.serverURL}/${this.baseURL}/${id}`);
     }
 }

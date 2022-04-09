@@ -8,9 +8,9 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core();
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800;900&display=swap');
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -74,4 +74,19 @@ img{
   .mat-checkbox-ripple .mat-ripple-element {
       background-color: #007DFE !important;
   }
+}
+
+.style-success {
+  color: white;
+  background-color:  #007DFE;;
+}
+.style-success .mat-simple-snackbar-action  {
+  color: white;
+}
+.style-error {
+  color: white;
+  background-color: red;
+}
+.style-error .mat-simple-snackbar-action {
+  color: white;
 }

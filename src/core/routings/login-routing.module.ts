@@ -8,9 +8,9 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
     canLoad: [LoginGuard],
-    canActivate:[LoginGuard]
+    canActivate: [LoginGuard]
   }
-]
+];
 
 @NgModule({
   imports: [

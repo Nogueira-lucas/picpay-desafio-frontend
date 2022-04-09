@@ -20,10 +20,10 @@ export class CoreModule {
           ngModule: CoreModule,
           providers: [
             AccountService,
-            TaskService, 
-            { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true },
-            
+            TaskService,
+            { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+
           ]
-      }
+      };
   }
 }

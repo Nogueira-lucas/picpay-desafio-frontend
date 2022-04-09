@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('../../pages/task/task.module').then(m => m.TaskModule)
   }
 
-]
+];
 
 @NgModule({
   imports: [

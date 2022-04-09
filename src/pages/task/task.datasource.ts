@@ -1,16 +1,16 @@
-import { CollectionViewer, DataSource } from "@angular/cdk/collections";
-import { catchError } from "rxjs/operators";
-import { Observable, BehaviorSubject } from "rxjs";
+import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { catchError } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { TaskService } from 'src/core/services/task/task.service';
-import { Task } from "src/core/models/tasks.model";
+import { Task } from 'src/core/models/tasks.model';
 
 export class TasksDataSource implements DataSource<Task> {
 
     private dataSubject = new BehaviorSubject<Task[]>([]);
 
-    private totalElementsSubject = new BehaviorSubject<number>(0)
+    private totalElementsSubject = new BehaviorSubject<number>(0);
 
-    public totalElements$ = this.totalElementsSubject.asObservable()
+    public totalElements$ = this.totalElementsSubject.asObservable();
 
     constructor(private taskService: TaskService) {
     }
@@ -19,7 +19,7 @@ export class TasksDataSource implements DataSource<Task> {
         name: string,
         username: string,
         isPaye: boolean,
-        date:string,
+        date: string,
         title: string,
         sortField: string,
         sortDirection: string,
@@ -38,19 +38,19 @@ export class TasksDataSource implements DataSource<Task> {
                 catchError(() => [])
             )
             .subscribe(result => {
-                this.totalElementsSubject.next(170)
-                this.dataSubject.next(result)
-            })
+                this.totalElementsSubject.next(170);
+                this.dataSubject.next(result);
+            });
 
 
     }
 
     connect(collectionViewer: CollectionViewer): Observable<any[]> {
-        return this.dataSubject.asObservable()
+        return this.dataSubject.asObservable();
     }
 
     disconnect(collectionViewer: CollectionViewer): void {
-        this.dataSubject.complete()
-        this.totalElementsSubject.complete()
+        this.dataSubject.complete();
+        this.totalElementsSubject.complete();
     }
 }

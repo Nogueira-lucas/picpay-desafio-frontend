@@ -1,0 +1,126 @@
+.mat-dialog-container {
+    padding: 40px 37px 35px 38px;
+}
+
+.mat-dialog-content {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    max-height: 100%;
+    overflow:unset;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+    .h2 {
+        width: 233px;
+        height: 22.79px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        color: #373737;
+        padding-bottom: 50.21px;
+    }
+
+    .container-form {
+        width: 100%;
+        margin-top: 0px;
+        display: flex;
+        flex-direction: column;
+
+        .container-input {
+            display: flex;
+            margin-top: 0px;
+            margin-left: 1px;
+            margin-right: 2px;
+            margin-bottom: 40px;
+            width: 100%;
+            height: 54px;
+            flex-direction: row;
+
+            .left-input {
+                height: 54px;
+                width: 326px;
+            }
+
+            .right-input {
+                margin-left: 42px;
+                height: 54px;
+                width: 326px;
+            }
+        }
+
+        .container-button {
+            display: flex;
+            margin-top: 0px;
+            margin-left: 1px;
+            margin-right: 2px;
+            margin-bottom: 40px;
+            width: 100%;
+            height: 54px;
+            flex-direction: row;
+
+            .label-cancel {
+                height: 16px;
+                left: 14px;
+                right: 15px;
+                top: calc(50% - 16px/2);
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                text-align: center;
+                letter-spacing: 1.25px;
+                text-transform: uppercase;
+                color: #333333;
+            }
+
+            .label-save {
+                height: 16px;
+                left: 14px;
+                right: 15px;
+                top: calc(50% - 16px/2);
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                text-align: center;
+                letter-spacing: 1.25px;
+                text-transform: uppercase;
+                color: #FFFFFF;
+            }
+
+            .cancel-button {
+                position: absolute;
+                margin-left: 368px;
+                margin-top: 20px;
+                background: #F5F5F5;
+                border-radius: 4px;
+                height: 36px;
+                width: 150px;
+                border-radius: 4px;
+
+            }
+
+            .save-button {
+                position: absolute;
+                margin-left: 547px;
+                margin-top: 20px;
+                background: #007DFE;
+                border-radius: 4px;
+                height: 36px;
+                width: 150px;
+                border-radius: 4px;
+            }
+            .save-button:disabled{
+                background:#dfe9f2 ;
+            }
+        }
+    }
+}

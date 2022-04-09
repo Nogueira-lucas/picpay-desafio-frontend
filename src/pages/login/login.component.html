@@ -2,10 +2,6 @@
 
   <div class="left">
 
-    <!-- <form>
-       
-    </form> -->
-
     <form name="loginForm"  (ngSubmit)="login()" novalidate class="login-form">
 
       <img src="assets/login/svg/pay-friends.svg" alt="Pay Friends">
@@ -28,7 +24,7 @@
         <mat-label>Senha</mat-label>
         <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
           placeholder="Senha">
-
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-error *ngIf="passwordFormControl.hasError('required')">
           A Senha é <strong>obrigatório</strong>
         </mat-error>

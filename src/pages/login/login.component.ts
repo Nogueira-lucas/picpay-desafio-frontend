@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AccountService } from 'src/core/services/account/account.service';
-import { catchError } from "rxjs/operators";
-import { Router } from "@angular/router"
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -38,16 +38,16 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-   
+
     this.accountService.login(this.emailFormControl.value, this.passwordFormControl.value).pipe(
       catchError(() => [])
     )
       .subscribe(result => {
         if (result && result.length && result.length > 0) {
-          sessionStorage.setItem('access_token', "oiqwue37767432&%HWEQW");
-          this.router.navigate(['/task'])
+          sessionStorage.setItem('access_token', 'oiqwue37767432&%HWEQW');
+          this.router.navigate(['/task']);
         }
-      })
+      });
   }
 
 }

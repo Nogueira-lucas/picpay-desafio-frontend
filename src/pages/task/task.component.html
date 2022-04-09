@@ -1,5 +1,5 @@
 <div>
-  <toolbar> </toolbar>
+  <app-toolbar> </app-toolbar>
   <div class="container">
     <h2>Meus pagamentos</h2>
 
@@ -62,10 +62,10 @@
         <ng-container cdkColumnDef="actions">
           <mat-header-cell *cdkHeaderCellDef class="white-fg"></mat-header-cell>
           <mat-cell *cdkCellDef="let element" class="header-align-right">
-            <button mat-icon-button class="sidebar-toggle">
+            <button mat-icon-button class="sidebar-toggle" (click)="updateTask(element)">
               <img width="20px" height="20px" src="assets/task/svg/edit.svg">
             </button>
-            <button mat-icon-button class="sidebar-toggle">
+            <button mat-icon-button class="sidebar-toggle" (click)="deleteTask(element)">
               <img width="20px" height="20px" src="assets/task/svg/close.svg">
             </button>
           </mat-cell>

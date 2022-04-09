@@ -1,8 +1,8 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { Injectable, Injector } from "@angular/core";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { Injectable, Injector } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from "../../../node_modules/@angular/router";
+import { Router } from '../../../node_modules/@angular/router';
 import { catchError } from 'rxjs/operators';
 
 
@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     constructor(
         private injector: Injector,
-        //private snackar: MatSnackBar
+        // private snackar: MatSnackBar
     ) {
        // this.router = this.injector.get(Router);
     }
@@ -31,7 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(catchError(err => {
             if (err.status === 401) {
                 // auto logout if 401 response returned from api
-                
+
             }
 
             const error = err.error.message || err.statusText;
@@ -39,16 +39,16 @@ export class AuthInterceptor implements HttpInterceptor {
         }));
     }
 
-    private handleResponseHeaderAccessToken(event: HttpResponse<any>) {
+    // private handleResponseHeaderAccessToken(event: HttpResponse<any>) {
 
-    }
+    // }
 
-    private handleRequestHeaders( req : HttpRequest<any>) : HttpRequest<any>{
+    // private handleRequestHeaders( req: HttpRequest<any>): HttpRequest<any>{
 
-        let requestWithHeaders : HttpRequest<any>
+    //     let requestWithHeaders: HttpRequest<any>;
 
-        return requestWithHeaders;
-    }
+    //     return requestWithHeaders;
+    // }
 
 
 }

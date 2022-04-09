@@ -1,0 +1,22 @@
+<mat-dialog-content class="container">
+
+    <h2 class="h2">Excluir pagamento</h2>
+
+    <div class="container-task">
+
+        <p class="label-title">Usuário: {{data.name}}</p>
+        <p class="label-title">Data: {{data.date | date :'dd/MM/yyyy'}}</p>
+        <p class="label-title">Valor: {{data.value | currency : 'R$'}}</p>
+
+        <div fxLayout="row" fxLayoutAlign="start end" class="container-button">
+            <button class="cancel-button" mat-raised-button color="primary" (click)="cancel()">
+                <div class="label-cancel">cancelar</div>
+            </button>
+
+            <button class="remove-button" mat-raised-button color="primary" (click)="onSubmit()">
+                <div class="label-save">Excluir</div>
+            </button>
+        </div>
+
+    </div>
+</mat-dialog-content>
