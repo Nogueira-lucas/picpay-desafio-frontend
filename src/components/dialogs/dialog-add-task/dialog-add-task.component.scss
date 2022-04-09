@@ -1,5 +1,12 @@
+
+.mat-calendar {
+    background-color: #F5F8FA;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 .mat-dialog-container {
     padding: 40px 37px 35px 38px;
+    background-color: #FFFFFF;
 }
 
 .mat-dialog-content {
@@ -9,10 +16,12 @@
     overflow:unset;
 }
 
-.container {
+.container-dialog {
     display: flex;
     height: 100%;
+    width: 100%;
     flex-direction: column;
+    background-color: #FFFFFF;
 
     .h2 {
         width: 233px;

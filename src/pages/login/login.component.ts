@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AccountService } from 'src/core/services/account/account.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -18,18 +19,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./login.component.scss']
 })
 
-
-
 export class LoginComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private snackbar: MatSnackBar
   ) { }
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required]);
-
+  hide : Boolean = true;
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
@@ -44,8 +44,19 @@ export class LoginComponent implements OnInit {
     )
       .subscribe(result => {
         if (result && result.length && result.length > 0) {
-          sessionStorage.setItem('access_token', 'oiqwue37767432&%HWEQW');
+
+          this.snackbar.open('Bem vindo de volta.', 'PayFriends', {
+            duration: 6000,
+            panelClass: ['blue-snackbar']
+          });
+
+          sessionStorage.setItem('access_token', result[0].token);
           this.router.navigate(['/task']);
+        }else{
+          this.snackbar.open('Usuário e/ou senha inválido(s).', 'PayFriends', {
+            duration: 46000,
+            panelClass: ['red-snackbar']
+          });
         }
       });
   }

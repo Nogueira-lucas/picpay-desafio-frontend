@@ -1,8 +1,31 @@
-<mat-toolbar class="p-0 mat-elevation-z1">
+<mat-toolbar class="header mat-ellevation-z4">
+  <span>
+    
+    <a>
+      <img class="logo" src="assets/task/svg/logo_white.svg" alt="Pay Friends">
+    </a>
 
+    <a>
 
+      <button class="menu" id="userMenu" mat-button [matMenuTriggerFor]="userMenu">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <img class="avatar" src="assets/task/svg/perfil.svg">
+        </div>
+      </button>
 
-  <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+      <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Sair</span>
+        </button>
+
+      </mat-menu>
+
+    </a>
+  </span>
+
+  <!-- <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
 
     <img class="img-logo" src="assets/task/svg/logo_white.svg" alt="Pay Friends">
 
@@ -22,8 +45,6 @@
 
     </mat-menu>
 
-  </div>
-
-
+  </div> -->
 
 </mat-toolbar>

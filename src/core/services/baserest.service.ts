@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injector } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Task } from 'src/core/models/tasks.model';
 
 export abstract class BaseRestService<T> {
 
@@ -16,19 +17,15 @@ export abstract class BaseRestService<T> {
         this.serverURL = environment.serverUrl;
     }
 
-    getById(id: number): Observable<any> {
-        return this.http.get<any>(`${this.serverURL}/${this.baseURL}/${id}`);
+    create(body: any): Observable<Task> {
+        return this.http.post<Task>(`${this.serverURL}/${this.baseURL}`, body);
     }
 
-    create(body: any): Observable<any> {
-        return this.http.post<any>(`${this.serverURL}/${this.baseURL}`, body);
+    update(id: number, body: any): Observable<Task> {
+        return this.http.patch<Task>(`${this.serverURL}/${this.baseURL}/${id}`, body);
     }
 
-    update(id: number, body: any): Observable<any> {
-        return this.http.patch<any>(`${this.serverURL}/${this.baseURL}/${id}`, body);
-    }
-
-    delete(id: number): Observable<any> {
-        return this.http.delete<any>(`${this.serverURL}/${this.baseURL}/${id}`);
+    delete(id: number): Observable<Task> {
+        return this.http.delete<Task>(`${this.serverURL}/${this.baseURL}/${id}`);
     }
 }

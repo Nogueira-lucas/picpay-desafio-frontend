@@ -87,13 +87,14 @@ export class DialogAddTaskComponent implements OnInit {
         this.dialogRef.close({ data: { confirm: true } });
 
         this.snackbar.open('Pagamento feito com sucesso!', 'Sucesso', {
-          duration: 6000
+          duration: 6000,
+          panelClass: ['blue-snackbar']
         });
       }, error => {
-        this.snackbar.open(error.error.statusCode === 400 ? error.error.message : 'Ocorreu um erro na sua requisição. tente novamente.', 'Error', { duration: 6000 });
+        this.snackbar.open(error.error.statusCode === 400 ? error.error.message : 'Ocorreu um erro na sua requisição. tente novamente.', 'Error', { duration: 6000, panelClass: ['red-snackbar'] });
       });
     } catch (error) {
-      this.snackbar.open('Não é possível adicionar um novo pagamento no momento.', 'Error', { duration: 6000 });
+      this.snackbar.open('Não é possível adicionar um novo pagamento no momento.', 'Error', { duration: 6000, panelClass: ['red-snackbar'] });
     }
   }
 
@@ -106,13 +107,14 @@ export class DialogAddTaskComponent implements OnInit {
         this.dialogRef.close({ data: { confirm: true } });
 
         this.snackbar.open('Pagamento atualizado com sucesso!', 'Sucesso', {
-          duration: 6000
+          duration: 6000,
+          panelClass: ['blue-snackbar']
         });
       }, error => {
-        this.snackbar.open(error.error.statusCode === 400 ? error.error.message : 'Ocorreu um erro na sua requisição. tente novamente.', 'Error', { duration: 6000 });
+        this.snackbar.open(error.error.statusCode === 400 ? error.error.message : 'Ocorreu um erro na sua requisição. tente novamente.', 'Error', { duration: 6000,panelClass: ['red-snackbar'] });
       });
     } catch (error) {
-      this.snackbar.open('Não é possível atualizar o pagamento.', 'Error', { duration: 6000 });
+      this.snackbar.open('Não é possível atualizar o pagamento.', 'Error', { duration: 6000, panelClass: ['red-snackbar'] });
     }
   }
 

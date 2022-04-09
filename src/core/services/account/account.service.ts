@@ -13,8 +13,8 @@ export class AccountService extends BaseRestService<Account> {
         super(injector, 'account');
     }
 
-    login(login: string, password: string): Observable<any> {
-        return this.http.get<any>(`${this.serverURL}/${this.baseURL}?login=${login}&password=${password}`);
+    login(login: string, password: string): Observable<Account[]> {
+        return this.http.get<Account[]>(`${this.serverURL}/${this.baseURL}?login=${login}&password=${password}`);
     }
 
 }

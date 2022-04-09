@@ -4,6 +4,7 @@ import { TaskComponent } from './task.component';
 import { TaskRoutingModule } from 'src/core/routings/task-routing.module';
 import { ToolbarModule } from 'src/components/toolbar/toolbar.module';
 import { MaterialModule } from 'src/core/material/material.module';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MaterialModule } from 'src/core/material/material.module';
     CommonModule,
     TaskRoutingModule,
     ToolbarModule,
-    MaterialModule
+    MaterialModule,
+    PaginationModule
   ]
 })
 export class TaskModule { }

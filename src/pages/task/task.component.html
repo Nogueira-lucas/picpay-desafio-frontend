@@ -1,85 +1,119 @@
-<div>
-  <app-toolbar> </app-toolbar>
-  <div class="container">
-    <h2>Meus pagamentos</h2>
+<app-toolbar> </app-toolbar>
 
-    <div class="content-card">
+<div class="body">
 
-      <mat-table class="tasks-table" [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc"
-        matSortDisableClear>
+  <h2 class="title-label">Meus pagamentos</h2>
 
-        <ng-container cdkColumnDef="name">
-          <mat-header-cell *cdkHeaderCellDef class="white-fg">
-            <p class="label-header">Usuário</p>
-          </mat-header-cell>
-          <mat-cell *cdkCellDef="let element">
-            <div class="text-truncate">
-              <p class="label-name">{{element.name}}</p>
-              <p class="label-username">@{{element.username}}</p>
-            </div>
-          </mat-cell>
-        </ng-container>
+  <button class="add-task-button" mat-raised-button color="primary" (click)="addTask()">
+    <div class="add-task-label">ADICIONAR PAGAMENTO</div>
+  </button>
 
-        <ng-container cdkColumnDef="title">
-          <mat-header-cell *cdkHeaderCellDef class="white-fg">
-            <p class="label-header">Título</p>
-          </mat-header-cell>
-          <mat-cell *cdkCellDef="let element">
-            <p class="label-title">{{element.title}}</p>
-          </mat-cell>
-        </ng-container>
+  <div class="container-filter">
 
-        <ng-container cdkColumnDef="date">
-          <mat-header-cell *cdkHeaderCellDef class="white-fg">
-            <p class="label-header">Data</p>
-          </mat-header-cell>
-          <mat-cell *cdkCellDef="let element">
-            <div>
-              <p class="label-date">{{convertDate(element.date, 'D MMM YYYY')}}</p>
-              <p class="label-time">{{convertDate(element.date,'LT a')}}</p>
-            </div>
-          </mat-cell>
-        </ng-container>
+    <form #inputForm="ngForm" [formGroup]="searchForm">
 
-        <ng-container cdkColumnDef="value">
-          <mat-header-cell *cdkHeaderCellDef mat-sort-header class="white-fg">
-            <p class="label-header">Valor</p>
-          </mat-header-cell>
-          <mat-cell *cdkCellDef="let element">
-            <p class="label-money">{{element.value | currency : 'R$'}}</p>
-          </mat-cell>
-        </ng-container>
+      <mat-form-field class="search-input" appearance="outline">
+        <input type="text" matInput formControlName="search" (keyup)="searchOnChange($event)"
+          placeholder="Pesquisar por usuário">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
 
-        <ng-container cdkColumnDef="isPayed">
-          <mat-header-cell *cdkHeaderCellDef mat-sort-header class="white-fg">
-            <p class="label-header">Pago</p>
-          </mat-header-cell>
-          <mat-cell *cdkCellDef="let element">
-            <mat-checkbox [(ngModel)]="element.isPayed"></mat-checkbox>
-          </mat-cell>
-        </ng-container>
+    </form>
 
-        <ng-container cdkColumnDef="actions">
-          <mat-header-cell *cdkHeaderCellDef class="white-fg"></mat-header-cell>
-          <mat-cell *cdkCellDef="let element" class="header-align-right">
-            <button mat-icon-button class="sidebar-toggle" (click)="updateTask(element)">
-              <img width="20px" height="20px" src="assets/task/svg/edit.svg">
-            </button>
-            <button mat-icon-button class="sidebar-toggle" (click)="deleteTask(element)">
-              <img width="20px" height="20px" src="assets/task/svg/close.svg">
-            </button>
-          </mat-cell>
-        </ng-container>
+    <button mat-icon-button class="filter-button">
+      <img class="filter-image" src="assets/task/svg/shape.svg">
+      <p class="filter-label">Filtrar</p>
+    </button>
 
-        <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *cdkRowDef="let row; columns: displayedColumns;" matRipple class="task">
+    <p class="label-select-item">Exibir</p>
 
-        </mat-row>
+    <mat-form-field class="select-items" appearance="outline">
+      <mat-select class="mat-select" placeholder="Exibir" [(value)]="itemsPerPage"
+        (selectionChange)="itemPerPageOnSelected($event)">
+        <mat-option *ngFor="let item of itemsPerPageList" [value]="item">
+          {{ item }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      </mat-table>
+    <pagination class="pagination" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" [maxSize]="5"
+      previousText="<" nextText=">" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)">
+    </pagination>
 
-      <mat-paginator [length]="resultLength" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"></mat-paginator>
-
-    </div>
   </div>
+  <div class="content-card">
+    <mat-table class="tasks-table" [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc"
+      matSortDisableClear>
+
+      <ng-container cdkColumnDef="name">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>
+          <p class="label-header">Usuário</p>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let element">
+          <div class="text-truncate">
+            <p class="label-name">{{element.name}}</p>
+            <p class="label-username">@{{element.username}}</p>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="title">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>
+          <p class="label-header">Título</p>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let element">
+          <p class="label-title">{{element.title}}</p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="date">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>
+          <p class="label-header">Data</p>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let element">
+          <div>
+            <p class="label-date">{{convertDate(element.date, 'D MMM YYYY')}}</p>
+            <p class="label-time">{{convertDate(element.date,'LT a')}}</p>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="value">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>
+          <p class="label-header">Valor</p>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let element">
+          <p class="label-money">{{element.value | currency : 'R$'}}</p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="isPayed">
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header>
+          <p class="label-header">Pago</p>
+        </mat-header-cell>
+        <mat-cell *cdkCellDef="let element">
+          <mat-checkbox [disabled]="true" [(ngModel)]="element.isPayed"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="actions">
+        <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+        <mat-cell *cdkCellDef="let element" class="header-align-right">
+          <button mat-icon-button class="sidebar-toggle-edit" (click)="updateTask(element)">
+            <img width="20px" height="20px" src="assets/task/svg/edit.svg">
+          </button>
+          <button mat-icon-button class="sidebar-toggle-remove" (click)="deleteTask(element)">
+            <img width="20px" height="20px" src="assets/task/svg/close.svg">
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *cdkRowDef="let row; columns: displayedColumns;" matRipple class="task">
+
+      </mat-row>
+
+    </mat-table>
+  </div>
+
 </div>

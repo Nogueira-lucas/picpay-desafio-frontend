@@ -1,52 +1,26 @@
-:host {
-
-  position: relative;
+.header {
   display: flex;
-  flex: 0 0 auto;
-  z-index: 4;
+  align-items: center;
+  height: 5.63rem;
+  background-color: #002D69;
+}
 
+.header a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
 
-  .img-logo {
-    position: absolute;
-    width: 137px;
-    height: 29px;
-    left: 30px;
-    top: 31px;
-  }
+.header .logo {
+  margin-left: 1.88rem;
+  max-height: 1.81rem;
+  max-width: 8.56rem;
+}
 
-  .menu-perfil {
-    position: fixed;
-    top: 22px;
-    right: 30px; 
-  }
-
-  .mat-toolbar {
-    background: inherit;
-    color: inherit;
-    position: relative;
-    height: 90px;
-    background-color: #002D69;
-
-    .loading-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-    }
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-
-    .logo-icon {
-      width: 38px;
-    }
-  }
-
-  .padding-button {
-    padding-right: 50px !important;
-  }
-
+.header .menu{
+  position: absolute;
+  right: 1.88rem;
+  top: 1.38rem;
+  background: inherit;
+  color: inherit;
 }

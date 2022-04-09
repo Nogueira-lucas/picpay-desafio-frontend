@@ -8,24 +8,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuard implements CanActivate, CanDeactivate<unknown>, CanLoad {
+export class TaskGuard implements CanActivate, CanDeactivate<unknown>, CanLoad {
 
   constructor(
     private router: Router,
     private snackbar: MatSnackBar
   ) { }
 
-
+ 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     let isAuthenticated: boolean = true;
 
-    if (sessionStorage.getItem('access_token') && sessionStorage.getItem('access_token') === AppSettings.TOKEN) {
-      this.router.navigate(['/task']);
+    if (!sessionStorage.getItem('access_token') || sessionStorage.getItem('access_token') && sessionStorage.getItem('access_token') !== AppSettings.TOKEN) {
+      this.router.navigate(['/login']);
       isAuthenticated = false;
-      this.snackbar.open('Você já está logado!.', 'PayFriends', {
+      this.snackbar.open('Token inválido.', 'PayFriends', {
         duration: 4000,
         panelClass: ['orange-snackbar']
       });
@@ -43,6 +43,7 @@ export class LoginGuard implements CanActivate, CanDeactivate<unknown>, CanLoad 
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
     return true;
   }
 }

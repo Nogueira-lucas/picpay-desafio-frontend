@@ -1,102 +1,110 @@
-:host {
+.container-login {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
-    .container {
+    .left {
         display: flex;
         align-items: center;
+        left: 0;
+        width: calc(37.5%);
         height: 100%;
+        background-color: #F2F2F2;
 
-        .left {
-            flex: 0 0 calc(37.5%);
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            background-color: #F2F2F2;
-
-            @media only screen and (max-width: 620px) {
-                flex: 0 0 100%;
-            }
-
-            .login-form {
-                display: flex;
-                flex-direction: column;
-                margin: 317px 106px 368px 106px;
-                width: calc(37.5%);
-                //height: 339px;//339px
-
-
-                @media only screen and (max-width: 620px) {
-                    margin: 317px 107px 368px 107px;
-                    width: 100%;
-                }
-
-                img {
-                    width: 154px;
-                    height: 29px;
-                }
-
-                h1 {
-                    font-family: Montserrat;
-                    font-size: 30px;
-                    font-weight: 600;
-                    line-height: 37px;
-                    letter-spacing: 0em;
-                    text-align: left;
-                    color: #333333;
-                    margin-top: 18px;
-                }
-
-                .login-input {
-                    height: 54px;
-                    width: 326px;
-                    left: 1px;
-                    top: 1px;
-                    border-radius: 3px;
-                    margin-top: 33px;
-                }
-
-                .login-button {
-                    height: 36px;
-                    width: 328px;
-                    border-radius: 4px;
-                    background-color: #007DFE;
-                    margin-top: 35px;
-                }
-
-                .login-label {
-                    font-family: 'Roboto';
-                    font-size: 14px;
-                    font-weight: 500;
-                    letter-spacing: 1.25px;
-                    text-align: center;
-                    color: #fff;
-                }
-            }
-
-
+        @media only screen and (max-width: 20.75rem) {
+            flex: 0 0 100%;
+            width: 100%;
+            background-color: red;
         }
 
-        .right {
+        .img-login {
+            position: absolute;
+            width: 9.63rem;
+            height: 1.81rem;
+            top: calc(31%);
+            left: calc(7.4%);
+        }
+
+        .label-title {
+            position: absolute;
+            top: calc(35.5%);
+            left: calc(7.4%);
+            font-family: Montserrat;
+            font-size: 1.88rem;
+            font-weight: 600;
+            line-height: 2.31rem;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #333333;
+            margin-top: 1.13rem;
+        }
+
+
+        .login-input {
+            position: absolute;
+            height: 3.38rem;
+            width: 20.38rem;
+            top: calc(43.1%);
+            left: calc(7.4%);
+            border-radius: 0.19rem;
+            margin-top: 2.06rem;
+        }
+
+
+
+        .password-input {
+            position: absolute;
+            height: 3.38rem;
+            width: 20.38rem;
+            top: calc(51.9%);
+            left: calc(7.4%);
+            border-radius: 0.19rem;
+            margin-top: 2.06rem;
+        }
+
+        .login-button {
+            position: absolute;
+            height: 2.25rem;
+            width: 20.5rem;
+            top: calc(60.6%);
+            left: calc(7.4%);
+            border-radius: 0.25rem;
+            background-color: #007DFE;
+            margin-top: 2.19rem;
+        }
+
+        .login-label {
+            font-family: 'Roboto';
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.08rem;
             text-align: center;
-            height: 100%;
-            width: calc(62.5%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 1rem;
-            background-color: white;
-
-            .image {
-                margin: 225px 99px 220px 64px
-            }
-
-            @media only screen and (max-width: 620px) {
-                display: none;
-            }
+            color: #fff;
         }
+
     }
 
-    ;
+    .right {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 0;
+        width: calc(62.5%);
+        height: 100%;
+        background-color: #FFFFFF;
 
+        .image {
+            position: absolute;
+            top: calc(23%);
+            left:  calc(10%);
+            width: 100%;
+            height: 100%;
+        }
 
+      
 
+        @media only screen and (max-width: 64.75rem) {
+            display: none;
+        }
+    }
 }

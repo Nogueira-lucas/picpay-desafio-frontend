@@ -13,12 +13,16 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { DialogsModule } from '../components/dialogs/dialogs.module';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { Error404Component } from '../pages/error404/error404.component';
+
 
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
     AppComponent,
+    Error404Component,
   ],
   providers: [
     {
@@ -28,7 +32,7 @@ registerLocaleData(localePt, 'pt');
     {
       provide: DEFAULT_CURRENCY_CODE,
       useValue: 'BRL'
-    },
+    }
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ registerLocaleData(localePt, 'pt');
     LoginModule,
     TaskModule,
     ToolbarModule,
-    DialogsModule
+    DialogsModule,
+    PaginationModule
   ],
   bootstrap: [AppComponent]
 })

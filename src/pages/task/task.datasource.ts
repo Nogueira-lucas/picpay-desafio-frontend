@@ -38,10 +38,27 @@ export class TasksDataSource implements DataSource<Task> {
                 catchError(() => [])
             )
             .subscribe(result => {
-                this.totalElementsSubject.next(170);
-                this.dataSubject.next(result);
-            });
 
+                let _result = result;
+
+                this.taskService.findAll(
+                    name,
+                    username,
+                    isPaye,
+                    date,
+                    title,
+                    sortField,
+                    sortDirection,
+                    null,
+                    null).pipe(
+                        catchError(() => [])
+                    )
+                    .subscribe(result => {
+                        this.totalElementsSubject.next(result.length);
+                        this.dataSubject.next(_result);
+                    });
+               
+            });
 
     }
 

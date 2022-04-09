@@ -1,26 +1,6 @@
 {
   "tasks": [
     {
-      "id": 2,
-      "name": "Foster Orthmann",
-      "username": "forthmann1",
-      "title": "Professor",
-      "value": 207.36,
-      "date": "2021-01-28T14:01:29Z",
-      "image": "https://robohash.org/quasetqui.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 3,
-      "name": "Crissie Summerill",
-      "username": "csummerill2",
-      "title": "VP Product Management",
-      "value": 464.54,
-      "date": "2020-02-09T18:20:32Z",
-      "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
       "id": 4,
       "name": "Letitia Crolly",
       "username": "lcrolly3",
@@ -1315,7 +1295,7 @@
       "name": "Agnes Conrard",
       "username": "aconrard3p",
       "title": "Senior Quality Engineer",
-      "value": 443.5,
+      "value": 443.55,
       "date": "2020-11-05T07:24:11Z",
       "image": "https://robohash.org/minimanecessitatibusharum.png?size=150x150&set=set1",
       "isPayed": true
@@ -1702,13 +1682,6 @@
       "id": 173
     },
     {
-      "name": "12",
-      "value": 1,
-      "date": "2022-04-09T03:00:00.000Z",
-      "title": "123",
-      "id": 174
-    },
-    {
       "name": "Novo registr",
       "value": 12.22,
       "date": "2022-04-09T03:00:00.000Z",
@@ -1757,6 +1730,16 @@
       "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
       "username": "crissiesummerill",
       "id": 179
+    },
+    {
+      "name": "Lneo",
+      "value": 12.22,
+      "date": "2022-04-16T03:00:00.000Z",
+      "title": "LEno Lima",
+      "isPayed": true,
+      "image": "assets/task/png/default-user.png",
+      "username": "lneo",
+      "id": 180
     }
   ],
   "account": [
