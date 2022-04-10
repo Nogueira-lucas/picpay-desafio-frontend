@@ -1,16 +1,6 @@
 {
   "tasks": [
     {
-      "id": 4,
-      "name": "Letitia Crolly",
-      "username": "lcrolly3",
-      "title": "Web Developer I",
-      "value": 183.58,
-      "date": "2021-07-10T20:39:48Z",
-      "image": "https://robohash.org/estveniamet.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
       "id": 5,
       "name": "Anthea Pundy",
       "username": "apundy4",
@@ -1292,7 +1282,7 @@
     },
     {
       "id": 134,
-      "name": "Agnes Conrard",
+      "name": "Agnes Conrard 2",
       "username": "aconrard3p",
       "title": "Senior Quality Engineer",
       "value": 443.55,

@@ -4,10 +4,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AccountService } from './services/account/account.service';
 import { TaskService } from './services/task/task.service';
-
+import { MaterialModule } from 'src/core/material/material.module';
 @NgModule({
   imports: [
     CommonModule,
+    MaterialModule
   ],
   declarations: [
   ],

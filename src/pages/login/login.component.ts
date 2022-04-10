@@ -34,31 +34,38 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-
   }
 
   login() {
 
-    this.accountService.login(this.emailFormControl.value, this.passwordFormControl.value).pipe(
-      catchError(() => [])
-    )
-      .subscribe(result => {
-        if (result && result.length && result.length > 0) {
+    try {
 
-          this.snackbar.open('Bem vindo de volta.', 'PayFriends', {
-            duration: 6000,
-            panelClass: ['blue-snackbar']
-          });
+      this.accountService.login(this.emailFormControl.value, this.passwordFormControl.value).pipe(
+        catchError(() => [])
+      )
+        .subscribe(result => {
+          if (result && result.length && result.length > 0) {
 
-          sessionStorage.setItem('access_token', result[0].token);
-          this.router.navigate(['/task']);
-        } else {
-          this.snackbar.open('Usuário e/ou senha inválido(s).', 'PayFriends', {
-            duration: 46000,
-            panelClass: ['red-snackbar']
-          });
-        }
-      });
+            this.snackbar.open('Bem vindo de volta.', 'PayFriends', {
+              duration: 6000,
+              panelClass: ['blue-snackbar']
+            });
+
+            sessionStorage.setItem('access_token', result[0].token);
+            this.router.navigate(['/task']);
+          } else {
+            this.snackbar.open('Usuário e/ou senha inválido(s).', 'PayFriends', {
+              duration: 46000,
+              panelClass: ['red-snackbar']
+            });
+          }
+        });
+
+    } catch (error) {
+      console.log('TRY ERROR LOGIN');
+      this.snackbar.open('Aconteceu um problema, tente mais tarde.', 'Error', { duration: 3000, panelClass: ['red-snackbar'] });
+    }
+
   }
 
 }

@@ -16,7 +16,6 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { Error404Component } from '../pages/error404/error404.component';
 
-
 registerLocaleData(localePt, 'pt');
 
 @NgModule({

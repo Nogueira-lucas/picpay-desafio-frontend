@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Injector } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Task } from 'src/core/models/tasks.model';
+import { ITaskResponseDto } from 'src/core/dtos/task.dto';
 
 export abstract class BaseRestService<T> {
 
@@ -17,11 +18,11 @@ export abstract class BaseRestService<T> {
         this.serverURL = environment.serverUrl;
     }
 
-    create(body: Task): Observable<Task> {
+    create(body: ITaskResponseDto): Observable<Task> {
         return this.http.post<Task>(`${this.serverURL}/${this.baseURL}`, body);
     }
 
-    update(id: number, body: Task): Observable<Task> {
+    update(id: number, body: any): Observable<Task> {
         return this.http.patch<Task>(`${this.serverURL}/${this.baseURL}/${id}`, body);
     }
 

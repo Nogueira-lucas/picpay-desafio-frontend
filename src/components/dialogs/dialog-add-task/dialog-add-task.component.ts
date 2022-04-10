@@ -18,6 +18,7 @@ export class DialogAddTaskComponent implements OnInit {
   minDate: Date;
   minValue = 1;
   message = 'Pagamento feito com sucesso!';
+  isOpen = false;
 
   constructor(
     private dialogRef: MatDialogRef<DialogAddTaskComponent>,
@@ -35,6 +36,8 @@ export class DialogAddTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.isOpen = true;
 
     this.taskForm = this.formBuilder.group({
       name: [this.data ? this.data.name : '', Validators.required],

@@ -60,19 +60,29 @@ export class TaskComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.sort.sortChange.subscribe(() => this.currentPage = 1);
+    try {
 
-    if (this.dataSource && this.dataSource.totalElements$) {
-      this.dataSource.totalElements$.subscribe(value => {
-        this.totalItems = value;
-      });
+      if (this.sort) {
+        this.sort.sortChange.subscribe(() => this.currentPage = 1);
+      }
+
+
+      if (this.dataSource && this.dataSource.totalElements$) {
+        this.dataSource.totalElements$.subscribe(value => {
+          this.totalItems = value;
+        });
+      }
+
+      merge(this.sort.sortChange, this.currentPage)
+        .pipe(
+          tap(() => this.load(this.searchForm.value && this.searchForm.value.search.length > 0 ? this.searchForm.value.search : ''))
+        )
+        .subscribe();
+
+    } catch (error) {
+
     }
 
-    merge(this.sort.sortChange, this.currentPage)
-      .pipe(
-        tap(() => this.load(this.searchForm.value && this.searchForm.value.search.length > 0 ? this.searchForm.value.search : ''))
-      )
-      .subscribe();
   }
 
   convertDate(date: string, format: string) {

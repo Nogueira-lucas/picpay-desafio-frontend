@@ -6,6 +6,7 @@ export class Account implements Deserializable<Account>{
     'name': string;
     'email': string;
     'password': string;
+    'token': string;
 
     deserialize(input: any): Account {
         Object.assign(this, input);
