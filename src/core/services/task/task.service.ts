@@ -14,7 +14,7 @@ export class TaskService extends BaseRestService<Task> {
     }
 
     findAll(name = null, username = null, isPayed = null, date = null, title = null, sortField = null,
-        sortDirection = null, page = 1, limit = 10): Observable<Task[]> {
+            sortDirection = null, page = 1, limit = 10): Observable<Task[]> {
 
         let params = null;
 

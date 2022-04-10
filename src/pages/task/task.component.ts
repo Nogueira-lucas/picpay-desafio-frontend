@@ -156,12 +156,12 @@ export class TaskComponent implements OnInit, AfterViewInit {
 
   pageChanged(event: PageChangedEvent): void {
     this.currentPage = event.page;
-    this.load(this.searchForm.value && this.searchForm.value.search.length > 0 ? this.searchForm.value.search : '')
+    this.load(this.searchForm.value && this.searchForm.value.search.length > 0 ? this.searchForm.value.search : '');
   }
 
   itemPerPageOnSelected(event) {
     this.itemsPerPage = event.value;
-    this.load(this.searchForm.value && this.searchForm.value.search.length > 0 ? this.searchForm.value.search : '')
+    this.load(this.searchForm.value && this.searchForm.value.search.length > 0 ? this.searchForm.value.search : '');
   }
 
 }

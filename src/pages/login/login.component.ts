@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required]);
-  hide : Boolean = true;
+  hide = true;
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
 
           sessionStorage.setItem('access_token', result[0].token);
           this.router.navigate(['/task']);
-        }else{
+        } else {
           this.snackbar.open('Usuário e/ou senha inválido(s).', 'PayFriends', {
             duration: 46000,
             panelClass: ['red-snackbar']

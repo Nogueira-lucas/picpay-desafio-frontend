@@ -53,10 +53,10 @@ export class DialogRemoveTaskComponent implements OnInit {
           panelClass: ['blue-snackbar']
         });
       }, error => {
-        this.snackbar.open(error.error.statusCode === 400 ? error.error.message : 'Ocorreu um erro na sua requisição. tente novamente.', 'Error', { duration: 6000,panelClass: ['red-snackbar'] });
+        this.snackbar.open(error.error.statusCode === 400 ? error.error.message : 'Ocorreu um erro na sua requisição. tente novamente.', 'Error', { duration: 6000, panelClass: ['red-snackbar'] });
       });
     } catch (error) {
-      this.snackbar.open('Não é possível adicionar um novo pagamento no momento.', 'Error', { duration: 6000, panelClass: ['red-snackbar'] });
+      this.snackbar.open('Não foi possível excluir o pagamento.', 'Error', { duration: 6000, panelClass: ['red-snackbar'] });
     }
   }
 }

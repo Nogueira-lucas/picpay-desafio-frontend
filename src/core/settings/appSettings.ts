@@ -1,3 +1,3 @@
 export class AppSettings {
-  public static TOKEN="821367812638123123";
+  public static TOKEN = '821367812638123123';
  }

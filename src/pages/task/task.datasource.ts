@@ -39,7 +39,7 @@ export class TasksDataSource implements DataSource<Task> {
             )
             .subscribe(result => {
 
-                let _result = result;
+                const tasks = result;
 
                 this.taskService.findAll(
                     name,
@@ -53,16 +53,16 @@ export class TasksDataSource implements DataSource<Task> {
                     null).pipe(
                         catchError(() => [])
                     )
-                    .subscribe(result => {
-                        this.totalElementsSubject.next(result.length);
-                        this.dataSubject.next(_result);
+                    .subscribe(resultLength => {
+                        this.totalElementsSubject.next(resultLength.length);
+                        this.dataSubject.next(tasks);
                     });
-               
+
             });
 
     }
 
-    connect(collectionViewer: CollectionViewer): Observable<any[]> {
+    connect(collectionViewer: CollectionViewer): Observable<Task[]> {
         return this.dataSubject.asObservable();
     }
 

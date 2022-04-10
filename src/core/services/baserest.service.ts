@@ -17,11 +17,11 @@ export abstract class BaseRestService<T> {
         this.serverURL = environment.serverUrl;
     }
 
-    create(body: any): Observable<Task> {
+    create(body: Task): Observable<Task> {
         return this.http.post<Task>(`${this.serverURL}/${this.baseURL}`, body);
     }
 
-    update(id: number, body: any): Observable<Task> {
+    update(id: number, body: Task): Observable<Task> {
         return this.http.patch<Task>(`${this.serverURL}/${this.baseURL}/${id}`, body);
     }
 
