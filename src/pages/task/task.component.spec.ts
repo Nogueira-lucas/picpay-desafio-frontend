@@ -10,7 +10,6 @@ import { ToolbarModule } from '../../components/toolbar/toolbar.module';
 import { DialogsModule } from '../../components/dialogs/dialogs.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TaskService } from 'src/core/services/task/task.service';
-import { DialogAddTaskComponent } from '../../components/dialogs/dialog-add-task/dialog-add-task.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TaskModule } from 'src/pages/task/task.module';
 

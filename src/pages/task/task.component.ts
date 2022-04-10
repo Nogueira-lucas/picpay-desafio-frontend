@@ -100,8 +100,8 @@ export class TaskComponent implements OnInit, AfterViewInit {
     this.dialog.open(DialogAddTaskComponent, {
       panelClass: 'event-form-dialog',
       disableClose: true,
-      width: '772px',
-      height: '395px',
+      width: '48.25rem',
+      height: '24.688rem',
       data: null
     }).afterClosed()
       .subscribe(response => {
@@ -123,8 +123,8 @@ export class TaskComponent implements OnInit, AfterViewInit {
     this.dialog.open(DialogAddTaskComponent, {
       panelClass: 'event-form-dialog',
       disableClose: true,
-      width: '772px',
-      height: '395px',
+      width: '48.25rem',
+      height: '24.688rem',
       data: task
     }).afterClosed()
       .subscribe(response => {
@@ -144,8 +144,8 @@ export class TaskComponent implements OnInit, AfterViewInit {
     this.dialog.open(DialogRemoveTaskComponent, {
       panelClass: 'event-form-dialog',
       disableClose: true,
-      width: '405px',
-      height: '325px',
+      width: '25.313rem',
+      height: '20.313rem',
       data: task
     }).afterClosed()
       .subscribe(response => {
