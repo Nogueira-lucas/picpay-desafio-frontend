@@ -17,7 +17,7 @@ let mockData = null;
 class MockTaskService {
     create(): Observable<any[]> {
         return mockData;
-    };
+    }
     update(): Observable<any[]> {
         return mockData;
     }
@@ -86,16 +86,16 @@ describe('Component: DialogAddTask', () => {
 
         const accountDate = [
             {
-                "id": 200,
-                "name": "Lilith Graver",
-                "username": "lgraver1i",
-                "title": "Accounting Assistant II",
-                "value": 121.42,
-                "date": "2020-10-23T06:36:48Z",
-                "image": "https://robohash.org/dictaexnumquam.png?size=150x150&set=set1",
-                "isPayed": false
+                id: 200,
+                name: 'Lilith Graver',
+                username: 'lgraver1i',
+                title: 'Accounting Assistant II',
+                value: 121.42,
+                date: '2020-10-23T06:36:48Z',
+                image: 'https://robohash.org/dictaexnumquam.png?size=150x150&set=set1',
+                isPayed: false
             },
-        ]
+        ];
 
         mockData = of(accountDate);
 
@@ -146,16 +146,16 @@ describe('Component: DialogAddTask', () => {
 
         const accountDate = [
             {
-                "id": 200,
-                "name": "Lilith Graver",
-                "username": "lgraver1i",
-                "title": "Accounting Assistant II",
-                "value": 121.42,
-                "date": "2020-10-23T06:36:48Z",
-                "image": "https://robohash.org/dictaexnumquam.png?size=150x150&set=set1",
-                "isPayed": false
+                id: 200,
+                name: 'Lilith Graver',
+                username: 'lgraver1i',
+                title: 'Accounting Assistant II',
+                value: 121.42,
+                date: '2020-10-23T06:36:48Z',
+                image: 'https://robohash.org/dictaexnumquam.png?size=150x150&set=set1',
+                isPayed: false
             },
-        ]
+        ];
 
         mockData = of(accountDate);
 

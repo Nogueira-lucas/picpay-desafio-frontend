@@ -46,7 +46,7 @@ describe('Component: Toolbar', () => {
                     expect(router.navigate).toHaveBeenCalledWith(['/login']);
                 });
             }, 1000);
-           
+
         });
 
 

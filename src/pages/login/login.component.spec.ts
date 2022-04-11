@@ -82,15 +82,15 @@ describe('Component: Login', () => {
 
         const loginDate = [
             {
-              "id": 0,
-              "name": "usuario",
-              "email": "usuario@gmail.com",
-              "password": "usuario",
-              "token": "821367812638123123"
+              id: 0,
+              name: 'usuario',
+              email: 'usuario@gmail.com',
+              password: 'usuario',
+              token: '821367812638123123'
             }
-          ]
-      
-          mockData = of(loginDate);
+          ];
+
+        mockData = of(loginDate);
 
         component.emailFormControl.setValue('usuario@gmail.com');
         component.passwordFormControl.setValue('usuario');

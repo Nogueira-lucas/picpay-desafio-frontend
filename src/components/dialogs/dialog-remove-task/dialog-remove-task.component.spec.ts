@@ -12,12 +12,12 @@ import { DialogRemoveTaskComponent } from './dialog-remove-task.component';
 import { TaskModule } from 'src/pages/task/task.module';
 import { Observable, of } from 'rxjs';
 
-let mockData = null;
+const mockData = null;
 
 class MockTaskService {
     delete(): Observable<any[]> {
         return mockData;
-    };
+    }
 }
 
 describe('Component: DialogRemoveTask', () => {
