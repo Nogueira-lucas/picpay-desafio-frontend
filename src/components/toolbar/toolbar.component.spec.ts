@@ -39,11 +39,14 @@ describe('Component: Toolbar', () => {
         userMenuButton.click();
 
         fixture.whenStable().then(() => {
-            const logoutButton = fixture.nativeElement.querySelector('#logout-button');
-            logoutButton.click();
-            fixture.whenStable().then(() => {
-                expect(router.navigate).toHaveBeenCalledWith(['/login']);
-            });
+            setTimeout(() => {
+                const logoutButton = fixture.nativeElement.querySelector('#logout-button');
+                logoutButton.click();
+                fixture.whenStable().then(() => {
+                    expect(router.navigate).toHaveBeenCalledWith(['/login']);
+                });
+            }, 1000);
+           
         });
 
 

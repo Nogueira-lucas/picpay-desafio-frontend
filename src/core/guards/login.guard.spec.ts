@@ -30,6 +30,6 @@ describe('LoginGuard', () => {
   });
 
   it('User is not authenticated', inject([LoginGuard], (service: LoginGuard) => {
-    expect(guard.canActivate(routeMock, routeStateMock)).toEqual(true);
+    expect(guard.canActivate(routeMock, routeStateMock)).toEqual(false);
   }));
 });

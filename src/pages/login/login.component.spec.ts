@@ -7,7 +7,16 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/core/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
+import { AccountService } from 'src/core/services/account/account.service';
+import { Observable, of } from 'rxjs';
 
+let mockData = null;
+
+class MockAccountService {
+  login(): Observable<any[]> {
+    return mockData;
+  }
+}
 
 describe('Component: Login', () => {
     let component: LoginComponent;
@@ -19,6 +28,9 @@ describe('Component: Login', () => {
             declarations: [LoginComponent],
             imports: [RouterTestingModule, MatSnackBarModule, FormsModule, MaterialModule,
                 HttpClientTestingModule, BrowserAnimationsModule],
+                providers: [
+                    { provide: AccountService, useClass: MockAccountService }
+                  ]
         })
             .compileComponents();
 
@@ -67,6 +79,18 @@ describe('Component: Login', () => {
     when clicked
     Must redirect to 'task' route`, () => {
         spyOn(router, 'navigate');
+
+        const loginDate = [
+            {
+              "id": 0,
+              "name": "usuario",
+              "email": "usuario@gmail.com",
+              "password": "usuario",
+              "token": "821367812638123123"
+            }
+          ]
+      
+          mockData = of(loginDate);
 
         component.emailFormControl.setValue('usuario@gmail.com');
         component.passwordFormControl.setValue('usuario');

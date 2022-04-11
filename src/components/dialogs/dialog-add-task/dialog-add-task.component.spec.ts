@@ -10,6 +10,18 @@ import { FormsModule } from '@angular/forms';
 import { Task } from 'src/core/models/tasks.model';
 import { TaskService } from 'src/core/services/task/task.service';
 import { TaskModule } from 'src/pages/task/task.module';
+import { Observable, of } from 'rxjs';
+
+let mockData = null;
+
+class MockTaskService {
+    create(): Observable<any[]> {
+        return mockData;
+    };
+    update(): Observable<any[]> {
+        return mockData;
+    }
+}
 
 describe('Component: DialogAddTask', () => {
     let component: DialogAddTaskComponent;
@@ -35,7 +47,8 @@ describe('Component: DialogAddTask', () => {
                 HttpClientTestingModule, FormsModule, TaskModule],
             providers: [
                 { provide: MatDialogRef, useValue: {} },
-                { provide: MAT_DIALOG_DATA, useValue: [] }
+                { provide: MAT_DIALOG_DATA, useValue: [] },
+                { provide: TaskService, useClass: MockTaskService }
             ]
         })
             .compileComponents();
@@ -70,6 +83,22 @@ describe('Component: DialogAddTask', () => {
         component.taskForm.controls.value.setValue(mockTask.value);
         component.taskForm.controls.date.setValue(mockTask.date);
         component.taskForm.controls.title.setValue(mockTask.title);
+
+        const accountDate = [
+            {
+                "id": 200,
+                "name": "Lilith Graver",
+                "username": "lgraver1i",
+                "title": "Accounting Assistant II",
+                "value": 121.42,
+                "date": "2020-10-23T06:36:48Z",
+                "image": "https://robohash.org/dictaexnumquam.png?size=150x150&set=set1",
+                "isPayed": false
+            },
+        ]
+
+        mockData = of(accountDate);
+
 
         const saveButton = fixture.nativeElement.querySelector('.save-button');
         saveButton.click();
@@ -114,6 +143,21 @@ describe('Component: DialogAddTask', () => {
         });
 
         component.data = task;
+
+        const accountDate = [
+            {
+                "id": 200,
+                "name": "Lilith Graver",
+                "username": "lgraver1i",
+                "title": "Accounting Assistant II",
+                "value": 121.42,
+                "date": "2020-10-23T06:36:48Z",
+                "image": "https://robohash.org/dictaexnumquam.png?size=150x150&set=set1",
+                "isPayed": false
+            },
+        ]
+
+        mockData = of(accountDate);
 
         const saveButton = fixture.nativeElement.querySelector('.save-button');
         saveButton.click(task);

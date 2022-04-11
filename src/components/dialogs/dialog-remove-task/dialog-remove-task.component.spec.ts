@@ -10,6 +10,15 @@ import { Task } from 'src/core/models/tasks.model';
 import { TaskService } from 'src/core/services/task/task.service';
 import { DialogRemoveTaskComponent } from './dialog-remove-task.component';
 import { TaskModule } from 'src/pages/task/task.module';
+import { Observable, of } from 'rxjs';
+
+let mockData = null;
+
+class MockTaskService {
+    delete(): Observable<any[]> {
+        return mockData;
+    };
+}
 
 describe('Component: DialogRemoveTask', () => {
     let component: DialogRemoveTaskComponent;
@@ -24,6 +33,7 @@ describe('Component: DialogRemoveTask', () => {
             providers: [
                 { provide: MatDialogRef, useValue: {} },
                 { provide: MAT_DIALOG_DATA, useValue: [] },
+                { provide: TaskService, useClass: MockTaskService }
             ]
         })
             .compileComponents();
@@ -75,6 +85,7 @@ describe('Component: DialogRemoveTask', () => {
         });
 
         component.data = task;
+
 
         const saveButton = fixture.nativeElement.querySelector('.remove-button');
         saveButton.click();
