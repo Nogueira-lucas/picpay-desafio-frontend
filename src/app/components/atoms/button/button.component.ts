@@ -19,12 +19,13 @@ export class ButtonComponent{
   @Input()
   type: 'button' | 'submit' = 'button';
 
-  @Input() callbackFunction: (args: any) => void;
+  @Input() callback: () => void;
 
   @Output() click = new EventEmitter<any>();
+  
   onClick() {
     this.click.emit();
-    this.callbackFunction('oláa')
+    this.callback();
   }
 
   public get classes(): string[] {
