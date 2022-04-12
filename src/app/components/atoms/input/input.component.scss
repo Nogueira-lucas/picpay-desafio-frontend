@@ -1,0 +1,30 @@
+.input {
+  border-radius: 0.3rem;
+  background-color: transparent;
+  padding: 1.5rem;
+  border: 1px solid #0000001f;
+  color: #000000de;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  outline: none;
+  width: 100%;
+
+  &::placeholder {
+    font-family: "Roboto";
+    font-size: 1.6rem;
+    color: #00000099;
+  }
+  &--search {
+    padding: 0.6rem;
+    border: 1px solid #cfdce5;
+    &::placeholder {
+      font-size: 1.4rem;
+      color: #69788c;
+      font-family: "lato";
+    }
+  }
+
+  &--login {
+    border: 1px solid #dadada;
+  }
+}
