@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="container">
+  <div class="login-section">
+    <form [formGroup]="form" (ngSubmit)="login(form.value)" class="row login-form">
+      <div>
+        <img alt="logo" src="assets/img/logo-blue.svg" />
+        <h3 class="welcome-title">Bem vindo de volta</h3>
+        <div id="username-container">
+          <label>Email</label>
+          <input type="email" name="username" formControlName="username" required />
+          <div class="form-error">
+            <span
+              *ngIf="
+                form.controls['username'].invalid &&
+                (form.controls['username'].dirty || form.controls['username'].touched)
+              "
+            >
+              Informe um email válido
+            </span>
+          </div>
+        </div>
+        <div id="password-container">
+          <label>Senha</label>
+          <input type="password" name="password" formControlName="password" required />
+          <div class="form-error">
+            <span
+              *ngIf="
+                form.controls['password'].invalid &&
+                (form.controls['password'].dirty || form.controls['password'].touched)
+              "
+              >Informe uma senha válida</span
+            >
+          </div>
+        </div>
+        <div id="login-btn-container">
+          <button class="btn-submit" type="submit">Continuar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="img-section"><img alt="img" src="assets/img/img-login.svg" /></div>
+</div>
