@@ -107,11 +107,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<!-- LEIA COM ATENÇÃO E DEPOIS EXCLUA -->\n<div style=\"padding: 1%\">\n  <h1>{{ title }}</h1> \n  <p>\n    Seja muito bem vindos ao nosso teste. \n  </p>\n  <p style=\"margin-bottom: 1.5em;\">\n    Antes de iniciar, leia o Readme com atenção e certifique-se que você tenha acesso ao layout proposto no Figma.\n  </p>\n  <ul>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Não esqueça de subir a API, para maiores informações leia o readme.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>No Figma existem algumas orientações de layout e components e no Readme existem algumas dicas legais para você utilizar no teste.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Qualquer dúvida, pergunte para os Recruiters, eles irão te auxiliar caso tenha algum problema.</span>\n    </li>\n    <li>\n      <span>Boa sorte sorte e dê o seu máximo :)</span>\n    </li>\n  </ul>\n  <app-form-login></app-form-login>\n</div>"
+            "templateData": "<!-- LEIA COM ATENÇÃO E DEPOIS EXCLUA -->\n<div style=\"padding: 1%\">\n  <h1>{{ title }}</h1> \n  <p>\n    Seja muito bem vindos ao nosso teste. \n  </p>\n  <p style=\"margin-bottom: 1.5em;\">\n    Antes de iniciar, leia o Readme com atenção e certifique-se que você tenha acesso ao layout proposto no Figma.\n  </p>\n  <ul>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Não esqueça de subir a API, para maiores informações leia o readme.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>No Figma existem algumas orientações de layout e components e no Readme existem algumas dicas legais para você utilizar no teste.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Qualquer dúvida, pergunte para os Recruiters, eles irão te auxiliar caso tenha algum problema.</span>\n    </li>\n    <li>\n      <span>Boa sorte sorte e dê o seu máximo :)</span>\n    </li>\n  </ul>\n  <app-login>Botão</app-login>\n</div>"
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-2c8960aecb30f7df10d7dba2ccb5ead9c15c5783c7d03947937c5528797c88298a2a0832f42212a5e7b8d7b5f42fa9c723dc48c68e8dfb06cecec152e348e0b7",
+            "id": "component-ButtonComponent-e31584295c9cc71ac7adcb042ff8a623f678dbab90a4b29d1ef5afc3dcf6f94f2db956c47a57c96a8842f1b10b19897ff086baf576338695a3a027e4c048c5c7",
             "file": "src/app/components/atoms/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -202,7 +202,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent{\n\n  @Input()\n  primary = true;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' | 'full' = 'medium';\n\n  @Input()\n  label: string;\n\n  @Input()\n  type: 'button' | 'submit' = 'button';\n\n  @Input() callback: () => void;\n\n  @Output() click = new EventEmitter<any>();\n  \n  onClick() {\n    this.click.emit();\n    this.callback();\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'button--primary' : 'button--secondary';\n\n    return ['button', `button--${this.size}`, mode];\n  }\n\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent{\n\n  @Input()\n  primary = true;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' | 'full' = 'medium';\n\n  @Input()\n  label: string;\n\n  @Input()\n  type: 'button' | 'submit' = 'button';\n\n  @Input() callback: () => void;\n\n  @Output() click = new EventEmitter<any>();\n  \n  onClick() {\n    this.click.emit();\n    !!this.callback && this.callback();\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'button--primary' : 'button--secondary';\n\n    return ['button', `button--${this.size}`, mode];\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -226,7 +226,7 @@
         },
         {
             "name": "FormLoginComponent",
-            "id": "component-FormLoginComponent-6d7e76c5bac636f6d2343333d4065d53364d560df0f14bb1152bf30017f4fa92884cf6e5338b8082da8e7ea0fc5ada76e136b91dfedc91f596e923fc31e3aba1",
+            "id": "component-FormLoginComponent-60a39dd1f6bfcef1b04a2bab925a3f938098fdfdd56a762bee1ec2335a41e9985d98546f67c3d3fc75ce6406d3caf721fc49bef688d32e569ecb73322e40a17e",
             "file": "src/app/components/molecules/form-login/form-login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -243,9 +243,86 @@
             ],
             "viewProviders": [],
             "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "outputsClass": [
+                {
+                    "name": "sentForm",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "formValue",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onKeyUp",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onSubmit",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -253,7 +330,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-form-login',\n  templateUrl: './form-login.component.html',\n  styleUrls: ['./form-login.component.scss']\n})\nexport class FormLoginComponent {\n\n\n}\n",
+            "sourceCode": "import { Component, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-form-login',\n  templateUrl: './form-login.component.html',\n  styleUrls: ['./form-login.component.scss']\n})\nexport class FormLoginComponent {\n\n  formValue: object = {}\n\n  @Output() sentForm = new EventEmitter<any>();\n\n  onKeyUp(value){\n    this.formValue = {...this.formValue, ...value}\n  }\n\n  onSubmit(event){\n    console.log('submit');\n    event.preventDefault()\n    this.sentForm.emit(this.formValue)\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -262,7 +339,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<form class=\"form-login\">\n  <app-input id=\"email\" name=\"email\" styleInput=\"login\" label=\"Email\" placeholder=\"Email\" type=\"text\"></app-input>\n  <app-input id=\"senha\" name=\"senha\" styleInput=\"login\" label=\"Senha\" placeholder=\"Senha\" type=\"password\"></app-input>\n  <app-button size=\"full\" type=\"submit\" label=\"Entrar\"></app-button>\n</form>"
+            "templateData": "<form class=\"form-login\" (submit)=\"onSubmit($event)\">\n  <app-input \n    id=\"email\"\n    name=\"email\"\n    styleInput=\"login\"\n    label=\"Email\"\n    placeholder=\"Email\"\n    type=\"text\"\n    (typing)=\"onKeyUp($event)\"\n  >\n  </app-input>\n  <app-input\n    id=\"senha\"\n    name=\"senha\"\n    styleInput=\"login\"\n    label=\"Senha\"\n    placeholder=\"Senha\"\n    type=\"password\"\n    (typing)=\"onKeyUp($event)\"\n  ></app-input>\n  <app-button size=\"full\" type=\"submit\" label=\"Entrar\"></app-button>\n</form>"
         },
         {
             "name": "ImageComponent",
@@ -323,7 +400,7 @@
         },
         {
             "name": "InputComponent",
-            "id": "component-InputComponent-46f8b6ae357eac2cbf1c9a679317290ec8c6f9ff6488c5361ac4bfb6ec9bd09d7b907139cc333b651cb3efa7d4dbb2dc9bf4261577b7f6923527484ac927b1ec",
+            "id": "component-InputComponent-8cc38085ae61b86cae132652cf7f3c21d289d26d9c9cdf8d851606a629b70d76c48d51e5afe32a4dc7221ccf5ac9a11dea79f796961f42f497d97060c76219a2",
             "file": "src/app/components/atoms/input/input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -340,30 +417,6 @@
             ],
             "viewProviders": [],
             "inputsClass": [
-                {
-                    "name": "callbackBlur",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 26,
-                    "type": "function",
-                    "decorators": []
-                },
-                {
-                    "name": "callbackChange",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 25,
-                    "type": "function",
-                    "decorators": []
-                },
-                {
-                    "name": "callbackKeyUp",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 27,
-                    "type": "function",
-                    "decorators": []
-                },
                 {
                     "name": "id",
                     "deprecated": false,
@@ -409,27 +462,19 @@
             ],
             "outputsClass": [
                 {
-                    "name": "blur",
+                    "name": "out",
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31,
+                    "line": 25,
                     "type": "EventEmitter"
                 },
                 {
-                    "name": "change",
+                    "name": "typing",
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "keyup",
-                    "defaultValue": "new EventEmitter<any>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 33,
+                    "line": 27,
                     "type": "EventEmitter"
                 }
             ],
@@ -437,33 +482,59 @@
             "methodsClass": [
                 {
                     "name": "onBlur",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 29,
                     "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "onChange",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 35,
-                    "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "onKeyUp",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 38,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "deprecated": false,
@@ -473,7 +544,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss']\n})\nexport class InputComponent {\n\n  @Input()\n  id: string;\n\n  @Input()\n  styleInput: 'search' | 'login' | 'default' = 'default';\n\n  @Input()\n  label: 'Email' | 'Senha';\n\n  @Input()\n  placeholder: string;\n\n  @Input()\n  type: 'text' | 'password' = 'text';\n\n  @Input() callbackChange: () => string;\n  @Input() callbackBlur: () => string;\n  @Input() callbackKeyUp: () => string;\n\n  @Output() change = new EventEmitter<any>();\n\n  @Output() blur = new EventEmitter<any>();\n\n  @Output() keyup = new EventEmitter<any>();\n  \n  onChange() {\n    this.change.emit();\n    this.callbackChange();\n  }\n\n  onBlur() {\n    this.blur.emit();\n    this.callbackBlur();\n  }\n\n  onKeyUp() {\n    this.keyup.emit();\n    this.callbackKeyUp();\n  }\n\n  public get classes(): string[] {\n    return ['input__input', `input__input--${this.styleInput}`];\n  }\n\n  public get labelClasses(): string[] {\n    const disabledValue = this.styleInput !== 'login' ? 'input--disabled' : '';\n    console.log('disabled: ', disabledValue);\n    return ['input__label', disabledValue];\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss']\n})\nexport class InputComponent {\n\n  @Input()\n  id: string;\n\n  @Input()\n  styleInput: 'search' | 'login' | 'default' = 'default';\n\n  @Input()\n  label: 'Email' | 'Senha';\n\n  @Input()\n  placeholder: string;\n\n  @Input()\n  type: 'text' | 'password' = 'text';\n\n  @Output() out = new EventEmitter<any>();\n\n  @Output() typing = new EventEmitter<any>();\n\n  onBlur(event: KeyboardEvent) {\n    !!this.out && this.out.emit(\n      {\n        label: (<HTMLInputElement>event.target).id,\n        value: (<HTMLInputElement>event.target).value\n      }\n    );\n  }\n\n  onKeyUp(event: KeyboardEvent) {\n    const target = (<HTMLInputElement>event.target)\n    const label = target.id\n    !!this.typing && this.typing.emit( {\n      [label]: target.value\n    });\n  }\n\n  public get classes(): string[] {\n    return ['input__input', `input__input--${this.styleInput}`];\n  }\n\n  public get labelClasses(): string[] {\n    const disabledValue = this.styleInput !== 'login' ? 'input--disabled' : '';\n    return ['input__label', disabledValue];\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -489,7 +560,7 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 50
+                        "line": 46
                     }
                 },
                 "labelClasses": {
@@ -498,11 +569,80 @@
                         "name": "labelClasses",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 54
+                        "line": 50
                     }
                 }
             },
-            "templateData": "<div class=\"input input__container\">\n  <label for=\"{{ id }}\" [ngClass]=\"labelClasses\">{{ label }}</label>\n  <input id=\"{{ id }}\" [type]=\"type\" [ngClass]=\"classes\" (change)=\"onChange()\" (blur)=\"onBlur()\" placeholder=\"{{ placeholder }}\"/>\n</div>\n"
+            "templateData": "<div class=\"input input__container\">\n  <label for=\"{{ id }}\" [ngClass]=\"labelClasses\">{{ label }}</label>\n  <input id=\"{{ id }}\" [type]=\"type\" [ngClass]=\"classes\" (blur)=\"out($event)\" (keyup)=\"onKeyUp($event)\" placeholder=\"{{ placeholder }}\"/>\n</div>\n"
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-8c8c77376b5fcf6395ccb2f05ba19c482d2b255371e3c06878e9774b626ecfe304214d71465d18d872f8ed10796b14d51ffce1e4c08800d621616f066d79a0a1",
+            "file": "src/app/components/organisms/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login",
+            "styleUrls": [
+                "./login.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onSubmit",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent {\n\n  // @Output() submit = new EventEmitter<any>();\n\n  onSubmit(value) {\n    console.log('value: ', value);\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".login {\n  &--texts {\n    display: grid;\n    gap: 1.8rem;\n    margin-bottom: 4.2rem;\n  }\n}\n",
+                    "styleUrl": "./login.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div class=\"login\">\n  <div class=\"login--texts\">\n    <app-logo></app-logo>\n    <app-title size=\"medium\" title=\"Bem vindo de volta\"></app-title>\n  </div>\n  <app-form-login (sendForm)=\"onSubmit($event)\"></app-form-login>\n</div>\n"
         },
         {
             "name": "LogoComponent",
@@ -647,13 +787,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-f1b1172f4875d4f8eae79dde15a9d2f11e5e72d5ba9fb9d4cd1bab081ef5e9b470c8036a3153727bba3a9ac7d5946858401419233a83a1fdce488a7cf8978121",
+            "id": "module-AppModule-42b7a170012edb40b8dc5890862333a85d70b3df889c0815443fc5dd63f959a3e3b95c6d517a826d8cbb0953f3c26c860f0d7f0cf4f49f3515376715648d41e5",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n\nimport { AppComponent } from './app.component';\nimport { ButtonComponent } from './components/atoms/button/button.component';\nimport { TitleComponent } from './components/atoms/title/title.component';\nimport { InputComponent } from './components/atoms/input/input.component';\nimport { LogoComponent } from './components/atoms/logo/logo.component';\nimport { ImageComponent } from './components/atoms/image/image.component';\nimport { FormLoginComponent } from './components/molecules/form-login/form-login.component';\n@NgModule({\n  declarations: [\t\n    AppComponent, ButtonComponent, TitleComponent, InputComponent, LogoComponent, ImageComponent, FormLoginComponent,\n  ],\n  imports: [\n    BrowserModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "sourceCode": "import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n\nimport { AppComponent } from './app.component';\nimport { ButtonComponent } from './components/atoms/button/button.component';\nimport { TitleComponent } from './components/atoms/title/title.component';\nimport { InputComponent } from './components/atoms/input/input.component';\nimport { LogoComponent } from './components/atoms/logo/logo.component';\nimport { ImageComponent } from './components/atoms/image/image.component';\nimport { FormLoginComponent } from './components/molecules/form-login/form-login.component';\nimport { LoginComponent } from './components/organisms/login/login.component';\n@NgModule({\n  declarations: [\t\n    AppComponent, ButtonComponent, TitleComponent, InputComponent, LogoComponent, ImageComponent, FormLoginComponent, LoginComponent,\n  ],\n  imports: [\n    BrowserModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -678,6 +818,9 @@
                             "name": "InputComponent"
                         },
                         {
+                            "name": "LoginComponent"
+                        },
+                        {
                             "name": "LogoComponent"
                         },
                         {
@@ -700,6 +843,42 @@
                             "name": "AppComponent"
                         }
                     ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LoginModule",
+            "id": "module-LoginModule-649cb5e2bcc4064d7bbbce094e0bdb249c1fdc30d273c161c1e341bff405e08ba7320e3edd604f1b655997cfaa310eb0e43e30c821105fbcf3ab566b887a3f40",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/organisms/login/login.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class LoginModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
                 },
                 {
                     "type": "classes",
@@ -755,6 +934,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/components/atoms/title/title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/organisms/login/login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -833,16 +1022,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/atoms/image/image.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -883,11 +1062,31 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/components/organisms/login/login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<LoginComponent>",
+                "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/components/molecules/form-login/form-login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormLoginComponent>",
                 "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "White",
@@ -1031,6 +1230,28 @@
                     "deprecationMessage": "",
                     "type": "Story<TitleComponent>",
                     "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/organisms/login/login.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/organisms/login/login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/organisms/login/login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<LoginComponent>",
+                    "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/app/components/molecules/form-login/form-login.stories.ts": [
@@ -1213,7 +1434,7 @@
                 "linktype": "component",
                 "name": "InputComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/15",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -1320,7 +1541,7 @@
                 "linktype": "component",
                 "name": "FormLoginComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -1335,6 +1556,35 @@
             },
             {
                 "filePath": "src/app/components/molecules/form-login/form-login.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/organisms/login/login.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/organisms/login/login.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/organisms/login/login.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
