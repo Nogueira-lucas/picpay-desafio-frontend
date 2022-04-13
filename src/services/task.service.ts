@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import PaymentTask from 'src/models/payment-task.model';
+import Task from 'src/models/task.model';
 
 
 @Injectable({
@@ -12,24 +12,24 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  listAllTasks(): Observable<PaymentTask[]>{
-    return this.http.get<PaymentTask[]>(`${environment.apiUrl}/tasks`)
+  listAllTasks(): Observable<Task[]>{
+    return this.http.get<Task[]>(`${environment.apiUrl}/tasks`)
   }
 
   listTasksWithPagination(param: any): Observable<any>{
-      return this.http.get<any>(`${environment.apiUrl}/tasks?_page=${param.page}&_limit=${param.limit}`)
+    return this.http.get<any>(`${environment.apiUrl}/tasks?_page=${param.page}&_limit=${param.limit}`)
   }
 
-  createTask(paymentTask: PaymentTask):Observable<any>{
-      return this.http.post<any>(`${environment.apiUrl}/tasks`, paymentTask)
+  createTask(task: Task):Observable<any>{
+    return this.http.post<any>(`${environment.apiUrl}/tasks`, task)
   }
 
-  updateTask(paymentTaskId: number, paymentTask: PaymentTask):Observable<any>{
-      return this.http.put<any>(`${environment.apiUrl}/tasks/${paymentTaskId}`, paymentTask)
+  updateTask(taskId: number, task: Task):Observable<any>{
+    return this.http.put<any>(`${environment.apiUrl}/tasks/${taskId}`, task)
   }
 
-  deleteTask(paymentTaskId: number): Observable<any>{
-      return this.http.delete<any>(`${environment.apiUrl}/tasks/${paymentTaskId}`)
+  deleteTask(taskId: number): Observable<any>{
+    return this.http.delete<any>(`${environment.apiUrl}/tasks/${taskId}`)
   }
 
 }

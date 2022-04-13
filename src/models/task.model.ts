@@ -1,4 +1,4 @@
-export default class PaymentTask{
+export default class Task{
     public id?: number
     public name?: string
     public username: string

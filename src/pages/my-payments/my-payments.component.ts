@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import PaymentTask from 'src/models/payment-task.model';
+import Task from 'src/models/task.model';
 import { TaskService } from 'src/services/task.service';
 import * as moment from 'moment';
+import { AuthService } from 'src/services/auth.service';
 
 
 @Component({
@@ -12,7 +13,8 @@ import * as moment from 'moment';
 export class MyPaymentsComponent implements OnInit {
 
   constructor(
-    private taskService:TaskService
+    private taskService: TaskService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -20,7 +22,7 @@ export class MyPaymentsComponent implements OnInit {
   }
 
   listTasks(){
-    this.taskService.listAllTasks().subscribe((response: PaymentTask[]) => {
+    this.taskService.listAllTasks().subscribe((response: Task[]) => {
       console.log(response)
     })
   }
@@ -31,7 +33,7 @@ export class MyPaymentsComponent implements OnInit {
       "limit": 5
     }
     
-    this.taskService.listTasksWithPagination(params).subscribe((response: PaymentTask[]) => {
+    this.taskService.listTasksWithPagination(params).subscribe((response: Task[]) => {
       console.log(response)
     }, error => {
       console.log(error.message)
@@ -40,13 +42,13 @@ export class MyPaymentsComponent implements OnInit {
 
   createTask(){
     // check if the user already exists in the table?
-    let newPaymentTask: PaymentTask = {
+    let newTask: Task = {
       username: "mheartu",
       value: 47.33,
       date: new Date()
     }
 
-    this.taskService.createTask(newPaymentTask).subscribe(response => {
+    this.taskService.createTask(newTask).subscribe(response => {
       console.log(response)
     }, error => {
       console.log(error.message)
@@ -59,6 +61,10 @@ export class MyPaymentsComponent implements OnInit {
 
   deleteTask(){ // Plus: automatically delete task, after the checkbox is set to true
 
+  }
+
+  logout(){
+    this.authService.logout()
   }
 
 }

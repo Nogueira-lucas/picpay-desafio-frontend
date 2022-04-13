@@ -10,6 +10,8 @@ import { MyPaymentsComponent } from 'src/pages/my-payments/my-payments.component
 import { ManagePaymentModalComponent } from 'src/components/manage-payment-modal/manage-payment-modal.component';
 import { AppRoutingModule } from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button'; 
 
 @NgModule({
   declarations: [	
@@ -27,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
+    MatSnackBarModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
