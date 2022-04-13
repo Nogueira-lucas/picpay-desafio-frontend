@@ -21,3 +21,11 @@ Default.args = {
   placeholder: 'Texto'
 };
 
+export const Login = Template.bind({});
+Login.args = {
+  type: 'text',
+  style: 'login',
+  placeholder: 'Email',
+  label: 'Email'
+};
+

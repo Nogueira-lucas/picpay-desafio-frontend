@@ -1,1 +1,4 @@
-<input [type]="type" [ngClass]="classes" (change)="onChange()" (blur)="onBlur()" placeholder="{{ placeholder }}"/>
+<div class="input input__container">
+  <label for="{{ id }}" [ngClass]="labelClasses">{{ label }}</label>
+  <input id="{{ id }}" [type]="type" [ngClass]="classes" (change)="onChange()" (blur)="onBlur()" placeholder="{{ placeholder }}"/>
+</div>

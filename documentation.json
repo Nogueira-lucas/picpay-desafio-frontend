@@ -47,7 +47,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-71ebe0936646eefb529f05cd7bbfd4686b7c2c177f6a13c618362c6b695898fda63d2963ecd928495b668253b003f3489e4d1d03752bf39468bc35e886b3a44a",
+            "id": "component-AppComponent-a0d2a27ff2539ab93cd1fa4106816c8fe587c4c35a58938ed003741f48cae02c78d50e279e4f96ecb21811433c7c53925a50f82a8e9e5ba14e27c5cf2fdbcf54",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -78,16 +78,6 @@
             ],
             "methodsClass": [
                 {
-                    "name": "callBackFunc",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 15,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
                     "name": "ngOnInit",
                     "args": [],
                     "optional": false,
@@ -105,7 +95,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit{\n  title: string;\n\n  ngOnInit() {\n    this.title = 'Desafio Picpay Front-end';\n  }\n\n  callBackFunc(){\n    console.log('APP');\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit{\n  title: string;\n\n  ngOnInit() {\n    this.title = 'Desafio Picpay Front-end';\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -117,7 +107,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<!-- LEIA COM ATENÇÃO E DEPOIS EXCLUA -->\n<div style=\"padding: 1%\">\n  <h1>{{ title }}</h1> \n  <p>\n    Seja muito bem vindos ao nosso teste. \n  </p>\n  <p style=\"margin-bottom: 1.5em;\">\n    Antes de iniciar, leia o Readme com atenção e certifique-se que você tenha acesso ao layout proposto no Figma.\n  </p>\n  <ul>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Não esqueça de subir a API, para maiores informações leia o readme.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>No Figma existem algumas orientações de layout e components e no Readme existem algumas dicas legais para você utilizar no teste.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Qualquer dúvida, pergunte para os Recruiters, eles irão te auxiliar caso tenha algum problema.</span>\n    </li>\n    <li>\n      <span>Boa sorte sorte e dê o seu máximo :)</span>\n    </li>\n  </ul>\n  <app-button primary='{{true}}' [callback]=\"callBackFunc\">Botão</app-button>\n</div>"
+            "templateData": "<!-- LEIA COM ATENÇÃO E DEPOIS EXCLUA -->\n<div style=\"padding: 1%\">\n  <h1>{{ title }}</h1> \n  <p>\n    Seja muito bem vindos ao nosso teste. \n  </p>\n  <p style=\"margin-bottom: 1.5em;\">\n    Antes de iniciar, leia o Readme com atenção e certifique-se que você tenha acesso ao layout proposto no Figma.\n  </p>\n  <ul>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Não esqueça de subir a API, para maiores informações leia o readme.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>No Figma existem algumas orientações de layout e components e no Readme existem algumas dicas legais para você utilizar no teste.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Qualquer dúvida, pergunte para os Recruiters, eles irão te auxiliar caso tenha algum problema.</span>\n    </li>\n    <li>\n      <span>Boa sorte sorte e dê o seu máximo :)</span>\n    </li>\n  </ul>\n  <app-button primary='{{true}}' [callbackFunction]=\"callback\">Botão</app-button>\n</div>"
         },
         {
             "name": "ButtonComponent",
@@ -237,7 +227,7 @@
         },
         {
             "name": "InputComponent",
-            "id": "component-InputComponent-8068f886b3e47231c9a6de9caca134f35bed909e3c2ecd1a2debc0e3757fbf9976888d5e3e3b3ec61719318dbf23f502db5b594dc963724ab6229ef61bd241f3",
+            "id": "component-InputComponent-9cdb2f954fdf735c0f59689a03a18d9a0db39eee055930d307af9a760292aef317d3df89568e6bf45c21b71e0f76851ce7c3925483eb36b4e76678473274d63e",
             "file": "src/app/components/atoms/input/input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -258,7 +248,7 @@
                     "name": "callbackBlur",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 20,
+                    "line": 23,
                     "type": "function",
                     "decorators": []
                 },
@@ -266,7 +256,7 @@
                     "name": "callbackChange",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 19,
+                    "line": 22,
                     "type": "function",
                     "decorators": []
                 },
@@ -274,16 +264,23 @@
                     "name": "callbackKeyUp",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 21,
+                    "line": 24,
                     "type": "function",
                     "decorators": []
                 },
                 {
-                    "name": "placeholder",
-                    "defaultValue": "'Button'",
+                    "name": "label",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 14,
+                    "type": "\"Email\" | \"Senha\"",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
                     "type": "string",
                     "decorators": []
                 },
@@ -301,7 +298,7 @@
                     "defaultValue": "'text'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "line": 20,
                     "type": "\"text\" | \"password\"",
                     "decorators": []
                 }
@@ -312,7 +309,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 28,
                     "type": "EventEmitter"
                 },
                 {
@@ -320,7 +317,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 26,
                     "type": "EventEmitter"
                 },
                 {
@@ -328,7 +325,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 30,
                     "type": "EventEmitter"
                 }
             ],
@@ -340,7 +337,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -350,7 +347,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 29,
+                    "line": 32,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -360,7 +357,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 42,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -372,11 +369,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss']\n})\nexport class InputComponent {\n\n  @Input()\n  style: 'search' | 'login' | 'default' = 'default';\n\n  @Input()\n  placeholder = 'Button';\n\n  @Input()\n  type: 'text' | 'password' = 'text';\n\n  @Input() callbackChange: () => string;\n  @Input() callbackBlur: () => string;\n  @Input() callbackKeyUp: () => string;\n\n  @Output() change = new EventEmitter<any>();\n\n  @Output() blur = new EventEmitter<any>();\n\n  @Output() keyup = new EventEmitter<any>();\n  \n  onChange() {\n    this.change.emit();\n    this.callbackChange();\n  }\n\n  onBlur() {\n    this.blur.emit();\n    this.callbackBlur();\n  }\n\n  onKeyUp() {\n    this.keyup.emit();\n    this.callbackKeyUp();\n  }\n\n  public get classes(): string[] {\n    return ['input', `input--${this.style}`];\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss']\n})\nexport class InputComponent {\n\n  @Input()\n  style: 'search' | 'login' | 'default' = 'default';\n\n  @Input()\n  label: 'Email' | 'Senha';\n\n  @Input()\n  placeholder: string;\n\n  @Input()\n  type: 'text' | 'password' = 'text';\n\n  @Input() callbackChange: () => string;\n  @Input() callbackBlur: () => string;\n  @Input() callbackKeyUp: () => string;\n\n  @Output() change = new EventEmitter<any>();\n\n  @Output() blur = new EventEmitter<any>();\n\n  @Output() keyup = new EventEmitter<any>();\n  \n  onChange() {\n    this.change.emit();\n    this.callbackChange();\n  }\n\n  onBlur() {\n    this.blur.emit();\n    this.callbackBlur();\n  }\n\n  onKeyUp() {\n    this.keyup.emit();\n    this.callbackKeyUp();\n  }\n\n  public get classes(): string[] {\n    return ['input__input', `input__input--${this.style}`];\n  }\n\n  public get labelClasses(): string[] {\n    const disabledValue = this.style !== 'login' ? 'input--disabled' : '';\n    console.log('disabled: ', disabledValue);\n    return ['input__label', disabledValue];\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".input {\n  border-radius: 0.3rem;\n  background-color: transparent;\n  padding: 1.5rem;\n  border: 1px solid #0000001f;\n  color: #000000de;\n  font-size: 1.6rem;\n  line-height: 2.4rem;\n  outline: none;\n  width: 100%;\n\n  &::placeholder {\n    font-family: \"Roboto\";\n    font-size: 1.6rem;\n    color: #00000099;\n  }\n  &--search {\n    padding: 0.6rem;\n    border: 1px solid #cfdce5;\n    &::placeholder {\n      font-size: 1.4rem;\n      color: #69788c;\n      font-family: \"lato\";\n    }\n  }\n\n  &--login {\n    border: 1px solid #dadada;\n  }\n}\n",
+                    "data": ".input {\n  &--disabled {\n    display: none;\n  }\n  &__input {\n    border-radius: 0.3rem;\n    background-color: transparent;\n    padding: 1.5rem;\n    border: 1px solid #0000001f;\n    color: #000000de;\n    font-size: 1.6rem;\n    line-height: 2.4rem;\n    outline: none;\n    width: 100%;\n\n    &::placeholder {\n      font-family: \"Roboto\";\n      font-size: 1.6rem;\n      color: #00000099;\n    }\n    &--search {\n      padding: 0.8rem;\n      border: 1px solid #cfdce5;\n      border-radius: 0.6rem;\n      font-size: 1.4rem;\n      line-height: 1.7rem;\n      &::placeholder {\n        font-size: 1.4rem;\n        color: #69788c;\n        font-family: \"lato\";\n      }\n    }\n\n    &--login {\n      border: 1px solid #dadada;\n    }\n  }\n\n  &__label {\n    font-size: 1.2rem;\n    color: #00000099;\n    position: absolute;\n    left: 1.7rem;\n    top: 0;\n    background-color: #f2f2f2;\n    padding: 0.4rem;\n    transform: translateY(-50%);\n  }\n\n  &__container {\n    position: relative;\n  }\n}\n",
                     "styleUrl": "./input.component.scss"
                 }
             ],
@@ -388,15 +385,24 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 44
+                        "line": 47
+                    }
+                },
+                "labelClasses": {
+                    "name": "labelClasses",
+                    "getSignature": {
+                        "name": "labelClasses",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 51
                     }
                 }
             },
-            "templateData": "<input [type]=\"type\" [ngClass]=\"classes\" (change)=\"onChange()\" (blur)=\"onBlur()\" placeholder=\"{{ placeholder }}\"/>\n"
+            "templateData": "<div class=\"input input__container\">\n  <label for=\"{{ id }}\" [ngClass]=\"labelClasses\">{{ label }}</label>\n  <input id=\"{{ id }}\" [type]=\"type\" [ngClass]=\"classes\" (change)=\"onChange()\" (blur)=\"onBlur()\" placeholder=\"{{ placeholder }}\"/>\n</div>\n"
         },
         {
             "name": "LogoComponent",
-            "id": "component-LogoComponent-dd87c360ec15c2ead82617ccb900f832c2e696b7bddbab8ec7c3001f09eb7151062eceb4a21457414a610ecee57a7ae83cbb821ee1794c62f302d004aef75838",
+            "id": "component-LogoComponent-f0a1c4fbeff5cce2d3bc3f0e91704e7a5546ae84f82850cc9b1748511c4df64d5574763c878e3c54a21d8547e4d97126cab8f03fa9a2f89365833a566aa1dd97",
             "file": "src/app/components/atoms/logo/logo.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -418,7 +424,7 @@
                     "defaultValue": "'assets/images/logo.png'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 11,
+                    "line": 14,
                     "type": "string",
                     "decorators": []
                 },
@@ -427,7 +433,7 @@
                     "defaultValue": "'default'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 11,
                     "type": "\"default\" | \"white\"",
                     "decorators": []
                 }
@@ -453,16 +459,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-logo',\n  templateUrl: './logo.component.html',\n  styleUrls: ['./logo.component.scss']\n})\nexport class LogoComponent {\n\n  @Input()\n  image: string = 'assets/images/logo.png'\n  \n  @Input()\n  type: 'default' | 'white' = 'default'\n  \n  ngOnInit() {\n    this.image = this.type === 'white' ? 'assets/images/logo_white.png' : 'assets/images/logo.png'\n  }\n}\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-logo',\n  templateUrl: './logo.component.html',\n  styleUrls: ['./logo.component.scss']\n})\nexport class LogoComponent {\n\n  @Input()\n  type: 'default' | 'white' = 'default'\n  \n  @Input()\n  image: string = 'assets/images/logo.png'\n\n  ngOnInit() {\n    this.image = this.type === 'white' ? 'assets/images/logo_white.png' : 'assets/images/logo.png'\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": ".logo {\n  width: auto;\n  height: auto;\n}\n",
                     "styleUrl": "./logo.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<img [src]=\"image\" alt='logo PayFriends' />\n"
+            "templateData": "<img class=\"logo\" [src]=\"image\" alt='logo PayFriends' />\n"
         },
         {
             "name": "TitleComponent",
@@ -618,7 +624,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/input/input.stories.ts",
+                "file": "src/app/components/atoms/title/title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -628,7 +634,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/title/title.stories.ts",
+                "file": "src/app/components/atoms/input/input.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -653,6 +659,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "Login",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/input/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Primary",
@@ -707,21 +723,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/input/input.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<InputComponent>",
-                "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/atoms/title/title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TitleComponent>",
                 "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/input/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<InputComponent>",
+                "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "White",
@@ -791,28 +807,6 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "src/app/components/atoms/input/input.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atoms/input/input.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atoms/input/input.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<InputComponent>",
-                    "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
-                }
-            ],
             "src/app/components/atoms/title/title.stories.ts": [
                 {
                     "name": "Default",
@@ -833,6 +827,38 @@
                     "deprecationMessage": "",
                     "type": "Story<TitleComponent>",
                     "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/atoms/input/input.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/input/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Login",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/input/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/input/input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<InputComponent>",
+                    "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -916,7 +942,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -964,7 +990,7 @@
                 "linktype": "component",
                 "name": "InputComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/13",
+                "coverageCount": "0/14",
                 "status": "low"
             },
             {
@@ -973,6 +999,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atoms/input/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Login",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

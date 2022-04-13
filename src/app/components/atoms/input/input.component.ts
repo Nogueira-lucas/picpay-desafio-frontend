@@ -11,7 +11,10 @@ export class InputComponent {
   style: 'search' | 'login' | 'default' = 'default';
 
   @Input()
-  placeholder = 'Button';
+  label: 'Email' | 'Senha';
+
+  @Input()
+  placeholder: string;
 
   @Input()
   type: 'text' | 'password' = 'text';
@@ -42,7 +45,13 @@ export class InputComponent {
   }
 
   public get classes(): string[] {
-    return ['input', `input--${this.style}`];
+    return ['input__input', `input__input--${this.style}`];
+  }
+
+  public get labelClasses(): string[] {
+    const disabledValue = this.style !== 'login' ? 'input--disabled' : '';
+    console.log('disabled: ', disabledValue);
+    return ['input__label', disabledValue];
   }
 
 }
