@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LoginModule } from './pages/login/login.module';
+import { PaymentModule } from './pages/payment/payment.module';
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, LoginModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, LoginModule, HttpClientModule, PaymentModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
+import { PaymentListComponent } from './pages/payment/components/payment-list/payment-list.component';
+import { AuthGuard } from './guard/auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -12,6 +14,11 @@ const routes: Routes = [
   {
     path: 'auth',
     component: LoginComponent,
+  },
+  {
+    path: 'payments',
+    component: PaymentListComponent,
+    canActivate: [AuthGuard],
   },
 ];
 
