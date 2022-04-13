@@ -22,18 +22,8 @@ export class InputComponent {
   @Input()
   type: 'text' | 'password' = 'text';
 
-  @Output() out = new EventEmitter<any>();
 
   @Output() typing = new EventEmitter<any>();
-
-  onBlur(event: KeyboardEvent) {
-    !!this.out && this.out.emit(
-      {
-        label: (<HTMLInputElement>event.target).id,
-        value: (<HTMLInputElement>event.target).value
-      }
-    );
-  }
 
   onKeyUp(event: KeyboardEvent) {
     const target = (<HTMLInputElement>event.target)

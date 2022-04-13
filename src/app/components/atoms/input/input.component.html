@@ -1,4 +1,4 @@
 <div class="input input__container">
   <label for="{{ id }}" [ngClass]="labelClasses">{{ label }}</label>
-  <input id="{{ id }}" [type]="type" [ngClass]="classes" (blur)="out($event)" (keyup)="onKeyUp($event)" placeholder="{{ placeholder }}"/>
+  <input id="{{ id }}" [type]="type" [ngClass]="classes" (keyup)="onKeyUp($event)" placeholder="{{ placeholder }}"/>
 </div>
