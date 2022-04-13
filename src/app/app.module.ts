@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/atoms/button/button.component';
 import { TitleComponent } from './components/atoms/title/title.component';
 import { InputComponent } from './components/atoms/input/input.component';
+import { LogoComponent } from './components/atoms/logo/logo.component';
 @NgModule({
   declarations: [	
-    AppComponent, ButtonComponent, TitleComponent, InputComponent,
+    AppComponent, ButtonComponent, TitleComponent, InputComponent, LogoComponent,
   ],
   imports: [
     BrowserModule
