@@ -22,29 +22,25 @@ export class InputComponent {
   @Input()
   type: 'text' | 'password' = 'text';
 
-  @Input() callbackChange: () => string;
-  @Input() callbackBlur: () => string;
-  @Input() callbackKeyUp: () => string;
+  @Output() out = new EventEmitter<any>();
 
-  @Output() change = new EventEmitter<any>();
+  @Output() typing = new EventEmitter<any>();
 
-  @Output() blur = new EventEmitter<any>();
-
-  @Output() keyup = new EventEmitter<any>();
-  
-  onChange() {
-    this.change.emit();
-    this.callbackChange();
+  onBlur(event: KeyboardEvent) {
+    !!this.out && this.out.emit(
+      {
+        label: (<HTMLInputElement>event.target).id,
+        value: (<HTMLInputElement>event.target).value
+      }
+    );
   }
 
-  onBlur() {
-    this.blur.emit();
-    this.callbackBlur();
-  }
-
-  onKeyUp() {
-    this.keyup.emit();
-    this.callbackKeyUp();
+  onKeyUp(event: KeyboardEvent) {
+    const target = (<HTMLInputElement>event.target)
+    const label = target.id
+    !!this.typing && this.typing.emit( {
+      [label]: target.value
+    });
   }
 
   public get classes(): string[] {
@@ -53,7 +49,6 @@ export class InputComponent {
 
   public get labelClasses(): string[] {
     const disabledValue = this.styleInput !== 'login' ? 'input--disabled' : '';
-    console.log('disabled: ', disabledValue);
     return ['input__label', disabledValue];
   }
 

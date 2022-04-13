@@ -1,5 +1,22 @@
-<form class="form-login">
-  <app-input id="email" name="email" styleInput="login" label="Email" placeholder="Email" type="text"></app-input>
-  <app-input id="senha" name="senha" styleInput="login" label="Senha" placeholder="Senha" type="password"></app-input>
+<form class="form-login" (submit)="onSubmit($event)">
+  <app-input 
+    id="email"
+    name="email"
+    styleInput="login"
+    label="Email"
+    placeholder="Email"
+    type="text"
+    (typing)="onKeyUp($event)"
+  >
+  </app-input>
+  <app-input
+    id="senha"
+    name="senha"
+    styleInput="login"
+    label="Senha"
+    placeholder="Senha"
+    type="password"
+    (typing)="onKeyUp($event)"
+  ></app-input>
   <app-button size="full" type="submit" label="Entrar"></app-button>
 </form>
