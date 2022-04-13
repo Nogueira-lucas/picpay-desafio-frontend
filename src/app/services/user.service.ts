@@ -1,9 +1,38 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  user = this.getUserFromtorage();
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  getUserFromtorage(): User {
+    const user = sessionStorage.getItem('user');
+    return user ? (JSON.parse(user) as User) : null;
+  }
+
+  setUser(user: User) {
+    sessionStorage.setItem('user', JSON.stringify(user));
+  }
+
+  removeUser() {
+    sessionStorage.removeItem('user');
+  }
+
+  login(username, password) {
+    if (!this.getUserFromtorage()) {
+      this.http.get<User[]>('http://localhost:3000/account').subscribe(data => {
+        const userExists = data.find(user => user.email === username && user.password === password);
+        if (userExists) {
+          this.setUser(userExists);
+        }
+      });
+    }
+  }
 }
