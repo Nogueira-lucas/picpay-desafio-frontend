@@ -27,10 +27,9 @@ export class UserService {
 
   login(username, password) {
     if (!this.getUserFromtorage()) {
-      this.http.get<User[]>('http://localhost:3000/account').subscribe(data => {
-        const userExists = data.find(user => user.email === username && user.password === password);
-        if (userExists) {
-          this.setUser(userExists);
+      this.http.get<User[]>(`http://localhost:3000/account?email=${username}&password=${password}`).subscribe(users => {
+        if (users.length) {
+          this.setUser(users[0]);
         }
       });
     }
