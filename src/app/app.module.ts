@@ -7,9 +7,10 @@ import { TitleComponent } from './components/atoms/title/title.component';
 import { InputComponent } from './components/atoms/input/input.component';
 import { LogoComponent } from './components/atoms/logo/logo.component';
 import { ImageComponent } from './components/atoms/image/image.component';
+import { FormLoginComponent } from './components/molecules/form-login/form-login.component';
 @NgModule({
   declarations: [	
-    AppComponent, ButtonComponent, TitleComponent, InputComponent, LogoComponent, ImageComponent,
+    AppComponent, ButtonComponent, TitleComponent, InputComponent, LogoComponent, ImageComponent, FormLoginComponent,
   ],
   imports: [
     BrowserModule
