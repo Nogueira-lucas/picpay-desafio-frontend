@@ -8,7 +8,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class InputComponent {
 
   @Input()
-  style: 'search' | 'login' | 'default' = 'default';
+  id: string;
+
+  @Input()
+  styleInput: 'search' | 'login' | 'default' = 'default';
 
   @Input()
   label: 'Email' | 'Senha';
@@ -45,11 +48,11 @@ export class InputComponent {
   }
 
   public get classes(): string[] {
-    return ['input__input', `input__input--${this.style}`];
+    return ['input__input', `input__input--${this.styleInput}`];
   }
 
   public get labelClasses(): string[] {
-    const disabledValue = this.style !== 'login' ? 'input--disabled' : '';
+    const disabledValue = this.styleInput !== 'login' ? 'input--disabled' : '';
     console.log('disabled: ', disabledValue);
     return ['input__label', disabledValue];
   }

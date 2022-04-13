@@ -23,24 +23,24 @@ describe('InputComponent', () => {
     expect(component).toBeTruthy();
   });
   
-  it('should render with style search', () => {
-    component.style = 'search'
+  it('should render with styleInput search', () => {
+    component.styleInput = 'search'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.input.input__container label').getAttribute('class')).toBe('input__label input--disabled');
     expect(compiled.querySelector('.input.input__container input').getAttribute('class')).toBe('input__input input__input--search');
   });
 
-  it('should render with style default', () => {
-    component.style = 'default'
+  it('should render with styleInput default', () => {
+    component.styleInput = 'default'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.input.input__container label').getAttribute('class')).toBe('input__label input--disabled');
     expect(compiled.querySelector('.input.input__container input').getAttribute('class')).toBe('input__input input__input--default');
   });
 
-  it('should render with style login', () => {
-    component.style = 'login'
+  it('should render with styleInput login', () => {
+    component.styleInput = 'login'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.input.input__container label').getAttribute('class')).toBe('input__label');
