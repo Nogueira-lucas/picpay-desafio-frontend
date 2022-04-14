@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  height: 100vh;
 
   .login-section {
     background-color: #f2f2f2;
@@ -7,9 +8,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
-    min-width: 540px;
-    height: 100vh;
+    width: 50%;
+    padding: 0 30px;
+
+    .form-container {
+      width: 80%;
+    }
 
     .welcome-title {
       font-weight: 600;
@@ -52,7 +58,7 @@
       font-size: 16px;
       line-height: 28px;
       padding: 8px 16px;
-      width: 390px;
+      width: 100%;
       min-height: 44px;
       border: 1px solid #c3c3c3;
       border-radius: 4px;
@@ -68,5 +74,23 @@
     justify-content: center;
 
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login-section {
+      height: 100%;
+      width: 100%;
+    }
+
+    .img-section {
+      display: none;
+    }
   }
 }
