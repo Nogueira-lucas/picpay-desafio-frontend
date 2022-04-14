@@ -1,0 +1,12 @@
+.icon-button {
+  padding: 0.1rem;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  &--icon {
+    font-size: 2rem;
+    color: #333;
+    pointer-events: none;
+  }
+}

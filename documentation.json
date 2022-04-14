@@ -230,7 +230,7 @@
         },
         {
             "name": "CheckboxComponent",
-            "id": "component-CheckboxComponent-c35edc9b9642098e12a98a1949d55b3ae8f81ce5b36caa620163521336669c457ff98dd1c7addab9f4fa9a84fe1520cdd4854dee619a8000f8a74f1ef04a788a",
+            "id": "component-CheckboxComponent-bc4f1ef8fae478f1c3cc9c86c646bce815e24685bf06cf84110bd8bf55dcd1d90623c8808ad9c06e7ec9f468f967dbeac0cfc361a57487e05bb65050b7eff54a",
             "file": "src/app/components/atoms/checkbox/checkbox.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -277,17 +277,7 @@
             "propertiesClass": [],
             "methodsClass": [
                 {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 18,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "onCheck",
+                    "name": "onClick",
                     "args": [
                         {
                             "name": "event",
@@ -299,7 +289,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 22,
+                    "line": 18,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -322,11 +312,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-checkbox',\n  templateUrl: './checkbox.component.html',\n  styleUrls: ['./checkbox.component.scss']\n})\nexport class CheckboxComponent {\n\n  @Input()\n  name: string\n\n  @Input()\n  checked: boolean\n\n  @Output() check = new EventEmitter<any>();\n\n  ngOnInit(): void {\n    // this.checked = !!this.checked\n  }\n  \n  onCheck(event: KeyboardEvent){\n    const target = (<HTMLInputElement>event.target)\n    console.log('target.checked: ', target.checked);\n    this.checked = target.checked\n    !!this.check && this.check.emit();\n  }\n  \n  public get classes(): string[] {\n    const check = !!this.checked ? 'checkbox--checked' : ''\n    console.log('check: ', check);\n    return ['checkbox', check];\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-checkbox',\n  templateUrl: './checkbox.component.html',\n  styleUrls: ['./checkbox.component.scss']\n})\nexport class CheckboxComponent {\n\n  @Input()\n  name: string\n\n  @Input()\n  checked: boolean\n\n  @Output() check = new EventEmitter<any>();\n  \n  onClick(event: KeyboardEvent){\n    const target = (<HTMLInputElement>event.target)\n    this.checked = target.checked\n    !!this.check && this.check.emit();\n  }\n  \n  public get classes(): string[] {\n    const check = !!this.checked ? 'checkbox--checked' : ''\n    return ['checkbox', check];\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".checkbox {\n  width: 1.8rem;\n  height: 1.8rem;\n  color: #fff;\n  position: relative;\n  display: block;\n  &--icon {\n    border-radius: 0.3rem;\n    background-color: #007dfe;\n    position: absolute;\n    left: 0;\n    top: 0;\n    font-size: 1.8rem;\n\n    width: 100%;\n    height: 100%;\n  }\n  &--checked {\n    // pointer-events: none;\n    .checked {\n      display: block !important;\n    }\n  }\n  .checked {\n    display: none;\n    // pointer-events: none;\n  }\n  .disabled {\n    display: none;\n    pointer-events: none;\n  }\n}\n",
+                    "data": ".checkbox {\n  width: 1.8rem;\n  height: 1.8rem;\n  color: #fff;\n  position: relative;\n  display: block;\n  &--icon {\n    border-radius: 0.3rem;\n    background-color: #007dfe;\n    position: absolute;\n    left: 0;\n    top: 0;\n    font-size: 1.8rem;\n\n    width: 100%;\n    height: 100%;\n  }\n  &--checked {\n    .checked {\n      display: block !important;\n    }\n  }\n  .checked {\n    display: none;\n    pointer-events: none;\n  }\n  .disabled {\n    display: none;\n    pointer-events: none;\n  }\n}\n",
                     "styleUrl": "./checkbox.component.scss"
                 }
             ],
@@ -338,11 +328,11 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 29
+                        "line": 24
                     }
                 }
             },
-            "templateData": "<div [ngClass]=\"classes\">\n  <label for=\"check\" class=\"checkbox--icon\"></label>\n  <span class=\"material-icons checkbox--icon checked\">\n    check\n  </span>\n</div>\n<input type=\"checkbox\" id=\"check\" name=\"{{ name }}\" (change)=\"onCheck($event)\" [checked]=\"checked\" class=\"disabled\"/>\n"
+            "templateData": "<div [ngClass]=\"classes\">\n  <label for=\"check\" class=\"checkbox--icon\"></label>\n  <span class=\"material-icons checkbox--icon checked\">\n    check\n  </span>\n  <input type=\"checkbox\" id=\"check\" name=\"{{ name }}\" value=\"{{ !!checked }}\" (change)=\"onClick($event)\" [checked]=\"checked\" class=\"disabled\"/>\n</div>\n"
         },
         {
             "name": "FormLoginComponent",
@@ -540,6 +530,68 @@
             ],
             "stylesData": "",
             "templateData": "<div class=\"home\">\n  <app-header></app-header>\n  <h1>Home Page</h1>\n</div>\n"
+        },
+        {
+            "name": "IconButtonComponent",
+            "id": "component-IconButtonComponent-218c7324462b7c3864506eb67a5b30dbb3650a25a6622fb8dec056b3bdaf372651bba47f10f5a31d0fb235b62183ce3fd92d6406bafa79a74d418f37a1bfd0c2",
+            "file": "src/app/components/atoms/icon-button/icon-button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-icon-button",
+            "styleUrls": [
+                "./icon-button.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./icon-button.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-icon-button',\n  templateUrl: './icon-button.component.html',\n  styleUrls: ['./icon-button.component.scss']\n})\nexport class IconButtonComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./icon-button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<button class=\"icon-button\">\n  <span class=\"material-icons icon-button--edit\">\n    edit\n  </span>\n  <span class=\"material-icons icon-button--delete\">\n    highlight_off\n  </span>\n</button>\n"
         },
         {
             "name": "ImageComponent",
@@ -741,69 +793,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-df5eb7ca1c8e20855b3729fd942a46ed2db7710139109edeca30529d30c4ea02505394a469f9dc7dcdbfc0b19725ae3915a51d60afd22979a9343b65a24c2517",
-            "file": "src/app/components/pages/login/login.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "login",
-            "styleUrls": [
-                "./login.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./login.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 12,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".page-login {\n  display: flex;\n  flex-wrap: nowrap;\n  &__login {\n    width: 100%;\n    max-width: 32rem;\n    transform: translateY(-2rem);\n  }\n  .block {\n    height: 100vh;\n    justify-content: center;\n    align-items: center;\n    display: flex;\n    &--left {\n      background-color: #f2f2f2;\n      flex: 0 0 100%;\n      @media (min-width: 1024px) {\n        flex: 0 0 37%;\n      }\n    }\n    &--right {\n      background-color: #fff;\n      display: none;\n      flex: 1 1 auto;\n      @media (min-width: 1024px) {\n        display: flex;\n      }\n    }\n  }\n}\n",
-                    "styleUrl": "./login.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 8
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<div class=\"page-login\">\n  <div class=\"block block--left\">\n    <div class=\"page-login__login\">\n      <app-login></app-login>\n    </div>\n  </div>\n  <div class=\"block block--right\">\n    <app-image image=\"assets/images/image-login.png\"></app-image>\n  </div>\n</div>\n"
-        },
-        {
-            "name": "LoginComponent",
-            "id": "component-LoginComponent-2bb8bbbd118c93c90599cd7913352dc5aba5f11e5c266a49ef63a9d086722d7053d0ba45186ed916ac79a14e3f9e6a09d7b7fad288e72e0296b4cfd082f2b45b-1",
+            "id": "component-LoginComponent-2bb8bbbd118c93c90599cd7913352dc5aba5f11e5c266a49ef63a9d086722d7053d0ba45186ed916ac79a14e3f9e6a09d7b7fad288e72e0296b4cfd082f2b45b",
             "file": "src/app/components/organisms/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -868,10 +858,72 @@
                 }
             ],
             "stylesData": "",
+            "templateData": "<div class=\"login\">\n  <div class=\"login--texts\">\n    <app-logo></app-logo>\n    <app-title size=\"medium\" title=\"Bem vindo de volta\"></app-title>\n  </div>\n  <app-form-login (sendForm)=\"onSubmit($event)\"></app-form-login>\n</div>\n"
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-df5eb7ca1c8e20855b3729fd942a46ed2db7710139109edeca30529d30c4ea02505394a469f9dc7dcdbfc0b19725ae3915a51d60afd22979a9343b65a24c2517-1",
+            "file": "src/app/components/pages/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "login",
+            "styleUrls": [
+                "./login.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".page-login {\n  display: flex;\n  flex-wrap: nowrap;\n  &__login {\n    width: 100%;\n    max-width: 32rem;\n    transform: translateY(-2rem);\n  }\n  .block {\n    height: 100vh;\n    justify-content: center;\n    align-items: center;\n    display: flex;\n    &--left {\n      background-color: #f2f2f2;\n      flex: 0 0 100%;\n      @media (min-width: 1024px) {\n        flex: 0 0 37%;\n      }\n    }\n    &--right {\n      background-color: #fff;\n      display: none;\n      flex: 1 1 auto;\n      @media (min-width: 1024px) {\n        display: flex;\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./login.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "LoginComponent-1",
-            "templateData": "<div class=\"login\">\n  <div class=\"login--texts\">\n    <app-logo></app-logo>\n    <app-title size=\"medium\" title=\"Bem vindo de volta\"></app-title>\n  </div>\n  <app-form-login (sendForm)=\"onSubmit($event)\"></app-form-login>\n</div>\n"
+            "templateData": "<div class=\"page-login\">\n  <div class=\"block block--left\">\n    <div class=\"page-login__login\">\n      <app-login></app-login>\n    </div>\n  </div>\n  <div class=\"block block--right\">\n    <app-image image=\"assets/images/image-login.png\"></app-image>\n  </div>\n</div>\n"
         },
         {
             "name": "LogoComponent",
@@ -1126,13 +1178,13 @@
         },
         {
             "name": "AtomsModule",
-            "id": "module-AtomsModule-20198aacf058cb6d58f4f374fef7787a8ecff987b2c7d7e2a001e9b68ac6e32fcc9817ef1d0c8f17592c1aeebb9347e78e3db5c2d65d39fd7e5099209a478610",
+            "id": "module-AtomsModule-6a6b70f4497a9fc291cc1ba483a190c102bb64e01fd54d116edf3ec79181c024ed3aec6d9e86d83529b04a302d241015c80ac15f7632770a01f435e29fabea2a",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/components/atoms/atoms.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LogoComponent } from './logo/logo.component';\nimport { ImageComponent } from './image/image.component';\nimport { InputComponent } from './input/input.component';\nimport { ButtonComponent } from './button/button.component';\nimport { TitleComponent } from './title/title.component';\nimport { CheckboxComponent } from './checkbox/checkbox.component';\n\n@NgModule({\n  declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent],\n  exports: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent],\n  imports: [\n    CommonModule\n  ]\n})\nexport class AtomsModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LogoComponent } from './logo/logo.component';\nimport { ImageComponent } from './image/image.component';\nimport { InputComponent } from './input/input.component';\nimport { ButtonComponent } from './button/button.component';\nimport { TitleComponent } from './title/title.component';\nimport { CheckboxComponent } from './checkbox/checkbox.component';\nimport { IconButtonComponent } from './icon-button/icon-button.component';\n\n@NgModule({\n  declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent, IconButtonComponent],\n  exports: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent],\n  imports: [\n    CommonModule\n  ]\n})\nexport class AtomsModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1146,6 +1198,9 @@
                         },
                         {
                             "name": "CheckboxComponent"
+                        },
+                        {
+                            "name": "IconButtonComponent"
                         },
                         {
                             "name": "ImageComponent"
@@ -1170,6 +1225,9 @@
                     "elements": [
                         {
                             "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "CheckboxComponent"
                         },
                         {
                             "name": "ImageComponent"
@@ -1287,11 +1345,7 @@
                 },
                 {
                     "type": "exports",
-                    "elements": [
-                        {
-                            "name": "LoginComponent"
-                        }
-                    ]
+                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -1373,7 +1427,11 @@
                 },
                 {
                     "type": "declarations",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "imports",
@@ -1388,7 +1446,11 @@
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -1437,7 +1499,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/image/image.stories.ts",
+                "file": "src/app/components/atoms/icon-button/icon-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1448,6 +1510,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/components/atoms/input/input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/image/image.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1477,6 +1549,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/components/organisms/login/login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/components/molecules/form-login/form-login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1488,16 +1570,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/components/molecules/header/header.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/organisms/login/login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1576,16 +1648,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/atoms/checkbox/checkbox.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1596,11 +1658,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/image/image.stories.ts",
+                "file": "src/app/components/atoms/icon-button/icon-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ImageComponent>",
-                "defaultValue": "(args: ImageComponent) => ({\n  props: args,\n})"
+                "type": "Story<IconButtonComponent>",
+                "defaultValue": "(args: IconButtonComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -1611,6 +1673,16 @@
                 "deprecationMessage": "",
                 "type": "Story<InputComponent>",
                 "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/image/image.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ImageComponent>",
+                "defaultValue": "(args: ImageComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -1636,6 +1708,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/components/organisms/login/login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<LoginComponent>",
+                "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/components/molecules/form-login/form-login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1656,11 +1738,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/organisms/login/login.stories.ts",
+                "file": "src/app/components/atoms/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<LoginComponent>",
-                "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "White",
@@ -1730,12 +1812,12 @@
                     "type": "any"
                 }
             ],
-            "src/app/components/atoms/image/image.stories.ts": [
+            "src/app/components/atoms/icon-button/icon-button.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/components/atoms/image/image.stories.ts",
+                    "file": "src/app/components/atoms/icon-button/icon-button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1745,11 +1827,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/components/atoms/image/image.stories.ts",
+                    "file": "src/app/components/atoms/icon-button/icon-button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<ImageComponent>",
-                    "defaultValue": "(args: ImageComponent) => ({\n  props: args,\n})"
+                    "type": "Story<IconButtonComponent>",
+                    "defaultValue": "(args: IconButtonComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/app/components/atoms/input/input.stories.ts": [
@@ -1782,6 +1864,28 @@
                     "deprecationMessage": "",
                     "type": "Story<InputComponent>",
                     "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/atoms/image/image.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/image/image.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/image/image.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ImageComponent>",
+                    "defaultValue": "(args: ImageComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/app/components/atoms/logo/logo.stories.ts": [
@@ -1838,6 +1942,28 @@
                     "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
                 }
             ],
+            "src/app/components/organisms/login/login.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/organisms/login/login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/organisms/login/login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<LoginComponent>",
+                    "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
+                }
+            ],
             "src/app/components/molecules/form-login/form-login.stories.ts": [
                 {
                     "name": "Default",
@@ -1880,28 +2006,6 @@
                     "deprecationMessage": "",
                     "type": "Story<HeaderComponent>",
                     "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
-                }
-            ],
-            "src/app/components/organisms/login/login.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/organisms/login/login.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/organisms/login/login.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<LoginComponent>",
-                    "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/environments/environment.ts": [
@@ -2075,7 +2179,7 @@
                 "linktype": "component",
                 "name": "CheckboxComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -2100,6 +2204,35 @@
             },
             {
                 "filePath": "src/app/components/atoms/checkbox/checkbox.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atoms/icon-button/icon-button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atoms/icon-button/icon-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atoms/icon-button/icon-button.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

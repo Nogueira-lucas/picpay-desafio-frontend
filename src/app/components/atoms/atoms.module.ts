@@ -6,9 +6,10 @@ import { InputComponent } from './input/input.component';
 import { ButtonComponent } from './button/button.component';
 import { TitleComponent } from './title/title.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import { IconButtonComponent } from './icon-button/icon-button.component';
 
 @NgModule({
-  declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent],
+  declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent, IconButtonComponent],
   exports: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent],
   imports: [
     CommonModule
