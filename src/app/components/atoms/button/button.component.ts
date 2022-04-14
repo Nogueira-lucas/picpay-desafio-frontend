@@ -20,7 +20,7 @@ export class ButtonComponent{
   type: 'button' | 'submit' = 'button';
 
   @Input()
-  icon: string;
+  icon: string = '';
 
 
   @Output() click = new EventEmitter<any>();
@@ -33,5 +33,11 @@ export class ButtonComponent{
     const mode = this.primary ? 'button--primary' : 'button--secondary';
 
     return ['button', `button--${this.size}`, mode];
+  }
+
+  public get classesIcon(): string[] {
+    const icon = !this.icon ? 'disabled' : ''
+
+    return [`material-icons button__icon button__icon--left`, icon];
   }
 }

@@ -1,4 +1,4 @@
 <button [type]="type" [ngClass]="classes" (click)="onClick($event)">
-  <span class="material-icons button__filter button__filter--left">{{ icon }}</span>
+  <span [ngClass]="classesIcon">{{ icon }}</span>
   {{label}}
 </button>

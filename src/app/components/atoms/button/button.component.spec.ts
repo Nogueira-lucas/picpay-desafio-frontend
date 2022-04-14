@@ -27,7 +27,7 @@ describe('ButtonComponent', () => {
     component.label = 'Texto button'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('button').textContent).toBe('Texto button');
+    expect(compiled.querySelector('button').textContent.trim()).toBe('Texto button');
   });
 
   it('should render with type submit', () => {
@@ -65,10 +65,17 @@ describe('ButtonComponent', () => {
     expect(compiled.querySelector('button').getAttribute('class')).toBe('button button--full button--primary');
   });
 
-  it('should render without primary prop', () => {
+  it('should render without primary props', () => {
     component.primary = false
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('button').getAttribute('class')).toBe('button button--medium button--secondary');
   });
+
+  // it('should render with icon props', () => {
+  //   component.primary = false
+  //   fixture.detectChanges();
+  //   const compiled = fixture.debugElement.nativeElement;
+  //   expect(compiled.querySelector('button').getAttribute('class')).toBe('button button--medium button--secondary');
+  // });
 });

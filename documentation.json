@@ -87,7 +87,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-06568089f4e468fb52879e9a6e8e50f07fc74cfa8655da0b5226a934f3c37c2af18cef2362eedbb797d21056d16893f83163792b70cfd89336fac5d557f97482",
+            "id": "component-ButtonComponent-d5e179e6397e976175f585ace34960d06801b46e0d06770bd6a0e947391bc63a688dfc87bb11cc74aa19f3e3451c770761175b83f0de2b1ecb3cbe24043b2b59",
             "file": "src/app/components/atoms/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -105,29 +105,12 @@
             "viewProviders": [],
             "inputsClass": [
                 {
-                    "name": "direction",
-                    "defaultValue": "'left'",
+                    "name": "icon",
+                    "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 23,
-                    "type": "\"left\" | \"right\"",
-                    "decorators": []
-                },
-                {
-                    "name": "icon",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 26,
                     "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "iconDirection",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 29,
-                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -172,7 +155,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 33,
+                    "line": 26,
                     "type": "EventEmitter"
                 }
             ],
@@ -191,7 +174,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 35,
+                    "line": 28,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -214,11 +197,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent{\n\n  @Input()\n  primary = true;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' | 'full' = 'medium';\n\n  @Input()\n  label: string;\n\n  @Input()\n  type: 'button' | 'submit' = 'button';\n\n  @Input()\n  direction: 'left' | 'right' = 'left';\n\n  @Input()\n  icon: string;\n \n  @Input()\n  iconDirection = true;\n \n\n\n  @Output() click = new EventEmitter<any>();\n  \n  onClick(event) {\n    this.click.emit(event);\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'button--primary' : 'button--secondary';\n\n    return ['button', `button--${this.size}`, mode];\n  }\n\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent{\n\n  @Input()\n  primary = true;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' | 'full' = 'medium';\n\n  @Input()\n  label: string;\n\n  @Input()\n  type: 'button' | 'submit' = 'button';\n\n  @Input()\n  icon: string = '';\n\n\n  @Output() click = new EventEmitter<any>();\n  \n  onClick(event) {\n    this.click.emit(event);\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'button--primary' : 'button--secondary';\n\n    return ['button', `button--${this.size}`, mode];\n  }\n\n  public get classesIcon(): string[] {\n    const icon = !this.icon ? 'disabled' : ''\n\n    return [`material-icons button__icon button__icon--left`, icon];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".button {\n  background-color: transparent;\n  height: 3.6rem;\n  padding: 1rem 1.5rem;\n  text-transform: uppercase;\n  border: 0;\n  border-radius: 0.4rem;\n  font-size: 1.4rem;\n  line-height: 1.6rem;\n  letter-spacing: 0.1rem;\n  display: flex;\n  flex-wrap: nowrap;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  &--primary {\n    background-color: #007dfe;\n    color: #fff;\n  }\n  &--secondary {\n    background-color: #f5f5f5;\n    color: #333;\n  }\n\n  &--small {\n    width: auto;\n    padding: 0.7rem 0.5rem;\n  }\n  &--medium {\n    width: 15rem;\n  }\n  &--large {\n    width: 23rem;\n  }\n  &--full {\n    width: 100%;\n  }\n\n  &__filter {\n    &--left {\n    }\n    &--right {\n    }\n  }\n}\n",
+                    "data": ".button {\n  background-color: transparent;\n  height: 3.6rem;\n  padding: 1rem 1.5rem;\n  text-transform: uppercase;\n  border: 0;\n  border-radius: 0.4rem;\n  font-size: 1.4rem;\n  line-height: 1.6rem;\n  letter-spacing: 0.1rem;\n  display: flex;\n  flex-wrap: nowrap;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  &--primary {\n    background-color: #007dfe;\n    color: #fff;\n  }\n  &--secondary {\n    background-color: #f5f5f5;\n    color: #333;\n  }\n\n  &--small {\n    width: auto;\n    padding: 0.7rem 0.5rem;\n  }\n  &--medium {\n    width: 15rem;\n  }\n  &--large {\n    width: 23rem;\n  }\n  &--full {\n    width: 100%;\n  }\n\n  &__icon {\n    &--left {\n      margin-right: 0.5rem;\n\n      &.disabled {\n        display: none;\n      }\n    }\n  }\n}\n",
                     "styleUrl": "./button.component.scss"
                 }
             ],
@@ -230,11 +213,20 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 39
+                        "line": 32
+                    }
+                },
+                "classesIcon": {
+                    "name": "classesIcon",
+                    "getSignature": {
+                        "name": "classesIcon",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 38
                     }
                 }
             },
-            "templateData": "<button [type]=\"type\" [ngClass]=\"classes\" (click)=\"onClick($event)\">\n  <span class=\"material-icons button__filter button__filter--left\" [hidden]=true>{{ icon }}</span>\n  {{label}}\n  <span class=\"material-icons button__filter button__filter--right\" [hidden]=\"iconDirection\">{{ icon }}</span>\n</button>\n"
+            "templateData": "<button [type]=\"type\" [ngClass]=\"classes\" (click)=\"onClick($event)\">\n  <span [ngClass]=\"classesIcon\">{{ icon }}</span>\n  {{label}}\n</button>\n"
         },
         {
             "name": "FormLoginComponent",
@@ -744,7 +736,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": ".page-login {\n  display: flex;\n  flex-wrap: nowrap;\n  &__login {\n    width: 100%;\n    max-width: 32rem;\n    transform: translateY(-2rem);\n  }\n  .block {\n    height: 100vh;\n    justify-content: center;\n    align-items: center;\n    display: flex;\n    &--left {\n      background-color: #f2f2f2;\n      flex: 0 0 100%;\n      @media (min-width: 1024px) {\n        flex: 0 0 37%;\n      }\n    }\n    &--right {\n      background-color: #fff;\n      display: none;\n      flex: 1 1 auto;\n      @media (min-width: 1024px) {\n        display: flex;\n      }\n    }\n  }\n}\n",
                     "styleUrl": "./login.component.scss"
                 }
             ],
@@ -763,7 +755,7 @@
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "LoginComponent-1",
-            "templateData": "<h1>Page Login</h1>\n"
+            "templateData": "<div class=\"page-login\">\n  <div class=\"block block--left\">\n    <div class=\"page-login__login\">\n      <app-login></app-login>\n    </div>\n  </div>\n  <div class=\"block block--right\">\n    <app-image image=\"assets/images/image-login.png\"></app-image>\n  </div>\n</div>\n"
         },
         {
             "name": "LogoComponent",
@@ -908,13 +900,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-6a304cad0a44c3037c012e58899aef8d791fc372fac9c205d9e69a1d4ed45bd73f6fdfc90990e8769a6b306d9a16a789dbd59479120f52deb0ba27e2433de9c9",
+            "id": "module-AppModule-61ef4fcb5c42d892c01ba39a23e2c2cd257aa39745854efd3f13b799ac7bc1883444d70b55db914ada0726921e7b0fc7b1529a1d589ad5a5449af07d22f5a64c",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n\nimport { AppComponent } from './app.component';\nimport { ButtonComponent } from './components/atoms/button/button.component';\nimport { TitleComponent } from './components/atoms/title/title.component';\nimport { InputComponent } from './components/atoms/input/input.component';\nimport { FormLoginComponent } from './components/molecules/form-login/form-login.component';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { LoginModule } from './components/pages/login/login.module';\nimport { HomeModule } from './components/pages/home/home.module';\nimport { AtomsModule } from './components/atoms/atoms.module';\n@NgModule({\n  declarations: [\n    AppComponent,\n    ButtonComponent,\n    TitleComponent,\n    InputComponent,\n    FormLoginComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    LoginModule,\n    HomeModule,\n    AtomsModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "sourceCode": "import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n\nimport { AppComponent } from './app.component';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AtomsModule } from './components/atoms/atoms.module';\nimport { MoleculesModule } from './components/molecules/molecules.module';\nimport { OrganismsModule } from './components/organisms/organisms.module';\nimport { LoginModule } from './components/pages/login/login.module';\nimport { HomeModule } from './components/pages/home/home.module';\n@NgModule({\n  declarations: [\n    AppComponent,\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    LoginModule,\n    HomeModule,\n    AtomsModule,\n    MoleculesModule,\n    OrganismsModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -925,18 +917,6 @@
                     "elements": [
                         {
                             "name": "AppComponent"
-                        },
-                        {
-                            "name": "ButtonComponent"
-                        },
-                        {
-                            "name": "FormLoginComponent"
-                        },
-                        {
-                            "name": "InputComponent"
-                        },
-                        {
-                            "name": "TitleComponent"
                         }
                     ]
                 },
@@ -954,6 +934,12 @@
                         },
                         {
                             "name": "LoginModule"
+                        },
+                        {
+                            "name": "MoleculesModule"
+                        },
+                        {
+                            "name": "OrganismsModule"
                         }
                     ]
                 },
@@ -1013,13 +999,13 @@
         },
         {
             "name": "AtomsModule",
-            "id": "module-AtomsModule-6b4b6ca3a2be4304420c6781a790e28f8126e3c2c3b5c811a6e715050cf9ba20b12a560b4206ad5936c3192fc7376a07413d2adbcb690d46325ca0ef79394788",
+            "id": "module-AtomsModule-1cfa36908a869b9262b1596403d323563e2620d0375570c21c38c9af4ccbe84d3f05a91bb11b336a6ebdc34f453bf0d389016af56e31e723e0dc1e812052f9ee",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/components/atoms/atoms.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LogoComponent } from './logo/logo.component';\nimport { ImageComponent } from './image/image.component';\n\n@NgModule({\n  declarations: [LogoComponent, ImageComponent],\n  exports: [LogoComponent, ImageComponent],\n  imports: [\n    CommonModule\n  ]\n})\nexport class AtomsModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LogoComponent } from './logo/logo.component';\nimport { ImageComponent } from './image/image.component';\nimport { InputComponent } from './input/input.component';\nimport { ButtonComponent } from './button/button.component';\nimport { TitleComponent } from './title/title.component';\n\n@NgModule({\n  declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent],\n  exports: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent],\n  imports: [\n    CommonModule\n  ]\n})\nexport class AtomsModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1029,10 +1015,19 @@
                     "type": "declarations",
                     "elements": [
                         {
+                            "name": "ButtonComponent"
+                        },
+                        {
                             "name": "ImageComponent"
                         },
                         {
+                            "name": "InputComponent"
+                        },
+                        {
                             "name": "LogoComponent"
+                        },
+                        {
+                            "name": "TitleComponent"
                         }
                     ]
                 },
@@ -1044,10 +1039,19 @@
                     "type": "exports",
                     "elements": [
                         {
+                            "name": "ButtonComponent"
+                        },
+                        {
                             "name": "ImageComponent"
                         },
                         {
+                            "name": "InputComponent"
+                        },
+                        {
                             "name": "LogoComponent"
+                        },
+                        {
+                            "name": "TitleComponent"
                         }
                     ]
                 },
@@ -1063,13 +1067,13 @@
         },
         {
             "name": "HomeModule",
-            "id": "module-HomeModule-fdc4bbbe582de79b292caf35432d0c9771d08b4484a83f39a2bc6ca3d068d6c99163da9dd67145d612ddfb7f8cbf1c58e12e63fa77902af4e5936031cd3f11c8",
+            "id": "module-HomeModule-654064d5e4b45f145a9af374950552dec9481700dec2c5024ca7380e15f2c89be37d3c7e07ede4ae0a7c1bd9ac392b81aca1798dabd67e5cb9d76be34383e5ac",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/components/pages/home/home.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { HomeComponent } from './home.component';\nimport { HeaderComponent } from '../../molecules/header/header.component';\nimport { AtomsModule } from '../../atoms/atoms.module';\n\n@NgModule({\n  declarations: [HomeComponent, HeaderComponent],\n  exports: [HomeComponent, HeaderComponent],\n  imports: [\n    CommonModule,\n    AtomsModule\n  ]\n})\nexport class HomeModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { HomeComponent } from './home.component';\nimport { AtomsModule } from '../../atoms/atoms.module';\nimport { MoleculesModule } from '../../molecules/molecules.module';\nimport { OrganismsModule } from '../../organisms/organisms.module';\n\n@NgModule({\n  declarations: [HomeComponent],\n  exports: [HomeComponent],\n  imports: [\n    CommonModule,\n    AtomsModule,\n    MoleculesModule,\n    OrganismsModule\n  ]\n})\nexport class HomeModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1078,9 +1082,6 @@
                 {
                     "type": "declarations",
                     "elements": [
-                        {
-                            "name": "HeaderComponent"
-                        },
                         {
                             "name": "HomeComponent"
                         }
@@ -1091,15 +1092,18 @@
                     "elements": [
                         {
                             "name": "AtomsModule"
+                        },
+                        {
+                            "name": "MoleculesModule"
+                        },
+                        {
+                            "name": "OrganismsModule"
                         }
                     ]
                 },
                 {
                     "type": "exports",
                     "elements": [
-                        {
-                            "name": "HeaderComponent"
-                        },
                         {
                             "name": "HomeComponent"
                         }
@@ -1117,13 +1121,13 @@
         },
         {
             "name": "LoginModule",
-            "id": "module-LoginModule-68c905522f95f92f1c0560331b29512d392741849618b5e747559cbd094c062623d86a12d33e27b2538f33cd2e6bb4156af25114b5fd7cfdd12e02ab6b66ef23",
+            "id": "module-LoginModule-134e74c50ecc1a38c1281afc216845df1c17f40fe0d12354822657148ef2ace7b12d3fa1540ddf396416d64127f5eb7bacc9645982da47ffa6e37d215f6651d8",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/components/pages/login/login.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LoginComponent } from './login.component';\n\n@NgModule({\n  declarations: [\n    LoginComponent\n  ],\n  exports: [LoginComponent],\n  imports: [\n    CommonModule\n  ],\n})\nexport class LoginModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LoginComponent } from './login.component';\nimport { AtomsModule } from '../../atoms/atoms.module';\nimport { MoleculesModule } from '../../molecules/molecules.module';\nimport { OrganismsModule } from '../../organisms/organisms.module';\n\n@NgModule({\n  declarations: [\n    LoginComponent,\n  ],\n  exports: [LoginComponent],\n  imports: [\n    CommonModule,\n    AtomsModule,\n    MoleculesModule,\n    OrganismsModule\n  ],\n})\nexport class LoginModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1139,11 +1143,126 @@
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "AtomsModule"
+                        },
+                        {
+                            "name": "MoleculesModule"
+                        },
+                        {
+                            "name": "OrganismsModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
                     "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "MoleculesModule",
+            "id": "module-MoleculesModule-5e42629c07817bce86a2ab338edb599d6f70ded799188061943e9d0c98a0ca86713ff23a10f94a754b0f9748ccd2de7e085ea75f44991df86958728635d336ee",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/molecules/molecules.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormLoginComponent } from './form-login/form-login.component';\nimport { HeaderComponent } from './header/header.component';\nimport { AtomsModule } from '../atoms/atoms.module';\n\n@NgModule({\n  declarations: [FormLoginComponent, HeaderComponent],\n  exports: [FormLoginComponent, HeaderComponent],\n  imports: [\n    CommonModule,\n    AtomsModule\n  ]\n})\nexport class MoleculesModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "FormLoginComponent"
+                        },
+                        {
+                            "name": "HeaderComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AtomsModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "FormLoginComponent"
+                        },
+                        {
+                            "name": "HeaderComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "OrganismsModule",
+            "id": "module-OrganismsModule-172d786f2fdb1e024e3f1f69e680a29b2fdaf9b2654ef7b7ae67af4da32dd842b75b55734d3b2d3da8af7889dace43b0b9bfa160e7333a3161ae5373ba2a5e3a",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/organisms/organisms.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LoginComponent } from './login/login.component';\nimport { MoleculesModule } from '../molecules/molecules.module';\nimport { AtomsModule } from '../atoms/atoms.module';\n\n@NgModule({\n  declarations: [LoginComponent],\n  exports: [LoginComponent],\n  imports: [\n    CommonModule,\n    AtomsModule,\n    MoleculesModule\n  ]\n})\nexport class OrganismsModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AtomsModule"
+                        },
+                        {
+                            "name": "MoleculesModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -1192,16 +1311,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/logo/logo.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/atoms/title/title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1212,7 +1321,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/molecules/header/header.stories.ts",
+                "file": "src/app/components/molecules/form-login/form-login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1222,7 +1331,17 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/molecules/form-login/form-login.stories.ts",
+                "file": "src/app/components/atoms/logo/logo.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/molecules/header/header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1321,21 +1440,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/input/input.stories.ts",
+                "file": "src/app/components/atoms/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<InputComponent>",
-                "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/logo/logo.stories.ts",
+                "file": "src/app/components/atoms/input/input.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<LogoComponent>",
-                "defaultValue": "(args: LogoComponent) => ({\n  props: args,\n})"
+                "type": "Story<InputComponent>",
+                "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -1351,11 +1470,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/button/button.stories.ts",
+                "file": "src/app/components/molecules/form-login/form-login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
+                "type": "Story<FormLoginComponent>",
+                "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/logo/logo.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<LogoComponent>",
+                "defaultValue": "(args: LogoComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -1366,16 +1495,6 @@
                 "deprecationMessage": "",
                 "type": "Story<HeaderComponent>",
                 "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/molecules/form-login/form-login.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormLoginComponent>",
-                "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -1477,6 +1596,50 @@
                     "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
                 }
             ],
+            "src/app/components/atoms/title/title.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/title/title.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/title/title.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TitleComponent>",
+                    "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/molecules/form-login/form-login.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/molecules/form-login/form-login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/molecules/form-login/form-login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FormLoginComponent>",
+                    "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
+                }
+            ],
             "src/app/components/atoms/logo/logo.stories.ts": [
                 {
                     "name": "Default",
@@ -1509,28 +1672,6 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "src/app/components/atoms/title/title.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atoms/title/title.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atoms/title/title.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<TitleComponent>",
-                    "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
-                }
-            ],
             "src/app/components/molecules/header/header.stories.ts": [
                 {
                     "name": "Default",
@@ -1551,28 +1692,6 @@
                     "deprecationMessage": "",
                     "type": "Story<HeaderComponent>",
                     "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
-                }
-            ],
-            "src/app/components/molecules/form-login/form-login.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/molecules/form-login/form-login.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/molecules/form-login/form-login.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<FormLoginComponent>",
-                    "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/app/components/organisms/login/login.stories.ts": [
@@ -1719,7 +1838,7 @@
                 "linktype": "component",
                 "name": "ButtonComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/10",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {

@@ -36,9 +36,13 @@
     width: 100%;
   }
 
-  &__filter {
+  &__icon {
     &--left {
       margin-right: 0.5rem;
+
+      &.disabled {
+        display: none;
+      }
     }
   }
 }
