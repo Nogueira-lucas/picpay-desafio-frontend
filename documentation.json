@@ -87,7 +87,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-a8b9831a3b5f45f255fa9670964e89a1cc0a4a25a97d0e44075a09cfb9ed6c6b4102c8196007cacd684105085f7238a6255bccf03d573c17e8de9046b7b153d9",
+            "id": "component-ButtonComponent-06568089f4e468fb52879e9a6e8e50f07fc74cfa8655da0b5226a934f3c37c2af18cef2362eedbb797d21056d16893f83163792b70cfd89336fac5d557f97482",
             "file": "src/app/components/atoms/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -104,6 +104,32 @@
             ],
             "viewProviders": [],
             "inputsClass": [
+                {
+                    "name": "direction",
+                    "defaultValue": "'left'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "\"left\" | \"right\"",
+                    "decorators": []
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconDirection",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "boolean",
+                    "decorators": []
+                },
                 {
                     "name": "label",
                     "deprecated": false,
@@ -146,7 +172,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 22,
+                    "line": 33,
                     "type": "EventEmitter"
                 }
             ],
@@ -165,7 +191,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 24,
+                    "line": 35,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -188,11 +214,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent{\n\n  @Input()\n  primary = true;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' | 'full' = 'medium';\n\n  @Input()\n  label: string;\n\n  @Input()\n  type: 'button' | 'submit' = 'button';\n\n  @Output() click = new EventEmitter<any>();\n  \n  onClick(event) {\n    this.click.emit(event);\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'button--primary' : 'button--secondary';\n\n    return ['button', `button--${this.size}`, mode];\n  }\n\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent{\n\n  @Input()\n  primary = true;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' | 'full' = 'medium';\n\n  @Input()\n  label: string;\n\n  @Input()\n  type: 'button' | 'submit' = 'button';\n\n  @Input()\n  direction: 'left' | 'right' = 'left';\n\n  @Input()\n  icon: string;\n \n  @Input()\n  iconDirection = true;\n \n\n\n  @Output() click = new EventEmitter<any>();\n  \n  onClick(event) {\n    this.click.emit(event);\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'button--primary' : 'button--secondary';\n\n    return ['button', `button--${this.size}`, mode];\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".button {\n  background-color: transparent;\n  height: 3.6rem;\n  padding: 1rem 1.5rem;\n  text-transform: uppercase;\n  border: 0;\n  border-radius: 0.4rem;\n  font-size: 1.4rem;\n  line-height: 1.6rem;\n  letter-spacing: 0.1rem;\n  cursor: pointer;\n  &--primary {\n    background-color: #007dfe;\n    color: #fff;\n  }\n  &--secondary {\n    background-color: #f5f5f5;\n    color: #333;\n  }\n\n  &--small {\n    width: auto;\n  }\n  &--medium {\n    width: 15rem;\n  }\n  &--large {\n    width: 23rem;\n  }\n  &--full {\n    width: 100%;\n  }\n}\n",
+                    "data": ".button {\n  background-color: transparent;\n  height: 3.6rem;\n  padding: 1rem 1.5rem;\n  text-transform: uppercase;\n  border: 0;\n  border-radius: 0.4rem;\n  font-size: 1.4rem;\n  line-height: 1.6rem;\n  letter-spacing: 0.1rem;\n  display: flex;\n  flex-wrap: nowrap;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n  &--primary {\n    background-color: #007dfe;\n    color: #fff;\n  }\n  &--secondary {\n    background-color: #f5f5f5;\n    color: #333;\n  }\n\n  &--small {\n    width: auto;\n    padding: 0.7rem 0.5rem;\n  }\n  &--medium {\n    width: 15rem;\n  }\n  &--large {\n    width: 23rem;\n  }\n  &--full {\n    width: 100%;\n  }\n\n  &__filter {\n    &--left {\n    }\n    &--right {\n    }\n  }\n}\n",
                     "styleUrl": "./button.component.scss"
                 }
             ],
@@ -204,11 +230,11 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 28
+                        "line": 39
                     }
                 }
             },
-            "templateData": "<button [type]=\"type\" [ngClass]=\"classes\" (click)=\"onClick($event)\">{{label}}</button>\n"
+            "templateData": "<button [type]=\"type\" [ngClass]=\"classes\" (click)=\"onClick($event)\">\n  <span class=\"material-icons button__filter button__filter--left\" [hidden]=true>{{ icon }}</span>\n  {{label}}\n  <span class=\"material-icons button__filter button__filter--right\" [hidden]=\"iconDirection\">{{ icon }}</span>\n</button>\n"
         },
         {
             "name": "FormLoginComponent",
@@ -810,55 +836,6 @@
             "templateData": "<img class=\"logo\" [src]=\"image\" alt='logo PayFriends' />\n"
         },
         {
-            "name": "SvgComponent",
-            "id": "component-SvgComponent-01614258104dd4e4d7ad673ab6013b7f5c145f5686cecdf87fe2a5422c992303bfdccd020b0d68f0242c9e860ded29b094180aebc233b28b61d3fbea93e2e169",
-            "file": "src/app/components/atoms/svg/svg.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-svg",
-            "styleUrls": [
-                "./svg.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./svg.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "svgName",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 11,
-                    "type": "string",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-svg',\n  templateUrl: './svg.component.html',\n  styleUrls: ['./svg.component.scss']\n})\nexport class SvgComponent {\n\n  @Input()\n  svgName: string\n\n}\n\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "",
-                    "styleUrl": "./svg.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "templateData": "<mat-icon>mood</mat-icon>"
-        },
-        {
             "name": "TitleComponent",
             "id": "component-TitleComponent-67ac7896ec1267068a1e6b0027f2909786870b16fe7d61cfe2cd624778b3a2abe5c6982494fc3b22996545900475161bec98ec6d59f32cfba04e750b703781de",
             "file": "src/app/components/atoms/title/title.component.ts",
@@ -1036,13 +1013,13 @@
         },
         {
             "name": "AtomsModule",
-            "id": "module-AtomsModule-c752c5825a0383180da9a8bcede9fb7a709add122ee8c6151bc4dc2485cd0bb233c5b94c1107a9fd1e5c9009a8882e4751f09157ce23a9d5a9d2c1a592be4e3e",
+            "id": "module-AtomsModule-6b4b6ca3a2be4304420c6781a790e28f8126e3c2c3b5c811a6e715050cf9ba20b12a560b4206ad5936c3192fc7376a07413d2adbcb690d46325ca0ef79394788",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/components/atoms/atoms.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LogoComponent } from './logo/logo.component';\nimport { ImageComponent } from './image/image.component';\nimport { MatIconModule } from \"@angular/material/icon\";\nimport { SvgComponent } from './svg/svg.component';\n\n@NgModule({\n  declarations: [LogoComponent, ImageComponent, SvgComponent],\n  exports: [LogoComponent, ImageComponent],\n  imports: [\n    CommonModule,\n    MatIconModule\n  ]\n})\nexport class AtomsModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LogoComponent } from './logo/logo.component';\nimport { ImageComponent } from './image/image.component';\n\n@NgModule({\n  declarations: [LogoComponent, ImageComponent],\n  exports: [LogoComponent, ImageComponent],\n  imports: [\n    CommonModule\n  ]\n})\nexport class AtomsModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1056,9 +1033,6 @@
                         },
                         {
                             "name": "LogoComponent"
-                        },
-                        {
-                            "name": "SvgComponent"
                         }
                     ]
                 },
@@ -1228,26 +1202,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/svg/svg.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/molecules/form-login/form-login.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/atoms/title/title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1259,6 +1213,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/components/molecules/header/header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/molecules/form-login/form-login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1293,6 +1257,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "Icon",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Login",
@@ -1337,16 +1311,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/atoms/image/image.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1377,26 +1341,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/svg/svg.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<SvgComponent>",
-                "defaultValue": "(args: SvgComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/molecules/form-login/form-login.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormLoginComponent>",
-                "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/atoms/title/title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1407,11 +1351,31 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/components/atoms/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/components/molecules/header/header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<HeaderComponent>",
                 "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/molecules/form-login/form-login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormLoginComponent>",
+                "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -1545,50 +1509,6 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "src/app/components/atoms/svg/svg.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atoms/svg/svg.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atoms/svg/svg.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<SvgComponent>",
-                    "defaultValue": "(args: SvgComponent) => ({\n  props: args,\n})"
-                }
-            ],
-            "src/app/components/molecules/form-login/form-login.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/molecules/form-login/form-login.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/molecules/form-login/form-login.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<FormLoginComponent>",
-                    "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
-                }
-            ],
             "src/app/components/atoms/title/title.stories.ts": [
                 {
                     "name": "Default",
@@ -1631,6 +1551,28 @@
                     "deprecationMessage": "",
                     "type": "Story<HeaderComponent>",
                     "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/molecules/form-login/form-login.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/molecules/form-login/form-login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/molecules/form-login/form-login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FormLoginComponent>",
+                    "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/app/components/organisms/login/login.stories.ts": [
@@ -1680,6 +1622,16 @@
                 }
             ],
             "src/app/components/atoms/button/button.stories.ts": [
+                {
+                    "name": "Icon",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
                 {
                     "name": "Primary",
                     "ctype": "miscellaneous",
@@ -1767,7 +1719,17 @@
                 "linktype": "component",
                 "name": "ButtonComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atoms/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Icon",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -1903,35 +1865,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "White",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/atoms/svg/svg.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "SvgComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/2",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/atoms/svg/svg.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/atoms/svg/svg.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

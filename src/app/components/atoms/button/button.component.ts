@@ -19,6 +19,10 @@ export class ButtonComponent{
   @Input()
   type: 'button' | 'submit' = 'button';
 
+  @Input()
+  icon: string;
+
+
   @Output() click = new EventEmitter<any>();
   
   onClick(event) {
@@ -30,5 +34,4 @@ export class ButtonComponent{
 
     return ['button', `button--${this.size}`, mode];
   }
-
 }

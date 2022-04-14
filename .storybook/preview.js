@@ -1,3 +1,4 @@
+import { componentWrapperDecorator } from '@storybook/angular';
 import { setCompodocJson } from "@storybook/addon-docs/angular";
 import docJson from "../documentation.json";
 setCompodocJson(docJson);
@@ -25,3 +26,10 @@ export const parameters = {
     ],
   },
 }
+
+export const decorators = [
+  componentWrapperDecorator((story) => `<div>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    ${story}
+  </div>`),
+];
