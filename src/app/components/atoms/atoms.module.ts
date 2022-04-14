@@ -5,10 +5,11 @@ import { ImageComponent } from './image/image.component';
 import { InputComponent } from './input/input.component';
 import { ButtonComponent } from './button/button.component';
 import { TitleComponent } from './title/title.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
-  declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent],
-  exports: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent],
+  declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent],
+  exports: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent],
   imports: [
     CommonModule
   ]
