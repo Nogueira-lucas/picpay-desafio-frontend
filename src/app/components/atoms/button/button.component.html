@@ -1,4 +1,5 @@
 <button [type]="type" [ngClass]="classes" (click)="onClick($event)">
-  <span [ngClass]="classesIcon">{{ icon }}</span>
+  <span class="material-icons button__icon button__icon--left">{{ icon }}</span>
   {{label}}
+  <span class="material-icons button__icon button__icon--right">{{ icon }}</span>
 </button>

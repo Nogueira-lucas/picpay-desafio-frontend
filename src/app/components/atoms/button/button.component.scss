@@ -36,13 +36,26 @@
     width: 100%;
   }
 
+  &.disabled {
+    &--left {
+      & .button__icon--left {
+        display: none;
+      }
+    }
+
+    &--right {
+      & .button__icon--right {
+        display: none;
+      }
+    }
+  }
+
   &__icon {
     &--left {
       margin-right: 0.5rem;
-
-      &.disabled {
-        display: none;
-      }
+    }
+    &--right {
+      margin-left: 0.5rem;
     }
   }
 }

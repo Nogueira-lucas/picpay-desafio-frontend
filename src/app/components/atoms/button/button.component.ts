@@ -22,6 +22,9 @@ export class ButtonComponent{
   @Input()
   icon: string = '';
 
+  @Input()
+  iconDirection: 'left' | 'right' = 'left'
+
 
   @Output() click = new EventEmitter<any>();
   
@@ -31,13 +34,8 @@ export class ButtonComponent{
 
   public get classes(): string[] {
     const mode = this.primary ? 'button--primary' : 'button--secondary';
+    const icon = !!this.icon && this.iconDirection === 'left' ? 'disabled--right' : 'disabled--left'
 
-    return ['button', `button--${this.size}`, mode];
-  }
-
-  public get classesIcon(): string[] {
-    const icon = !this.icon ? 'disabled' : ''
-
-    return [`material-icons button__icon button__icon--left`, icon];
+    return ['button', `button--${this.size}`, mode, icon];
   }
 }
