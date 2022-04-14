@@ -16,4 +16,11 @@ export class LogoComponent {
   ngOnInit() {
     this.image = this.type === 'white' ? 'assets/images/logo_white.png' : 'assets/images/logo.png'
   }
+
+  public get classes(): string[] {
+    const mode = this.type === 'white'? 'disabled--default' : 'disabled--white';
+
+    return ['logo', mode];
+  }
 }
+

@@ -27,7 +27,8 @@ describe('LogoComponent', () => {
     component.type = 'default'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.logo').getAttribute('src')).toBe('assets/images/logo.png');
+    console.log(compiled.querySelector('.logo'));
+    expect(compiled.querySelector('.logo').getAttribute('class')).toBe('logo disabled--white');
   });
 
   it('should render with logo type white', () => {
@@ -36,7 +37,7 @@ describe('LogoComponent', () => {
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('.logo').getAttribute('src')).toBe('assets/images/logo_white.png');
+      expect(compiled.querySelector('.logo').getAttribute('class')).toBe('logo disabled--default');
     })
   });
 

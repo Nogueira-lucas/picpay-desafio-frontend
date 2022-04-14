@@ -1,4 +1,18 @@
 .logo {
   width: auto;
   height: auto;
+
+  &.disabled {
+    &--default {
+      & .logo--default {
+        display: none;
+      }
+    }
+
+    &--white {
+      & .logo--white {
+        display: none;
+      }
+    }
+  }
 }
