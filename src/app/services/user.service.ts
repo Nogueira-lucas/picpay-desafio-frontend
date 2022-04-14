@@ -8,11 +8,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-  user = this.getUserFromtorage();
+  user = this.getUserFromStorage();
 
   constructor(private http: HttpClient) {}
 
-  getUserFromtorage(): User {
+  getUserFromStorage(): User {
     const user = sessionStorage.getItem('user');
     return user ? (JSON.parse(user) as User) : null;
   }
@@ -26,7 +26,7 @@ export class UserService {
   }
 
   login(username, password) {
-    if (!this.getUserFromtorage()) {
+    if (!this.getUserFromStorage()) {
       this.http.get<User[]>(`http://localhost:3000/account?email=${username}&password=${password}`).subscribe(users => {
         if (users.length) {
           this.setUser(users[0]);
