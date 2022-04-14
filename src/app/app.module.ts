@@ -8,13 +8,25 @@ import { InputComponent } from './components/atoms/input/input.component';
 import { LogoComponent } from './components/atoms/logo/logo.component';
 import { ImageComponent } from './components/atoms/image/image.component';
 import { FormLoginComponent } from './components/molecules/form-login/form-login.component';
-import { LoginComponent } from './components/organisms/login/login.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { LoginModule } from './components/pages/login/login.module';
+import { HomeModule } from './components/pages/home/home.module';
 @NgModule({
-  declarations: [	
-    AppComponent, ButtonComponent, TitleComponent, InputComponent, LogoComponent, ImageComponent, FormLoginComponent, LoginComponent,
+  declarations: [
+    AppComponent,
+    ButtonComponent,
+    TitleComponent,
+    InputComponent,
+    LogoComponent,
+    ImageComponent,
+    FormLoginComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    LoginModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
