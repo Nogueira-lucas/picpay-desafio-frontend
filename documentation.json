@@ -47,7 +47,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-a0d2a27ff2539ab93cd1fa4106816c8fe587c4c35a58938ed003741f48cae02c78d50e279e4f96ecb21811433c7c53925a50f82a8e9e5ba14e27c5cf2fdbcf54",
+            "id": "component-AppComponent-9a0298b03a928cd565073d00005a480dcfb85146f5744aedcc32f7335a20ed6efe824d20ae063a10e25c3110d3db66c2973ee73b744524d64dccd07b3241bd6d",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -65,29 +65,8 @@
             "viewProviders": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "title",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 9
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 11,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
+            "propertiesClass": [],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -95,7 +74,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit{\n  title: string;\n\n  ngOnInit() {\n    this.title = 'Desafio Picpay Front-end';\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent {\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -104,14 +83,11 @@
                 }
             ],
             "stylesData": "",
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<!-- LEIA COM ATENÇÃO E DEPOIS EXCLUA -->\n<div style=\"padding: 1%\">\n  <h1>{{ title }}</h1> \n  <p>\n    Seja muito bem vindos ao nosso teste. \n  </p>\n  <p style=\"margin-bottom: 1.5em;\">\n    Antes de iniciar, leia o Readme com atenção e certifique-se que você tenha acesso ao layout proposto no Figma.\n  </p>\n  <ul>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Não esqueça de subir a API, para maiores informações leia o readme.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>No Figma existem algumas orientações de layout e components e no Readme existem algumas dicas legais para você utilizar no teste.</span>\n    </li>\n    <li style=\"margin-bottom: 1em;\">\n      <span>Qualquer dúvida, pergunte para os Recruiters, eles irão te auxiliar caso tenha algum problema.</span>\n    </li>\n    <li>\n      <span>Boa sorte sorte e dê o seu máximo :)</span>\n    </li>\n  </ul>\n  <app-login>Botão</app-login>\n</div>"
+            "templateData": "<router-outlet></router-outlet>"
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-e31584295c9cc71ac7adcb042ff8a623f678dbab90a4b29d1ef5afc3dcf6f94f2db956c47a57c96a8842f1b10b19897ff086baf576338695a3a027e4c048c5c7",
+            "id": "component-ButtonComponent-a8b9831a3b5f45f255fa9670964e89a1cc0a4a25a97d0e44075a09cfb9ed6c6b4102c8196007cacd684105085f7238a6255bccf03d573c17e8de9046b7b153d9",
             "file": "src/app/components/atoms/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -128,14 +104,6 @@
             ],
             "viewProviders": [],
             "inputsClass": [
-                {
-                    "name": "callback",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 22,
-                    "type": "function",
-                    "decorators": []
-                },
                 {
                     "name": "label",
                     "deprecated": false,
@@ -178,7 +146,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 22,
                     "type": "EventEmitter"
                 }
             ],
@@ -186,13 +154,31 @@
             "methodsClass": [
                 {
                     "name": "onClick",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26,
+                    "line": 24,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "deprecated": false,
@@ -202,7 +188,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent{\n\n  @Input()\n  primary = true;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' | 'full' = 'medium';\n\n  @Input()\n  label: string;\n\n  @Input()\n  type: 'button' | 'submit' = 'button';\n\n  @Input() callback: () => void;\n\n  @Output() click = new EventEmitter<any>();\n  \n  onClick() {\n    this.click.emit();\n    !!this.callback && this.callback();\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'button--primary' : 'button--secondary';\n\n    return ['button', `button--${this.size}`, mode];\n  }\n\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent{\n\n  @Input()\n  primary = true;\n\n  @Input()\n  size: 'small' | 'medium' | 'large' | 'full' = 'medium';\n\n  @Input()\n  label: string;\n\n  @Input()\n  type: 'button' | 'submit' = 'button';\n\n  @Output() click = new EventEmitter<any>();\n  \n  onClick(event) {\n    this.click.emit(event);\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'button--primary' : 'button--secondary';\n\n    return ['button', `button--${this.size}`, mode];\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -218,15 +204,15 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 31
+                        "line": 28
                     }
                 }
             },
-            "templateData": "<button [type]=\"type\" [ngClass]=\"classes\" (click)=\"onClick()\">{{label}}</button>\n"
+            "templateData": "<button [type]=\"type\" [ngClass]=\"classes\" (click)=\"onClick($event)\">{{label}}</button>\n"
         },
         {
             "name": "FormLoginComponent",
-            "id": "component-FormLoginComponent-60a39dd1f6bfcef1b04a2bab925a3f938098fdfdd56a762bee1ec2335a41e9985d98546f67c3d3fc75ce6406d3caf721fc49bef688d32e569ecb73322e40a17e",
+            "id": "component-FormLoginComponent-d1754c7a38f039283bdde5631621d95e6ecfd137f8a79802d06008db842e6c0ce7246e94285f5bcfe8cd34e320b4b6fe5a7d4499a54e3acdd6eed848c6ed8a31",
             "file": "src/app/components/molecules/form-login/form-login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -330,7 +316,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-form-login',\n  templateUrl: './form-login.component.html',\n  styleUrls: ['./form-login.component.scss']\n})\nexport class FormLoginComponent {\n\n  formValue: object = {}\n\n  @Output() sentForm = new EventEmitter<any>();\n\n  onKeyUp(value){\n    this.formValue = {...this.formValue, ...value}\n  }\n\n  onSubmit(event){\n    console.log('submit');\n    event.preventDefault()\n    this.sentForm.emit(this.formValue)\n  }\n}\n",
+            "sourceCode": "import { Component, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-form-login',\n  templateUrl: './form-login.component.html',\n  styleUrls: ['./form-login.component.scss']\n})\nexport class FormLoginComponent {\n\n  formValue: object = {}\n\n  @Output() sentForm = new EventEmitter<any>();\n\n  onKeyUp(value){\n    this.formValue = {...this.formValue, ...value}\n  }\n\n  onSubmit(event){\n    event.preventDefault()\n    this.sentForm.emit(this.formValue)\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -340,6 +326,86 @@
             ],
             "stylesData": "",
             "templateData": "<form class=\"form-login\" (submit)=\"onSubmit($event)\">\n  <app-input \n    id=\"email\"\n    name=\"email\"\n    styleInput=\"login\"\n    label=\"Email\"\n    placeholder=\"Email\"\n    type=\"text\"\n    (typing)=\"onKeyUp($event)\"\n  >\n  </app-input>\n  <app-input\n    id=\"senha\"\n    name=\"senha\"\n    styleInput=\"login\"\n    label=\"Senha\"\n    placeholder=\"Senha\"\n    type=\"password\"\n    (typing)=\"onKeyUp($event)\"\n  ></app-input>\n  <app-button size=\"full\" type=\"submit\" label=\"Entrar\"></app-button>\n</form>"
+        },
+        {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-baa6f1e1884016686299891336046df42f1901ff07c5282c0fc5a1a8a53691ee057b6ac78066e221dfb300978f96324b07ce32407df543404604b0b144188f82",
+            "file": "src/app/components/molecules/header/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-header",
+            "styleUrls": [
+                "./header.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./header.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-header',\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.scss']\n})\nexport class HeaderComponent {\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".header {\n  background-color: #002d69;\n  width: 100%;\n  height: 9rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 3rem;\n}\n",
+                    "styleUrl": "./header.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div class=\"header\">\n  <app-logo type=\"white\"></app-logo>\n  <app-image image=\"assets/images/image-profile.png\"></app-image>\n</div>\n"
+        },
+        {
+            "name": "HomeComponent",
+            "id": "component-HomeComponent-78f92ad1b5efd65bfeb2edc84124a359d83ef7a78c6e3a09bd5003051c9f61ca1dedf7d4fff4bd6de7ae44722b1612d4f9d29333be564f00065c8a5d3435b674",
+            "file": "src/app/components/pages/home/home.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-home",
+            "styleUrls": [
+                "./home.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./home.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-home',\n  templateUrl: './home.component.html',\n  styleUrls: ['./home.component.scss']\n})\nexport class HomeComponent {\n\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./home.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div class=\"home\">\n  <app-header></app-header>\n  <h1>Home Page</h1>\n</div>\n"
         },
         {
             "name": "ImageComponent",
@@ -400,7 +466,7 @@
         },
         {
             "name": "InputComponent",
-            "id": "component-InputComponent-8cc38085ae61b86cae132652cf7f3c21d289d26d9c9cdf8d851606a629b70d76c48d51e5afe32a4dc7221ccf5ac9a11dea79f796961f42f497d97060c76219a2",
+            "id": "component-InputComponent-552dd19810388426e62327bfadcaae0b50d926e0c4077b5c8e704519453ca5e1a98cb101e16a3fbb0423a6ef4d627d3cbebacf769385badd0262cda59ac4a436",
             "file": "src/app/components/atoms/input/input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -462,52 +528,16 @@
             ],
             "outputsClass": [
                 {
-                    "name": "out",
-                    "defaultValue": "new EventEmitter<any>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 25,
-                    "type": "EventEmitter"
-                },
-                {
                     "name": "typing",
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 26,
                     "type": "EventEmitter"
                 }
             ],
             "propertiesClass": [],
             "methodsClass": [
-                {
-                    "name": "onBlur",
-                    "args": [
-                        {
-                            "name": "event",
-                            "type": "KeyboardEvent",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 29,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "event",
-                            "type": "KeyboardEvent",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
                 {
                     "name": "onKeyUp",
                     "args": [
@@ -521,7 +551,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 28,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -544,7 +574,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss']\n})\nexport class InputComponent {\n\n  @Input()\n  id: string;\n\n  @Input()\n  styleInput: 'search' | 'login' | 'default' = 'default';\n\n  @Input()\n  label: 'Email' | 'Senha';\n\n  @Input()\n  placeholder: string;\n\n  @Input()\n  type: 'text' | 'password' = 'text';\n\n  @Output() out = new EventEmitter<any>();\n\n  @Output() typing = new EventEmitter<any>();\n\n  onBlur(event: KeyboardEvent) {\n    !!this.out && this.out.emit(\n      {\n        label: (<HTMLInputElement>event.target).id,\n        value: (<HTMLInputElement>event.target).value\n      }\n    );\n  }\n\n  onKeyUp(event: KeyboardEvent) {\n    const target = (<HTMLInputElement>event.target)\n    const label = target.id\n    !!this.typing && this.typing.emit( {\n      [label]: target.value\n    });\n  }\n\n  public get classes(): string[] {\n    return ['input__input', `input__input--${this.styleInput}`];\n  }\n\n  public get labelClasses(): string[] {\n    const disabledValue = this.styleInput !== 'login' ? 'input--disabled' : '';\n    return ['input__label', disabledValue];\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-input',\n  templateUrl: './input.component.html',\n  styleUrls: ['./input.component.scss']\n})\nexport class InputComponent {\n\n  @Input()\n  id: string;\n\n  @Input()\n  styleInput: 'search' | 'login' | 'default' = 'default';\n\n  @Input()\n  label: 'Email' | 'Senha';\n\n  @Input()\n  placeholder: string;\n\n  @Input()\n  type: 'text' | 'password' = 'text';\n\n\n  @Output() typing = new EventEmitter<any>();\n\n  onKeyUp(event: KeyboardEvent) {\n    const target = (<HTMLInputElement>event.target)\n    const label = target.id\n    !!this.typing && this.typing.emit( {\n      [label]: target.value\n    });\n  }\n\n  public get classes(): string[] {\n    return ['input__input', `input__input--${this.styleInput}`];\n  }\n\n  public get labelClasses(): string[] {\n    const disabledValue = this.styleInput !== 'login' ? 'input--disabled' : '';\n    return ['input__label', disabledValue];\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -560,7 +590,7 @@
                         "name": "classes",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 46
+                        "line": 36
                     }
                 },
                 "labelClasses": {
@@ -569,15 +599,15 @@
                         "name": "labelClasses",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 50
+                        "line": 40
                     }
                 }
             },
-            "templateData": "<div class=\"input input__container\">\n  <label for=\"{{ id }}\" [ngClass]=\"labelClasses\">{{ label }}</label>\n  <input id=\"{{ id }}\" [type]=\"type\" [ngClass]=\"classes\" (blur)=\"out($event)\" (keyup)=\"onKeyUp($event)\" placeholder=\"{{ placeholder }}\"/>\n</div>\n"
+            "templateData": "<div class=\"input input__container\">\n  <label for=\"{{ id }}\" [ngClass]=\"labelClasses\">{{ label }}</label>\n  <input id=\"{{ id }}\" [type]=\"type\" [ngClass]=\"classes\" (keyup)=\"onKeyUp($event)\" placeholder=\"{{ placeholder }}\"/>\n</div>\n"
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-8c8c77376b5fcf6395ccb2f05ba19c482d2b255371e3c06878e9774b626ecfe304214d71465d18d872f8ed10796b14d51ffce1e4c08800d621616f066d79a0a1",
+            "id": "component-LoginComponent-2bb8bbbd118c93c90599cd7913352dc5aba5f11e5c266a49ef63a9d086722d7053d0ba45186ed916ac79a14e3f9e6a09d7b7fad288e72e0296b4cfd082f2b45b",
             "file": "src/app/components/organisms/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -610,7 +640,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 10,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -633,7 +663,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent {\n\n  // @Output() submit = new EventEmitter<any>();\n\n  onSubmit(value) {\n    console.log('value: ', value);\n  }\n\n}\n",
+            "sourceCode": "import { Component, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent {\n\n  onSubmit(value) {\n    console.log('value: ', value);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -643,6 +673,71 @@
             ],
             "stylesData": "",
             "templateData": "<div class=\"login\">\n  <div class=\"login--texts\">\n    <app-logo></app-logo>\n    <app-title size=\"medium\" title=\"Bem vindo de volta\"></app-title>\n  </div>\n  <app-form-login (sendForm)=\"onSubmit($event)\"></app-form-login>\n</div>\n"
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-df5eb7ca1c8e20855b3729fd942a46ed2db7710139109edeca30529d30c4ea02505394a469f9dc7dcdbfc0b19725ae3915a51d60afd22979a9343b65a24c2517-1",
+            "file": "src/app/components/pages/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "login",
+            "styleUrls": [
+                "./login.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./login.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "LoginComponent-1",
+            "templateData": "<h1>Page Login</h1>\n"
         },
         {
             "name": "LogoComponent",
@@ -713,6 +808,55 @@
             ],
             "stylesData": "",
             "templateData": "<img class=\"logo\" [src]=\"image\" alt='logo PayFriends' />\n"
+        },
+        {
+            "name": "SvgComponent",
+            "id": "component-SvgComponent-01614258104dd4e4d7ad673ab6013b7f5c145f5686cecdf87fe2a5422c992303bfdccd020b0d68f0242c9e860ded29b094180aebc233b28b61d3fbea93e2e169",
+            "file": "src/app/components/atoms/svg/svg.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-svg",
+            "styleUrls": [
+                "./svg.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./svg.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "svgName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-svg',\n  templateUrl: './svg.component.html',\n  styleUrls: ['./svg.component.scss']\n})\nexport class SvgComponent {\n\n  @Input()\n  svgName: string\n\n}\n\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./svg.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<mat-icon>mood</mat-icon>"
         },
         {
             "name": "TitleComponent",
@@ -787,13 +931,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-42b7a170012edb40b8dc5890862333a85d70b3df889c0815443fc5dd63f959a3e3b95c6d517a826d8cbb0953f3c26c860f0d7f0cf4f49f3515376715648d41e5",
+            "id": "module-AppModule-6a304cad0a44c3037c012e58899aef8d791fc372fac9c205d9e69a1d4ed45bd73f6fdfc90990e8769a6b306d9a16a789dbd59479120f52deb0ba27e2433de9c9",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n\nimport { AppComponent } from './app.component';\nimport { ButtonComponent } from './components/atoms/button/button.component';\nimport { TitleComponent } from './components/atoms/title/title.component';\nimport { InputComponent } from './components/atoms/input/input.component';\nimport { LogoComponent } from './components/atoms/logo/logo.component';\nimport { ImageComponent } from './components/atoms/image/image.component';\nimport { FormLoginComponent } from './components/molecules/form-login/form-login.component';\nimport { LoginComponent } from './components/organisms/login/login.component';\n@NgModule({\n  declarations: [\t\n    AppComponent, ButtonComponent, TitleComponent, InputComponent, LogoComponent, ImageComponent, FormLoginComponent, LoginComponent,\n  ],\n  imports: [\n    BrowserModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "sourceCode": "import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n\nimport { AppComponent } from './app.component';\nimport { ButtonComponent } from './components/atoms/button/button.component';\nimport { TitleComponent } from './components/atoms/title/title.component';\nimport { InputComponent } from './components/atoms/input/input.component';\nimport { FormLoginComponent } from './components/molecules/form-login/form-login.component';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { LoginModule } from './components/pages/login/login.module';\nimport { HomeModule } from './components/pages/home/home.module';\nimport { AtomsModule } from './components/atoms/atoms.module';\n@NgModule({\n  declarations: [\n    AppComponent,\n    ButtonComponent,\n    TitleComponent,\n    InputComponent,\n    FormLoginComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    LoginModule,\n    HomeModule,\n    AtomsModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -812,16 +956,7 @@
                             "name": "FormLoginComponent"
                         },
                         {
-                            "name": "ImageComponent"
-                        },
-                        {
                             "name": "InputComponent"
-                        },
-                        {
-                            "name": "LoginComponent"
-                        },
-                        {
-                            "name": "LogoComponent"
                         },
                         {
                             "name": "TitleComponent"
@@ -830,7 +965,20 @@
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        },
+                        {
+                            "name": "AtomsModule"
+                        },
+                        {
+                            "name": "HomeModule"
+                        },
+                        {
+                            "name": "LoginModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
@@ -851,14 +999,14 @@
             ]
         },
         {
-            "name": "LoginModule",
-            "id": "module-LoginModule-649cb5e2bcc4064d7bbbce094e0bdb249c1fdc30d273c161c1e341bff405e08ba7320e3edd604f1b655997cfaa310eb0e43e30c821105fbcf3ab566b887a3f40",
+            "name": "AppRoutingModule",
+            "id": "module-AppRoutingModule-bb03bb76b400f46271b515fc4dbd6d2489def856002f8f4feee8defc75cabcc3e85bca4eb6f570a0e0b2021a0e147763e2702c72ae6638f505dc1c72c95ccc4d",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
-            "file": "src/app/components/organisms/login/login.module.ts",
+            "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ]\n})\nexport class LoginModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\nimport { HomeComponent } from './components/pages/home/home.component';\nimport { LoginComponent } from './components/pages/login/login.component';\n\nconst routes: Routes = [\n  { path: 'login', component: LoginComponent },\n  { path: '', component: HomeComponent }\n];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\n\nexport class AppRoutingModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -867,6 +1015,153 @@
                 {
                     "type": "declarations",
                     "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AtomsModule",
+            "id": "module-AtomsModule-c752c5825a0383180da9a8bcede9fb7a709add122ee8c6151bc4dc2485cd0bb233c5b94c1107a9fd1e5c9009a8882e4751f09157ce23a9d5a9d2c1a592be4e3e",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/atoms/atoms.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LogoComponent } from './logo/logo.component';\nimport { ImageComponent } from './image/image.component';\nimport { MatIconModule } from \"@angular/material/icon\";\nimport { SvgComponent } from './svg/svg.component';\n\n@NgModule({\n  declarations: [LogoComponent, ImageComponent, SvgComponent],\n  exports: [LogoComponent, ImageComponent],\n  imports: [\n    CommonModule,\n    MatIconModule\n  ]\n})\nexport class AtomsModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ImageComponent"
+                        },
+                        {
+                            "name": "LogoComponent"
+                        },
+                        {
+                            "name": "SvgComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ImageComponent"
+                        },
+                        {
+                            "name": "LogoComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "HomeModule",
+            "id": "module-HomeModule-fdc4bbbe582de79b292caf35432d0c9771d08b4484a83f39a2bc6ca3d068d6c99163da9dd67145d612ddfb7f8cbf1c58e12e63fa77902af4e5936031cd3f11c8",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/pages/home/home.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { HomeComponent } from './home.component';\nimport { HeaderComponent } from '../../molecules/header/header.component';\nimport { AtomsModule } from '../../atoms/atoms.module';\n\n@NgModule({\n  declarations: [HomeComponent, HeaderComponent],\n  exports: [HomeComponent, HeaderComponent],\n  imports: [\n    CommonModule,\n    AtomsModule\n  ]\n})\nexport class HomeModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "HomeComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AtomsModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "HomeComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "LoginModule",
+            "id": "module-LoginModule-68c905522f95f92f1c0560331b29512d392741849618b5e747559cbd094c062623d86a12d33e27b2538f33cd2e6bb4156af25114b5fd7cfdd12e02ab6b66ef23",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/pages/login/login.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LoginComponent } from './login.component';\n\n@NgModule({\n  declarations: [\n    LoginComponent\n  ],\n  exports: [LoginComponent],\n  imports: [\n    CommonModule\n  ],\n})\nexport class LoginModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "imports",
@@ -933,17 +1228,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/title/title.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/organisms/login/login.stories.ts",
+                "file": "src/app/components/atoms/svg/svg.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -954,6 +1239,36 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/components/molecules/form-login/form-login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/title/title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/molecules/header/header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/organisms/login/login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1022,6 +1337,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/components/atoms/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/components/atoms/image/image.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1052,21 +1377,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/title/title.stories.ts",
+                "file": "src/app/components/atoms/svg/svg.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<TitleComponent>",
-                "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/organisms/login/login.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<LoginComponent>",
-                "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
+                "type": "Story<SvgComponent>",
+                "defaultValue": "(args: SvgComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -1082,11 +1397,31 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/button/button.stories.ts",
+                "file": "src/app/components/atoms/title/title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
+                "type": "Story<TitleComponent>",
+                "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/molecules/header/header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<HeaderComponent>",
+                "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/organisms/login/login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<LoginComponent>",
+                "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "White",
@@ -1210,12 +1545,12 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "src/app/components/atoms/title/title.stories.ts": [
+            "src/app/components/atoms/svg/svg.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/components/atoms/title/title.stories.ts",
+                    "file": "src/app/components/atoms/svg/svg.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1225,33 +1560,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/components/atoms/title/title.stories.ts",
+                    "file": "src/app/components/atoms/svg/svg.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<TitleComponent>",
-                    "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
-                }
-            ],
-            "src/app/components/organisms/login/login.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/organisms/login/login.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/organisms/login/login.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<LoginComponent>",
-                    "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
+                    "type": "Story<SvgComponent>",
+                    "defaultValue": "(args: SvgComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/app/components/molecules/form-login/form-login.stories.ts": [
@@ -1274,6 +1587,72 @@
                     "deprecationMessage": "",
                     "type": "Story<FormLoginComponent>",
                     "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/atoms/title/title.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/title/title.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/title/title.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TitleComponent>",
+                    "defaultValue": "(args: TitleComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/molecules/header/header.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/molecules/header/header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/molecules/header/header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<HeaderComponent>",
+                    "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/organisms/login/login.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/organisms/login/login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/organisms/login/login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<LoginComponent>",
+                    "defaultValue": "(args: LoginComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -1337,7 +1716,29 @@
         "groupedEnumerations": {},
         "groupedTypeAliases": {}
     },
-    "routes": [],
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [
+                    {
+                        "path": "login",
+                        "component": "LoginComponent"
+                    },
+                    {
+                        "path": "",
+                        "component": "HomeComponent"
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
     "coverage": {
         "count": 0,
         "status": "low",
@@ -1357,7 +1758,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -1366,7 +1767,7 @@
                 "linktype": "component",
                 "name": "ButtonComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -1434,7 +1835,7 @@
                 "linktype": "component",
                 "name": "InputComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/10",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -1507,6 +1908,35 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/atoms/svg/svg.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SvgComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atoms/svg/svg.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atoms/svg/svg.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/components/atoms/title/title.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1565,6 +1995,35 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/molecules/header/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/molecules/header/header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/molecules/header/header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/components/organisms/login/login.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1591,6 +2050,24 @@
                 "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/pages/home/home.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/pages/login/login.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
