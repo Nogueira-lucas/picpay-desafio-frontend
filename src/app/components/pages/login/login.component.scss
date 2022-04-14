@@ -1,0 +1,30 @@
+.page-login {
+  display: flex;
+  flex-wrap: nowrap;
+  &__login {
+    width: 100%;
+    max-width: 32rem;
+    transform: translateY(-2rem);
+  }
+  .block {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    &--left {
+      background-color: #f2f2f2;
+      flex: 0 0 100%;
+      @media (min-width: 1024px) {
+        flex: 0 0 37%;
+      }
+    }
+    &--right {
+      background-color: #fff;
+      display: none;
+      flex: 1 1 auto;
+      @media (min-width: 1024px) {
+        display: flex;
+      }
+    }
+  }
+}
