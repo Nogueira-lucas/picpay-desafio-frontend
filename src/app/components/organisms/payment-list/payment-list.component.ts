@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-payment-list',
@@ -13,12 +13,17 @@ export class PaymentListComponent {
   @Input()
   dataSource
 
+  @Input()
+  limit: number
+
+  @Output() callback = new EventEmitter<any>();
+
 
   ngOnInit(): void {
   }
 
   onSelected(value){
-    console.log('value: ', value);
+    !!this.callback && this.callback.emit(value)
   }
 
 }

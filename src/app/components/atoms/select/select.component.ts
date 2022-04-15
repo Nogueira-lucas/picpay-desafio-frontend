@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class SelectComponent {
 
   @Input()
-  defaultSelected: string
+  defaultSelected: number
 
   @Input()
   items: string[]
