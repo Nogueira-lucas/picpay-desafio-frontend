@@ -8,9 +8,10 @@ import { TitleComponent } from './title/title.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { IconButtonComponent } from './icon-button/icon-button.component';
 import { SelectComponent } from './select/select.component';
+import { ItemListComponent } from './item-list/item-list.component';
 
 @NgModule({
-  declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent, IconButtonComponent, SelectComponent],
+  declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent, IconButtonComponent, SelectComponent, ItemListComponent],
   exports: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent],
   imports: [
     CommonModule

@@ -1,0 +1,16 @@
+.item-list {
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato";
+  &__item {
+    color: #2d3540;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+  }
+  &__subItem {
+    margin-top: 0.4rem;
+    color: #69788c;
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+}
