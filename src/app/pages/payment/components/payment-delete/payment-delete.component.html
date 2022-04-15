@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Excluir pagamento</h2>
+<main mat-dialog-content class="dialog-container">
+  <p>Usuário: {{ payment.name }}</p>
+  <p>Data: {{ payment.date | date: 'dd MMM y' }}</p>
+  <p>Valor: {{ payment.value | currency: 'BRL' }}</p>
+</main>
+<div class="buttons-container">
+  <button mat-dialog-close class="button button-cancel">Cancelar</button>
+  <button (click)="save()" class="button button-submit">Enviar</button>
+</div>

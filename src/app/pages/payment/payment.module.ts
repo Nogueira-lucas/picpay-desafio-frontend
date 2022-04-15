@@ -10,9 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PortuguesePaginatorIntl } from './components/payment-list/paginator-ptBr';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { PaymentDeleteComponent } from './components/payment-delete/payment-delete.component';
 
 @NgModule({
-  declarations: [PaymentListComponent, PaymentFormComponent],
+  declarations: [PaymentListComponent, PaymentFormComponent, PaymentDeleteComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

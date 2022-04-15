@@ -7,6 +7,7 @@ import { PaymentService } from 'src/app/services/payment.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { Router } from '@angular/router';
+import { PaymentDeleteComponent } from '../payment-delete/payment-delete.component';
 
 @Component({
   selector: 'app-payment-list',
@@ -124,6 +125,18 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
           this.loadPageData({ pageIndex: 0, pageSize: this.pageSize });
         });
       }
+    });
+  }
+
+  openDeletePaymentModal(element) {
+    const dialogRef = this.dialog.open(PaymentDeleteComponent, {
+      height: '300px',
+      width: '400px',
+      data: element,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.deletePayment(result);
     });
   }
 }
