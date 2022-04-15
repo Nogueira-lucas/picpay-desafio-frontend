@@ -22,11 +22,11 @@ export class SelectComponent {
   @Input()
   label: string
 
-  @Output() change = new EventEmitter<any>();
+  @Output() callback = new EventEmitter<any>();
 
   onChange(event) {
     const target = (<HTMLInputElement>event.target)
-    this.change.emit(target.value);
+    !!this.callback && this.callback.emit(target.value);
   }
 
 }

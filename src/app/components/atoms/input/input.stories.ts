@@ -28,4 +28,3 @@ Login.args = {
   placeholder: 'Email',
   label: 'Email'
 };
-
