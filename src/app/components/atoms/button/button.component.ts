@@ -34,8 +34,7 @@ export class ButtonComponent{
 
   public get classes(): string[] {
     const mode = this.primary ? 'button--primary' : 'button--secondary';
-    const icon = !!this.icon && this.iconDirection === 'left' ? 'disabled--right' : 'disabled--left'
 
-    return ['button', `button--${this.size}`, mode, icon];
+    return ['button', `button--${this.size}`, mode];
   }
 }

@@ -41,49 +41,52 @@ describe('ButtonComponent', () => {
     component.size = 'small'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--small button--primary disabled--left');
+    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--small button--primary');
   });
 
   it('should render with size medium', () => {
     component.size = 'medium'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--medium button--primary disabled--left');
+    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--medium button--primary');
   });
 
   it('should render with size large', () => {
     component.size = 'large'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--large button--primary disabled--left');
+    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--large button--primary');
   });
 
   it('should render with size full', () => {
     component.size = 'full'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--full button--primary disabled--left');
+    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--full button--primary');
   });
 
   it('should render without primary props', () => {
     component.primary = false
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--medium button--secondary disabled--left');
+    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--medium button--secondary');
   });
 
-  it('should render with icon left props', () => {
+  it('should render with icon iconDirection left', () => {
     component.icon = 'tune'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--medium button--primary disabled--right');
+    expect(compiled.querySelector('.button .button__icon--left')).toBeTruthy();
+    expect(compiled.querySelector('.button .button__icon--right')).toBeFalsy();
   });
 
-  it('should render with icon left props', () => {
+  it('should render with icon iconDirection right', () => {
     component.icon = 'tune'
     component.iconDirection = 'right'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.button').getAttribute('class')).toBe('button button--medium button--primary disabled--left');
+    expect(compiled.querySelector('.button .button__icon--right')).toBeTruthy();
+    expect(compiled.querySelector('.button .button__icon--left')).toBeFalsy();
   });
+
 });

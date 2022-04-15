@@ -1,5 +1,5 @@
 <button [type]="type" [ngClass]="classes" (click)="onClick($event)">
-  <span class="material-icons button__icon button__icon--left">{{ icon }}</span>
+  <span class="material-icons button__icon button__icon--left" *ngIf="iconDirection === 'left'">{{ icon }}</span>
   {{label}}
-  <span class="material-icons button__icon button__icon--right">{{ icon }}</span>
+  <span class="material-icons button__icon button__icon--right" *ngIf="iconDirection === 'right'">{{ icon }}</span>
 </button>
