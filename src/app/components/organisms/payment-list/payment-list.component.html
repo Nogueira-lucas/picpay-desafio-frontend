@@ -1,0 +1,18 @@
+<div class="payment-list">
+  <div class="payment-list__head">
+    <form class="payment-list__form">
+      <app-input styleInput="search" placeholder="Pesquisar por usuário" icon="search"></app-input>
+      <app-button size="small" label="filter" icon="tune" type="submit" [primary]="false"></app-button>
+    </form>
+    <div class="payment-list__pagination">
+      <app-select label="Exibir" id="search" [items]="selectList" (callback)="onSelected($event)"></app-select>
+      <app-count-page [list]="dataSource?.list"></app-count-page>
+    </div>
+  </div>
+  <div class="payment-list__table">
+    <app-table 
+    [list]="dataSource?.list"
+    [tableHead]="dataSource?.tableHead"
+    ></app-table>
+  </div>
+</div>
