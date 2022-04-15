@@ -39,7 +39,7 @@ $picpay-desafio-frontend-theme: mat.define-light-theme(
 // that you are using.
 @include mat.all-component-themes($picpay-desafio-frontend-theme);
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,800;1,400&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:ital,wght@0,600;0,800;1,400&family=Roboto&display=swap");
 
 * {
   box-sizing: border-box;
