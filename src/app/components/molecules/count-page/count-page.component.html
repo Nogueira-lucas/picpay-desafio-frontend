@@ -1,0 +1,15 @@
+<div class="count-page">
+  <div class="count-page__arrow" [ngStyle]="current === '0' && { 'pointerEvents':'none', 'opacity':'5px'}">
+    <app-icon-button name="chevron_left" (play)="prev()"></app-icon-button>
+  </div>
+  <ul class="count-page__list">
+    <li 
+      [ngClass]="i == current ? 'count-page__item count-page__item--selected' : 'count-page__item'"  
+      *ngFor="let item of list; index as i"
+      (click)="onClick(i)"
+    >{{ i + 1 }}</li>
+  </ul>
+  <div class="count-page__arrow" [ngStyle]="current == total && { 'pointerEvents':'none', 'opacity':'5px'}">
+    <app-icon-button name="chevron_right" (play)="next()" ></app-icon-button>
+  </div>
+</div>

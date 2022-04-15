@@ -1,0 +1,35 @@
+.count-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  &__list {
+    margin: 0 1.6rem;
+  }
+
+  &__item {
+    display: inline-block;
+    color: #69788c;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    padding: 0.4rem 0.8rem;
+    margin: 0.4rem;
+    cursor: pointer;
+
+    &--selected {
+      background-color: #007dfe;
+      color: #fff;
+      border-radius: 0.6rem;
+    }
+  }
+
+  &__arrow {
+    margin: 0.4rem;
+
+    &--disabled {
+      pointer-events: none;
+      opacity: 5px;
+    }
+  }
+}

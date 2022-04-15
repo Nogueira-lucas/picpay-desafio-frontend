@@ -11,7 +11,7 @@ import { LoginModule } from './components/pages/login/login.module';
 import { HomeModule } from './components/pages/home/home.module';
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
