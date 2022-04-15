@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Payment } from '../models/payment.model';
 
 @Injectable({
@@ -10,10 +11,21 @@ export class PaymentService {
 
   constructor(private http: HttpClient) {}
 
-  loadPayments() {
-    this.http.get<Payment[]>('http://localhost:3000/tasks').subscribe(payments => {
-      this.payments = payments;
-      console.log(this.payments);
+  loadPayments(page: number, limit: number, username: string = null): Observable<HttpResponse<Payment[]>> {
+    return this.http.get<Payment[]>('http://localhost:3000/tasks', {
+      observe: 'response',
+      params: {
+        _page: page,
+        _limit: limit,
+        name_like: !!username ? username : '',
+      },
+    });
+  }
+
+  updatePayment(payment: Payment) {
+    return this.http.put(`http://localhost:3000/tasks/${payment.id}`, {
+      ...payment,
+      isPaid: !payment.isPaid,
     });
   }
 }

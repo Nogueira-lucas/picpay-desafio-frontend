@@ -1,0 +1,52 @@
+.container {
+  padding: 48px;
+  background-color: #f2f2f2;
+  .payments-top {
+    .payments-title {
+      font-family: Montserrat;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 44px;
+      margin: 10px 0;
+    }
+
+    .add-payment {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        text-transform: uppercase;
+        font-family: Roboto;
+        width: 230px;
+        height: 36px;
+        border: none;
+        border-radius: 4px;
+        margin-bottom: 21px;
+        color: #fff;
+        background-color: #007dfe;
+
+        &:hover {
+          background-color: darken(#007dfe, 20);
+        }
+      }
+    }
+  }
+
+  .payments-container {
+    padding: 25px;
+    background-color: #fff;
+    .filter-pagination-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    table {
+      width: 100%;
+
+      th.mat-sort-header-sorted {
+        color: black;
+      }
+    }
+  }
+}
