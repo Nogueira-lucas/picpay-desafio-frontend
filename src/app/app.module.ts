@@ -10,8 +10,14 @@ import { MyPaymentsComponent } from 'src/pages/my-payments/my-payments.component
 import { ManagePaymentModalComponent } from 'src/components/manage-payment-modal/manage-payment-modal.component';
 import { AppRoutingModule } from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button'; 
+import { MatTableModule } from '@angular/material/table'  
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [	
@@ -30,7 +36,13 @@ import { MatButtonModule } from '@angular/material/button';
     RouterModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

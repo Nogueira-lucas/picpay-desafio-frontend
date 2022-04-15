@@ -1,3 +1,25 @@
 <p>login works!</p>
-<button (click) = "goToPayments()">Meus pagamentos</button>
-<button (click) = "login()">Entrar</button>
+<div class="header-page-container">
+    <img src="../../assets/Logo_login.png" alt="login image">
+    <div>        
+        <h1>Bem vindo de volta</h1>
+    </div>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Usuário</mat-label>
+        <input matInput placeholder="Ex. ium">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input matInput placeholder="Ex. ium">
+    </mat-form-field>
+
+    <button matTooltip="Entrar" mat-button type="button" [routerLink]="['/home']">
+        Entrar
+        <mat-icon>account_circle</mat-icon>
+    </button>
+
+</div>
+
+<img src="../../assets/man-doing-online-payment 1.svg" alt="login image">
+

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import Task from 'src/models/task.model';
 import { TaskService } from 'src/services/task.service';
 import * as moment from 'moment';
 import { AuthService } from 'src/services/auth.service';
-
+import { MatTableDataSource } from '@angular/material/table';
+/* import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort'; */
 
 @Component({
   selector: 'app-my-payments',
@@ -11,6 +13,14 @@ import { AuthService } from 'src/services/auth.service';
   styleUrls: ['./my-payments.component.scss']
 })
 export class MyPaymentsComponent implements OnInit {
+
+  @ViewChild(MatPaginator, { static: false }) paginator: typeof MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: typeof MatSort;
+
+  isLoading: boolean = true;
+  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions'];
+  taskDataSource: any = new MatTableDataSource([])  
+  errorTaskData: boolean = false;
 
   constructor(
     private taskService: TaskService,
@@ -22,8 +32,19 @@ export class MyPaymentsComponent implements OnInit {
   }
 
   listTasks(){
+    this.isLoading = true;
+    this.taskDataSource = []
     this.taskService.listAllTasks().subscribe((response: Task[]) => {
       console.log(response)
+      this.taskDataSource = new MatTableDataSource(response)
+      this.taskDataSource.paginator = this.paginator
+      this.taskDataSource.sort = this.sort
+      this.errorTaskData = false
+      
+      this.isLoading = false
+    }, error => {
+      console.log(error)
+      this.errorTaskData = true;
     })
   }
 
@@ -35,13 +56,18 @@ export class MyPaymentsComponent implements OnInit {
     
     this.taskService.listTasksWithPagination(params).subscribe((response: Task[]) => {
       console.log(response)
+      this.taskDataSource = new MatTableDataSource(response)
+      this.taskDataSource.paginator = this.paginator
+      this.taskDataSource.sort = this.sort
+      this.errorTaskData = false
+      this.isLoading = false
     }, error => {
       console.log(error.message)
+      this.errorTaskData = true;
     })
   }
 
   createTask(){
-    // check if the user already exists in the table?
     let newTask: Task = {
       username: "mheartu",
       value: 47.33,
@@ -55,11 +81,11 @@ export class MyPaymentsComponent implements OnInit {
     })
   }
 
-  updateTask(){
+  updateTask(element: any){
 
   }
 
-  deleteTask(){ // Plus: automatically delete task, after the checkbox is set to true
+  deleteTask(taskId: number){ // Plus: automatically delete task, after the checkbox is set to true
 
   }
 
@@ -68,3 +94,11 @@ export class MyPaymentsComponent implements OnInit {
   }
 
 }
+
+function MatPaginator(MatPaginator: any, arg1: { static: boolean; }) {
+  throw new Error('Function not implemented.');
+}
+function MatSort(MatSort: any, arg1: { static: false; }) {
+  throw new Error('Function not implemented.');
+}
+
