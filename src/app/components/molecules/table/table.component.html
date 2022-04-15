@@ -1,0 +1,32 @@
+<div class="table">
+  <table>
+    <thead class="table__head">
+      <tr class="table__title">
+        <th *ngFor="let itemHead of tableHead">
+          <div class="table__title-container">
+            <span>
+              {{ itemHead }}
+            </span>
+            <span class="material-icons table__title-icon">
+              unfold_more
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+      <tr class="table__column" *ngFor="let items of list; index as i">
+        <td class="table__row" *ngFor="let item of listItem(items); index as j">
+          <app-item-list *ngIf="item.item !== true && item.item !== false" item="{{ item.item }}" subItem="{{ item.subItem }}"></app-item-list>
+          <app-checkbox *ngIf="item.item === true || item.item === false" checked="{{ item.item }}" id="{{ item.item-i-j }}" (check)="onCheck($event)"></app-checkbox>
+        </td>
+        <td>
+          <div class="table__button">
+            <app-icon-button name="edit" attrData="{{ items.id }}" (play)="onClick($event)"></app-icon-button>
+            <app-icon-button name="highlight_off" attrData="{{ items.id }}" (play)="onClick($event)"></app-icon-button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

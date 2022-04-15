@@ -12,7 +12,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 
 @NgModule({
   declarations: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent, IconButtonComponent, SelectComponent, ItemListComponent],
-  exports: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent],
+  exports: [LogoComponent, ImageComponent, InputComponent, ButtonComponent, TitleComponent, CheckboxComponent, IconButtonComponent, SelectComponent, ItemListComponent],
   imports: [
     CommonModule
   ]
