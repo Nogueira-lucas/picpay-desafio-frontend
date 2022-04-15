@@ -1,0 +1,23 @@
+<div class="login-form">
+  <h2 class="login-form-title">
+    <span class="pay">Pay</span><span class="friends">Friends</span>
+  </h2>
+  <h1 class="login-form-subtitle">Bem vindo de volta</h1>
+
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </mat-form-field>
+
+    <button type="submit">Entrar</button>
+  </form>
+</div>

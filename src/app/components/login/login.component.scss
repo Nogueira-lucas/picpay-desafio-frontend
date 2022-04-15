@@ -1,0 +1,53 @@
+.login-form {
+  max-width: 330px;
+  display: flex;
+  flex-direction: column;
+
+  &-title {
+    font-family: "Montserrat";
+    margin-bottom: 18px;
+    font-size: 24px;
+
+    .pay {
+      font-weight: 800;
+      color: #002d69;
+    }
+
+    .friends {
+      font-weight: 400;
+      color: #2f82dd;
+    }
+  }
+
+  &-subtitle {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    font-family: "Montserrat";
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    mat-form-field {
+      max-height: 54px;
+      margin-bottom: 36px;
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    button {
+      font-family: "Roboto";
+      font-weight: 500;
+      height: 36px;
+      background: #007dfe;
+      border-radius: 4px;
+      color: white;
+      font-size: 14px;
+      text-transform: uppercase;
+      border-style: none;
+    }
+  }
+}
