@@ -1,4 +1,10 @@
 <div class="home">
   <app-header></app-header>
-  <h1>Home Page</h1>
+  <div class="home__content">
+    <app-title title="Meus pagamentos" size="large"></app-title>
+    <app-button label="Adicionar Pagamento" size="large"></app-button>
+    <div class="home__list">
+      <app-payment-list [dataSource]="paymentList"></app-payment-list>
+    </div>
+  </div>
 </div>
