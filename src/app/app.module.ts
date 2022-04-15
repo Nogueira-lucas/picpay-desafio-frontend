@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { AuthService } from './services/auth/auth.service';
+import { UserService } from './services/middleware/user.service';
+import { ApiService } from './services/api/api.service';
+import { AuthGuard } from './guards/auth.guards';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AtomsModule } from './components/atoms/atoms.module';
 import { MoleculesModule } from './components/molecules/molecules.module';
@@ -20,9 +25,14 @@ import { HomeModule } from './components/pages/home/home.module';
     HomeModule,
     AtomsModule,
     MoleculesModule,
-    OrganismsModule
+    OrganismsModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    ApiService,
+    UserService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

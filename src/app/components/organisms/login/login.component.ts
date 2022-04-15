@@ -7,8 +7,10 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class LoginComponent {
 
+  @Output() callback = new EventEmitter<any>();
+
   onSubmit(value) {
-    console.log('value: ', value);
+    !!this.callback && this.callback.emit(value)
   }
 
 }

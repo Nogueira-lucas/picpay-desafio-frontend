@@ -9,7 +9,7 @@ export class FormLoginComponent {
 
   formValue: object = {}
 
-  @Output() sentForm = new EventEmitter<any>();
+  @Output() callback = new EventEmitter<any>();
 
   onKeyUp(value){
     this.formValue = {...this.formValue, ...value}
@@ -17,6 +17,6 @@ export class FormLoginComponent {
 
   onSubmit(event){
     event.preventDefault()
-    this.sentForm.emit(this.formValue)
+    this.callback.emit(this.formValue)
   }
 }

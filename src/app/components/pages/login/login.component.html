@@ -1,7 +1,7 @@
 <div class="page-login">
   <div class="block block--left">
     <div class="page-login__login">
-      <app-login></app-login>
+      <app-login (callback)="onLogin($event)"></app-login>
     </div>
   </div>
   <div class="block block--right">
