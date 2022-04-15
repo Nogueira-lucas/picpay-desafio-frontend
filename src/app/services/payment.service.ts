@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Payment } from '../models/payment.model';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class PaymentService {
   constructor(private http: HttpClient) {}
 
   loadPayments(page: number, limit: number, username: string = null): Observable<HttpResponse<Payment[]>> {
-    return this.http.get<Payment[]>('http://localhost:3000/tasks', {
+    return this.http.get<Payment[]>(`${environment.API}/tasks`, {
       observe: 'response',
       params: {
         _page: page,
@@ -23,9 +24,13 @@ export class PaymentService {
   }
 
   updatePayment(payment: Payment) {
-    return this.http.put(`http://localhost:3000/tasks/${payment.id}`, {
+    return this.http.put(`${environment.API}/tasks/${payment.id}`, {
       ...payment,
       isPaid: !payment.isPaid,
     });
+  }
+
+  deletePayment(payment: Payment) {
+    return this.http.delete(`${environment.API}/tasks/${payment.id}`);
   }
 }

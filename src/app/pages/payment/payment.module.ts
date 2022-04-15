@@ -7,10 +7,19 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
 import { PortuguesePaginatorIntl } from './components/payment-list/paginator-ptBr';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [PaymentListComponent],
-  imports: [CommonModule, ReactiveFormsModule, SharedModule, MatPaginatorModule, MatTableModule, MatSortModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SharedModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatIconModule,
+  ],
   providers: [{ provide: MatPaginatorIntl, useClass: PortuguesePaginatorIntl }],
 })
 export class PaymentModule {}

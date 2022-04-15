@@ -5,29 +5,6 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Payment } from 'src/app/models/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
 
-const TEST_DATA_SOUCE = [
-  {
-    id: 1,
-    name: 'Pennie Dumphries',
-    username: 'pdumphries0',
-    title: 'Dental Hygienist',
-    value: 19.96,
-    date: '2020-07-21T05:53:20Z',
-    image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1',
-    isPaid: true,
-  },
-  {
-    id: 2,
-    name: 'Foster Orthmann',
-    username: 'forthmann1',
-    title: 'Professor',
-    value: 207.36,
-    date: '2021-01-28T14:01:29Z',
-    image: 'https://robohash.org/quasetqui.png?size=150x150&set=set1',
-    isPaid: false,
-  },
-];
-
 @Component({
   selector: 'app-payment-list',
   templateUrl: './payment-list.component.html',
@@ -36,7 +13,7 @@ const TEST_DATA_SOUCE = [
 export class PaymentListComponent implements AfterViewInit, OnInit {
   paymentsToRender: Payment[] = [];
   dataSource = new MatTableDataSource(this.paymentsToRender);
-  displayedColumns: string[] = ['id', 'name', 'username', 'title', 'value', 'date', 'isPaid'];
+  displayedColumns: string[] = ['id', 'name', 'username', 'title', 'value', 'date', 'isPaid', 'icons'];
   totalPayments: string;
   filter: string;
   pageSizeOptions = [5, 10, 15, 20];
@@ -81,7 +58,14 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
     });
   }
 
-  updateIsPaid(element) {
+  updateIsPaid(element: Payment) {
     this.paymentService.updatePayment(element).subscribe();
+  }
+
+  deletePayment(element: Payment) {
+    this.paymentService.deletePayment(element).subscribe(() => {
+      this.paymentsToRender = this.paymentsToRender.filter(payment => payment.id !== element.id);
+      this.dataSource.data = this.paymentsToRender;
+    });
   }
 }
