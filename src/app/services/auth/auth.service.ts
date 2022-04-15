@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
-import { UserService } from '../middleware/user.service';
+import { ApiService } from '../../api/api.service';
 
 class User {
   email: string;
@@ -13,22 +13,20 @@ export class AuthService {
 
   private userAuthenticated: boolean = false
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private apiService: ApiService) {
     this.userAuthenticated = sessionStorage.getItem("auth") === 'true';
   }
 
-  async login(user: User){
+  login(user: User){
 
-    const result = await this.userService.isAUser(user)
+    this.apiService.getUserAccount(user).subscribe((data) => {this.userAuthenticated = data[0].legth > 0})
 
-    if (result) {
-      this.userAuthenticated = true;
+    if (this.userAuthenticated) {
+      console.log('this.userAuthenticated: ', this.userAuthenticated);
       sessionStorage.setItem("auth","true")
       this.router.navigate(['/']);
-      
     } else {
-      this.userAuthenticated = false;
-      sessionStorage.setItem("auth","false")
+      this.router.navigate(['/login']);
     }
   }
   

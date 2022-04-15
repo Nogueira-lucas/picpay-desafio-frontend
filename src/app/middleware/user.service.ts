@@ -12,8 +12,8 @@ export class UserService {
 
   constructor(private apiServer: ApiService) { }
 
-  async isAUser(user: User){
-    const { data } = await this.apiServer.userAccount(user)
-    return data.length > 0
+  isAUser(user: User){
+    this.apiServer.getUserAccount(user)
+    return this.apiServer.user
   }
 }
