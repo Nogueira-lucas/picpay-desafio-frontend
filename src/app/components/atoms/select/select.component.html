@@ -1,0 +1,11 @@
+<div class="select">
+  <label for="{{ id }}" *ngIf="label">{{ label }}</label>
+  <div class="select__container">
+    <select name="{{ name }}" id="{{ id }}" (change)="onChange($event)">
+      <option *ngFor="let item of items" value="{{ item }}" selected="{{ defaultSelected === item }}">{{ item }}</option>
+    </select>
+    <span class="material-icons select--arrow">
+      expand_more
+    </span>
+  </div>
+</div>
