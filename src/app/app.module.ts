@@ -8,9 +8,19 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './pages/login/login.module';
 import { PaymentModule } from './pages/payment/payment.module';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, LoginModule, HttpClientModule, PaymentModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LoginModule,
+    HttpClientModule,
+    PaymentModule,
+    SharedModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
