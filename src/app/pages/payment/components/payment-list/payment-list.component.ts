@@ -6,6 +6,7 @@ import { Payment } from 'src/app/models/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-list',
@@ -15,7 +16,7 @@ import { PaymentFormComponent } from '../payment-form/payment-form.component';
 export class PaymentListComponent implements AfterViewInit, OnInit {
   paymentsToRender: Payment[] = [];
   dataSource = new MatTableDataSource(this.paymentsToRender);
-  displayedColumns: string[] = ['id', 'name', 'username', 'title', 'value', 'date', 'isPaid', 'icons'];
+  displayedColumns: string[] = ['id', 'name', 'title', 'value', 'date', 'isPaid', 'icons'];
   totalPayments: string;
   filter: string;
   pageSizeOptions = [5, 10, 15, 20];
@@ -25,7 +26,8 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
   constructor(
     private paymentService: PaymentService,
     private _liveAnnouncer: LiveAnnouncer,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.loadPageData({ pageIndex: 0, pageSize: this.pageSize });
@@ -94,16 +96,33 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (!!result) {
+        this.paymentService.updatePayment(result).subscribe(() => {
+          this.paymentsToRender = this.paymentsToRender.map(payment => {
+            if (payment.id == result.id) {
+              payment = result;
+            }
+            return payment;
+          });
+          this.dataSource.data = this.paymentsToRender;
+        });
+      }
+    });
+  }
+
+  openCreatePaymentModal() {
+    const dialogRef = this.dialog.open(PaymentFormComponent, {
+      height: '400px',
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
       console.log('result: ', result);
       if (!!result) {
-        this.paymentsToRender = this.paymentsToRender.map(payment => {
-          if (payment.id == result.id) {
-            payment = result;
-          }
-          return payment;
+        result.name = result.username;
+        this.paymentService.addPayment(result).subscribe(() => {
+          this.loadPageData({ pageIndex: 0, pageSize: this.pageSize });
         });
-        this.dataSource.data = this.paymentsToRender;
-        this.paymentService.updatePayment(result);
       }
     });
   }

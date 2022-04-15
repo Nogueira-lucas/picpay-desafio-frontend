@@ -13,13 +13,19 @@ export class PaymentService {
   constructor(private http: HttpClient) {}
 
   loadPayments(page: number, limit: number, username: string = null): Observable<HttpResponse<Payment[]>> {
+    const params = username
+      ? {
+          _page: page,
+          _limit: limit,
+          name_like: username,
+        }
+      : {
+          _page: page,
+          _limit: limit,
+        };
     return this.http.get<Payment[]>(`${environment.API}/tasks`, {
       observe: 'response',
-      params: {
-        _page: page,
-        _limit: limit,
-        name_like: !!username ? username : '',
-      },
+      params,
     });
   }
 
@@ -31,5 +37,9 @@ export class PaymentService {
 
   deletePayment(payment: Payment) {
     return this.http.delete(`${environment.API}/tasks/${payment.id}`);
+  }
+
+  addPayment(payment: Payment) {
+    return this.http.post(`${environment.API}/tasks`, { ...payment });
   }
 }

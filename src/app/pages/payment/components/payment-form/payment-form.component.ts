@@ -16,16 +16,27 @@ export class PaymentFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Payment,
     public dialogRef: MatDialogRef<PaymentFormComponent>
   ) {
-    this.form = this.formBuilder.group({
-      username: [data.username, Validators.required],
-      value: [data.value, Validators.required],
-      date: [data.date.split('T')[0], Validators.required],
-      title: [data.title, Validators.required],
-    });
+    if (data) {
+      this.form = this.formBuilder.group({
+        username: [data.username, Validators.required],
+        value: [data.value, Validators.required],
+        date: [data.date.split('T')[0], Validators.required],
+        title: [data.title, Validators.required],
+      });
+    } else {
+      this.form = this.formBuilder.group({
+        username: ['', Validators.required],
+        value: ['', Validators.required],
+        date: ['', Validators.required],
+        title: ['', Validators.required],
+      });
+    }
   }
 
   ngOnInit(): void {
-    this.payment = this.data;
+    if (this.data) {
+      this.payment = this.data;
+    }
   }
 
   save(paymentData: Payment) {
