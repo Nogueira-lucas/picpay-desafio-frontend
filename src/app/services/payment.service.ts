@@ -26,7 +26,6 @@ export class PaymentService {
   updatePayment(payment: Payment) {
     return this.http.put(`${environment.API}/tasks/${payment.id}`, {
       ...payment,
-      isPaid: !payment.isPaid,
     });
   }
 

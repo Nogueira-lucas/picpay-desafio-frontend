@@ -62,7 +62,9 @@
       <ng-container matColumnDef="icons">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by isPaid"></th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon class="icon" aria-hidden="false" aria-label="Editar">mode_edit </mat-icon>
+          <mat-icon (click)="openEditPaymentModal(element)" class="icon" aria-hidden="false" aria-label="Editar"
+            >mode_edit
+          </mat-icon>
           <mat-icon (click)="deletePayment(element)" class="icon" aria-hidden="false" aria-label="Excluir"
             >highlight_off</mat-icon
           >
