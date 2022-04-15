@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
 
@@ -88,5 +88,14 @@ describe('ButtonComponent', () => {
     expect(compiled.querySelector('.button .button__icon--right')).toBeTruthy();
     expect(compiled.querySelector('.button .button__icon--left')).toBeFalsy();
   });
+
+  it('should event onClick', fakeAsync(() => {
+    spyOn(component, 'onClick');
+    const compiled = fixture.debugElement.nativeElement;
+    compiled.querySelector('.button').click();
+    fixture.whenStable().then(() => {
+      expect(component.onClick).toHaveBeenCalled();
+    });
+  }));
 
 });

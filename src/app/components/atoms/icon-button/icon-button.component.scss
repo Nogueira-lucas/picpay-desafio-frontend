@@ -4,6 +4,9 @@
   background-color: transparent;
   outline: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &--icon {
     font-size: 2rem;
     color: #333;
