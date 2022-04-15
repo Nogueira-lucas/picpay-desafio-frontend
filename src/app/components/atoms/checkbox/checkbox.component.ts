@@ -11,6 +11,9 @@ export class CheckboxComponent {
   name: string
 
   @Input()
+  id: string
+
+  @Input()
   checked: boolean
 
   @Output() check = new EventEmitter<any>();
@@ -18,7 +21,7 @@ export class CheckboxComponent {
   onClick(event: KeyboardEvent){
     const target = (<HTMLInputElement>event.target)
     this.checked = target.checked
-    !!this.check && this.check.emit();
+    !!this.check && this.check.emit(target.checked);
   }
   
   public get classes(): string[] {

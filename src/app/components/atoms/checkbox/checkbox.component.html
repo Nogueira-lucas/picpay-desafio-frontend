@@ -1,7 +1,7 @@
 <div [ngClass]="classes">
-  <label for="check" class="checkbox--icon"></label>
+  <label for="{{ id }}" class="checkbox--icon"></label>
   <span class="material-icons checkbox--icon checked">
     check
   </span>
-  <input type="checkbox" id="check" name="{{ name }}" value="{{ !!checked }}" (change)="onClick($event)" [checked]="checked" class="disabled"/>
+  <input type="checkbox" id="{{ id }}" name="{{ name }}" value="{{ !!checked }}" (change)="onClick($event)" [checked]="checked" class="disabled"/>
 </div>
