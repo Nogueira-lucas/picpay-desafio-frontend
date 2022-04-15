@@ -1,0 +1,38 @@
+.login-page {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  &.is-flex-direction {
+    flex-direction: column;
+
+    .login-page-formContainer {
+      width: 100%;
+    }
+  }
+
+  &-formContainer,
+  &-imageContainer {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    padding: 16px;
+  }
+
+  &-formContainer {
+    width: 37.5%;
+    background: #f2f2f2;
+  }
+
+  &-imageContainer {
+    width: 62.5%;
+
+    img {
+      caret-color: rgba(0, 0, 0, 0);
+      width: 100%;
+      max-width: 495px;
+    }
+  }
+}
