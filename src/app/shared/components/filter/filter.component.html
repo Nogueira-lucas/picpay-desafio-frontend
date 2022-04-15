@@ -1,0 +1,12 @@
+<form #form="ngForm" class="filter-form" (ngSubmit)="filter(form.value.search)">
+  <input
+    type="text"
+    name="search"
+    class="search-input"
+    ngModel
+    placeholder="Busque um usuário"
+    aria-label="pesquisa"
+    aria-describedby="pesquisa"
+  />
+  <!-- <button>Filtrar</button> -->
+</form>
