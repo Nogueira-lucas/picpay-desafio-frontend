@@ -1,0 +1,18 @@
+<div [ngClass]="classes">
+  <div  class="modal-payment__content">
+    <app-title size="small" [title]="title"></app-title>
+    <form (submit)="onSubmit($event)">
+      <div class="modal-payment__inputs">
+        <app-input placeholder="Usuario*" (typing)="onKeyUp($event)" id="usuario"></app-input>
+        <app-input placeholder="Valor*" (typing)="onKeyUp($event)" id="valor"></app-input>
+        <app-input placeholder="Data*" (typing)="onKeyUp($event)" id="data"></app-input>
+        <app-input placeholder="Titulo*" (typing)="onKeyUp($event)" id="titulo"></app-input>
+      </div>
+      <div class="modal-payment__button">
+        <app-button [primary]="false" label="cancelar" (click)="onClose()" ></app-button>
+        <app-button label="salvar" type="submit"></app-button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-payment__overflow" (click)="onClose()"></div>
+</div>

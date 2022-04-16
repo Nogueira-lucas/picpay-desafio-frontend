@@ -1,0 +1,60 @@
+.modal-payment {
+  &__content {
+    padding: 2rem;
+    background-color: #fff;
+    width: 95vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      max-width: 77.7rem;
+      padding: 4rem;
+      gap: 5rem;
+    }
+  }
+
+  &__inputs {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 3.3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 6.3rem;
+    }
+  }
+
+  &__button {
+    display: grid;
+    flex-wrap: nowrap;
+    justify-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: auto auto;
+      gap: 3rem;
+    }
+  }
+
+  &__overflow {
+    background-color: #00000080;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  &.disabled {
+    display: none;
+    pointer-events: none;
+  }
+}
