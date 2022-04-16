@@ -1,7 +1,7 @@
 <div class="payment-list">
   <div class="payment-list__head">
-    <form class="payment-list__form">
-      <app-input styleInput="search" placeholder="Pesquisar por usuário" icon="search"></app-input>
+    <form class="payment-list__form" (submit)="onSubmit($event)">
+      <app-input styleInput="search" placeholder="Pesquisar por usuário" icon="search" (typing)="onChange($event)" id="search"></app-input>
       <app-button size="small" label="filter" icon="tune" type="submit" [primary]="false"></app-button>
     </form>
     <div class="payment-list__pagination">

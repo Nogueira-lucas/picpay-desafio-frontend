@@ -12,12 +12,13 @@ export class HomeComponent {
   public paymentList
   public limit = 10
   public offset = 0
+  public name: string = ''
   
   constructor(private apiSevice: ApiService, private taskSevice: TasksService){
   }
 
-  getApiTasks(limit, offset, name?){
-    this.apiSevice.getTasks(limit, offset).subscribe((res) => {
+  getApiTasks(limit, offset, name){
+    this.apiSevice.getTasks(limit, offset, name).subscribe((res) => {
       this.paymentList = {
         tableHead: ['Usuário', 'Título', 'Data', 'Valor', 'Pago'],
         list: this.taskSevice.getAllPayments(res.body),
@@ -27,15 +28,18 @@ export class HomeComponent {
   }
   
   ngOnInit(){
-    this.getApiTasks(this.limit, this.offset)
+    this.getApiTasks(this.limit, this.offset, this.name)
   }
 
 
   trigger(value){
-    this.limit = value.limit
-    this.offset = value.offset
+    console.log(value?.search);
+    console.log('value: ', value);
+    this.limit = value?.limit || 10
+    this.offset = value?.offset || 0
+    this.name = value?.search || ''
 
-    this.getApiTasks(value.limit, value.offset)
+    this.getApiTasks(value.limit, value.offset, value?.search)
   }
 
 }

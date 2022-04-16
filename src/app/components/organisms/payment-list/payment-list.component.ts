@@ -11,6 +11,8 @@ export class PaymentListComponent {
 
   infoPayment = {}
 
+  inputValue: object = {}
+
 
   @Input()
   dataSource
@@ -33,6 +35,15 @@ export class PaymentListComponent {
   onPagination(value){
     this.infoPayment = {...this.infoPayment, offset: value}
     !!this.callback && this.callback.emit(this.infoPayment)
+  }
+
+  onChange(value){
+    this.inputValue = {...this.inputValue, ...value}
+  }
+
+  onSubmit(event){
+    event.preventDefault()
+    this.callback.emit(this.inputValue)
   }
 
 }
