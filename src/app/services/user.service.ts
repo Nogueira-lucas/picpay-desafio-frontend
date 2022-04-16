@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -29,11 +30,15 @@ export class UserService {
     sessionStorage.removeItem('user');
   }
 
+  getUsers(email: string, password: string): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.API}/account?email=${email}&password=${password}`);
+  }
+
   login(username, password) {
     if (this.isLoggedIn()) {
       this.router.navigate(['/payments']);
     } else {
-      this.http.get<User[]>(`${environment.API}/account?email=${username}&password=${password}`).subscribe(users => {
+      this.getUsers(username, password).subscribe(users => {
         if (users.length) {
           this.setUser(users[0]);
           this.router.navigate(['/payments']);
