@@ -1,4 +1,7 @@
-<div class="paymentModal">
+<div
+  class="paymentModal"
+  [ngClass]="data.title === 'Excluir' ? 'isDelete' : ''"
+>
   <h1 mat-dialog-title>{{ data.title }} pagamento</h1>
   <div mat-dialog-content>
     <div class="userWrapper" *ngIf="data.title === 'Excluir'; else elseBlock">

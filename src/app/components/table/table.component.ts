@@ -1860,7 +1860,7 @@ export class TableComponent implements OnInit {
         date: row.date,
         value: row.value,
       },
-      panelClass: "paymentModal",
+      autoFocus: false,
     });
   }
 }

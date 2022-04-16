@@ -1,6 +1,14 @@
 @import "src/styles/_mixins.scss";
 
 .paymentModal {
+  &.isDelete {
+    min-width: 305px;
+
+    .paymentModal-form-buttonsWrapper {
+      justify-content: space-evenly;
+    }
+  }
+
   .mat-dialog-title {
     font-family: "Montserrat";
     font-size: 18px;
@@ -13,12 +21,6 @@
     flex-direction: column;
     font-size: 16px;
     line-height: 30px;
-  }
-
-  .mat-dialog-container {
-    padding: 40px;
-    min-width: 772px;
-    min-height: 395px;
   }
 
   &-form {
@@ -35,7 +37,7 @@
       display: flex;
       justify-content: flex-end;
       gap: 20px;
-      margin-top: 60px;
+      margin-top: 40px;
 
       button {
         min-width: 120px;

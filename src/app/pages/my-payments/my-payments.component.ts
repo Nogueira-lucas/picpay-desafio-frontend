@@ -17,7 +17,7 @@ export class MyPaymentsComponent implements OnInit {
       data: {
         title,
       },
-      panelClass: "paymentModal",
+      autoFocus: false,
     });
   }
 }
