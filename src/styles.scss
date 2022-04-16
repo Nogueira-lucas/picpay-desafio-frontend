@@ -39,6 +39,7 @@ $picpay-desafio-frontend-theme: mat.define-light-theme(
 // that you are using.
 @include mat.all-component-themes($picpay-desafio-frontend-theme);
 
+@import "./styles/overridesMaterial";
 @import "./styles/main";
 @import "./styles/variables";
 @import "./styles/fonts";

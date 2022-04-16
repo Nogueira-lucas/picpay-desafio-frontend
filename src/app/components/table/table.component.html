@@ -77,5 +77,10 @@
         <td class="mat-cell" colspan="4">Nenhum valor encontrado.</td>
       </tr>
     </table>
+
+    <div class="loadingSpinner" *ngIf="isLoading">
+      <mat-progress-spinner color="#007dfe" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
   </div>
 </div>

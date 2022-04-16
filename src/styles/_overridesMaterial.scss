@@ -1,0 +1,5 @@
+//Overrides progress spinner
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: var(--primaryBlue);
+}
