@@ -138,8 +138,10 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.notificationService.showSuccess('Pagamento excluído com sucesso.');
-      this.deletePayment(result);
+      if (!!result) {
+        this.notificationService.showSuccess('Pagamento excluído com sucesso.');
+        this.deletePayment(result);
+      }
     });
   }
 }
