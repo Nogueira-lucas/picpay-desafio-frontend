@@ -8,7 +8,9 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatSortModule } from "@angular/material/sort";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { LoginComponent } from "./components/login-form/login-form.component";
@@ -31,6 +33,7 @@ import { PaymentModalComponent } from "./components/payment-modal/payment-modal.
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -39,6 +42,7 @@ import { PaymentModalComponent } from "./components/payment-modal/payment-modal.
     MatCheckboxModule,
     MatSortModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
