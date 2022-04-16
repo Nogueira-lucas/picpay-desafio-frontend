@@ -36,11 +36,17 @@ export class HomeComponent {
     this.disabled = false
   }
 
+  addPayment(value){
+    console.log('value: ', value);
+
+    this.disabled = true
+    Object.keys(value).length > 0 && this.taskSevice.mountPostTask(value)
+  }
+
   trigger(value){
     this.limit = value?.limit || 10
     this.offset = value?.offset || 0
     this.name = value?.search || ''
-    this.disabled = true
 
     Object.keys(value).length > 0 && this.getApiTasks(value.limit, value.offset, value?.search)
   }

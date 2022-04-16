@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { ApiService } from '../api/api.service';
 
 @Injectable()
 export class TasksService {
 
-  constructor() { }
+  constructor(private apiSevice: ApiService) { }
 
   getAllPayments(data){
     return this.mountPaymentList(data)
@@ -25,6 +26,21 @@ export class TasksService {
     return result
   }
 
+  mountPostTask(value){
+    console.log('value: ', value);
+    const data = {
+      "name": value.usuario.trim(),
+      "username": `${value.usuario.replace(/\s*/ig, '').toLowerCase()}`,
+      "title": value.titulo.trim(),
+      "value": this.convertPrice(value.valor),
+      "date": this.convertDate(value.data),
+      "image": "https://picsum.photos/400/400",
+      "isPayed": false
+    }
+    console.log('data: ', data);
+    this.apiSevice.postTasks(data)
+  }
+
   mountItem(item, subItem?) {
     return {item, subItem}
   }
@@ -38,5 +54,15 @@ export class TasksService {
     number[0] = `${number[0].split(/(?=(?:...)*$)/).join('.')}`;
     return number.join(',');
   };
+
+  convertPrice(value) { 
+    return parseInt(value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+  }
+
+  convertDate(date){
+    const datearray = date.split("/");
+    const newdate = `${datearray[1]}-${datearray[0]}-${datearray[2]}`
+    return new Date(newdate).toISOString()
+  }
   
 }

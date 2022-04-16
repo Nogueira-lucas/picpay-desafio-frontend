@@ -6,6 +6,17 @@ class User {
   senha: string;
 }
 
+class Data {
+  id: number
+  name: string
+  username: string
+  title: string
+  value: number
+  date: string
+  image: string
+  isPayed: boolean
+}
+
 @Injectable()
 export class ApiService {
 
@@ -26,5 +37,11 @@ export class ApiService {
       observe: 'response'
     })
   } 
+
+  postTasks(body){
+    this.http.post(`http://localhost:3000/tasks`, body).subscribe((data: Data) => {
+      alert(`usuario ${data.username} adicionado com sucesso`)
+    })
+  }
 }
 

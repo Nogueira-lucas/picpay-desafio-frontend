@@ -7,5 +7,5 @@
       <app-payment-list [dataSource]="paymentList" [limit]="limit" (callback)="trigger($event)"></app-payment-list>
     </div>
   </div>
-  <app-modal-payment (callback)="trigger($event)" [disabled]="disabled"></app-modal-payment>
+  <app-modal-payment (callback)="addPayment($event)" [disabled]="disabled"></app-modal-payment>
 </div>
