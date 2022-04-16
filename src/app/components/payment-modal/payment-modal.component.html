@@ -4,13 +4,13 @@
 >
   <h1 mat-dialog-title>{{ data.title }} pagamento</h1>
   <div mat-dialog-content>
-    <div class="userWrapper" *ngIf="data.title === 'Excluir'; else elseBlock">
+    <div class="userWrapper" *ngIf="data.title === 'Excluir'; else formBlock">
       <span>Usuário: {{ data.payment.name }}</span>
       <span>Data: {{ getDate(data.payment.date) }}</span>
       <span>Valor: {{ formatCurrency(data.payment.value) }}</span>
     </div>
 
-    <ng-template #elseBlock>
+    <ng-template #formBlock>
       <form class="paymentModal-form">
         <div class="paymentModal-form-row">
           <mat-form-field appearance="outline">
@@ -30,6 +30,7 @@
               placeholder="Valor*"
               [(ngModel)]="data.payment.value"
               name="value"
+              type="number"
             />
           </mat-form-field>
         </div>
@@ -39,10 +40,15 @@
             <mat-label>Data*</mat-label>
             <input
               matInput
-              placeholder="Data*"
-              [(ngModel)]="data.payment.date"
+              [matDatepicker]="picker"
               name="date"
+              [(ngModel)]="data.payment.date"
             />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -81,7 +87,11 @@
 
       <ng-template #addOrEdit>
         <button
-          (click)="data.title === 'Editar' ? updatePayment(data.payment) : null"
+          (click)="
+            data.title === 'Editar'
+              ? updatePayment(data.payment)
+              : createPayment(data.payment)
+          "
           class="paymentModal-form-buttonsWrapper-submit"
           type="submit"
         >

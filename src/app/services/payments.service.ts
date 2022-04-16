@@ -31,4 +31,8 @@ export class PaymentsService {
       this.httpOptions
     );
   }
+
+  createPayment(payment: Payment): Observable<any> {
+    return this.http.post(`${this.paymentsUrl}`, payment, this.httpOptions);
+  }
 }

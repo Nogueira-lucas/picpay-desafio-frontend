@@ -15,15 +15,22 @@ export interface ModalData {
   styleUrls: ["./payment-modal.component.scss"],
 })
 export class PaymentModalComponent implements OnInit {
+  date: Date;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ModalData,
     private paymentsService: PaymentsService,
     private dialogRef: MatDialogRef<PaymentModalComponent>
   ) {
-    this.data.payment.date = this.getDate(this.data.payment.date);
+    if (this.data.payment?.date != null) {
+      this.date = new Date(data.payment.date);
+    }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.data.title === "Adicionar") {
+      this.data.payment = new Payment();
+    }
+  }
 
   closeDialog() {
     this.dialogRef.close();
@@ -47,8 +54,20 @@ export class PaymentModalComponent implements OnInit {
     return `${day} ${month} ${year}`;
   }
 
+  dateToIso(date: string) {
+    return new Date(date).toISOString();
+  }
+
   updatePayment(payment: Payment) {
+    payment.date = this.dateToIso(payment.date);
     this.paymentsService.updatePayment(payment).subscribe(() => {
+      this.closeDialog();
+    });
+  }
+
+  createPayment(payment: Payment) {
+    payment.date = this.dateToIso(payment.date);
+    this.paymentsService.createPayment(payment).subscribe(() => {
       this.closeDialog();
     });
   }

@@ -1,10 +1,10 @@
-export interface Payment {
-  id: number;
+export class Payment {
+  id?: number;
   name: string;
-  username: string;
+  username?: string;
   title: string;
   value: number;
   date: string;
-  image: string;
+  image?: string;
   isPayed: boolean;
 }
