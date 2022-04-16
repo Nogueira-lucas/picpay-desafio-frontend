@@ -11,6 +11,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PortuguesePaginatorIntl } from './components/payment-list/paginator-ptBr';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 import { PaymentDeleteComponent } from './components/payment-delete/payment-delete.component';
+import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: 'left',
+  allowNegative: false,
+  decimal: ',',
+  precision: 2,
+  prefix: 'R$ ',
+  suffix: '',
+  thousands: '.',
+};
 
 @NgModule({
   declarations: [PaymentListComponent, PaymentFormComponent, PaymentDeleteComponent],
@@ -23,7 +34,11 @@ import { PaymentDeleteComponent } from './components/payment-delete/payment-dele
     MatSortModule,
     MatIconModule,
     MatDialogModule,
+    CurrencyMaskModule,
   ],
-  providers: [{ provide: MatPaginatorIntl, useClass: PortuguesePaginatorIntl }],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: PortuguesePaginatorIntl },
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+  ],
 })
 export class PaymentModule {}

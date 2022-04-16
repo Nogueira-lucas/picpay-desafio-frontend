@@ -8,7 +8,15 @@
       </div>
       <div class="input-container">
         <label>Valor</label>
-        <input type="number" name="value" formControlName="value" value="{{ payment?.value }}" required />
+        <input
+          name="value"
+          formControlName="value"
+          value="{{ payment?.value }}"
+          step="0.01"
+          min="0"
+          currencyMask
+          required
+        />
       </div>
     </div>
     <div class="input-group-container">
