@@ -1,7 +1,9 @@
 import { Component, ViewChild, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
+import { PaymentModalComponent } from "../payment-modal/payment-modal.component";
 
 export interface UserData {
   id: number;
@@ -1800,7 +1802,7 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource(mockData);
     console.log(this.dataSource);
   }
@@ -1848,5 +1850,14 @@ export class TableComponent implements OnInit {
     });
 
     return newValue;
+  }
+
+  openDialog(type: string) {
+    this.dialog.open(PaymentModalComponent, {
+      data: {
+        type: type,
+      },
+      panelClass: "paymentModal",
+    });
   }
 }

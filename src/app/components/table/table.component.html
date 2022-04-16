@@ -61,7 +61,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let row">
           <div id="actionsWrapper">
-            <mat-icon>{{ "edit" }}</mat-icon>
+            <mat-icon (click)="openDialog('edit')">{{ "edit" }}</mat-icon>
             <mat-icon>{{ "highlight_off" }}</mat-icon>
           </div>
         </td>

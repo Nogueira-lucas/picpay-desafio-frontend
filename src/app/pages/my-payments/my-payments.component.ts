@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { PaymentModalComponent } from "src/app/components/payment-modal/payment-modal.component";
 
 @Component({
   selector: "app-my-payments",
@@ -6,7 +8,16 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./my-payments.component.scss"],
 })
 export class MyPaymentsComponent implements OnInit {
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  openDialog(type: string) {
+    this.dialog.open(PaymentModalComponent, {
+      data: {
+        type: type,
+      },
+      panelClass: "paymentModal",
+    });
+  }
 }

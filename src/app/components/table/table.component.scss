@@ -88,5 +88,9 @@ table {
   #actionsWrapper {
     display: flex;
     gap: 20px;
+
+    mat-icon {
+      cursor: pointer;
+    }
   }
 }
