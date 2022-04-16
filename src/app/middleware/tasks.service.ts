@@ -28,6 +28,7 @@ export class TasksService {
 
   mountPostTask(value){
     console.log('value: ', value);
+    console.log(this.convertPrice(value.valor));
     const data = {
       "name": value.usuario.trim(),
       "username": `${value.usuario.replace(/\s*/ig, '').toLowerCase()}`,
@@ -37,8 +38,7 @@ export class TasksService {
       "image": "https://picsum.photos/400/400",
       "isPayed": false
     }
-    console.log('data: ', data);
-    this.apiSevice.postTasks(data)
+    return this.apiSevice.postTasks(data)
   }
 
   mountItem(item, subItem?) {
@@ -49,14 +49,15 @@ export class TasksService {
     if (typeof number !== 'number' || isNaN(number)) {
       return null;
     }
-  
+    
     number = number.toFixed(2).split('.');
     number[0] = `${number[0].split(/(?=(?:...)*$)/).join('.')}`;
+    console.log('number: ', number);
     return number.join(',');
   };
 
-  convertPrice(value) { 
-    return parseInt(value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+  convertPrice(value) {
+    return parseInt(parseInt(value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&'))
   }
 
   convertDate(date){

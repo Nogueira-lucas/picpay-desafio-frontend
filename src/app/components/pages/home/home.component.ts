@@ -2,6 +2,17 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../../api/api.service';
 import { TasksService } from '../../../middleware/tasks.service';
 
+class Data {
+  id: number
+  name: string
+  username: string
+  title: string
+  value: number
+  date: string
+  image: string
+  isPayed: boolean
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -45,13 +56,16 @@ export class HomeComponent {
 
   addPayment(value){
     this.disabled = true
-    Object.keys(value).length > 0 && this.taskSevice.mountPostTask(value)
+    Object.keys(value).length > 0 && this.taskSevice.mountPostTask(value).subscribe((data: Data) => {
+      alert(`task do ${data.username} adicionado com sucesso`)
+      this.getApiTasks(this.limit, this.offset)
+    })
   }
   
   onEvent({type, id}){
     type === 'delete' && this.apiSevice.deleteTasks(id).subscribe(() => {
-      this.getApiTasks(this.limit, this.offset)
       alert(`task ${id} deletado com sucesso`)
+      this.getApiTasks(this.limit, this.offset)
     })
     // type === 'edit' && this.apiSevice.deleteTasks(id)
 

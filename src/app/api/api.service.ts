@@ -6,17 +6,6 @@ class User {
   senha: string;
 }
 
-class Data {
-  id: number
-  name: string
-  username: string
-  title: string
-  value: number
-  date: string
-  image: string
-  isPayed: boolean
-}
-
 @Injectable()
 export class ApiService {
 
@@ -33,15 +22,13 @@ export class ApiService {
   }
 
   getTasks(limit = 10, offset = 0, name = ''){
-    return this.http.get(`http://localhost:3000/tasks?_limit=${limit}&_page=${offset}&name_like=${name}`, {
+    return this.http.get(`http://localhost:3000/tasks?_limit=${limit}&_page=${offset}&name_like=${name}&_sort=id&_order=desc`, {
       observe: 'response'
     })
   } 
 
   postTasks(body){
-    this.http.post(`http://localhost:3000/tasks`, body).subscribe((data: Data) => {
-      alert(`task do ${data.username} adicionado com sucesso`)
-    })
+    return this.http.post(`http://localhost:3000/tasks`, body)
   } 
   
   deleteTasks(id: string){
