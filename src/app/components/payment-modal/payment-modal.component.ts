@@ -71,4 +71,10 @@ export class PaymentModalComponent implements OnInit {
       this.closeDialog();
     });
   }
+
+  deletePayment(payment: Payment) {
+    this.paymentsService.deletePayment(payment).subscribe(() => {
+      this.closeDialog();
+    });
+  }
 }

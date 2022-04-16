@@ -80,7 +80,11 @@
       </button>
 
       <div *ngIf="data.title === 'Excluir'; else addOrEdit">
-        <button class="paymentModal-form-buttonsWrapper-submit" type="submit">
+        <button
+          class="paymentModal-form-buttonsWrapper-submit"
+          (click)="deletePayment(data.payment)"
+          type="submit"
+        >
           Excluir
         </button>
       </div>
