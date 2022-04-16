@@ -13,6 +13,8 @@ import { AppComponent } from "./app.component";
 import { LoginComponent } from "./components/login-form/login-form.component";
 import { LoginPageComponent } from "./pages/login-page/login-page.component";
 import { TableComponent } from "./components/table/table.component";
+import { MyPaymentsComponent } from './pages/my-payments/my-payments.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { TableComponent } from "./components/table/table.component";
     LoginComponent,
     LoginPageComponent,
     TableComponent,
+    MyPaymentsComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

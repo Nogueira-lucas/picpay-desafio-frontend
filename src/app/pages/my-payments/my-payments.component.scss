@@ -1,0 +1,35 @@
+.myPayments {
+  height: 100%;
+  background: #f2f2f2;
+
+  &-header {
+    margin-top: 65px;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    align-items: self-end;
+
+    h1 {
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: 36px;
+    }
+    button {
+      font-family: "Roboto";
+      font-weight: 500;
+      height: 36px;
+      background: #007dfe;
+      border-radius: 4px;
+      color: white;
+      font-size: 14px;
+      text-transform: uppercase;
+      border-style: none;
+      padding: 10px 15px;
+    }
+  }
+
+  &-tableContainer {
+    padding: 0 48px 48px;
+  }
+}
