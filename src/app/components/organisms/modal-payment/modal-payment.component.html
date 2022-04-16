@@ -1,4 +1,4 @@
-<div [ngClass]="classes">
+<div class="modal-payment" *ngIf="!disabled">
   <div  class="modal-payment__content">
     <app-title size="small" [title]="title"></app-title>
     <form (submit)="onSubmit($event)">

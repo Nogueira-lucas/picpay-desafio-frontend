@@ -18,7 +18,7 @@ export class ModalPaymentComponent {
   @Output() callback = new EventEmitter<any>();
 
   onClose(){
-    this.disabled = true
+    this.callback.emit()
   }
 
   onKeyUp(value){
@@ -27,14 +27,8 @@ export class ModalPaymentComponent {
 
   onSubmit(event){
     event.preventDefault()
+    this.onClose()
     this.callback.emit(this.formValue)
-  }
-
-
-  public get classes(): string[] {
-    const disabled = this.disabled ? 'disabled' : '';
-
-    return [ 'modal-payment', disabled ];
   }
 
 }

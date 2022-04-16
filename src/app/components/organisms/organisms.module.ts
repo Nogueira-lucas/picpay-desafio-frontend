@@ -8,7 +8,7 @@ import { ModalPaymentComponent } from './modal-payment/modal-payment.component';
 
 @NgModule({
   declarations: [LoginComponent, PaymentListComponent, ModalPaymentComponent],
-  exports: [LoginComponent, PaymentListComponent],
+  exports: [LoginComponent, PaymentListComponent, ModalPaymentComponent],
   imports: [
     CommonModule,
     AtomsModule,

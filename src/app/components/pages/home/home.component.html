@@ -2,9 +2,10 @@
   <app-header></app-header>
   <div class="home__content">
     <app-title title="Meus pagamentos" size="large"></app-title>
-    <app-button label="Adicionar Pagamento" size="large"></app-button>
+    <app-button label="Adicionar Pagamento" size="large" (click)="openModal()"></app-button>
     <div class="home__list">
       <app-payment-list [dataSource]="paymentList" [limit]="limit" (callback)="trigger($event)"></app-payment-list>
     </div>
   </div>
+  <app-modal-payment (callback)="trigger($event)" [disabled]="disabled"></app-modal-payment>
 </div>

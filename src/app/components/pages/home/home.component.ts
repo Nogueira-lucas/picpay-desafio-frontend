@@ -13,6 +13,7 @@ export class HomeComponent {
   public limit = 10
   public offset = 0
   public name: string = ''
+  disabled: boolean = true
   
   constructor(private apiSevice: ApiService, private taskSevice: TasksService){
   }
@@ -31,15 +32,17 @@ export class HomeComponent {
     this.getApiTasks(this.limit, this.offset, this.name)
   }
 
+  openModal(){
+    this.disabled = false
+  }
 
   trigger(value){
-    console.log(value?.search);
-    console.log('value: ', value);
     this.limit = value?.limit || 10
     this.offset = value?.offset || 0
     this.name = value?.search || ''
+    this.disabled = true
 
-    this.getApiTasks(value.limit, value.offset, value?.search)
+    Object.keys(value).length > 0 && this.getApiTasks(value.limit, value.offset, value?.search)
   }
 
 }
