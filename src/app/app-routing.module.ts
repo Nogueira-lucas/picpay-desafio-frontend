@@ -5,8 +5,8 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { AuthGuard } from './guards/auth.guards';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent
-},
+  { path: 'login', component: LoginComponent,
+  canActivate: [AuthGuard], },
   { path: '', component: HomeComponent,
     canActivate: [AuthGuard],
     canLoad: [AuthGuard]

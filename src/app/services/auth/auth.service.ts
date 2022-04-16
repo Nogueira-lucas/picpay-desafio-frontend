@@ -18,15 +18,15 @@ export class AuthService {
   }
 
   login(user: User){
-
-    this.apiService.getUserAccount(user).subscribe((data) => {this.userAuthenticated = data[0].legth > 0})
-
-    if (this.userAuthenticated) {
-      sessionStorage.setItem("auth","true")
-      this.router.navigate(['/']);
-    } else {
-      this.router.navigate(['/login']);
-    }
+    this.apiService.getUserAccount(user).subscribe((data) => {
+      this.userAuthenticated = !!data[0]
+      if (this.userAuthenticated) {
+        sessionStorage.setItem("auth","true")
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+    })
   }
   
   logout(){

@@ -19,15 +19,20 @@ export class AuthGuard implements CanActivate, CanLoad {
 
     console.info('AuthGuard');
 
-    return this.checkAccess();
+    return this.checkAccess(state);
   }
 
-  private checkAccess(){
+  private checkAccess(state?){
+    const pageLogin = state.url.includes('login')
+
     if (this.authService.authenticated()){
+
+      pageLogin && this.router.navigate(['/']);
+    
       return true;
     } 
 
-    this.router.navigate(['/login']);
+    !pageLogin && this.router.navigate(['/login']);
 
     return false;
   }
