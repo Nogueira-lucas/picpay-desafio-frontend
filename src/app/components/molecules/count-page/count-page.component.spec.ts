@@ -24,8 +24,10 @@ describe('CountPageComponent', () => {
   });
 
   it('should render with list', () => {
-    component.list = ['1', '2'];
-    component.current = 2
+    component.list = Array.from(new Array(170/10), (v, k) => `${k}`);
+    component.current = 0
+    component.total = 170
+    component.limit = 10
     component.ngOnInit();
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;

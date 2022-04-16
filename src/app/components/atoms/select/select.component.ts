@@ -25,7 +25,7 @@ export class SelectComponent {
   @Output() callback = new EventEmitter<any>();
   
   ngOnInit(){
-    console.log('defaultSelected: ', this.defaultSelected);
+ 
   }
 
   onChange(event) {

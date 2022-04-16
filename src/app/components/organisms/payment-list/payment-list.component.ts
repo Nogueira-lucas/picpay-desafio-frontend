@@ -14,14 +14,15 @@ export class PaymentListComponent {
 
   @Input()
   dataSource
-
+  
   @Input()
   limit: number
-
+  
   @Output() callback = new EventEmitter<any>();
-
-
+  
+  
   ngOnInit(): void {
+    console.log('dataSource: ', this.dataSource);
   }
 
   onSelected(value){

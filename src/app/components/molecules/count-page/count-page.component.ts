@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { listenerCount } from 'process';
 
 @Component({
   selector: 'app-count-page',
@@ -16,15 +15,16 @@ export class CountPageComponent {
 
   @Input()
   total: number = 0
-
+  
   @Input()
-  limit: number = 0
-
+  limit: number = 10
+  
   pages: number[]
   
   @Output() trigger = new EventEmitter<any>();
   
   ngOnInit(){
+    console.log('total: ', this.total);
     this.pages = Array.from(new Array(this.total/this.limit), (v, k) => k)
   }
 
