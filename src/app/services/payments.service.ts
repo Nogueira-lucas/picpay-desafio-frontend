@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { Payment } from "../models/payment-model";
 import { mockData } from "../mocks/mock-list";
@@ -9,6 +9,9 @@ import { mockData } from "../mocks/mock-list";
   providedIn: "root",
 })
 export class PaymentsService {
+  httpOptions = {
+    headers: new HttpHeaders({ "Content-Type": "application/json" }),
+  };
   private paymentsUrl = "http://localhost:3000/tasks";
 
   constructor(private http: HttpClient) {}
@@ -19,5 +22,13 @@ export class PaymentsService {
 
   getPayment(id: number): Observable<Payment> {
     return this.http.get<Payment>(`${this.paymentsUrl}/${id}`);
+  }
+
+  updatePayment(payment: Payment): Observable<any> {
+    return this.http.put(
+      `${this.paymentsUrl}/${payment.id}`,
+      payment,
+      this.httpOptions
+    );
   }
 }

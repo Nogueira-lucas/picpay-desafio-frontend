@@ -101,9 +101,4 @@ table {
   align-items: center;
   background: var(--white);
   margin-top: 20px;
-
-  .mat-progress-spinner circle,
-  .mat-spinner circle {
-    stroke: var(--primaryBlue);
-  }
 }

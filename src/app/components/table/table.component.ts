@@ -2,7 +2,7 @@ import { Component, ViewChild, OnInit } from "@angular/core";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatTable, MatTableDataSource } from "@angular/material/table";
 import { Payment } from "@src/app/models/payment-model";
 import { PaymentModalComponent } from "../payment-modal/payment-modal.component";
 import { PaymentsService } from "@src/app/services/payments.service";
@@ -28,6 +28,7 @@ export class TableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<any>;
 
   constructor(
     public dialog: MatDialog,
@@ -39,6 +40,7 @@ export class TableComponent implements OnInit {
   }
 
   getPayments(): void {
+    //this.isLoading = true;
     this.paymentsService.getPayments().subscribe((payments) => {
       this.payments = payments;
       this.dataSource = new MatTableDataSource(this.payments);
@@ -47,8 +49,6 @@ export class TableComponent implements OnInit {
       this.isLoading = false;
     });
   }
-
-  getPayment(id: number): void {}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -100,7 +100,13 @@ export class TableComponent implements OnInit {
     this.paymentsService.getPayment(id).subscribe((payment) => {
       this.selectedPayment = payment;
       dialogConfig.data.payment = this.selectedPayment;
-      this.dialog.open(PaymentModalComponent, dialogConfig);
+
+      this.dialog
+        .open(PaymentModalComponent, dialogConfig)
+        .afterClosed()
+        .subscribe(() => {
+          this.getPayments();
+        });
     });
   }
 }
