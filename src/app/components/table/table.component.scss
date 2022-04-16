@@ -2,10 +2,15 @@
 table {
   font-family: "Lato";
   width: 100%;
+  border-radius: 8px;
+  background: white;
+  overflow: hidden !important;
+
   &-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 14px;
 
     &-inputWrapper {
       max-width: 215px;
@@ -37,6 +42,10 @@ table {
     border-bottom-color: #cfdce5;
   }
 
+  td.mat-cell {
+    border: none;
+  }
+
   tr {
     color: #2d3540;
     &.mat-row,
@@ -57,6 +66,14 @@ table {
     }
   }
 
+  .mat-row:nth-child(even) {
+    background-color: #f5f8fa;
+  }
+
+  .mat-row:nth-child(odd) {
+    background-color: transparent;
+  }
+
   #userWrapper,
   #dateWrapper {
     display: flex;
@@ -70,5 +87,6 @@ table {
 
   #actionsWrapper {
     display: flex;
+    gap: 20px;
   }
 }
