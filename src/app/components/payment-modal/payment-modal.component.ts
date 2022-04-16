@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Payment } from "@src/app/models/payment-model";
 
 export interface ModalData {
   title: "Adicionar" | "Editar" | "Excluir";
-  name: string;
-  date: string;
-  value: number;
+  id: number;
+  payment: Payment;
 }
 
 @Component({
@@ -14,7 +14,10 @@ export interface ModalData {
   styleUrls: ["./payment-modal.component.scss"],
 })
 export class PaymentModalComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: ModalData) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ModalData) {
+    this.data.payment.date = this.getDate(this.data.payment.date);
+  }
+
   ngOnInit(): void {}
 
   formatCurrency(value: number) {

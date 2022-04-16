@@ -5,33 +5,54 @@
   <h1 mat-dialog-title>{{ data.title }} pagamento</h1>
   <div mat-dialog-content>
     <div class="userWrapper" *ngIf="data.title === 'Excluir'; else elseBlock">
-      <span>Usuário: {{ data.name }}</span>
-      <span>Data: {{ getDate(data.date) }}</span>
-      <span>Valor: {{ formatCurrency(data.value) }}</span>
+      <span>Usuário: {{ data.payment.name }}</span>
+      <span>Data: {{ getDate(data.payment.date) }}</span>
+      <span>Valor: {{ formatCurrency(data.payment.value) }}</span>
     </div>
-    <ng-template #elseBlock
-      ><form class="paymentModal-form">
+
+    <ng-template #elseBlock>
+      <form class="paymentModal-form">
         <div class="paymentModal-form-row">
           <mat-form-field appearance="outline">
             <mat-label>Usuário*</mat-label>
-            <input matInput placeholder="Usuário*" />
+            <input
+              matInput
+              [(ngModel)]="data.payment.name"
+              name="name"
+              placeholder="Usuário*"
+            />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Valor*</mat-label>
-            <input matInput placeholder="Valor*" />
+            <input
+              matInput
+              placeholder="Valor*"
+              [(ngModel)]="data.payment.value"
+              name="value"
+            />
           </mat-form-field>
         </div>
 
         <div class="paymentModal-form-row">
           <mat-form-field appearance="outline">
             <mat-label>Data*</mat-label>
-            <input matInput placeholder="Data*" />
+            <input
+              matInput
+              placeholder="Data*"
+              [(ngModel)]="data.payment.date"
+              name="date"
+            />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Título</mat-label>
-            <input matInput placeholder="Título" />
+            <input
+              matInput
+              placeholder="Título"
+              [(ngModel)]="data.payment.title"
+              name="title"
+            />
           </mat-form-field>
         </div>
       </form>
