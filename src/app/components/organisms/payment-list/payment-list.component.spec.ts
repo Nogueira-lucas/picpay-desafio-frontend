@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PaymentListComponent } from './payment-list.component';
 
 describe('PaymentListComponent', () => {

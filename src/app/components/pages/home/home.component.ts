@@ -7,6 +7,8 @@ import { TasksService } from '../../../middleware/tasks.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
+
 export class HomeComponent {
 
   public paymentList
@@ -18,7 +20,7 @@ export class HomeComponent {
   constructor(private apiSevice: ApiService, private taskSevice: TasksService){
   }
 
-  getApiTasks(limit, offset, name){
+  getApiTasks(limit, offset, name?){
     this.apiSevice.getTasks(limit, offset, name).subscribe((res) => {
       this.paymentList = {
         tableHead: ['Usuário', 'Título', 'Data', 'Valor', 'Pago'],
@@ -32,15 +34,27 @@ export class HomeComponent {
     this.getApiTasks(this.limit, this.offset, this.name)
   }
 
+  ngOnChanges(){
+    console.log('change');
+  }
+
   openModal(){
     this.disabled = false
   }
 
-  addPayment(value){
-    console.log('value: ', value);
 
+  addPayment(value){
     this.disabled = true
     Object.keys(value).length > 0 && this.taskSevice.mountPostTask(value)
+  }
+  
+  onEvent({type, id}){
+    type === 'delete' && this.apiSevice.deleteTasks(id).subscribe(() => {
+      this.getApiTasks(this.limit, this.offset)
+      alert(`task ${id} deletado com sucesso`)
+    })
+    // type === 'edit' && this.apiSevice.deleteTasks(id)
+
   }
 
   trigger(value){

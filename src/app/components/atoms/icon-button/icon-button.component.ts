@@ -13,10 +13,10 @@ export class IconButtonComponent {
   @Input()
   attrData: string
 
-  @Output() play = new EventEmitter<any>();
+  @Output() callback = new EventEmitter<any>();
 
   onClick(event) {
-    !!this.play && this.play.emit({event, 'data-id': this.attrData});
+    !!this.callback && this.callback.emit({event, 'data-id': this.attrData});
   }
 
 }

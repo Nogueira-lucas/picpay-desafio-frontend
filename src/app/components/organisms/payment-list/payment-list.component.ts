@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
 @Component({
   selector: 'app-payment-list',
   templateUrl: './payment-list.component.html',
@@ -12,8 +11,7 @@ export class PaymentListComponent {
   infoPayment = {}
 
   inputValue: object = {}
-
-
+  
   @Input()
   dataSource
   
@@ -21,7 +19,10 @@ export class PaymentListComponent {
   limit: number
   
   @Output() callback = new EventEmitter<any>();
-  
+
+  @Output() callbackEvent = new EventEmitter<any>();
+
+  constructor(){}
   
   ngOnInit(): void {
     console.log('dataSource: ', this.dataSource);
@@ -39,6 +40,14 @@ export class PaymentListComponent {
 
   onChange(value){
     this.inputValue = {...this.inputValue, ...value}
+  }
+
+  edit(value){
+    console.log('value: ', value);
+  }
+
+  delete(id){
+    !!this.callbackEvent && this.callbackEvent.emit({type: 'delete', id })
   }
 
   onSubmit(event){

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -13,14 +13,32 @@ export class TableComponent {
   
   @Input()
   tableHead: string[]
+
+  @Output()
+
   
   listItem(items){
     return items.items
   }
   
-  onClick(values){
-    console.log('>>>>click: ', values);
+  @Output() callback = new EventEmitter<any>();
+
+  @Output() callbackEdit = new EventEmitter<any>();
+
+  @Output() callbackDelete = new EventEmitter<any>();
+
+  onClick(event) {
+    !!this.callback && this.callback.emit(event);
   }
+
+  onEdit(event) {
+    !!this.callbackEdit && this.callbackEdit.emit(event['data-id']);
+  }
+
+  onDelete(event) {
+    !!this.callbackDelete && this.callbackDelete.emit(event['data-id']);
+  }
+
   
   onCheck(values){
     console.log('check:<<<< ', values);

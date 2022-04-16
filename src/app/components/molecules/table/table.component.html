@@ -22,8 +22,8 @@
         </td>
         <td>
           <div class="table__button">
-            <app-icon-button name="edit" attrData="{{ items.id }}" (play)="onClick($event)"></app-icon-button>
-            <app-icon-button name="highlight_off" attrData="{{ items.id }}" (play)="onClick($event)"></app-icon-button>
+            <app-icon-button name="edit" attrData="{{ items.id }}" (callback)="onEdit($event)"></app-icon-button>
+            <app-icon-button name="highlight_off" attrData="{{ items.id }}" (callback)="onDelete($event)"></app-icon-button>
           </div>
         </td>
       </tr>

@@ -4,7 +4,7 @@
     <app-title title="Meus pagamentos" size="large"></app-title>
     <app-button label="Adicionar Pagamento" size="large" (click)="openModal()"></app-button>
     <div class="home__list">
-      <app-payment-list [dataSource]="paymentList" [limit]="limit" (callback)="trigger($event)"></app-payment-list>
+      <app-payment-list [dataSource]="paymentList" [limit]="limit" (callbackEvent)="onEvent($event)" (callback)="trigger($event)"></app-payment-list>
     </div>
   </div>
   <app-modal-payment (callback)="addPayment($event)" [disabled]="disabled"></app-modal-payment>

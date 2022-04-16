@@ -40,8 +40,12 @@ export class ApiService {
 
   postTasks(body){
     this.http.post(`http://localhost:3000/tasks`, body).subscribe((data: Data) => {
-      alert(`usuario ${data.username} adicionado com sucesso`)
+      alert(`task do ${data.username} adicionado com sucesso`)
     })
-  }
+  } 
+  
+  deleteTasks(id: string){
+    return this.http.delete(`http://localhost:3000/tasks/${id}`)
+  } 
 }
 

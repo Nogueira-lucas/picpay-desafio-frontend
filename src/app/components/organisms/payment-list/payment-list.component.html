@@ -13,6 +13,8 @@
     <app-table 
     [list]="dataSource?.list"
     [tableHead]="dataSource?.tableHead"
+    (callbackEdit)="edit($event)"
+    (callbackDelete)="delete($event)"
     ></app-table>
   </div>
 </div>
