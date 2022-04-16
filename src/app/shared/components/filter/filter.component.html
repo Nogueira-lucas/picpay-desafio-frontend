@@ -1,11 +1,7 @@
-<form #form="ngForm" class="filter-form" (ngSubmit)="filter(form.value.search)">
-  <input
-    type="text"
-    name="search"
-    class="search-input"
-    ngModel
-    placeholder="Busque um usuário"
-    aria-label="pesquisa"
-    aria-describedby="pesquisa"
-  />
+<form #form="ngForm" (ngSubmit)="filter(form.value.search)">
+  <mat-form-field appearance="outline">
+    <mat-label>Pesquise por um usuário</mat-label>
+    <input matInput name="search" ngModel placeholder="Pennie" aria-label="pesquisa" aria-describedby="pesquisa" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
 </form>

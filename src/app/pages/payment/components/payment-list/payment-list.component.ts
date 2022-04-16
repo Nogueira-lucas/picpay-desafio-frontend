@@ -64,6 +64,7 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
     this.paymentService.loadPayments(this.pageIndex, this.pageSize, this.filter).subscribe(res => {
       this.paymentsToRender = res.body;
       this.dataSource.data = this.paymentsToRender;
+      this.totalPayments = res.headers.get('X-Total-Count');
     });
   }
 
