@@ -1852,10 +1852,13 @@ export class TableComponent implements OnInit {
     return newValue;
   }
 
-  openDialog(type: string) {
+  openDialog(title: string, row: UserData) {
     this.dialog.open(PaymentModalComponent, {
       data: {
-        type: type,
+        title,
+        name: row.name,
+        date: row.date,
+        value: row.value,
       },
       panelClass: "paymentModal",
     });

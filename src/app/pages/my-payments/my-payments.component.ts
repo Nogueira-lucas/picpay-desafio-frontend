@@ -12,10 +12,10 @@ export class MyPaymentsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openDialog(type: string) {
+  openDialog(title: string) {
     this.dialog.open(PaymentModalComponent, {
       data: {
-        type: type,
+        title,
       },
       panelClass: "paymentModal",
     });

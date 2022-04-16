@@ -29,7 +29,6 @@
         </td>
       </ng-container>
 
-      <!-- Progress Column -->
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Título</th>
         <td mat-cell *matCellDef="let row">{{ row.title }}</td>
@@ -61,8 +60,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let row">
           <div id="actionsWrapper">
-            <mat-icon (click)="openDialog('edit')">{{ "edit" }}</mat-icon>
-            <mat-icon>{{ "highlight_off" }}</mat-icon>
+            <mat-icon (click)="openDialog('Editar', row)">{{
+              "edit"
+            }}</mat-icon>
+            <mat-icon (click)="openDialog('Excluir', row)">{{
+              "highlight_off"
+            }}</mat-icon>
           </div>
         </td>
       </ng-container>

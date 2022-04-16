@@ -1,45 +1,50 @@
 <div class="paymentModal">
-  <h1 mat-dialog-title>
-    {{ data.type === "add" ? "Adicionar pagamento" : "Editar pagamento" }}
-  </h1>
+  <h1 mat-dialog-title>{{ data.title }} pagamento</h1>
   <div mat-dialog-content>
-    <form class="paymentModal-form">
-      <div class="paymentModal-form-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Usuário*</mat-label>
-          <input matInput placeholder="Usuário*" />
-        </mat-form-field>
+    <div class="userWrapper" *ngIf="data.title === 'Excluir'; else elseBlock">
+      <span>Usuário: {{ data.name }}</span>
+      <span>Data: {{ getDate(data.date) }}</span>
+      <span>Valor: {{ formatCurrency(data.value) }}</span>
+    </div>
+    <ng-template #elseBlock
+      ><form class="paymentModal-form">
+        <div class="paymentModal-form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Usuário*</mat-label>
+            <input matInput placeholder="Usuário*" />
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Valor*</mat-label>
-          <input matInput placeholder="Valor*" />
-        </mat-form-field>
-      </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Valor*</mat-label>
+            <input matInput placeholder="Valor*" />
+          </mat-form-field>
+        </div>
 
-      <div class="paymentModal-form-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Data*</mat-label>
-          <input matInput placeholder="Data*" />
-        </mat-form-field>
+        <div class="paymentModal-form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Data*</mat-label>
+            <input matInput placeholder="Data*" />
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Título</mat-label>
-          <input matInput placeholder="Título" />
-        </mat-form-field>
-      </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Título</mat-label>
+            <input matInput placeholder="Título" />
+          </mat-form-field>
+        </div>
+      </form>
+    </ng-template>
 
-      <div class="paymentModal-form-buttonsWrapper">
-        <button
-          class="paymentModal-form-buttonsWrapper-cancel"
-          mat-button
-          mat-dialog-close
-        >
-          Cancelar
-        </button>
-        <button class="paymentModal-form-buttonsWrapper-submit" type="submit">
-          Salvar
-        </button>
-      </div>
-    </form>
+    <div class="paymentModal-form-buttonsWrapper">
+      <button
+        class="paymentModal-form-buttonsWrapper-cancel"
+        mat-button
+        mat-dialog-close
+      >
+        Cancelar
+      </button>
+      <button class="paymentModal-form-buttonsWrapper-submit" type="submit">
+        Salvar
+      </button>
+    </div>
   </div>
 </div>
