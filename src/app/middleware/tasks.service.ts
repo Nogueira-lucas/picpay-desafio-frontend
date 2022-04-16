@@ -27,8 +27,6 @@ export class TasksService {
   }
 
   mountPostTask(value){
-    console.log('value: ', value);
-    console.log(this.convertPrice(value.valor));
     const data = {
       "name": value.usuario.trim(),
       "username": `${value.usuario.replace(/\s*/ig, '').toLowerCase()}`,
@@ -52,7 +50,6 @@ export class TasksService {
     
     number = number.toFixed(2).split('.');
     number[0] = `${number[0].split(/(?=(?:...)*$)/).join('.')}`;
-    console.log('number: ', number);
     return number.join(',');
   };
 

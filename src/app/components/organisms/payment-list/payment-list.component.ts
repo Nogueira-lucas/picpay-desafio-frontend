@@ -23,10 +23,6 @@ export class PaymentListComponent {
   @Output() callbackEvent = new EventEmitter<any>();
 
   constructor(){}
-  
-  ngOnInit(): void {
-    console.log('dataSource: ', this.dataSource);
-  }
 
   onSelected(value){
     this.infoPayment = {...this.infoPayment, limit: value}
@@ -43,7 +39,7 @@ export class PaymentListComponent {
   }
 
   edit(value){
-    console.log('value: ', value);
+    console.log('Edit: ', value);
   }
 
   delete(id){

@@ -24,7 +24,6 @@ export class CountPageComponent {
   @Output() trigger = new EventEmitter<any>();
   
   ngOnInit(){
-    console.log('total: ', this.total);
     this.pages = Array.from(new Array(this.total/this.limit), (v, k) => k)
   }
 

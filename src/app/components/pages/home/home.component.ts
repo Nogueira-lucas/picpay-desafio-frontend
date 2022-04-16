@@ -45,10 +45,6 @@ export class HomeComponent {
     this.getApiTasks(this.limit, this.offset, this.name)
   }
 
-  ngOnChanges(){
-    console.log('change');
-  }
-
   openModal(){
     this.disabled = false
   }
