@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ApiService } from 'src/app/api/api.service';
+import { TasksService } from 'src/app/middleware/tasks.service';
 
 import { HomeComponent } from './home.component';
 
@@ -8,7 +11,12 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      imports: [HttpClientModule],
+      declarations: [ HomeComponent ],
+      providers: [
+        ApiService,
+        TasksService
+      ],
     })
     .compileComponents();
   });
@@ -19,7 +27,7 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
