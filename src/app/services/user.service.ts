@@ -4,6 +4,7 @@ import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
 export class UserService {
   user = this.getUserFromStorage();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private notificationService: NotificationService) {}
 
   getUserFromStorage(): User {
     const user = sessionStorage.getItem('user');
@@ -28,6 +29,7 @@ export class UserService {
 
   removeUser() {
     sessionStorage.removeItem('user');
+    this.notificationService.showSuccess('Deslogado com sucesso.');
   }
 
   getUsers(email: string, password: string): Observable<User[]> {
@@ -35,15 +37,14 @@ export class UserService {
   }
 
   login(username, password) {
-    if (this.isLoggedIn()) {
-      this.router.navigate(['/payments']);
-    } else {
-      this.getUsers(username, password).subscribe(users => {
-        if (users.length) {
-          this.setUser(users[0]);
-          this.router.navigate(['/payments']);
-        }
-      });
-    }
+    this.getUsers(username, password).subscribe(users => {
+      if (users.length) {
+        this.setUser(users[0]);
+        this.router.navigate(['/payments']);
+      } else {
+        console.log('lols');
+        this.notificationService.showError('Email ou senha incorretos.');
+      }
+    });
   }
 }

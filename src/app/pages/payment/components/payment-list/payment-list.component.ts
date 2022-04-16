@@ -6,8 +6,8 @@ import { Payment } from 'src/app/models/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
-import { Router } from '@angular/router';
 import { PaymentDeleteComponent } from '../payment-delete/payment-delete.component';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-payment-list',
@@ -28,7 +28,7 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
     private paymentService: PaymentService,
     private _liveAnnouncer: LiveAnnouncer,
     public dialog: MatDialog,
-    private router: Router
+    private notificationService: NotificationService
   ) {}
   ngOnInit(): void {
     this.loadPageData({ pageIndex: 0, pageSize: this.pageSize });
@@ -99,6 +99,7 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!!result) {
         this.paymentService.updatePayment(result).subscribe(() => {
+          this.notificationService.showSuccess('Pagamento modificado com sucesso.');
           this.paymentsToRender = this.paymentsToRender.map(payment => {
             if (payment.id == result.id) {
               payment = result;
@@ -122,6 +123,7 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
       if (!!result) {
         result.name = result.username;
         this.paymentService.addPayment(result).subscribe(() => {
+          this.notificationService.showSuccess('Pagamento criado com sucesso.');
           this.loadPageData({ pageIndex: 0, pageSize: this.pageSize });
         });
       }
@@ -136,6 +138,7 @@ export class PaymentListComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.notificationService.showSuccess('Pagamento excluído com sucesso.');
       this.deletePayment(result);
     });
   }
