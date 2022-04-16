@@ -9,20 +9,24 @@ export class SelectComponent {
 
   @Input()
   defaultSelected: number
-
+  
   @Input()
   items: string[]
-
+  
   @Input()
   id: string
-
+  
   @Input()
   name: string
   
   @Input()
   label: string
-
+  
   @Output() callback = new EventEmitter<any>();
+  
+  ngOnInit(){
+    console.log('defaultSelected: ', this.defaultSelected);
+  }
 
   onChange(event) {
     const target = (<HTMLInputElement>event.target)

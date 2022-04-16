@@ -27,7 +27,6 @@ describe('LogoComponent', () => {
     component.type = 'default'
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    console.log(compiled.querySelector('.logo'));
     expect(compiled.querySelector('.logo').getAttribute('class')).toBe('logo disabled--white');
   });
 

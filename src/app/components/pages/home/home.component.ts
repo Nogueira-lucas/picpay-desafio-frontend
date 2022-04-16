@@ -11,23 +11,31 @@ export class HomeComponent {
 
   public paymentList
   public limit = 10
+  public offset = 0
   
   constructor(private apiSevice: ApiService, private taskSevice: TasksService){
   }
-  
-  ngOnInit(){
-    this.apiSevice.getTasks(this.limit).subscribe((res) => {
+
+  getApiTasks(limit, offset, name?){
+    this.apiSevice.getTasks(limit, offset).subscribe((res) => {
       this.paymentList = {
         tableHead: ['Usuário', 'Título', 'Data', 'Valor', 'Pago'],
         list: this.taskSevice.getAllPayments(res.body),
         total: res.headers.get('X-Total-Count')
       }
     })
-    
+  }
+  
+  ngOnInit(){
+    this.getApiTasks(this.limit, this.offset)
   }
 
-  triggerLimit(value){
-    this.limit = value
+
+  trigger(value){
+    this.limit = value.limit
+    this.offset = value.offset
+
+    this.getApiTasks(value.limit, value.offset)
   }
 
 }

@@ -25,7 +25,7 @@ describe('CountPageComponent', () => {
 
   it('should render with list', () => {
     component.list = ['1', '2'];
-    component.current = '2'
+    component.current = 2
     component.ngOnInit();
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;

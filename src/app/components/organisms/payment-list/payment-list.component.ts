@@ -9,6 +9,8 @@ export class PaymentListComponent {
 
   selectList = ['5', '10', '20']
 
+  infoPayment = {}
+
 
   @Input()
   dataSource
@@ -23,7 +25,13 @@ export class PaymentListComponent {
   }
 
   onSelected(value){
-    !!this.callback && this.callback.emit(value)
+    this.infoPayment = {...this.infoPayment, limit: value}
+    !!this.callback && this.callback.emit(this.infoPayment)
+  }
+  
+  onPagination(value){
+    this.infoPayment = {...this.infoPayment, offset: value}
+    !!this.callback && this.callback.emit(this.infoPayment)
   }
 
 }
