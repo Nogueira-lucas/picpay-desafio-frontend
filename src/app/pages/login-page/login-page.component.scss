@@ -23,17 +23,23 @@
 
   &-formContainer {
     width: 37.5%;
-    background: #f2f2f2;
   }
 
   &-imageContainer {
-    background: white;
+    background: var(--white);
     width: 62.5%;
 
     img {
+      //This property is used to prevent the caret
+      //from showing when selecting the svg image
       caret-color: rgba(0, 0, 0, 0);
+
       width: 100%;
       max-width: 495px;
+    }
+
+    &.is-flex-direction {
+      width: 100%;
     }
   }
 }

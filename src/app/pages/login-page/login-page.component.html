@@ -6,5 +6,10 @@
     <app-login-form></app-login-form>
   </div>
 
-  <div class="login-page-imageContainer"><img [src]="loginImagePath" /></div>
+  <div
+    class="login-page-imageContainer"
+    [ngClass]="{ 'is-flex-direction': flexDirectionColumn }"
+  >
+    <img [src]="loginImagePath" />
+  </div>
 </div>

@@ -1,0 +1,12 @@
+@mixin button($background, $color) {
+  font-family: "Roboto";
+  font-weight: 500;
+  height: 36px;
+  background: $background;
+  border-radius: 4px;
+  color: $color;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-style: none;
+  cursor: pointer;
+}

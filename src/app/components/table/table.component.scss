@@ -3,7 +3,7 @@ table {
   font-family: "Lato";
   width: 100%;
   border-radius: 8px;
-  background: white;
+  background: var(--white);
   overflow: hidden !important;
 
   &-header {
@@ -15,7 +15,7 @@ table {
     &-inputWrapper {
       max-width: 215px;
       height: 32px;
-      border: 1px solid #cfdce5;
+      border: 1px solid var(--bluishGray);
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -39,7 +39,7 @@ table {
     padding: 0;
     border-bottom-width: 2px;
     border-bottom-style: solid;
-    border-bottom-color: #cfdce5;
+    border-bottom-color: var(--bluishGray);
   }
 
   td.mat-cell {
@@ -47,7 +47,7 @@ table {
   }
 
   tr {
-    color: #2d3540;
+    color: var(--black);
     &.mat-row,
     &.mat-footer-row {
       height: 81px;
@@ -61,13 +61,13 @@ table {
     .mat-sort-header {
       font-size: 14px;
       font-weight: 700;
-      color: #2d3540;
+      color: var(--black);
       padding: 12px;
     }
   }
 
   .mat-row:nth-child(even) {
-    background-color: #f5f8fa;
+    background-color: var(--lighterGray);
   }
 
   .mat-row:nth-child(odd) {
@@ -80,7 +80,7 @@ table {
     flex-direction: column;
 
     .secondaryText {
-      color: #69788c;
+      color: var(--darkerGray);
       font-size: 12px;
     }
   }

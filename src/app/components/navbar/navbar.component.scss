@@ -2,14 +2,14 @@
   display: flex;
 
   justify-content: space-between;
-  background: #002d69;
+  background: var(--darkerBlue);
   max-height: 90px;
 
   &-title {
     font-family: "Montserrat";
     font-size: 24px;
     padding: 30px;
-    color: #f8f8f8;
+    color: var(--white);
 
     .pay {
       font-weight: 800;
