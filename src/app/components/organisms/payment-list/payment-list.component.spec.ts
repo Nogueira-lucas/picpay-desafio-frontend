@@ -21,4 +21,28 @@ describe('PaymentListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render with tableHead', () => {
+    component.limit = 5
+    component.dataSource = {
+      list: [
+        {
+          id: '1',
+          items: [
+            {item: 'Monique', subItem: '@monique'},
+            {item: 'developr'},
+            {item: '23 Abr 2020', subItem: '16:00 AM'},
+            {item: 'R$ 500'},
+            {item: true}
+          ],
+        },
+      ],
+      tableHead: ['Usuário', 'Título', 'Data', 'Valor', 'Pago'],
+      total: 170
+    }
+
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(component).toBeTruthy();
+  });
 });

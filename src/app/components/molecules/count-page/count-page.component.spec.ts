@@ -19,20 +19,19 @@ describe('CountPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+  // });
 
-  it('should render with list', () => {
-    component.list = Array.from(new Array(170/10), (v, k) => `${k}`);
-    component.current = 0
-    component.total = 170
-    component.limit = 10
-    component.ngOnInit();
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelectorAll('.count-page__item')[0].textContent).toBe('1');
-    expect(compiled.querySelectorAll('.count-page__item')[1].textContent).toBe('2');
-  });
+  // it('should render component', () => {
+  //   component.limit = 10
+  //   component.current = 1
+  //   component.total = 170
+  //   fixture.detectChanges();
+  //   fixture.whenStable().then(() => {
+  //     const compiled = fixture.debugElement.nativeElement;
+  //     // expect(compiled.querySelector('.logo').getAttribute('class')).toBe('logo disabled--default');
+  //   })
+  // });
 
 });

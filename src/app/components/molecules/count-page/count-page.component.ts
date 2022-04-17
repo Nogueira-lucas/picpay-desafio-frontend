@@ -8,27 +8,25 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CountPageComponent {
 
   @Input()
-  list: string[]
+  total: number
 
   @Input()
-  current: number = 0
-
-  @Input()
-  total: number = 0
+  current: number = 1
   
   @Input()
-  limit: number = 10
+  limit
   
   pages: number[]
   
   @Output() trigger = new EventEmitter<any>();
   
-  ngOnInit(){
-    this.pages = Array.from(new Array(this.total/this.limit), (v, k) => k)
+  ngOnChanges(){
+    this.pages = Array.from(new Array(Math.round(this.total/this.limit)), (v, k) => k)
   }
-
-  onClick(value: string){
-    this.current = parseInt(value)
+  
+  onClick(value: string | number){
+    
+    this.current = parseInt(`${value}`)
     this.trigger.emit(value);
   }
   
@@ -39,6 +37,7 @@ export class CountPageComponent {
   }
   next(){
     const next = this.current + 1
+    
     this.current = next
     this.trigger.emit(next);
   }

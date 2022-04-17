@@ -4,7 +4,7 @@
     "injectables": [
         {
             "name": "ApiService",
-            "id": "injectable-ApiService-ea174b68056c8104223dfa745cc36b451add5063d416e1ad69b580073de6586e15683e7de12395dcf70aa2d80cfae07cb7d054f9194f7b5f3c62b3268057c553",
+            "id": "injectable-ApiService-4a94388b2f1e030972dcbab8251937379daaddb4c4d07a20d870c9212e68fb32452a29dc03f629743df329de066067fa33e0ac4fb5a46002ee68df09e6a647c8",
             "file": "src/app/api/api.service.ts",
             "properties": [
                 {
@@ -18,6 +18,77 @@
                 }
             ],
             "methods": [
+                {
+                    "name": "deleteTasks",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "editTasks",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "body",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 42,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "body",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
                 {
                     "name": "getAllTasks",
                     "args": [],
@@ -36,14 +107,14 @@
                             "type": "number",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "defaultValue": "10"
+                            "defaultValue": "20"
                         },
                         {
                             "name": "offset",
                             "type": "number",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "defaultValue": "0"
+                            "defaultValue": "1"
                         },
                         {
                             "name": "name",
@@ -65,7 +136,7 @@
                             "type": "number",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "defaultValue": "10",
+                            "defaultValue": "20",
                             "tagName": {
                                 "text": "param"
                             }
@@ -75,7 +146,7 @@
                             "type": "number",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "defaultValue": "0",
+                            "defaultValue": "1",
                             "tagName": {
                                 "text": "param"
                             }
@@ -86,6 +157,34 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "''",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getTasksWithId",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 30,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -119,13 +218,41 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "postTasks",
+                    "args": [
+                        {
+                            "name": "body",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "body",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "deprecated": false,
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http'\n\nclass User {\n  email: string;\n  senha: string;\n}\n\n@Injectable()\nexport class ApiService {\n\n  user: User\n\n  constructor(private http: HttpClient) { }\n\n  getUserAccount(user: User){\n    return this.http.get(`http://localhost:3000/account?senha=${user.senha}&email=${user.email}`)\n  } \n\n  getAllTasks(){\n    return this.http.get(`http://localhost:3000/tasks`)\n  }\n\n  getTasks(limit = 10, offset = 0, name = ''){\n    return this.http.get(`http://localhost:3000/tasks?_limit=${limit}&_page=${offset}&name_like=${name}`, {\n      observe: 'response'\n    })\n  } \n}\n\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpHeaders } from '@angular/common/http'\n\nclass User {\n  email: string;\n  senha: string;\n}\n\n@Injectable()\nexport class ApiService {\n\n  user: User\n\n  constructor(private http: HttpClient) { }\n\n  getUserAccount(user: User){\n    return this.http.get(`http://localhost:3000/account?senha=${user.senha}&email=${user.email}`)\n  } \n\n  getAllTasks(){\n    return this.http.get(`http://localhost:3000/tasks`)\n  }\n\n  getTasks(limit = 20, offset = 1, name = ''){\n    return this.http.get(`http://localhost:3000/tasks?_limit=${limit}&_page=${offset}&name_like=${name}&_sort=id&_order=desc`, {\n      observe: 'response'\n    })\n  } \n\n  getTasksWithId(id: number){\n    return this.http.get(`http://localhost:3000/tasks?id=${id}`)\n  } \n\n  postTasks(body){\n    return this.http.post(`http://localhost:3000/tasks`, body)\n  } \n  \n  deleteTasks(id: string){\n    return this.http.delete(`http://localhost:3000/tasks/${id}`)\n  } \n\n  editTasks(id, body){\n    return this.http.put(`http://localhost:3000/tasks/${id}`, body)\n  } \n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -156,7 +283,7 @@
         },
         {
             "name": "AuthService",
-            "id": "injectable-AuthService-4a096c9e55c1cc0039a264f98bff11e6f2ceb4e9b3979e6f7eafc49ec6414347a0e0aba018748d3749c75ac94d9d73530845dc4245fc1eb8b0c691993919e39f",
+            "id": "injectable-AuthService-5f7d10bd999b8b87a7cb453644efc98ae2cc877836d0113bbd4422ba220c9bc149acdb55df3ccf566c9ffbed38d809dabc5f06b3b550ef0a320fd98ce977f56e",
             "file": "src/app/services/auth/auth.service.ts",
             "properties": [
                 {
@@ -227,7 +354,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Router } from '@angular/router';\nimport { Injectable } from '@angular/core';\n\nimport { ApiService } from '../../api/api.service';\n\nclass User {\n  email: string;\n  senha: string;\n}\n\n@Injectable()\nexport class AuthService {\n\n  private userAuthenticated: boolean = false\n\n  constructor(private router: Router, private apiService: ApiService) {\n    this.userAuthenticated = sessionStorage.getItem(\"auth\") === 'true';\n  }\n\n  login(user: User){\n\n    this.apiService.getUserAccount(user).subscribe((data) => {this.userAuthenticated = data[0].legth > 0})\n\n    if (this.userAuthenticated) {\n      sessionStorage.setItem(\"auth\",\"true\")\n      this.router.navigate(['/']);\n    } else {\n      this.router.navigate(['/login']);\n    }\n  }\n  \n  logout(){\n    sessionStorage.setItem(\"auth\",\"false\")\n  }\n\n  authenticated(){\n    return this.userAuthenticated;\n  }\n}\n",
+            "sourceCode": "import { Router } from '@angular/router';\nimport { Injectable } from '@angular/core';\n\nimport { ApiService } from '../../api/api.service';\n\nclass User {\n  email: string;\n  senha: string;\n}\n\n@Injectable()\nexport class AuthService {\n\n  private userAuthenticated: boolean = false\n\n  constructor(private router: Router, private apiService: ApiService) {\n    this.userAuthenticated = sessionStorage.getItem(\"auth\") === 'true';\n  }\n\n  login(user: User){\n    this.apiService.getUserAccount(user).subscribe((data) => {\n      this.userAuthenticated = !!data[0]\n      if (this.userAuthenticated) {\n        sessionStorage.setItem(\"auth\",\"true\")\n        this.router.navigate(['/']);\n      } else {\n        this.router.navigate(['/login']);\n      }\n    })\n  }\n  \n  logout(){\n    sessionStorage.setItem(\"auth\",\"false\")\n  }\n\n  authenticated(){\n    return this.userAuthenticated;\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -273,10 +400,66 @@
         },
         {
             "name": "TasksService",
-            "id": "injectable-TasksService-510ddb78861bf1d481407ed331c66a7fc3f642da8ba6248d2b4867f1ba0140276f4bb1ef7bbd0312f7ba4c033b4874dd069d90c81bef4e64ec9536d95a3d84ef",
+            "id": "injectable-TasksService-48a49f9d1fd2db7c4284158291beb2f75d1afd5609bf5d6dc51d451a54222a9ccf119da6fb5f5e5cbedeee9bd4b0afce5d3ef9a489ef60ee32070534b20ea909",
             "file": "src/app/middleware/tasks.service.ts",
             "properties": [],
             "methods": [
+                {
+                    "name": "convertDate",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 60,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "convertPrice",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 56,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
                 {
                     "name": "formatPrice",
                     "args": [
@@ -290,7 +473,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 32,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -318,7 +501,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 8,
+                    "line": 9,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -353,7 +536,7 @@
                     "optional": false,
                     "returnType": "{ item: any; subItem: any; }",
                     "typeParameters": [],
-                    "line": 28,
+                    "line": 42,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -391,12 +574,40 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 13,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
                             "name": "data",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "mountPostTask",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
                             "type": "",
                             "deprecated": false,
                             "deprecationMessage": "",
@@ -411,14 +622,32 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable()\nexport class TasksService {\n\n  constructor() { }\n\n  getAllPayments(data){\n    return this.mountPaymentList(data)\n  }\n\n  mountPaymentList(data){\n    \n    const result = data.map(item => ({\n      id: item.id,\n      items: [\n        this.mountItem(item.name.match(/\\w+/ig)[0], `@${item.username}`),\n        this.mountItem(item.title),\n        this.mountItem(new Date(item.date).toLocaleDateString('pt-BR'), new Date(item.date).toLocaleTimeString('pt-BR')),\n        this.mountItem(`R$ ${this.formatPrice(item.value)}`),\n        this.mountItem(item.isPayed),\n      ]\n    }))\n    \n    return result\n  }\n\n  mountItem(item, subItem?) {\n    return {item, subItem}\n  }\n\n  formatPrice(number){\n    if (typeof number !== 'number' || isNaN(number)) {\n      return null;\n    }\n  \n    number = number.toFixed(2).split('.');\n    number[0] = `${number[0].split(/(?=(?:...)*$)/).join('.')}`;\n    return number.join(',');\n  };\n  \n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { ApiService } from '../api/api.service';\n\n@Injectable()\nexport class TasksService {\n\n  constructor(private apiSevice: ApiService) { }\n\n  getAllPayments(data){\n    return this.mountPaymentList(data)\n  }\n\n  mountPaymentList(data){\n    \n    const result = data.map(item => ({\n      id: item.id,\n      items: [\n        this.mountItem(item.name.match(/\\w+/ig)[0], `@${item.username}`),\n        this.mountItem(item.title),\n        this.mountItem(new Date(item.date).toLocaleDateString('pt-BR'), new Date(item.date).toLocaleTimeString('pt-BR')),\n        this.mountItem(`R$ ${this.formatPrice(item.value)}`),\n        this.mountItem(item.isPayed),\n      ]\n    }))\n    \n    return result\n  }\n\n  mountPostTask(value){\n    const data = {\n      \"name\": value.usuario.trim(),\n      \"username\": `${value.usuario.replace(/\\s*/ig, '').toLowerCase()}`,\n      \"title\": value.titulo.trim(),\n      \"value\": this.convertPrice(value.valor),\n      \"date\": this.convertDate(value.data),\n      \"image\": \"https://picsum.photos/400/400\",\n      \"isPayed\": false\n    }\n    return this.apiSevice.postTasks(data)\n  }\n\n  mountItem(item, subItem?) {\n    return {item, subItem}\n  }\n\n  formatPrice(number){\n    if (typeof number !== 'number' || isNaN(number)) {\n      return null;\n    }\n    \n    number = number.toFixed(2).split('.');\n    number[0] = `${number[0].split(/(?=(?:...)*$)/).join('.')}`;\n    return number.join(',');\n  };\n\n  convertPrice(value) {\n    return parseInt(parseInt(value).toFixed(2).replace(/\\d(?=(\\d{3})+\\.)/g, '$&'))\n  }\n\n  convertDate(date){\n    const datearray = date.split(\"/\");\n    const newdate = `${datearray[1]}-${datearray[0]}-${datearray[2]}`\n    return new Date(newdate).toISOString()\n  }\n  \n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 4
+                "args": [
+                    {
+                        "name": "apiSevice",
+                        "type": "ApiService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 5,
+                "jsdoctags": [
+                    {
+                        "name": "apiSevice",
+                        "type": "ApiService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "type": "injectable"
         },
@@ -494,7 +723,7 @@
     "guards": [
         {
             "name": "AuthGuard",
-            "id": "injectable-AuthGuard-fd98a1dc9e2bcbc14da52b0dadd2a22968f2d89a9fd62981494f6a37cb956c810569ad882c1c55a48a7a35a9dfcc770bb1f82484fc7ed1172564cdccfff49a54",
+            "id": "injectable-AuthGuard-adc7b28efb6a3c0fca9d7364e68b9b5918628f3669bc1c5c666ab2966ae476d5f48b0678bef9932982cec9cc9fc6f7efbd4c2beb5edbde688eb8a6e0f8012040",
             "file": "src/app/guards/auth.guards.ts",
             "properties": [],
             "methods": [
@@ -554,7 +783,7 @@
                     "optional": false,
                     "returnType": "Observable | Promise | boolean",
                     "typeParameters": [],
-                    "line": 35,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -571,7 +800,15 @@
                 },
                 {
                     "name": "checkAccess",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "state",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true
+                        }
+                    ],
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
@@ -580,6 +817,18 @@
                     "deprecationMessage": "",
                     "modifierKind": [
                         121
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "state",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
                     ]
                 }
             ],
@@ -587,7 +836,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Observable } from 'rxjs';\nimport { Injectable } from '@angular/core';\nimport { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanLoad, Route } from '@angular/router';\n\nimport { AuthService } from '../services/auth/auth.service';\n\n@Injectable()\nexport class AuthGuard implements CanActivate, CanLoad {\n\n  constructor(\n    private authService: AuthService,\n    private router: Router\n  ) { }\n\n  canActivate(\n    route: ActivatedRouteSnapshot,\n    state: RouterStateSnapshot\n  ) : Observable<boolean> | boolean {\n\n    console.info('AuthGuard');\n\n    return this.checkAccess();\n  }\n\n  private checkAccess(){\n    if (this.authService.authenticated()){\n      return true;\n    } \n\n    this.router.navigate(['/login']);\n\n    return false;\n  }\n\n  canLoad(route: Route): Observable<boolean>|Promise<boolean>|boolean {\n    return this.checkAccess();\n  }\n\n}\n",
+            "sourceCode": "import { Observable } from 'rxjs';\nimport { Injectable } from '@angular/core';\nimport { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanLoad, Route } from '@angular/router';\n\nimport { AuthService } from '../services/auth/auth.service';\n\n@Injectable()\nexport class AuthGuard implements CanActivate, CanLoad {\n\n  constructor(\n    private authService: AuthService,\n    private router: Router\n  ) { }\n\n  canActivate(\n    route: ActivatedRouteSnapshot,\n    state: RouterStateSnapshot\n  ) : Observable<boolean> | boolean {\n\n    console.info('AuthGuard');\n\n    return this.checkAccess(state);\n  }\n\n  private checkAccess(state?){\n    const pageLogin = state.url.includes('login')\n\n    if (this.authService.authenticated()){\n\n      pageLogin && this.router.navigate(['/']);\n    \n      return true;\n    } \n\n    !pageLogin && this.router.navigate(['/login']);\n\n    if(pageLogin){\n      return true\n    }\n\n    return false;\n  }\n\n  canLoad(route: Route): Observable<boolean>|Promise<boolean>|boolean {\n    return this.checkAccess();\n  }\n\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -672,13 +921,102 @@
             "hostListeners": []
         },
         {
+            "name": "Data",
+            "id": "class-Data-9ececef379f437e7a2c9e628ff65a5eb3bc0285384b3d4bebd76f4d263ade0c827ee315f65de2d6a0d602abf35c19942ee624cb06ec3227b7223948238f71e44",
+            "file": "src/app/components/pages/home/home.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ApiService } from '../../../api/api.service';\nimport { TasksService } from '../../../middleware/tasks.service';\n\nclass Data {\n  id: number\n  name: string\n  username: string\n  title: string\n  value: number\n  date: string\n  image: string\n  isPayed: boolean\n}\n\n@Component({\n  selector: 'app-home',\n  templateUrl: './home.component.html',\n  styleUrls: ['./home.component.scss']\n})\n\n\nexport class HomeComponent {\n\n  public paymentList\n  public limit = 20\n  public offset = 1\n  public name: string = ''\n  disabled: boolean = true\n  \n  constructor(private apiSevice: ApiService, private taskSevice: TasksService){\n  }\n\n  getApiTasks(limit, offset, name?){\n    this.apiSevice.getTasks(limit, offset, name).subscribe((res) => {\n      this.paymentList = {\n        tableHead: ['Usuário', 'Título', 'Data', 'Valor', 'Pago'],\n        list: this.taskSevice.getAllPayments(res.body),\n        total: res.headers.get('X-Total-Count')\n      }\n    })\n  }\n  \n  ngOnInit(){\n    this.getApiTasks(this.limit, this.offset, this.name)\n  }\n\n  openModal(){\n    this.disabled = false\n  }\n\n\n  addPayment(value){\n    this.disabled = true\n    Object.keys(value).length > 0 && this.taskSevice.mountPostTask(value).subscribe((data: Data) => {\n      alert(`task do ${data.username} adicionado com sucesso`)\n      this.getApiTasks(this.limit, this.offset, this.name)\n    })\n  }\n  \n  onEvent({type, data: body}){\n    type === 'delete' && this.apiSevice.deleteTasks(body).subscribe(() => {\n      alert(`task ${body} deletado com sucesso`)\n      this.getApiTasks(this.limit, this.offset)\n    })\n    type === 'edit' && this.apiSevice.getTasksWithId(parseInt(body.id)).subscribe((data) => {\n      this.apiSevice.editTasks(body.id, {...data[0], isPayed: body.value}).subscribe(() => {\n        this.getApiTasks(this.limit, this.offset, this.name)\n      })\n    })\n\n  }\n\n  trigger(value){\n    this.limit = value?.limit || 20\n    this.offset = value?.offset || 1\n    this.name = value?.search || ''\n\n    Object.keys(value).length > 0 && this.getApiTasks(value.limit, value.offset, value?.search)\n  }\n\n}\n",
+            "properties": [
+                {
+                    "name": "date",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "image",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "isPayed",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "username",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
             "name": "User",
-            "id": "class-User-ea174b68056c8104223dfa745cc36b451add5063d416e1ad69b580073de6586e15683e7de12395dcf70aa2d80cfae07cb7d054f9194f7b5f3c62b3268057c553",
+            "id": "class-User-4a94388b2f1e030972dcbab8251937379daaddb4c4d07a20d870c9212e68fb32452a29dc03f629743df329de066067fa33e0ac4fb5a46002ee68df09e6a647c8",
             "file": "src/app/api/api.service.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http'\n\nclass User {\n  email: string;\n  senha: string;\n}\n\n@Injectable()\nexport class ApiService {\n\n  user: User\n\n  constructor(private http: HttpClient) { }\n\n  getUserAccount(user: User){\n    return this.http.get(`http://localhost:3000/account?senha=${user.senha}&email=${user.email}`)\n  } \n\n  getAllTasks(){\n    return this.http.get(`http://localhost:3000/tasks`)\n  }\n\n  getTasks(limit = 10, offset = 0, name = ''){\n    return this.http.get(`http://localhost:3000/tasks?_limit=${limit}&_page=${offset}&name_like=${name}`, {\n      observe: 'response'\n    })\n  } \n}\n\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpHeaders } from '@angular/common/http'\n\nclass User {\n  email: string;\n  senha: string;\n}\n\n@Injectable()\nexport class ApiService {\n\n  user: User\n\n  constructor(private http: HttpClient) { }\n\n  getUserAccount(user: User){\n    return this.http.get(`http://localhost:3000/account?senha=${user.senha}&email=${user.email}`)\n  } \n\n  getAllTasks(){\n    return this.http.get(`http://localhost:3000/tasks`)\n  }\n\n  getTasks(limit = 20, offset = 1, name = ''){\n    return this.http.get(`http://localhost:3000/tasks?_limit=${limit}&_page=${offset}&name_like=${name}&_sort=id&_order=desc`, {\n      observe: 'response'\n    })\n  } \n\n  getTasksWithId(id: number){\n    return this.http.get(`http://localhost:3000/tasks?id=${id}`)\n  } \n\n  postTasks(body){\n    return this.http.post(`http://localhost:3000/tasks`, body)\n  } \n  \n  deleteTasks(id: string){\n    return this.http.delete(`http://localhost:3000/tasks/${id}`)\n  } \n\n  editTasks(id, body){\n    return this.http.put(`http://localhost:3000/tasks/${id}`, body)\n  } \n}\n",
             "properties": [
                 {
                     "name": "email",
@@ -746,12 +1084,12 @@
         },
         {
             "name": "User",
-            "id": "class-User-4a096c9e55c1cc0039a264f98bff11e6f2ceb4e9b3979e6f7eafc49ec6414347a0e0aba018748d3749c75ac94d9d73530845dc4245fc1eb8b0c691993919e39f-2",
+            "id": "class-User-5f7d10bd999b8b87a7cb453644efc98ae2cc877836d0113bbd4422ba220c9bc149acdb55df3ccf566c9ffbed38d809dabc5f06b3b550ef0a320fd98ce977f56e-2",
             "file": "src/app/services/auth/auth.service.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { Router } from '@angular/router';\nimport { Injectable } from '@angular/core';\n\nimport { ApiService } from '../../api/api.service';\n\nclass User {\n  email: string;\n  senha: string;\n}\n\n@Injectable()\nexport class AuthService {\n\n  private userAuthenticated: boolean = false\n\n  constructor(private router: Router, private apiService: ApiService) {\n    this.userAuthenticated = sessionStorage.getItem(\"auth\") === 'true';\n  }\n\n  login(user: User){\n\n    this.apiService.getUserAccount(user).subscribe((data) => {this.userAuthenticated = data[0].legth > 0})\n\n    if (this.userAuthenticated) {\n      sessionStorage.setItem(\"auth\",\"true\")\n      this.router.navigate(['/']);\n    } else {\n      this.router.navigate(['/login']);\n    }\n  }\n  \n  logout(){\n    sessionStorage.setItem(\"auth\",\"false\")\n  }\n\n  authenticated(){\n    return this.userAuthenticated;\n  }\n}\n",
+            "sourceCode": "import { Router } from '@angular/router';\nimport { Injectable } from '@angular/core';\n\nimport { ApiService } from '../../api/api.service';\n\nclass User {\n  email: string;\n  senha: string;\n}\n\n@Injectable()\nexport class AuthService {\n\n  private userAuthenticated: boolean = false\n\n  constructor(private router: Router, private apiService: ApiService) {\n    this.userAuthenticated = sessionStorage.getItem(\"auth\") === 'true';\n  }\n\n  login(user: User){\n    this.apiService.getUserAccount(user).subscribe((data) => {\n      this.userAuthenticated = !!data[0]\n      if (this.userAuthenticated) {\n        sessionStorage.setItem(\"auth\",\"true\")\n        this.router.navigate(['/']);\n      } else {\n        this.router.navigate(['/login']);\n      }\n    })\n  }\n  \n  logout(){\n    sessionStorage.setItem(\"auth\",\"false\")\n  }\n\n  authenticated(){\n    return this.userAuthenticated;\n  }\n}\n",
             "properties": [
                 {
                     "name": "email",
@@ -970,7 +1308,7 @@
         },
         {
             "name": "CheckboxComponent",
-            "id": "component-CheckboxComponent-f15a5fa07ed8c97cc480df5cf135da71810168490caad43f5e7a283c4d29d2d0a1b7d80078291a9f204eee700c367d652644988963c4e32b254979291a03b737",
+            "id": "component-CheckboxComponent-95f709cbb0960b66a74e7c0fdddfac66f8361abfef75d24c01c2ec61541a81d359362687505a6579291f2cffe4961a33f86c7b7418e4cfcb93c0c7e19280fe85",
             "file": "src/app/components/atoms/checkbox/checkbox.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1060,7 +1398,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-checkbox',\n  templateUrl: './checkbox.component.html',\n  styleUrls: ['./checkbox.component.scss']\n})\nexport class CheckboxComponent {\n\n  @Input()\n  name: string\n\n  @Input()\n  id: string\n\n  @Input()\n  checked: boolean\n\n  @Output() check = new EventEmitter<any>();\n  \n  onClick(event: KeyboardEvent){\n    const target = (<HTMLInputElement>event.target)\n    this.checked = target.checked\n    !!this.check && this.check.emit(target.checked);\n  }\n  \n  public get classes(): string[] {\n    const check = !!this.checked ? 'checkbox--checked' : ''\n    return ['checkbox', check];\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-checkbox',\n  templateUrl: './checkbox.component.html',\n  styleUrls: ['./checkbox.component.scss']\n})\nexport class CheckboxComponent {\n\n  @Input()\n  name: string\n\n  @Input()\n  id: string\n\n  @Input()\n  checked: boolean\n\n  @Output() check = new EventEmitter<any>();\n  \n  onClick(event: KeyboardEvent){\n    const target = (<HTMLInputElement>event.target)\n    this.checked = target.checked\n    !!this.check && this.check.emit({id: this.id, value: target.checked});\n  }\n  \n  public get classes(): string[] {\n    const check = !!this.checked ? 'checkbox--checked' : ''\n    return ['checkbox', check];\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1084,7 +1422,7 @@
         },
         {
             "name": "CountPageComponent",
-            "id": "component-CountPageComponent-06b78a812b7136954c275bf9b0c764a7b41621aabc7dfee88bacde45482099edc028d2ce901eaae7e9309150a6dd223fcb78092d65bff8c3997a0f463520f137",
+            "id": "component-CountPageComponent-87719149bfc8222c8989da19b95c603eb31006ee08c60c5d7584dc1e77b4f9215185aeb22caab7dc34b61a8c9d63c5c78c69ba499279dd80316a65b502f56cdd",
             "file": "src/app/components/molecules/count-page/count-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1103,7 +1441,7 @@
             "inputsClass": [
                 {
                     "name": "current",
-                    "defaultValue": "0",
+                    "defaultValue": "1",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 14,
@@ -1112,27 +1450,17 @@
                 },
                 {
                     "name": "limit",
-                    "defaultValue": "10",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 20,
-                    "type": "number",
-                    "decorators": []
-                },
-                {
-                    "name": "list",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 11,
-                    "type": "string[]",
+                    "line": 17,
+                    "type": "any",
                     "decorators": []
                 },
                 {
                     "name": "total",
-                    "defaultValue": "0",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "line": 11,
                     "type": "number",
                     "decorators": []
                 }
@@ -1143,7 +1471,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 21,
                     "type": "EventEmitter"
                 }
             ],
@@ -1155,7 +1483,7 @@
                     "type": "number[]",
                     "optional": false,
                     "description": "",
-                    "line": 22
+                    "line": 19
                 }
             ],
             "methodsClass": [
@@ -1165,17 +1493,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 38,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
                 {
-                    "name": "ngOnInit",
+                    "name": "ngOnChanges",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26,
+                    "line": 23,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1184,7 +1512,7 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "string",
+                            "type": "string | number",
                             "deprecated": false,
                             "deprecationMessage": ""
                         }
@@ -1192,13 +1520,13 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 31,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
                             "name": "value",
-                            "type": "string",
+                            "type": "string | number",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -1213,7 +1541,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1225,16 +1553,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-count-page',\n  templateUrl: './count-page.component.html',\n  styleUrls: ['./count-page.component.scss']\n})\nexport class CountPageComponent {\n\n  @Input()\n  list: string[]\n\n  @Input()\n  current: number = 0\n\n  @Input()\n  total: number = 0\n  \n  @Input()\n  limit: number = 10\n  \n  pages: number[]\n  \n  @Output() trigger = new EventEmitter<any>();\n  \n  ngOnInit(){\n    console.log('total: ', this.total);\n    this.pages = Array.from(new Array(this.total/this.limit), (v, k) => k)\n  }\n\n  onClick(value: string){\n    this.current = parseInt(value)\n    this.trigger.emit(value);\n  }\n  \n  prev(){\n    const prev = this.current - 1\n    this.current = prev\n    this.trigger.emit(prev);\n  }\n  next(){\n    const next = this.current + 1\n    this.current = next\n    this.trigger.emit(next);\n  }\n\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-count-page',\n  templateUrl: './count-page.component.html',\n  styleUrls: ['./count-page.component.scss']\n})\nexport class CountPageComponent {\n\n  @Input()\n  total: number\n\n  @Input()\n  current: number = 1\n  \n  @Input()\n  limit\n  \n  pages: number[]\n  \n  @Output() trigger = new EventEmitter<any>();\n  \n  ngOnChanges(){\n    this.pages = Array.from(new Array(Math.round(this.total/this.limit)), (v, k) => k)\n  }\n  \n  onClick(value: string | number){\n    \n    this.current = parseInt(`${value}`)\n    this.trigger.emit(value);\n  }\n  \n  prev(){\n    const prev = this.current - 1\n    this.current = prev\n    this.trigger.emit(prev);\n  }\n  next(){\n    const next = this.current + 1\n    \n    this.current = next\n    this.trigger.emit(next);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".count-page {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-wrap: nowrap;\n\n  &__list {\n    margin: 0 1.6rem;\n  }\n\n  &__item {\n    display: inline-block;\n    color: #69788c;\n    font-size: 1.2rem;\n    line-height: 1.4rem;\n    padding: 0.4rem 0.8rem;\n    margin: 0.4rem;\n    cursor: pointer;\n\n    &--selected {\n      background-color: #007dfe;\n      color: #fff;\n      border-radius: 0.6rem;\n    }\n  }\n\n  &__arrow {\n    margin: 0.4rem;\n\n    &--disabled {\n      pointer-events: none;\n      opacity: 5px;\n    }\n  }\n}\n",
+                    "data": ".count-page {\n  display: flex;\n  align-items: center;\n  flex-wrap: nowrap;\n\n  &__list {\n    margin: 0 1.6rem;\n  }\n\n  &__item {\n    display: inline-block;\n    color: #69788c;\n    font-size: 1.2rem;\n    line-height: 1.4rem;\n    padding: 0.4rem 0.8rem;\n    margin: 0.4rem;\n    cursor: pointer;\n\n    &[data-disabled=\"true\"] {\n      display: none;\n    }\n\n    &--selected {\n      background-color: #007dfe;\n      color: #fff;\n      border-radius: 0.6rem;\n    }\n  }\n\n  &__arrow {\n    margin: 0.4rem;\n\n    &--disabled {\n      pointer-events: none;\n      opacity: 5px;\n    }\n  }\n}\n",
                     "styleUrl": "./count-page.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"count-page\">\n  <div class=\"count-page__arrow\" [ngStyle]=\"current === 0 && { 'pointerEvents':'none', 'opacity':'5px'}\">\n    <app-icon-button name=\"chevron_left\" (play)=\"prev()\"></app-icon-button>\n  </div>\n  <ul class=\"count-page__list\">\n    <li \n      [ngClass]=\"i === current ? 'count-page__item count-page__item--selected' : 'count-page__item'\"  \n      *ngFor=\"let item of pages; index as i\"\n      (click)=\"onClick(i)\"\n    >{{ i + 1 }}</li>\n  </ul>\n  <div class=\"count-page__arrow\" [ngStyle]=\"current === total && { 'pointerEvents':'none', 'opacity':'5px'}\">\n    <app-icon-button name=\"chevron_right\" (play)=\"next()\" ></app-icon-button>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"count-page\">\n  <div class=\"count-page__arrow\" [ngStyle]=\"current === 1 && { 'pointerEvents':'none', 'opacity':'5px'}\">\n    <app-icon-button name=\"chevron_left\" (callback)=\"prev()\"></app-icon-button>\n  </div>\n  <ul class=\"count-page__list\">\n    <li \n      [ngClass]=\"(i + 1) === current ? 'count-page__item count-page__item--selected' : 'count-page__item'\"  \n      *ngFor=\"let item of pages; index as i\"\n      (click)=\"onClick(i + 1)\"\n      [attr.data-disabled]=\"pages.length > 10 && i != 0 && i != pages.length - 1 && i < pages.length - 3 && i > 0 + 3 && i != current - 1 && i != current + 1\"\n    >{{ i + 1 }}</li>\n  </ul>\n  <div class=\"count-page__arrow\" [ngStyle]=\"current === pages.length && { 'pointerEvents':'none', 'opacity':'5px'}\">\n    <app-icon-button name=\"chevron_right\" (callback)=\"next()\" ></app-icon-button>\n  </div>\n</div>\n"
         },
         {
             "name": "FormLoginComponent",
@@ -1395,7 +1723,7 @@
         },
         {
             "name": "HomeComponent",
-            "id": "component-HomeComponent-91ec2336e5354c72444c9b25c9b0a666285de2488bc380f127be49a133f0175565f2151c699bfe0d2d2ba81bb57ebd42d1bf57c72c8f278440545f2be92724ab",
+            "id": "component-HomeComponent-9ececef379f437e7a2c9e628ff65a5eb3bc0285384b3d4bebd76f4d263ade0c827ee315f65de2d6a0d602abf35c19942ee624cb06ec3227b7223948238f71e44",
             "file": "src/app/components/pages/home/home.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1415,14 +1743,24 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "disabled",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
                     "name": "limit",
-                    "defaultValue": "10",
+                    "defaultValue": "20",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 13,
+                    "line": 26,
                     "modifierKind": [
                         123
                     ]
@@ -1435,20 +1773,20 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 15,
+                    "line": 28,
                     "modifierKind": [
                         123
                     ]
                 },
                 {
                     "name": "offset",
-                    "defaultValue": "0",
+                    "defaultValue": "1",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 14,
+                    "line": 27,
                     "modifierKind": [
                         123
                     ]
@@ -1460,13 +1798,41 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 12,
+                    "line": 25,
                     "modifierKind": [
                         123
                     ]
                 }
             ],
             "methodsClass": [
+                {
+                    "name": "addPayment",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 53,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
                 {
                     "name": "getApiTasks",
                     "args": [
@@ -1486,13 +1852,14 @@
                             "name": "name",
                             "type": "",
                             "deprecated": false,
-                            "deprecationMessage": ""
+                            "deprecationMessage": "",
+                            "optional": true
                         }
                     ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 20,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1519,6 +1886,7 @@
                             "type": "",
                             "deprecated": false,
                             "deprecationMessage": "",
+                            "optional": true,
                             "tagName": {
                                 "text": "param"
                             }
@@ -1531,7 +1899,43 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 30,
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onEvent",
+                    "args": [
+                        {
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 61,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "openModal",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1548,7 +1952,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 35,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1571,7 +1975,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { ApiService } from '../../../api/api.service';\nimport { TasksService } from '../../../middleware/tasks.service';\n\n@Component({\n  selector: 'app-home',\n  templateUrl: './home.component.html',\n  styleUrls: ['./home.component.scss']\n})\nexport class HomeComponent {\n\n  public paymentList\n  public limit = 10\n  public offset = 0\n  public name: string = ''\n  \n  constructor(private apiSevice: ApiService, private taskSevice: TasksService){\n  }\n\n  getApiTasks(limit, offset, name){\n    this.apiSevice.getTasks(limit, offset, name).subscribe((res) => {\n      this.paymentList = {\n        tableHead: ['Usuário', 'Título', 'Data', 'Valor', 'Pago'],\n        list: this.taskSevice.getAllPayments(res.body),\n        total: res.headers.get('X-Total-Count')\n      }\n    })\n  }\n  \n  ngOnInit(){\n    this.getApiTasks(this.limit, this.offset, this.name)\n  }\n\n\n  trigger(value){\n    console.log(value?.search);\n    console.log('value: ', value);\n    this.limit = value?.limit || 10\n    this.offset = value?.offset || 0\n    this.name = value?.search || ''\n\n    this.getApiTasks(value.limit, value.offset, value?.search)\n  }\n\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { ApiService } from '../../../api/api.service';\nimport { TasksService } from '../../../middleware/tasks.service';\n\nclass Data {\n  id: number\n  name: string\n  username: string\n  title: string\n  value: number\n  date: string\n  image: string\n  isPayed: boolean\n}\n\n@Component({\n  selector: 'app-home',\n  templateUrl: './home.component.html',\n  styleUrls: ['./home.component.scss']\n})\n\n\nexport class HomeComponent {\n\n  public paymentList\n  public limit = 20\n  public offset = 1\n  public name: string = ''\n  disabled: boolean = true\n  \n  constructor(private apiSevice: ApiService, private taskSevice: TasksService){\n  }\n\n  getApiTasks(limit, offset, name?){\n    this.apiSevice.getTasks(limit, offset, name).subscribe((res) => {\n      this.paymentList = {\n        tableHead: ['Usuário', 'Título', 'Data', 'Valor', 'Pago'],\n        list: this.taskSevice.getAllPayments(res.body),\n        total: res.headers.get('X-Total-Count')\n      }\n    })\n  }\n  \n  ngOnInit(){\n    this.getApiTasks(this.limit, this.offset, this.name)\n  }\n\n  openModal(){\n    this.disabled = false\n  }\n\n\n  addPayment(value){\n    this.disabled = true\n    Object.keys(value).length > 0 && this.taskSevice.mountPostTask(value).subscribe((data: Data) => {\n      alert(`task do ${data.username} adicionado com sucesso`)\n      this.getApiTasks(this.limit, this.offset, this.name)\n    })\n  }\n  \n  onEvent({type, data: body}){\n    type === 'delete' && this.apiSevice.deleteTasks(body).subscribe(() => {\n      alert(`task ${body} deletado com sucesso`)\n      this.getApiTasks(this.limit, this.offset)\n    })\n    type === 'edit' && this.apiSevice.getTasksWithId(parseInt(body.id)).subscribe((data) => {\n      this.apiSevice.editTasks(body.id, {...data[0], isPayed: body.value}).subscribe(() => {\n        this.getApiTasks(this.limit, this.offset, this.name)\n      })\n    })\n\n  }\n\n  trigger(value){\n    this.limit = value?.limit || 20\n    this.offset = value?.offset || 1\n    this.name = value?.search || ''\n\n    Object.keys(value).length > 0 && this.getApiTasks(value.limit, value.offset, value?.search)\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1599,7 +2003,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 15,
+                "line": 29,
                 "jsdoctags": [
                     {
                         "name": "apiSevice",
@@ -1621,11 +2025,11 @@
                     }
                 ]
             },
-            "templateData": "<div class=\"home\">\n  <app-header></app-header>\n  <div class=\"home__content\">\n    <app-title title=\"Meus pagamentos\" size=\"large\"></app-title>\n    <app-button label=\"Adicionar Pagamento\" size=\"large\"></app-button>\n    <div class=\"home__list\">\n      <app-payment-list [dataSource]=\"paymentList\" [limit]=\"limit\" (callback)=\"trigger($event)\"></app-payment-list>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"home\">\n  <app-header></app-header>\n  <div class=\"home__content\">\n    <app-title title=\"Meus pagamentos\" size=\"large\"></app-title>\n    <app-button label=\"Adicionar Pagamento\" size=\"large\" (click)=\"openModal()\"></app-button>\n    <div class=\"home__list\">\n      <app-payment-list [dataSource]=\"paymentList\" [limit]=\"limit\" (callbackEvent)=\"onEvent($event)\" (callback)=\"trigger($event)\"></app-payment-list>\n    </div>\n  </div>\n  <app-modal-payment (callback)=\"addPayment($event)\" [disabled]=\"disabled\"></app-modal-payment>\n</div>\n"
         },
         {
             "name": "IconButtonComponent",
-            "id": "component-IconButtonComponent-53970d63793c777bd772eedb212a5600d133743d8de9d4513b2a41d7d2bd97da8d64084488daf483945f1b0263e191ecc1dc913d699473804e4fd21e0c96c676",
+            "id": "component-IconButtonComponent-392395ba5c4a8b51579856796c9fbb82935b334166c25198f14acc3e6f7b4b643ec156b155618138d4e3c63ff02e6ca7ef3913ca27e43bce9b28b03b79b301d1",
             "file": "src/app/components/atoms/icon-button/icon-button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1661,7 +2065,7 @@
             ],
             "outputsClass": [
                 {
-                    "name": "play",
+                    "name": "callback",
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -1707,7 +2111,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-icon-button',\n  templateUrl: './icon-button.component.html',\n  styleUrls: ['./icon-button.component.scss']\n})\nexport class IconButtonComponent {\n\n  @Input()\n  name: string\n\n  @Input()\n  attrData: string\n\n  @Output() play = new EventEmitter<any>();\n\n  onClick(event) {\n    !!this.play && this.play.emit({event, 'data-id': this.attrData});\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-icon-button',\n  templateUrl: './icon-button.component.html',\n  styleUrls: ['./icon-button.component.scss']\n})\nexport class IconButtonComponent {\n\n  @Input()\n  name: string\n\n  @Input()\n  attrData: string\n\n  @Output() callback = new EventEmitter<any>();\n\n  onClick(event) {\n    !!this.callback && this.callback.emit({event, 'data-id': this.attrData});\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1975,85 +2379,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-7fa6f38c36e42f17f403701b13a26844094ced04c53c2ab9fc78a89d284212a5d1ae5f2bf7a9236df89223e9ff1ad814e12acbd98dfc33a7f4cbe0f1b5bd2cd6",
-            "file": "src/app/components/organisms/login/login.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-login",
-            "styleUrls": [
-                "./login.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./login.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [
-                {
-                    "name": "callback",
-                    "defaultValue": "new EventEmitter<any>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 10,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "onSubmit",
-                    "args": [
-                        {
-                            "name": "value",
-                            "type": "",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 12,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "value",
-                            "type": "",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent {\n\n  @Output() callback = new EventEmitter<any>();\n\n  onSubmit(value) {\n    !!this.callback && this.callback.emit(value)\n  }\n\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".login {\n  &--texts {\n    display: grid;\n    gap: 1.8rem;\n    margin-bottom: 4.2rem;\n  }\n}\n",
-                    "styleUrl": "./login.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "templateData": "<div class=\"login\">\n  <div class=\"login--texts\">\n    <app-logo></app-logo>\n    <app-title size=\"medium\" title=\"Bem vindo de volta\"></app-title>\n  </div>\n  <app-form-login (callback)=\"onSubmit($event)\"></app-form-login>\n</div>\n"
-        },
-        {
-            "name": "LoginComponent",
-            "id": "component-LoginComponent-232c51b1a30eded0a8d1cbdcb966a6d7b2dda2a0de65c11d6a3c0891faa1c44e754d78096c68c353fc59f4ef112fc1f94823c7cabe5394fa251c5bd00346e5d8-1",
+            "id": "component-LoginComponent-232c51b1a30eded0a8d1cbdcb966a6d7b2dda2a0de65c11d6a3c0891faa1c44e754d78096c68c353fc59f4ef112fc1f94823c7cabe5394fa251c5bd00346e5d8",
             "file": "src/app/components/pages/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2154,10 +2480,88 @@
                     }
                 ]
             },
+            "templateData": "<div class=\"page-login\">\n  <div class=\"block block--left\">\n    <div class=\"page-login__login\">\n      <app-login (callback)=\"onLogin($event)\"></app-login>\n    </div>\n  </div>\n  <div class=\"block block--right\">\n    <app-image image=\"assets/images/image-login.png\"></app-image>\n  </div>\n</div>\n"
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-7fa6f38c36e42f17f403701b13a26844094ced04c53c2ab9fc78a89d284212a5d1ae5f2bf7a9236df89223e9ff1ad814e12acbd98dfc33a7f4cbe0f1b5bd2cd6-1",
+            "file": "src/app/components/organisms/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login",
+            "styleUrls": [
+                "./login.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "callback",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onSubmit",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.component.html',\n  styleUrls: ['./login.component.scss']\n})\nexport class LoginComponent {\n\n  @Output() callback = new EventEmitter<any>();\n\n  onSubmit(value) {\n    !!this.callback && this.callback.emit(value)\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".login {\n  &--texts {\n    display: grid;\n    gap: 1.8rem;\n    margin-bottom: 4.2rem;\n  }\n}\n",
+                    "styleUrl": "./login.component.scss"
+                }
+            ],
+            "stylesData": "",
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "LoginComponent-1",
-            "templateData": "<div class=\"page-login\">\n  <div class=\"block block--left\">\n    <div class=\"page-login__login\">\n      <app-login (callback)=\"onLogin($event)\"></app-login>\n    </div>\n  </div>\n  <div class=\"block block--right\">\n    <app-image image=\"assets/images/image-login.png\"></app-image>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"login\">\n  <div class=\"login--texts\">\n    <app-logo></app-logo>\n    <app-title size=\"medium\" title=\"Bem vindo de volta\"></app-title>\n  </div>\n  <app-form-login (callback)=\"onSubmit($event)\"></app-form-login>\n</div>\n"
         },
         {
             "name": "LogoComponent",
@@ -2242,7 +2646,7 @@
         },
         {
             "name": "ModalPaymentComponent",
-            "id": "component-ModalPaymentComponent-369eb25345bae6f4ce75276ffead49821c6a2a04def9fd30918d946c28acaf4c30c58111f3d436af97cb9aca3ec082518087a1bfc6b2a2176c67a6a9d32bb3ae",
+            "id": "component-ModalPaymentComponent-b44f09d70455ac6c8a169d60c3cd752198667b5148ed6c9f60e89c9b84859a7187dbef629b04a652ed5b1ad9ca441b3aa24436785555790682643554ddeb2c3a",
             "file": "src/app/components/organisms/modal-payment/modal-payment.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2258,83 +2662,23 @@
                 "./modal-payment.component.html"
             ],
             "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 12,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-modal-payment',\n  templateUrl: './modal-payment.component.html',\n  styleUrls: ['./modal-payment.component.scss']\n})\nexport class ModalPaymentComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "",
-                    "styleUrl": "./modal-payment.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 8
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<p>modal-payment works!</p>\n"
-        },
-        {
-            "name": "PaymentListComponent",
-            "id": "component-PaymentListComponent-9f2971761a7cf1bccc59523bc423428ad1256af2212555adad4f63279384c96096acb7b7c6d3e7a87a8677934eb4e0e2b95e818046ada4645d63762d7e034bb6",
-            "file": "src/app/components/organisms/payment-list/payment-list.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-payment-list",
-            "styleUrls": [
-                "./payment-list.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./payment-list.component.html"
-            ],
-            "viewProviders": [],
             "inputsClass": [
                 {
-                    "name": "dataSource",
+                    "name": "disabled",
+                    "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 18,
-                    "type": "any",
+                    "line": 16,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
-                    "name": "limit",
+                    "name": "title",
+                    "defaultValue": "'Adicionar pagamento'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 21,
-                    "type": "number",
+                    "line": 13,
+                    "type": "string",
                     "decorators": []
                 }
             ],
@@ -2344,37 +2688,17 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 18,
                     "type": "EventEmitter"
                 }
             ],
             "propertiesClass": [
                 {
-                    "name": "infoPayment",
+                    "name": "formValue",
                     "defaultValue": "{}",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "optional": false,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "inputValue",
-                    "defaultValue": "{}",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "optional": false,
-                    "description": "",
-                    "line": 14
-                },
-                {
-                    "name": "selectList",
-                    "defaultValue": "['5', '10', '20']",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "[]",
                     "optional": false,
                     "description": "",
                     "line": 10
@@ -2382,17 +2706,17 @@
             ],
             "methodsClass": [
                 {
-                    "name": "ngOnInit",
+                    "name": "onClose",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26,
+                    "line": 20,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
                 {
-                    "name": "onChange",
+                    "name": "onKeyUp",
                     "args": [
                         {
                             "name": "value",
@@ -2404,63 +2728,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "value",
-                            "type": "",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "onPagination",
-                    "args": [
-                        {
-                            "name": "value",
-                            "type": "",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 35,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "value",
-                            "type": "",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "onSelected",
-                    "args": [
-                        {
-                            "name": "value",
-                            "type": "",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 30,
+                    "line": 24,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2488,7 +2756,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 28,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2511,16 +2779,298 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-payment-list',\n  templateUrl: './payment-list.component.html',\n  styleUrls: ['./payment-list.component.scss']\n})\nexport class PaymentListComponent {\n\n  selectList = ['5', '10', '20']\n\n  infoPayment = {}\n\n  inputValue: object = {}\n\n\n  @Input()\n  dataSource\n  \n  @Input()\n  limit: number\n  \n  @Output() callback = new EventEmitter<any>();\n  \n  \n  ngOnInit(): void {\n    console.log('dataSource: ', this.dataSource);\n  }\n\n  onSelected(value){\n    this.infoPayment = {...this.infoPayment, limit: value}\n    !!this.callback && this.callback.emit(this.infoPayment)\n  }\n  \n  onPagination(value){\n    this.infoPayment = {...this.infoPayment, offset: value}\n    !!this.callback && this.callback.emit(this.infoPayment)\n  }\n\n  onChange(value){\n    this.inputValue = {...this.inputValue, ...value}\n  }\n\n  onSubmit(event){\n    event.preventDefault()\n    this.callback.emit(this.inputValue)\n  }\n\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-modal-payment',\n  templateUrl: './modal-payment.component.html',\n  styleUrls: ['./modal-payment.component.scss']\n})\nexport class ModalPaymentComponent {\n\n  formValue: object = {}\n\n  @Input()\n  title: string = 'Adicionar pagamento'\n\n  @Input()\n  disabled: boolean = true\n\n  @Output() callback = new EventEmitter<any>();\n\n  onClose(){\n    this.callback.emit()\n  }\n\n  onKeyUp(value){\n    this.formValue = {...this.formValue, ...value}\n  }\n\n  onSubmit(event){\n    event.preventDefault()\n    this.onClose()\n    this.callback.emit(this.formValue)\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".payment-list {\n  width: 100%;\n  background-color: #fff;\n  box-shadow: 0px 0.2rem 0.4rem rgba(4, 38, 82, 0.06);\n  border-radius: 0.8rem;\n  overflow: hidden;\n  &__head {\n    width: 100%;\n    height: 6.4rem;\n    padding: 1.6rem 1.4rem;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    flex-wrap: nowrap;\n  }\n\n  &__form {\n    display: grid;\n    grid-template-columns: 21.5rem auto;\n    gap: 1rem;\n    justify-content: flex-start;\n    align-items: center;\n    flex: 0 1 50%;\n  }\n  &__pagination {\n    display: grid;\n    grid-template-columns: auto 1fr;\n    gap: 1rem;\n    justify-content: flex-end;\n    align-items: center;\n    flex: 1 0 auto;\n  }\n\n  &__table {\n    flex: 0 0 100%;\n    width: 100%;\n  }\n}\n",
+                    "data": ".modal-payment {\n  &__content {\n    padding: 2rem;\n    background-color: #fff;\n    width: 95vw;\n    position: fixed;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    z-index: 3;\n    display: grid;\n    gap: 2rem;\n\n    @media (min-width: 768px) {\n      max-width: 77.7rem;\n      padding: 4rem;\n      gap: 5rem;\n    }\n  }\n\n  &__inputs {\n    display: grid;\n    gap: 1rem;\n    margin-bottom: 3.3rem;\n\n    @media (min-width: 768px) {\n      grid-template-columns: 1fr 1fr;\n      gap: 4rem;\n      margin-bottom: 6.3rem;\n    }\n  }\n\n  &__button {\n    display: grid;\n    flex-wrap: nowrap;\n    justify-items: center;\n    justify-content: flex-end;\n    gap: 1rem;\n\n    @media (min-width: 768px) {\n      grid-template-columns: auto auto;\n      gap: 3rem;\n    }\n  }\n\n  &__overflow {\n    background-color: #00000080;\n    position: fixed;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    z-index: 2;\n  }\n\n  &.disabled {\n    display: none;\n    pointer-events: none;\n  }\n}\n",
+                    "styleUrl": "./modal-payment.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<div class=\"modal-payment\" *ngIf=\"!disabled\">\n  <div  class=\"modal-payment__content\">\n    <app-title size=\"small\" [title]=\"title\"></app-title>\n    <form (submit)=\"onSubmit($event)\">\n      <div class=\"modal-payment__inputs\">\n        <app-input placeholder=\"Usuario*\" (typing)=\"onKeyUp($event)\" id=\"usuario\"></app-input>\n        <app-input placeholder=\"Valor*\" (typing)=\"onKeyUp($event)\" id=\"valor\"></app-input>\n        <app-input placeholder=\"Data*\" (typing)=\"onKeyUp($event)\" id=\"data\"></app-input>\n        <app-input placeholder=\"Titulo*\" (typing)=\"onKeyUp($event)\" id=\"titulo\"></app-input>\n      </div>\n      <div class=\"modal-payment__button\">\n        <app-button [primary]=\"false\" label=\"cancelar\" (click)=\"onClose()\" ></app-button>\n        <app-button label=\"salvar\" type=\"submit\"></app-button>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-payment__overflow\" (click)=\"onClose()\"></div>\n</div>\n"
+        },
+        {
+            "name": "PaymentListComponent",
+            "id": "component-PaymentListComponent-940c47d15f01c3e594251615b7ced6b23e265dfe700d0597723b29b0243defdd7630656e7a2c3a128ea31229ee61683cb46e09fc8fe1ce55f891c83ebf47747e",
+            "file": "src/app/components/organisms/payment-list/payment-list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-payment-list",
+            "styleUrls": [
+                "./payment-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./payment-list.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "dataSource",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "limit",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "callback",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "callbackEvent",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "infoPayment",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "inputValue",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "selectList",
+                    "defaultValue": "['5', '10', '20']",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "delete",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 46,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "edit",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 42,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onChange",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onPagination",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onSelected",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onSubmit",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 50,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n@Component({\n  selector: 'app-payment-list',\n  templateUrl: './payment-list.component.html',\n  styleUrls: ['./payment-list.component.scss']\n})\nexport class PaymentListComponent {\n\n  selectList = ['5', '10', '20']\n\n  infoPayment = {}\n\n  inputValue: object = {}\n  \n  @Input()\n  dataSource\n  \n  @Input()\n  limit: number\n  \n  @Output() callback = new EventEmitter<any>();\n\n  @Output() callbackEvent = new EventEmitter<any>();\n\n  constructor(){}\n\n  onSelected(value){\n    this.infoPayment = {...this.infoPayment, limit: value}\n    this.limit = parseInt(value)\n    !!this.callback && this.callback.emit(this.infoPayment)\n  }\n  \n  onPagination(value){\n    this.infoPayment = {...this.infoPayment, offset: value}\n    !!this.callback && this.callback.emit(this.infoPayment)\n  }\n\n  onChange(value){\n    this.inputValue = {...this.inputValue, ...value}\n  }\n\n  edit(value){\n    !!this.callbackEvent && this.callbackEvent.emit({type: 'edit', data: value })\n  }\n\n  delete(id){\n    !!this.callbackEvent && this.callbackEvent.emit({type: 'delete', data: id })\n  }\n\n  onSubmit(event){\n    event.preventDefault()\n    this.callback.emit(this.inputValue)\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".payment-list {\n  width: 100%;\n  background-color: #fff;\n  box-shadow: 0px 0.2rem 0.4rem rgba(4, 38, 82, 0.06);\n  border-radius: 0.8rem;\n  overflow: hidden;\n  &__head {\n    width: 100%;\n    height: 6.4rem;\n    padding: 1.6rem 1.4rem;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    flex-wrap: nowrap;\n  }\n\n  &__form {\n    display: grid;\n    grid-template-columns: 21.5rem auto;\n    gap: 1rem;\n    justify-content: flex-start;\n    align-items: center;\n    flex: 0 1 50%;\n  }\n  &__pagination {\n    display: grid;\n    grid-template-columns: auto 1fr;\n    gap: 1rem;\n    justify-content: flex-end;\n    align-items: center;\n    flex: 0 0 auto;\n  }\n\n  &__table {\n    flex: 0 0 100%;\n    width: 100%;\n  }\n}\n",
                     "styleUrl": "./payment-list.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"payment-list\">\n  <div class=\"payment-list__head\">\n    <form class=\"payment-list__form\" (submit)=\"onSubmit($event)\">\n      <app-input styleInput=\"search\" placeholder=\"Pesquisar por usuário\" icon=\"search\" (typing)=\"onChange($event)\" id=\"search\"></app-input>\n      <app-button size=\"small\" label=\"filter\" icon=\"tune\" type=\"submit\" [primary]=\"false\"></app-button>\n    </form>\n    <div class=\"payment-list__pagination\">\n      <app-select label=\"Exibir\" id=\"search\" defaultSelected=\"{{limit}}\" [items]=\"selectList\" (callback)=\"onSelected($event)\"></app-select>\n      <app-count-page [list]=\"dataSource?.list\" [limit]=\"limit\" [total]=\"dataSource?.total\" (trigger)=\"onPagination($event)\"></app-count-page>\n    </div>\n  </div>\n  <div class=\"payment-list__table\">\n    <app-table \n    [list]=\"dataSource?.list\"\n    [tableHead]=\"dataSource?.tableHead\"\n    ></app-table>\n  </div>\n</div>"
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 23
+            },
+            "templateData": "<div class=\"payment-list\">\n  <div class=\"payment-list__head\">\n    <form class=\"payment-list__form\" (submit)=\"onSubmit($event)\">\n      <app-input styleInput=\"search\" placeholder=\"Pesquisar por usuário\" icon=\"search\" (typing)=\"onChange($event)\" id=\"search\"></app-input>\n      <app-button size=\"small\" label=\"filter\" icon=\"tune\" type=\"submit\" [primary]=\"false\"></app-button>\n    </form>\n    <div class=\"payment-list__pagination\">\n      <app-select label=\"Exibir\" id=\"search\" defaultSelected=\"{{limit}}\" [items]=\"selectList\" (callback)=\"onSelected($event)\"></app-select>\n      <app-count-page [total]=\"dataSource.total\" [limit]=\"limit\" (trigger)=\"onPagination($event)\"></app-count-page>\n    </div>\n  </div>\n  <div class=\"payment-list__table\">\n    <app-table \n    [list]=\"dataSource?.list\"\n    [tableHead]=\"dataSource?.tableHead\"\n    (callbackEdit)=\"edit($event)\"\n    (callbackDelete)=\"delete($event)\"\n    ></app-table>\n  </div>\n</div>"
         },
         {
             "name": "SelectComponent",
@@ -2653,7 +3203,7 @@
         },
         {
             "name": "TableComponent",
-            "id": "component-TableComponent-1369f2634ac8fa4fac5376fb38eb2bb43d2fa311019fc4196c0d88f39bd626f86454ff195442e679f45a088d3246a18a00fa81ec7995bf64645241bf5b1d538f",
+            "id": "component-TableComponent-d229720cb39860af542c3c2d3b2e716e2d28c5d82fc8fa7e00a5944f43141ab3741a418b985bed4218c808c961b229627055bebd837a6c1edf9d1f2ebeca51fb",
             "file": "src/app/components/molecules/table/table.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2687,7 +3237,38 @@
                     "decorators": []
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "callback",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "callbackDelete",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "callbackEdit",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "listItem",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20
+                }
+            ],
             "propertiesClass": [],
             "methodsClass": [
                 {
@@ -2703,9 +3284,15 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 17,
+                    "line": 20,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "Output",
+                            "stringifiedArguments": ""
+                        }
+                    ],
                     "jsdoctags": [
                         {
                             "name": "items",
@@ -2719,20 +3306,10 @@
                     ]
                 },
                 {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 29,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
                     "name": "onCheck",
                     "args": [
                         {
-                            "name": "values",
+                            "name": "event",
                             "type": "",
                             "deprecated": false,
                             "deprecationMessage": ""
@@ -2741,12 +3318,12 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 25,
+                    "line": 42,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "name": "values",
+                            "name": "event",
                             "type": "",
                             "deprecated": false,
                             "deprecationMessage": "",
@@ -2760,7 +3337,7 @@
                     "name": "onClick",
                     "args": [
                         {
-                            "name": "values",
+                            "name": "event",
                             "type": "",
                             "deprecated": false,
                             "deprecationMessage": ""
@@ -2769,12 +3346,68 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 21,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "name": "values",
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onDelete",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onEdit",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
                             "type": "",
                             "deprecated": false,
                             "deprecationMessage": "",
@@ -2792,7 +3425,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-table',\n  templateUrl: './table.component.html',\n  styleUrls: ['./table.component.scss']\n})\n\nexport class TableComponent {\n\n  @Input()\n  list: object[]\n  \n  @Input()\n  tableHead: string[]\n  \n  listItem(items){\n    return items.items\n  }\n  \n  onClick(values){\n    console.log('>>>>click: ', values);\n  }\n  \n  onCheck(values){\n    console.log('check:<<<< ', values);\n  }\n  \n  ngOnInit(): void {\n\n  }\n\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\n\n@Component({\n  selector: 'app-table',\n  templateUrl: './table.component.html',\n  styleUrls: ['./table.component.scss']\n})\n\nexport class TableComponent {\n\n  @Input()\n  list: object[]\n  \n  @Input()\n  tableHead: string[]\n\n  @Output()\n\n  \n  listItem(items){\n    return items.items\n  }\n  \n  @Output() callback = new EventEmitter<any>();\n\n  @Output() callbackEdit = new EventEmitter<any>();\n\n  @Output() callbackDelete = new EventEmitter<any>();\n\n  onClick(event) {\n    !!this.callback && this.callback.emit(event);\n  }\n\n  onEdit(event) {\n    !!this.callbackEdit && this.callbackEdit.emit(event['data-id']);\n  }\n\n  onDelete(event) {\n    !!this.callbackDelete && this.callbackDelete.emit(event['data-id']);\n  }\n\n  onCheck(event){\n    !!this.callbackEdit && this.callbackEdit.emit(event);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2801,7 +3434,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"table\">\n  <table>\n    <thead class=\"table__head\">\n      <tr class=\"table__title\">\n        <th *ngFor=\"let itemHead of tableHead\">\n          <div class=\"table__title-container\">\n            <span>\n              {{ itemHead }}\n            </span>\n            <span class=\"material-icons table__title-icon\">\n              unfold_more\n            </span>\n          </div>\n        </th>\n      </tr>\n    </thead>\n    <tbody class=\"table__body\">\n      <tr class=\"table__column\" *ngFor=\"let items of list; index as i\">\n        <td class=\"table__row\" *ngFor=\"let item of listItem(items); index as j\">\n          <app-item-list *ngIf=\"item.item !== true && item.item !== false\" item=\"{{ item.item }}\" subItem=\"{{ item.subItem }}\"></app-item-list>\n          <app-checkbox *ngIf=\"item.item === true || item.item === false\" [checked]=\"item.item\" id=\"{{ items.id }}\" (check)=\"onCheck($event)\"></app-checkbox>\n        </td>\n        <td>\n          <div class=\"table__button\">\n            <app-icon-button name=\"edit\" attrData=\"{{ items.id }}\" (play)=\"onClick($event)\"></app-icon-button>\n            <app-icon-button name=\"highlight_off\" attrData=\"{{ items.id }}\" (play)=\"onClick($event)\"></app-icon-button>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+            "templateData": "<div class=\"table\">\n  <table>\n    <thead class=\"table__head\">\n      <tr class=\"table__title\">\n        <th *ngFor=\"let itemHead of tableHead\">\n          <div class=\"table__title-container\">\n            <span>\n              {{ itemHead }}\n            </span>\n            <span class=\"material-icons table__title-icon\">\n              unfold_more\n            </span>\n          </div>\n        </th>\n      </tr>\n    </thead>\n    <tbody class=\"table__body\">\n      <tr class=\"table__column\" *ngFor=\"let items of list; index as i\">\n        <td class=\"table__row\" *ngFor=\"let item of listItem(items); index as j\">\n          <app-item-list *ngIf=\"item.item !== true && item.item !== false\" item=\"{{ item.item }}\" subItem=\"{{ item.subItem }}\"></app-item-list>\n          <app-checkbox *ngIf=\"item.item === true || item.item === false\" [checked]=\"item.item\" id=\"{{ items.id }}\" (check)=\"onCheck($event)\"></app-checkbox>\n        </td>\n        <td>\n          <div class=\"table__button\">\n            <app-icon-button name=\"edit\" attrData=\"{{ items.id }}\" (callback)=\"onEdit($event)\"></app-icon-button>\n            <app-icon-button name=\"highlight_off\" attrData=\"{{ items.id }}\" (callback)=\"onDelete($event)\"></app-icon-button>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
         },
         {
             "name": "TitleComponent",
@@ -2952,13 +3585,13 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-9394ff1bbe8011b15d68f3315aac41dd6ae2139e057ffed7daef4d3327782b995e48ca6d7f52cb4103a4513594eeca51133d06aa5701b370844f0e8d9af3abab",
+            "id": "module-AppRoutingModule-f34f6cb2be25cd8ddc2a040bb049269496d742bfa737bf1ac65966e22fa607c3cfc29966dbeffe09b4dc860774565405ff6b62b7a093d4fedfc0fbe36972b8a0",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\nimport { HomeComponent } from './components/pages/home/home.component';\nimport { LoginComponent } from './components/pages/login/login.component';\nimport { AuthGuard } from './guards/auth.guards';\n\nconst routes: Routes = [\n  { path: 'login', component: LoginComponent\n},\n  { path: '', component: HomeComponent,\n    canActivate: [AuthGuard],\n    canLoad: [AuthGuard]\n  }\n];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\n\nexport class AppRoutingModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\nimport { HomeComponent } from './components/pages/home/home.component';\nimport { LoginComponent } from './components/pages/login/login.component';\nimport { AuthGuard } from './guards/auth.guards';\n\nconst routes: Routes = [\n  { path: 'login', component: LoginComponent,\n  canActivate: [AuthGuard], },\n  { path: '', component: HomeComponent,\n    canActivate: [AuthGuard],\n    canLoad: [AuthGuard]\n  }\n];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\n\nexport class AppRoutingModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -3170,7 +3803,11 @@
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "LoginComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -3250,13 +3887,13 @@
         },
         {
             "name": "OrganismsModule",
-            "id": "module-OrganismsModule-1d21772c65c7bd95efe979387c7684c6aea56844c079c645ba18d9c37996f55fb5739549dec508ae17ade12f3ec31d24c0c84bfc80338d72d47b49de42b21378",
+            "id": "module-OrganismsModule-81ad9ef6a185cde91c2857ac8b68041ad60cd230f7cd86b1004d22f36d38236ca04d8917f35a58877a114ade652298fba47624b84c8090d0341bcf6b015089b6",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/components/organisms/organisms.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LoginComponent } from './login/login.component';\nimport { MoleculesModule } from '../molecules/molecules.module';\nimport { AtomsModule } from '../atoms/atoms.module';\nimport { PaymentListComponent } from './payment-list/payment-list.component';\nimport { ModalPaymentComponent } from './modal-payment/modal-payment.component';\n\n@NgModule({\n  declarations: [LoginComponent, PaymentListComponent, ModalPaymentComponent],\n  exports: [LoginComponent, PaymentListComponent],\n  imports: [\n    CommonModule,\n    AtomsModule,\n    MoleculesModule\n  ]\n})\nexport class OrganismsModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { LoginComponent } from './login/login.component';\nimport { MoleculesModule } from '../molecules/molecules.module';\nimport { AtomsModule } from '../atoms/atoms.module';\nimport { PaymentListComponent } from './payment-list/payment-list.component';\nimport { ModalPaymentComponent } from './modal-payment/modal-payment.component';\n\n@NgModule({\n  declarations: [LoginComponent, PaymentListComponent, ModalPaymentComponent],\n  exports: [LoginComponent, PaymentListComponent, ModalPaymentComponent],\n  imports: [\n    CommonModule,\n    AtomsModule,\n    MoleculesModule\n  ]\n})\nexport class OrganismsModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -3265,9 +3902,6 @@
                 {
                     "type": "declarations",
                     "elements": [
-                        {
-                            "name": "LoginComponent"
-                        },
                         {
                             "name": "ModalPaymentComponent"
                         },
@@ -3291,7 +3925,7 @@
                     "type": "exports",
                     "elements": [
                         {
-                            "name": "LoginComponent"
+                            "name": "ModalPaymentComponent"
                         },
                         {
                             "name": "PaymentListComponent"
@@ -3365,7 +3999,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/item-list/item-list.stories.ts",
+                "file": "src/app/components/atoms/logo/logo.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -3375,7 +4009,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/logo/logo.stories.ts",
+                "file": "src/app/components/atoms/item-list/item-list.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -3425,7 +4059,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/molecules/header/header.stories.ts",
+                "file": "src/app/components/molecules/table/table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -3435,7 +4069,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/molecules/table/table.stories.ts",
+                "file": "src/app/components/molecules/header/header.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -3456,6 +4090,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/components/organisms/payment-list/payment-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/organisms/modal-payment/modal-payment.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -3485,21 +4129,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: true\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/environments/environment.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
             },
             {
                 "name": "Icon",
@@ -3536,6 +4180,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/components/molecules/count-page/count-page.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Mobile",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/organisms/modal-payment/modal-payment.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -3604,21 +4258,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/checkbox/checkbox.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<CheckboxComponent>",
-                "defaultValue": "(args: CheckboxComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/atoms/icon-button/icon-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<IconButtonComponent>",
                 "defaultValue": "(args: IconButtonComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/checkbox/checkbox.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CheckboxComponent>",
+                "defaultValue": "(args: CheckboxComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -3644,21 +4298,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atoms/item-list/item-list.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ItemListComponent>",
-                "defaultValue": "(args: ItemListComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/atoms/logo/logo.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<LogoComponent>",
                 "defaultValue": "(args: LogoComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atoms/item-list/item-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ItemListComponent>",
+                "defaultValue": "(args: ItemListComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -3704,21 +4358,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/molecules/header/header.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<HeaderComponent>",
-                "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/components/molecules/table/table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TableComponent>",
                 "defaultValue": "(args: TableComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/molecules/header/header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<HeaderComponent>",
+                "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -3739,6 +4393,16 @@
                 "deprecationMessage": "",
                 "type": "Story<PaymentListComponent>",
                 "defaultValue": "(args: PaymentListComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/organisms/modal-payment/modal-payment.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ModalPaymentComponent>",
+                "defaultValue": "(args: ModalPaymentComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "White",
@@ -3862,38 +4526,6 @@
                     "defaultValue": "(args: InputComponent) => ({\n  props: args,\n})"
                 }
             ],
-            "src/app/components/atoms/item-list/item-list.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atoms/item-list/item-list.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "SubItem",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atoms/item-list/item-list.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atoms/item-list/item-list.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<ItemListComponent>",
-                    "defaultValue": "(args: ItemListComponent) => ({\n  props: args,\n})"
-                }
-            ],
             "src/app/components/atoms/logo/logo.stories.ts": [
                 {
                     "name": "Default",
@@ -3924,6 +4556,38 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                }
+            ],
+            "src/app/components/atoms/item-list/item-list.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/item-list/item-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "SubItem",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/item-list/item-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atoms/item-list/item-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ItemListComponent>",
+                    "defaultValue": "(args: ItemListComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/app/components/atoms/select/select.stories.ts": [
@@ -4034,28 +4698,6 @@
                     "defaultValue": "(args: FormLoginComponent) => ({\n  props: args,\n})"
                 }
             ],
-            "src/app/components/molecules/header/header.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/molecules/header/header.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/molecules/header/header.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<HeaderComponent>",
-                    "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
-                }
-            ],
             "src/app/components/molecules/table/table.stories.ts": [
                 {
                     "name": "Default",
@@ -4086,6 +4728,28 @@
                     "deprecationMessage": "",
                     "type": "Story<TableComponent>",
                     "defaultValue": "(args: TableComponent) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/molecules/header/header.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/molecules/header/header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/molecules/header/header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<HeaderComponent>",
+                    "defaultValue": "(args: HeaderComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/app/components/organisms/login/login.stories.ts": [
@@ -4132,6 +4796,38 @@
                     "defaultValue": "(args: PaymentListComponent) => ({\n  props: args,\n})"
                 }
             ],
+            "src/app/components/organisms/modal-payment/modal-payment.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/organisms/modal-payment/modal-payment.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Mobile",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/organisms/modal-payment/modal-payment.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/organisms/modal-payment/modal-payment.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ModalPaymentComponent>",
+                    "defaultValue": "(args: ModalPaymentComponent) => ({\n  props: args,\n})"
+                }
+            ],
             "src/app/components/atoms/icon-button/icon-button.stories.ts": [
                 {
                     "name": "Delete",
@@ -4164,18 +4860,6 @@
                     "defaultValue": "(args: IconButtonComponent) => ({\n  props: args,\n})"
                 }
             ],
-            "src/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: true\n}"
-                }
-            ],
             "src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -4186,6 +4870,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
                 }
             ],
             "src/app/components/atoms/button/button.stories.ts": [
@@ -4247,7 +4943,10 @@
                 "children": [
                     {
                         "path": "login",
-                        "component": "LoginComponent"
+                        "component": "LoginComponent",
+                        "canActivate": [
+                            "AuthGuard"
+                        ]
                     },
                     {
                         "path": "",
@@ -4292,7 +4991,7 @@
                 "linktype": "injectable",
                 "name": "ApiService",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -4641,7 +5340,7 @@
                 "linktype": "component",
                 "name": "CountPageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/11",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -4748,7 +5447,7 @@
                 "linktype": "component",
                 "name": "TableComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/12",
                 "status": "low"
             },
             {
@@ -4816,7 +5515,37 @@
                 "linktype": "component",
                 "name": "ModalPaymentComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/organisms/modal-payment/modal-payment.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/organisms/modal-payment/modal-payment.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Mobile",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/organisms/modal-payment/modal-payment.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -4825,7 +5554,7 @@
                 "linktype": "component",
                 "name": "PaymentListComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/12",
+                "coverageCount": "0/15",
                 "status": "low"
             },
             {
@@ -4854,6 +5583,15 @@
                 "linktype": "component",
                 "name": "HomeComponent",
                 "coveragePercent": 0,
+                "coverageCount": "0/13",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/pages/home/home.component.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "Data",
+                "coveragePercent": 0,
                 "coverageCount": "0/9",
                 "status": "low"
             },
@@ -4881,7 +5619,7 @@
                 "linktype": "injectable",
                 "name": "TasksService",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {

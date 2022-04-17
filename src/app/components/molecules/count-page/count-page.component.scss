@@ -1,6 +1,5 @@
 .count-page {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
 
@@ -16,6 +15,10 @@
     padding: 0.4rem 0.8rem;
     margin: 0.4rem;
     cursor: pointer;
+
+    &[data-disabled="true"] {
+      display: none;
+    }
 
     &--selected {
       background-color: #007dfe;

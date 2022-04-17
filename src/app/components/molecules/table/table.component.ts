@@ -13,9 +13,6 @@ export class TableComponent {
   
   @Input()
   tableHead: string[]
-
-  @Output()
-
   
   listItem(items){
     return items.items

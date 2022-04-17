@@ -23,8 +23,8 @@ class Data {
 export class HomeComponent {
 
   public paymentList
-  public limit = 10
-  public offset = 0
+  public limit = 5
+  public offset = 1
   public name: string = ''
   disabled: boolean = true
   
@@ -54,7 +54,7 @@ export class HomeComponent {
     this.disabled = true
     Object.keys(value).length > 0 && this.taskSevice.mountPostTask(value).subscribe((data: Data) => {
       alert(`task do ${data.username} adicionado com sucesso`)
-      this.getApiTasks(this.limit, this.offset)
+      this.getApiTasks(this.limit, this.offset, this.name)
     })
   }
   
@@ -64,16 +64,16 @@ export class HomeComponent {
       this.getApiTasks(this.limit, this.offset)
     })
     type === 'edit' && this.apiSevice.getTasksWithId(parseInt(body.id)).subscribe((data) => {
-      this.apiSevice.editTasks(body.id, {...data[0], isPayed: body.value}).subscribe((data) => {
-        this.getApiTasks(this.limit, this.offset)
+      this.apiSevice.editTasks(body.id, {...data[0], isPayed: body.value}).subscribe(() => {
+        this.getApiTasks(this.limit, this.offset, this.name)
       })
     })
 
   }
 
   trigger(value){
-    this.limit = value?.limit || 10
-    this.offset = value?.offset || 0
+    this.limit = value?.limit || 5
+    this.offset = value?.offset || 1
     this.name = value?.search || ''
 
     Object.keys(value).length > 0 && this.getApiTasks(value.limit, value.offset, value?.search)

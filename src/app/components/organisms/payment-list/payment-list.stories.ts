@@ -30,6 +30,7 @@ const Template: Story<PaymentListComponent> = (args: PaymentListComponent) => ({
 
 export const Default = Template.bind({});
 Default.args = {
+  limit: 10,
   dataSource: {
     list: [
       {
@@ -63,7 +64,8 @@ Default.args = {
         ]
       }
     ],
-    tableHead: ['Usuário', 'Título', 'Data', 'Valor', 'Pago']
+    tableHead: ['Usuário', 'Título', 'Data', 'Valor', 'Pago'],
+    total: 170
   }
 }
 

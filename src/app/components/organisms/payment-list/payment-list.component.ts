@@ -26,6 +26,7 @@ export class PaymentListComponent {
 
   onSelected(value){
     this.infoPayment = {...this.infoPayment, limit: value}
+    this.limit = parseInt(value)
     !!this.callback && this.callback.emit(this.infoPayment)
   }
   

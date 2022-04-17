@@ -6,7 +6,7 @@
     </form>
     <div class="payment-list__pagination">
       <app-select label="Exibir" id="search" defaultSelected="{{limit}}" [items]="selectList" (callback)="onSelected($event)"></app-select>
-      <app-count-page [list]="dataSource?.list" [limit]="limit" [total]="dataSource?.total" (trigger)="onPagination($event)"></app-count-page>
+      <app-count-page [total]="dataSource?.total" [limit]="limit" (trigger)="onPagination($event)"></app-count-page>
     </div>
   </div>
   <div class="payment-list__table">
