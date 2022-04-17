@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-import { Payment } from "../models/payment-model";
-import { mockData } from "../mocks/mock-list";
+import { Payment } from "../../models/payment-model";
+import { mockData } from "../../mocks/mock-list";
 
 @Injectable({
   providedIn: "root",

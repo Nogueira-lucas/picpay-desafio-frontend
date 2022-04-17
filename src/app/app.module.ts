@@ -12,6 +12,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -49,6 +50,7 @@ import { PaymentModalComponent } from "./components/payment-modal/payment-modal.
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],

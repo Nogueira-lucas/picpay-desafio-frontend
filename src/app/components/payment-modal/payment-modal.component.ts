@@ -1,7 +1,10 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, ViewChild } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Payment } from "@src/app/models/payment-model";
-import { PaymentsService } from "@src/app/services/payments.service";
+import { EventsService } from "@src/app/services/events/events.service";
+import { PaymentsService } from "@src/app/services/payments/payments.service";
+import { SnackBarService } from "@src/app/services/snackbar/snackbar.service";
+import { TableComponent } from "../table/table.component";
 
 export interface ModalData {
   title: "Adicionar" | "Editar" | "Excluir";
@@ -15,10 +18,15 @@ export interface ModalData {
   styleUrls: ["./payment-modal.component.scss"],
 })
 export class PaymentModalComponent implements OnInit {
+  @ViewChild("app-table", { static: false })
   date: Date;
+  table: TableComponent;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ModalData,
     private paymentsService: PaymentsService,
+    private snackBService: SnackBarService,
+    private eventsService: EventsService,
     private dialogRef: MatDialogRef<PaymentModalComponent>
   ) {
     if (this.data.payment?.date != null) {
@@ -54,6 +62,10 @@ export class PaymentModalComponent implements OnInit {
     return `${day} ${month} ${year}`;
   }
 
+  sendEvent(message: string): void {
+    this.eventsService.sendEvent(message);
+  }
+
   dateToIso(date: string) {
     return new Date(date).toISOString();
   }
@@ -62,6 +74,8 @@ export class PaymentModalComponent implements OnInit {
     payment.date = this.dateToIso(payment.date);
     this.paymentsService.updatePayment(payment).subscribe(() => {
       this.closeDialog();
+      this.snackBService.openSnackBar("Pagamento Atualizado", "Fechar", 3000);
+      this.sendEvent("refreshTable");
     });
   }
 
@@ -69,12 +83,16 @@ export class PaymentModalComponent implements OnInit {
     payment.date = this.dateToIso(payment.date);
     this.paymentsService.createPayment(payment).subscribe(() => {
       this.closeDialog();
+      this.snackBService.openSnackBar("Pagamento Criado", "Fechar", 3000);
+      this.sendEvent("refreshTable");
     });
   }
 
   deletePayment(payment: Payment) {
     this.paymentsService.deletePayment(payment).subscribe(() => {
       this.closeDialog();
+      this.snackBService.openSnackBar("Pagamento Removido", "Fechar", 3000);
+      this.sendEvent("refreshTable");
     });
   }
 }

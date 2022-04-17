@@ -4,6 +4,8 @@
       <input
         matInput
         (keyup)="applyFilter($event)"
+        [(ngModel)]="filter"
+        #ctrl="ngModel"
         placeholder="Pesquisar por usuário"
         #input
       />

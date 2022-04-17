@@ -5,7 +5,9 @@ import { MatSort } from "@angular/material/sort";
 import { MatTable, MatTableDataSource } from "@angular/material/table";
 import { Payment } from "@src/app/models/payment-model";
 import { PaymentModalComponent } from "../payment-modal/payment-modal.component";
-import { PaymentsService } from "@src/app/services/payments.service";
+import { PaymentsService } from "@src/app/services/payments/payments.service";
+import { Subscription } from "rxjs";
+import { EventsService } from "@src/app/services/events/events.service";
 
 @Component({
   selector: "app-table",
@@ -13,6 +15,7 @@ import { PaymentsService } from "@src/app/services/payments.service";
   styleUrls: ["./table.component.scss"],
 })
 export class TableComponent implements OnInit {
+  private eventSubscription: Subscription;
   displayedColumns: string[] = [
     "name",
     "title",
@@ -25,6 +28,8 @@ export class TableComponent implements OnInit {
   payments: Payment[];
   selectedPayment: Payment;
   isLoading: Boolean = true;
+  eventReceived: string;
+  filter: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -32,15 +37,27 @@ export class TableComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private paymentsService: PaymentsService
-  ) {}
+    private paymentsService: PaymentsService,
+    private eventsService: EventsService
+  ) {
+    this.eventSubscription = this.eventsService
+      .getEvent()
+      .subscribe((message) => {
+        this.consumeEvent(message);
+      });
+  }
 
   ngOnInit(): void {
     this.getPayments();
   }
 
+  ngOnDestroy() {
+    this.eventSubscription.unsubscribe();
+  }
+
   getPayments(): void {
-    //this.isLoading = true;
+    console.log("hey");
+    this.isLoading = true;
     this.paymentsService.getPayments().subscribe((payments) => {
       this.payments = payments;
       this.dataSource = new MatTableDataSource(this.payments);
@@ -101,12 +118,21 @@ export class TableComponent implements OnInit {
       this.selectedPayment = payment;
       dialogConfig.data.payment = this.selectedPayment;
 
-      this.dialog
-        .open(PaymentModalComponent, dialogConfig)
-        .afterClosed()
-        .subscribe(() => {
-          this.getPayments();
-        });
+      this.dialog.open(PaymentModalComponent, dialogConfig);
     });
+  }
+
+  refreshTable() {
+    this.dataSource.filter = "";
+    this.filter = "";
+    this.getPayments();
+  }
+
+  consumeEvent(event: string) {
+    const Events = {
+      refreshTable: this.refreshTable(),
+    };
+
+    return Events[event];
   }
 }
