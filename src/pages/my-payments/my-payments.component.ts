@@ -14,8 +14,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class MyPaymentsComponent implements OnInit {
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   isLoading: boolean = true;
   displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions'];
@@ -25,20 +24,21 @@ export class MyPaymentsComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private authService: AuthService
-  ) { }
-
+  ) { 
+  }
+  
   ngOnInit(): void {
     this.listTasksWithPagination()
+    //this.listTasks()
+    //this.paginator._intl.itemsPerPageLabel = "Itens por página";
   }
 
   listTasks(){
     this.isLoading = true;
     this.taskDataSource = []
     this.taskService.listAllTasks().subscribe((response: Task[]) => {
-      console.log(response)
       this.taskDataSource = new MatTableDataSource(response)
       this.taskDataSource.paginator = this.paginator
-      this.taskDataSource.sort = this.sort
       this.errorTaskData = false
       
       this.isLoading = false
@@ -48,17 +48,27 @@ export class MyPaymentsComponent implements OnInit {
     })
   }
 
-  listTasksWithPagination(){
-    const params = {
-      "page": 2,
-      "limit": 5
+  listTasksWithPagination(event?: any){
+    this.isLoading = true;
+    
+    let params = {}
+
+    if(!event){
+      params = {
+        "page": 1,
+        "limit": 5
+      }
+    } else {
+      params = {
+        "page": event.pageIndex,
+        "limit": event.pageSize
+      }
+
     }
     
     this.taskService.listTasksWithPagination(params).subscribe((response: Task[]) => {
-      console.log(response)
       this.taskDataSource = new MatTableDataSource(response)
       this.taskDataSource.paginator = this.paginator
-      this.taskDataSource.sort = this.sort
       this.errorTaskData = false
       this.isLoading = false
     }, error => {
@@ -95,6 +105,15 @@ export class MyPaymentsComponent implements OnInit {
 
   search(event){
 
+  }
+
+  onPaginateChange(event) {
+    debugger
+    this.listTasksWithPagination()
+    /* if (pageIndex !== event.pageIndex) {
+      console.log(event.pageIndex);
+      pageIndex = event.pageIndex;
+    } */
   }
 }
 

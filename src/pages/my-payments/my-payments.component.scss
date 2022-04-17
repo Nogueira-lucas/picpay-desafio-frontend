@@ -1,6 +1,5 @@
 @import "../../styles.scss";
-::ng-deep .mat-checkbox-checked .mat-checkbox-background, 
-.mat-checkbox-indeterminate .mat-checkbox-background {
+::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
   background-color: $color-primary-lighter !important;
 }
 
@@ -8,13 +7,111 @@
   background-color: $color-primary-lighter !important;
 }
 
-.page-content {
-    padding: 16px;
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-can-float .mat-form-field-should-float .mat-form-field-label {
+  transform: translateY(-1.1em) scale(0.75);
+  width: 133.33333%;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { 
+  padding: 0.4em 0px !important;
+}
+::ng-deep .mat-form-field-label-wrapper { 
+  top: -1.5em; 
+}
+
+.page-container{
+  background: $color-secondary-light;
+  height: 100%;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+.table-container {
+  overflow: auto;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+  0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  max-width: 100vw;
+  
+  .mat-header-cell {
+    color: $color-primary-darkest;
+    font-size: 16px;
+    font-weight: 600 !important;
+  }
+  
+  th, td {
+    overflow: hidden;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .mat-column-actions {
+    width: 108px;
+    text-align: center;
+    
+    >div {
+      display: flex;
+      justify-content: center;
+    }
+    
+    p {
+      padding-left: 28px;
+    }
+    
+    mat-icon {
+      color: $color-primary-darkest;
+      border-radius: 24px;
+      transition: all 0.3s ease;
+      font-size: 24px;
+      
+      &:first-child {
+        margin-right: 1px;
+      }
+      
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+.search-btn-container {
+  width: 320px;
+  max-width: 100%;
+  padding-left: 24px;
+  padding-top: 15px;
+
+  mat-form-field {
+      width: 100%;
+
+      .mat-form-field-wrapper {
+          padding: 8px;
+      }
+  }
+}
+
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+.add-btn-container{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
 
 .add-task-btn{
   display: block;
   height: 40px;
+  width: 250px;
   line-height: 20px;
   background: $color-primary-lighter;
   color: #fff;
