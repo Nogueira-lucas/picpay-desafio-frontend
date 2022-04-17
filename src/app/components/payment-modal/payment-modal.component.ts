@@ -5,6 +5,7 @@ import { EventsService } from "@src/app/services/events/events.service";
 import { PaymentsService } from "@src/app/services/payments/payments.service";
 import { SnackBarService } from "@src/app/services/snackbar/snackbar.service";
 import { TableComponent } from "../table/table.component";
+import { DateAdapter, MAT_DATE_LOCALE } from "@angular/material/core";
 
 export interface ModalData {
   title: "Adicionar" | "Editar" | "Excluir";
@@ -16,6 +17,7 @@ export interface ModalData {
   selector: "app-payment-modal",
   templateUrl: "./payment-modal.component.html",
   styleUrls: ["./payment-modal.component.scss"],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: "fr" }],
 })
 export class PaymentModalComponent implements OnInit {
   @ViewChild("app-table", { static: false })
@@ -24,14 +26,15 @@ export class PaymentModalComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ModalData,
+    @Inject(MAT_DATE_LOCALE) private _locale: string,
+    private _adapter: DateAdapter<any>,
     private paymentsService: PaymentsService,
     private snackBService: SnackBarService,
     private eventsService: EventsService,
     private dialogRef: MatDialogRef<PaymentModalComponent>
   ) {
-    if (this.data.payment?.date != null) {
-      this.date = new Date(data.payment.date);
-    }
+    this._locale = "pt-BR";
+    this._adapter.setLocale(this._locale);
   }
 
   ngOnInit(): void {

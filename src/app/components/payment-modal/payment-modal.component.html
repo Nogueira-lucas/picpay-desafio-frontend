@@ -40,10 +40,12 @@
             <mat-label>Data*</mat-label>
             <input
               matInput
+              (focus)="picker.open()"
               [matDatepicker]="picker"
               name="date"
               [(ngModel)]="data.payment.date"
             />
+            <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle
               matSuffix
               [for]="picker"
@@ -63,6 +65,16 @@
         </div>
 
         <div class="paymentModal-form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              placeholder="Username"
+              [(ngModel)]="data.payment.username"
+              name="username"
+            />
+          </mat-form-field>
+
           <mat-checkbox name="isPayed" [(ngModel)]="data.payment.isPayed"
             >Pago?</mat-checkbox
           >
