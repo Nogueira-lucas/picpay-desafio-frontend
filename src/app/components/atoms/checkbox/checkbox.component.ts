@@ -21,7 +21,7 @@ export class CheckboxComponent {
   onClick(event: KeyboardEvent){
     const target = (<HTMLInputElement>event.target)
     this.checked = target.checked
-    !!this.check && this.check.emit(target.checked);
+    !!this.check && this.check.emit({id: this.id, value: target.checked});
   }
   
   public get classes(): string[] {

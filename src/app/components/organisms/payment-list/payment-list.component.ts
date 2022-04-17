@@ -39,11 +39,11 @@ export class PaymentListComponent {
   }
 
   edit(value){
-    console.log('Edit: ', value);
+    !!this.callbackEvent && this.callbackEvent.emit({type: 'edit', data: value })
   }
 
   delete(id){
-    !!this.callbackEvent && this.callbackEvent.emit({type: 'delete', id })
+    !!this.callbackEvent && this.callbackEvent.emit({type: 'delete', data: id })
   }
 
   onSubmit(event){

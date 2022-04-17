@@ -58,12 +58,16 @@ export class HomeComponent {
     })
   }
   
-  onEvent({type, id}){
-    type === 'delete' && this.apiSevice.deleteTasks(id).subscribe(() => {
-      alert(`task ${id} deletado com sucesso`)
+  onEvent({type, data: body}){
+    type === 'delete' && this.apiSevice.deleteTasks(body).subscribe(() => {
+      alert(`task ${body} deletado com sucesso`)
       this.getApiTasks(this.limit, this.offset)
     })
-    // type === 'edit' && this.apiSevice.deleteTasks(id)
+    type === 'edit' && this.apiSevice.getTasksWithId(parseInt(body.id)).subscribe((data) => {
+      this.apiSevice.editTasks(body.id, {...data[0], isPayed: body.value}).subscribe((data) => {
+        this.getApiTasks(this.limit, this.offset)
+      })
+    })
 
   }
 

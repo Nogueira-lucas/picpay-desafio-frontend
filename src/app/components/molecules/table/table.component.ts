@@ -39,13 +39,8 @@ export class TableComponent {
     !!this.callbackDelete && this.callbackDelete.emit(event['data-id']);
   }
 
-  
-  onCheck(values){
-    console.log('check:<<<< ', values);
-  }
-  
-  ngOnInit(): void {
-
+  onCheck(event){
+    !!this.callbackEdit && this.callbackEdit.emit(event);
   }
 
 }
