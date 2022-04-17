@@ -4,8 +4,8 @@ import { TaskService } from 'src/services/task.service';
 import * as moment from 'moment';
 import { AuthService } from 'src/services/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
-/* import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort'; */
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-my-payments',
@@ -14,8 +14,8 @@ import { MatSort } from '@angular/material/sort'; */
 })
 export class MyPaymentsComponent implements OnInit {
 
-  @ViewChild(MatPaginator, { static: false }) paginator: typeof MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: typeof MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
 
   isLoading: boolean = true;
   displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions'];
@@ -93,12 +93,10 @@ export class MyPaymentsComponent implements OnInit {
     this.authService.logout()
   }
 
+  search(event){
+
+  }
 }
 
-function MatPaginator(MatPaginator: any, arg1: { static: boolean; }) {
-  throw new Error('Function not implemented.');
-}
-function MatSort(MatSort: any, arg1: { static: false; }) {
-  throw new Error('Function not implemented.');
-}
+
 

@@ -1,4 +1,13 @@
 @import "../../styles.scss";
+::ng-deep .mat-checkbox-checked .mat-checkbox-background, 
+.mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color: $color-primary-lighter !important;
+}
+
+::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+  background-color: $color-primary-lighter !important;
+}
+
 .page-content {
     padding: 16px;
 }
@@ -19,11 +28,18 @@
   }
 }
 
-::ng-deep .mat-checkbox-checked .mat-checkbox-background, 
-.mat-checkbox-indeterminate .mat-checkbox-background {
-  background-color: $color-primary-lighter !important;
+
+.message-empty-table {
+  padding: 32px 16px;
+  text-align: center;
+  color: rgba($color: $color-primary-darker, $alpha: 0.4);
+  filter: brightness(130%);
+  font-weight: bold;
 }
 
-::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
-  background-color: $color-primary-lighter !important;
+.message-error-table-data {
+  padding: 32px 16px;
+  text-align: center;
+  color: rgba($color: #f00, $alpha: 0.6);
+  font-weight: bold;
 }

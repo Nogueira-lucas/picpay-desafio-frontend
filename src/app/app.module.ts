@@ -22,6 +22,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms'
+
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatDialogModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

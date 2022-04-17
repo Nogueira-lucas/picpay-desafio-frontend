@@ -11,11 +11,15 @@
 
 <div class="page-content">
     <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Usuário</mat-label>
-            <input matInput placeholder="Ex. ium">
-        </mat-form-field>
-        <mat-paginator #MatPaginator  [pageSize]="5" [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+        <div class="form-control filter-list-container">
+            <mat-form-field appearance="outline">
+                <mat-label>Pesquisar</mat-label>
+                <input matInput (keyup)="search($event)" placeholder="Pesquisar">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+        
+        <mat-paginator #MatPaginator  [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20, 25]" showFirstLastButtons></mat-paginator>
     </div>
     <table mat-table [dataSource]="taskDataSource" matSort>
         <ng-container matColumnDef="user">
@@ -67,7 +71,6 @@
     <p class="message-error-table-data" *ngIf="!isLoading && errorTaskData">
         Erro ao carregar dados.
     </p>
-    
     <div *ngIf="isLoading" class="loading-page-container">
         <mat-spinner color="light" diameter="75"></mat-spinner>
     </div>
