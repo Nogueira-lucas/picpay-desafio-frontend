@@ -1,11 +1,14 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { AccountService } from "../_services/account.service";
+import { AccountService } from "../../_services/account.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from 'rxjs/operators';
 import { Subscription } from "rxjs";
 
-@Component({ templateUrl: 'login.component.html' })
+@Component({
+    templateUrl: 'login.component.html',
+    styleUrls: ['./login.component.scss']
+})
 export class LoginComponent implements OnInit, OnDestroy {
 
     loginForm: FormGroup;

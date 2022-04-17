@@ -1,0 +1,29 @@
+<div class="login">
+
+    <div class="form-container">
+        <div class="form-content">
+
+            <img src="../../assets/login/Logo.png" alt="Homem pagando contas online">
+
+            <h1>Bem-vindo de volta</h1>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div>
+                    <label for="email">E-mail</label>
+                    <input type="email" formControlName="email" />
+                </div>
+
+                <div>
+                    <label for="password">Senha</label>
+                    <input type="password" formControlName="password" />
+                </div>
+
+                <button [disabled]="loading">Entrar</button>
+            </form>
+
+        </div>
+    </div>
+
+    <img src="../../assets/login/man-doing-online-payment.png" alt="Homem pagando contas online">
+
+</div>
