@@ -1,6 +1,9 @@
 <div class="myPayments">
   <app-navbar></app-navbar>
-  <div class="myPayments-header">
+  <div
+    class="myPayments-header"
+    [ngClass]="{ 'is-flex-direction': flexDirectionColumn }"
+  >
     <h1>Meus Pagamentos</h1>
     <button (click)="openDialog('Adicionar')">Adicionar Pagamento</button>
   </div>

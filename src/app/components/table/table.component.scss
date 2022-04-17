@@ -4,7 +4,7 @@ table {
   width: 100%;
   border-radius: 8px;
   background: var(--white);
-  overflow: hidden !important;
+  overflow: auto;
 
   &-header {
     display: flex;
@@ -44,6 +44,7 @@ table {
 
   td.mat-cell {
     border: none;
+    padding: 5px;
   }
 
   tr {

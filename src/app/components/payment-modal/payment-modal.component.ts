@@ -7,6 +7,7 @@ import { SnackBarService } from "@src/app/services/snackbar/snackbar.service";
 import { TableComponent } from "../table/table.component";
 import { DateAdapter, MAT_DATE_LOCALE } from "@angular/material/core";
 import { throwError } from "rxjs";
+import { BreakpointObserver } from "@angular/cdk/layout";
 
 export interface ModalData {
   title: "Adicionar" | "Editar" | "Excluir";
@@ -24,6 +25,8 @@ export class PaymentModalComponent implements OnInit {
   @ViewChild("app-table", { static: false })
   date: Date;
   table: TableComponent;
+  flexDirectionColumn: Boolean = false;
+  columnBreakpoint: string = "(min-width: 605px)";
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ModalData,
@@ -32,6 +35,7 @@ export class PaymentModalComponent implements OnInit {
     private paymentsService: PaymentsService,
     private snackBService: SnackBarService,
     private eventsService: EventsService,
+    public breakpointObserver: BreakpointObserver,
     private dialogRef: MatDialogRef<PaymentModalComponent>
   ) {
     this._locale = "pt-BR";
@@ -42,6 +46,17 @@ export class PaymentModalComponent implements OnInit {
     if (this.data.title === "Adicionar") {
       this.data.payment = new Payment();
     }
+
+    this.breakpointObserver
+      .observe([this.columnBreakpoint])
+
+      .subscribe((result) => {
+        if (!result.breakpoints[this.columnBreakpoint]) {
+          this.flexDirectionColumn = true;
+        } else {
+          this.flexDirectionColumn = false;
+        }
+      });
   }
 
   closeDialog() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import { BreakpointObserver } from "@angular/cdk/layout";
 
 @Component({
   selector: "app-login-page",
@@ -26,9 +26,3 @@ export class LoginPageComponent implements OnInit {
       });
   }
 }
-
-// XSmall (max-width: 599.98px)
-// Small (min-width: 600px) and (max-width: 959.98px)
-// Medium (min-width: 960px) and (max-width: 1279.98px)
-// Large (min-width: 1280px) and (max-width: 1919.98px)
-// XLarge (min-width: 1920px)

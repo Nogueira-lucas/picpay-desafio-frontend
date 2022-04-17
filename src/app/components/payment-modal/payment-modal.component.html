@@ -1,6 +1,7 @@
 <div
   class="paymentModal"
   [ngClass]="data.title === 'Excluir' ? 'isDelete' : ''"
+  [ngClass]="{ 'is-flex-direction': flexDirectionColumn }"
 >
   <h1 mat-dialog-title>{{ data.title }} pagamento</h1>
   <div mat-dialog-content>

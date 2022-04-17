@@ -12,6 +12,13 @@
     padding: 0 50px;
     align-items: self-end;
 
+    &.is-flex-direction {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
     h1 {
       font-family: "Montserrat";
       font-weight: 600;

@@ -33,7 +33,10 @@
       gap: 40px;
 
       mat-form-field {
-        width: 325px;
+        flex-grow: 1;
+        flex-basis: 0;
+        min-width: 0;
+        max-width: 200px;
       }
     }
     &-buttonsWrapper {
@@ -51,6 +54,22 @@
 
       &-submit {
         @include button(var(--primaryBlue), var(--white));
+      }
+    }
+  }
+
+  &.is-flex-direction {
+    .mat-dialog-title {
+      margin-bottom: 10px;
+    }
+
+    .paymentModal-form {
+      gap: 5px;
+      align-items: center;
+
+      &-row {
+        flex-direction: column;
+        gap: 0;
       }
     }
   }
