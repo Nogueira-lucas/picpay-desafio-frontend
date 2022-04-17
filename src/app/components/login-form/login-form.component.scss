@@ -42,6 +42,11 @@
 
     button {
       @include button(var(--primaryBlue), var(--white));
+
+      &[disabled] {
+        background: var(--bluishGray);
+        cursor: not-allowed;
+      }
     }
   }
 }

@@ -4,20 +4,33 @@
   </h2>
   <h1 class="login-form-subtitle">Bem vindo de volta</h1>
 
-  <form>
+  <form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="Email" />
+      <input
+        matInput
+        placeholder="Email"
+        [(ngModel)]="user.email"
+        name="email"
+      />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Senha</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" />
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        placeholder="Senha"
+        [(ngModel)]="user.password"
+        name="password"
+      />
       <mat-icon matSuffix (click)="hide = !hide">{{
         hide ? "visibility_off" : "visibility"
       }}</mat-icon>
     </mat-form-field>
 
-    <button type="submit">Entrar</button>
+    <button type="submit" [disabled]="!user.password || !user.email">
+      Entrar
+    </button>
   </form>
 </div>
