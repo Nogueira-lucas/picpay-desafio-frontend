@@ -1,5 +1,31 @@
 @import "../../styles.scss";
 .mat-toolbar {
     background: $color-primary-darker;
-    color: #fff
- }
+    color: #fff;
+}
+
+
+
+.mat-toolbar-row{
+    justify-content: space-between;
+    height: 80px;
+    padding-right: 50px;
+}
+
+.logo-container{
+    align-self: center;
+    display: flex;
+    height: 30px;
+}
+
+.user-btn-container{
+    align-self: center;
+    display: flex;
+    img {
+        height: 50px;
+        padding: auto;
+    }
+    
+    
+}
+
