@@ -1,21 +1,9 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatIconModule } from "@angular/material/icon";
-import { MatInputModule } from "@angular/material/input";
-import { MatTableModule } from "@angular/material/table";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatSortModule } from "@angular/material/sort";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatNativeDateModule } from "@angular/material/core";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { MatMenuModule } from "@angular/material/menu";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
+import { MaterialModule } from "./modules/material.module";
 
 import { AuthGuardService } from "./services/authGuard/auth-guard.service";
 
@@ -43,22 +31,10 @@ import { AppRoutingModule } from "./app-routing.module";
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatCheckboxModule,
-    MatSortModule,
-    MatDialogModule,
-    MatProgressSpinnerModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSnackBarModule,
-    MatMenuModule,
     AppRoutingModule,
+    MaterialModule,
   ],
-  providers: [MatDatepickerModule, AuthGuardService],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
