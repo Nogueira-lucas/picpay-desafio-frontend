@@ -1,1 +1,75 @@
-<p>manage-payment-modal works!</p>
+<div class="header-modal">
+    {{ data.title }}
+    <mat-icon  (click)="close()">close</mat-icon>
+</div>
+<div class="body-modal">
+    <form [formGroup]="taskFormGroup">
+        <div class="form-row">
+            <div class="form-control">
+                <mat-form-field appearance="outline">
+                    <mat-label>Usuário</mat-label>
+                    <input [(ngModel)]="data.username" matInput placeholder="Usuário" formControlName="username">
+                    <mat-error>
+                        Campo <strong>obrigatório</strong>!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-control">
+                <mat-form-field appearance="outline">
+                    <mat-label>Valor</mat-label>
+                    <input matInput placeholder="Valor" formControlName="value">
+                    <mat-error>
+                        Campo <strong>obrigatório</strong>!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-control">
+                <mat-form-field appearance="outline">
+                    <mat-label>Data</mat-label>
+                    <input matInput placeholder="Data" formControlName="date">
+                    <mat-error>
+                        Campo <strong>obrigatório</strong>!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-control">
+                <mat-form-field appearance="outline">
+                    <mat-label>Titulo</mat-label>
+                    <input matInput placeholder="Titulo" formControlName="title">
+                    <mat-error>
+                        Campo <strong>obrigatório</strong>!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="footer-modal form-row">
+    <button class="back-btn" matTooltip="Voltar" mat-button type="button" (click)="close()">
+        Cancelar
+    </button>
+    <button class="submit-btn" mat-button type="button" 
+        [disabled]="!taskFormGroup.controls.username.valid || !taskFormGroup.controls.value.valid || !taskFormGroup.controls.title.valid" >
+        Salvar
+    </button>
+
+</div>
+
+
+<!-- <div class="form-control">
+    <mat-form-field appearance="outline">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> -->
+        <!-- mat-label>Check-in Assistente</mat-label>
+        <input [(ngModel)]="data." matInput formControlName="date"
+            [ngxMatDatetimePicker]="picker" style="color: #000;"
+            placeholder="Choose a date & time">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker0 [showSeconds]=false disabled="false"></ngx-mat-datetime-picker>
+    </mat-form-field>
+</div> --> 

@@ -4,7 +4,7 @@
 }
 
 ::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
-  background-color: $color-primary-lighter !important;
+  background-color: white !important;
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-can-float .mat-form-field-should-float .mat-form-field-label {
@@ -45,9 +45,28 @@ table {
   th, td {
     overflow: hidden;
     width: 200px;
+    height: 80px;
     text-overflow: ellipsis;
     white-space: nowrap;
+  
+    
   }
+
+  .mat-column-user {
+    width: 300px;
+    img {
+      margin-top: 5px;
+      height: 50px; 
+      border-radius: 100%; 
+      background-color: $color-primary-darker; 
+      box-shadow: 
+        0px 3px 1px -2px rgba(0, 0, 0, 0.2), 
+        0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    }
+
+  }
+
   .mat-column-actions {
     width: 108px;
     text-align: center;

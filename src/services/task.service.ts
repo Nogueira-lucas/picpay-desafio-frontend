@@ -24,6 +24,10 @@ export class TaskService {
     return this.http.post<any>(`${environment.apiUrl}/tasks`, task)
   }
 
+  searchTasks(name?: String, value?: String | number): Observable<any>{
+    return this.http.get<any>(`${environment.apiUrl}/tasks?${name}=${value}`)
+  }
+
   updateTask(taskId: number, task: Task):Observable<any>{
     return this.http.put<any>(`${environment.apiUrl}/tasks/${taskId}`, task)
   }

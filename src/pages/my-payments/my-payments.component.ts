@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import Task from 'src/models/task.model';
-import { TaskService } from 'src/services/task.service';
-import * as moment from 'moment';
-import { AuthService } from 'src/services/auth.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit, ViewChild } from '@angular/core'
+import { TaskService } from 'src/services/task.service'
+import { AuthService } from 'src/services/auth.service'
+import { MatTableDataSource } from '@angular/material/table'
+import { MatPaginator } from '@angular/material/paginator'
+import { MatSort } from '@angular/material/sort'
+import { MatDialog } from '@angular/material/dialog'
+import { ManagePaymentModalComponent } from 'src/components/manage-payment-modal/manage-payment-modal.component'
+import * as moment from 'moment'
+import Task from 'src/models/task.model'
 
 @Component({
   selector: 'app-my-payments',
@@ -14,27 +16,31 @@ import { MatSort } from '@angular/material/sort';
 })
 export class MyPaymentsComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator
 
-  isLoading: boolean = true;
-  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions'];
+  isLoading: boolean = true
+  isTaskCreate: boolean = false
+  isTaskEdit: boolean = false
+  filterOptions: any = {}
+  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions']
   taskDataSource: any = new MatTableDataSource([])  
-  errorTaskData: boolean = false;
+  errorTaskData: boolean = false
 
   constructor(
     private taskService: TaskService,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog,
   ) { 
   }
   
   ngOnInit(): void {
-    this.listTasksWithPagination()
-    //this.listTasks()
-    //this.paginator._intl.itemsPerPageLabel = "Itens por página";
+    this.filterOptions = { name: "Usuario", value: null }
+    //this.listTasksWithPagination()
+    this.listTasks()
   }
 
   listTasks(){
-    this.isLoading = true;
+    this.isLoading = true
     this.taskDataSource = []
     this.taskService.listAllTasks().subscribe((response: Task[]) => {
       this.taskDataSource = new MatTableDataSource(response)
@@ -44,12 +50,12 @@ export class MyPaymentsComponent implements OnInit {
       this.isLoading = false
     }, error => {
       console.log(error)
-      this.errorTaskData = true;
+      this.errorTaskData = true
     })
   }
 
   listTasksWithPagination(event?: any){
-    this.isLoading = true;
+    this.isLoading = true
     
     let params = {}
 
@@ -73,46 +79,92 @@ export class MyPaymentsComponent implements OnInit {
       this.isLoading = false
     }, error => {
       console.log(error.message)
-      this.errorTaskData = true;
+      this.errorTaskData = true
     })
   }
 
-  createTask(){
-    let newTask: Task = {
-      username: "mheartu",
-      value: 47.33,
-      date: new Date()
+
+  openAddEditModal(task?: Task){
+    if(task != null){
+      this.isTaskEdit = true
+    } else {
+      this.isTaskCreate = true
     }
 
+    const dialogRef = this.dialog.open(ManagePaymentModalComponent, {
+      width: '550px',
+      maxWidth: '100%', 
+      data: { 
+        title: this.isTaskCreate? "Adicionar Pagamento": "Editar Pagamento",
+        ...(this.isTaskEdit && {taskToBeEditted: task}),
+      }
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null){
+        if(this.isTaskCreate){
+          let newTask: Task = {
+            username: result.username,
+            value: result.value,
+            date: result.date,
+            title: result.title
+          }
+          this.createTask(newTask)
+  
+        } else if(this.isTaskEdit){
+  
+        }
+      }
+      this.isTaskCreate = false
+      this.isTaskEdit = false
+    })
+  }
+
+
+  createTask(newTask: Task){
+    this.isLoading = true
     this.taskService.createTask(newTask).subscribe(response => {
       console.log(response)
+      this.listTasks()      
+      this.isLoading = false
+    }, error => {
+      this.isLoading = false
+      console.log(error.message)
+    })
+  }
+
+  updateTask(element: Task){
+    this.isLoading = true
+    this.taskService.updateTask(element.id, element).subscribe(response => {
+      console.log(response)
+      this.listTasks()      
+      this.isLoading = false
+    }, error => {
+      this.isLoading = false
+      console.log(error.message)
+    })
+  }
+
+  deleteTask(taskId: number){
+    this.taskService.deleteTask(taskId).subscribe(response => {
+      this.listTasks()
     }, error => {
       console.log(error.message)
     })
   }
 
-  updateTask(element: any){
-
-  }
-
-  deleteTask(taskId: number){ // Plus: automatically delete task, after the checkbox is set to true
-
-  }
-
-  logout(){
-    this.authService.logout()
-  }
-
+  
   search(event){
-
+    
   }
-
+  
+  
+  
   onPaginateChange(event) {
     debugger
     this.listTasksWithPagination()
     /* if (pageIndex !== event.pageIndex) {
-      console.log(event.pageIndex);
-      pageIndex = event.pageIndex;
+      console.log(event.pageIndex)
+      pageIndex = event.pageIndex
     } */
   }
 }

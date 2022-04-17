@@ -1,0 +1,52 @@
+@import "../../styles.scss";
+
+
+.header-modal {
+    background: white ;
+    color: $color-primary-darker;
+    font-weight: bold;
+    position: relative;
+    font-size: 24px;
+    padding: 24px;
+    padding-right: 72px;
+
+    mat-icon {
+        position: absolute;
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+        right: 24px;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+    }
+}
+.body-modal {
+    padding: 24px;
+}
+.footer-modal {
+    padding: 0 24px 24px;
+
+    button {
+        margin-left: auto;
+        display: block;
+        height: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        &:disabled {
+            cursor: default;
+            opacity: 0.4;
+        }
+    }
+
+    .back-btn {
+        color: $color-primary-darker;
+        background: $color-secondary-light;
+    }
+
+    .submit-btn {
+        color: #fff;
+        background: $color-primary-lighter;
+    }
+}
+
