@@ -36,7 +36,7 @@
             <div class="form-control">
                 <mat-form-field appearance="outline">
                     <mat-label>Horário</mat-label>
-                    <input matInput type="time" formControlName="time" #time>                
+                    <input matInput type="time" formControlName="time" #time step="1">                
                 </mat-form-field>
             </div>
         </div>
@@ -44,7 +44,7 @@
             <div class="form-control">
                 <mat-form-field appearance="outline">
                     <mat-label>Valor</mat-label>
-                    <input matInput placeholder="Valor" formControlName="value">
+                    <input currencyMask matInput placeholder="Valor" formControlName="value">
                     <mat-error>
                         Campo <strong>obrigatório</strong>!
                     </mat-error>
@@ -93,22 +93,4 @@
         [disabled]="!data.isTaskRemove" >
         Continuar
     </button>
-
 </div>
-
-
-<!-- <div class="form-control">
-    <mat-form-field appearance="outline">
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker> -->
-        <!-- mat-label>Check-in Assistente</mat-label>
-        <input [(ngModel)]="data." matInput formControlName="date"
-            [ngxMatDatetimePicker]="picker" style="color: #000;"
-            placeholder="Choose a date & time">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #picker0 [showSeconds]=false disabled="false"></ngx-mat-datetime-picker>
-    </mat-form-field>
-</div> --> 

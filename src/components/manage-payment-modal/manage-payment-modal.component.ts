@@ -4,20 +4,24 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Task from 'src/models/task.model'
 import * as moment from 'moment'
+import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "left",
+  allowNegative: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: "."
+};
 
 @Component({
   selector: 'app-manage-payment-modal',
   templateUrl: './manage-payment-modal.component.html',
   styleUrls: ['./manage-payment-modal.component.scss'],
   providers: [
-    /* { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig } */
-    
-    /* {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
-    },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }, */
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
   ]
 })
 export class ManagePaymentModalComponent implements OnInit {
@@ -25,18 +29,10 @@ export class ManagePaymentModalComponent implements OnInit {
   task: Task = new Task();
   taskFormGroup: FormGroup;
   selectOptions: any =   [
-    {
-      name: 'Não',
-      value: 0
-    },
-
-    {
-      name: 'Sim',
-      value: 1
-    },
+    { name: 'Não', value: 0 },
+    { name: 'Sim', value: 1 },
   ];
   selectedOption: any = {}
-
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -66,10 +62,17 @@ export class ManagePaymentModalComponent implements OnInit {
       this.selectedOption = this.selectOptions[0]   
     
     } else if(this.data.isTaskEdit){
+      let dateTime: moment.Moment = moment(this.data.taskToBeEditted.date)
+      let date = new Date(this.data.taskToBeEditted.date)
+      let time = date.getTime()
+
+      
+      debugger;
       this.taskFormGroup.controls['name'].setValue(this.data.taskToBeEditted.name) 
       this.taskFormGroup.controls['username'].setValue(this.data.taskToBeEditted.username) 
       this.taskFormGroup.controls['value'].setValue(this.data.taskToBeEditted.value)
       this.taskFormGroup.controls['date'].setValue(this.data.taskToBeEditted.date)
+      this.taskFormGroup.controls['time'].setValue(time)
       this.taskFormGroup.controls['title'].setValue(this.data.taskToBeEditted.title)    
       this.taskFormGroup.controls['isPayed'].setValue(this.data.taskToBeEditted.isPayed)
       this.selectedOption = this.data.taskToBeEditted.isPayed? this.selectOptions[1] : this.selectOptions[0]    
@@ -87,9 +90,12 @@ export class ManagePaymentModalComponent implements OnInit {
       this.task.name = this.taskFormGroup.controls['name'].value
       this.task.username = this.taskFormGroup.controls['username'].value
       this.task.value = this.taskFormGroup.controls['value'].value
-      this.task.date = this.taskFormGroup.controls['date'].value
       this.task.title = this.taskFormGroup.controls['title'].value
       this.task.isPayed = this.taskFormGroup.controls['isPayed'].value
+      
+      let newDate: moment.Moment = moment.utc( this.taskFormGroup.controls['date'].value).local()
+      this.task.date = newDate.format("YYYY-MM-DD") + "T" + this.taskFormGroup.controls['time'].value + "Z";
+      
       this.dialogRef.close({
         ...(this.data.isTaskEdit && {taskId: this.data.taskToBeEditted.id}), 
         task: this.task
@@ -100,16 +106,4 @@ export class ManagePaymentModalComponent implements OnInit {
     }
   }
 
-  formatDate(date: any) {
-    if (date) {
-      const dt = new Date(date).toLocaleDateString().split('/');
-
-      const dateFormated = `${dt[2]}-${dt[1].length === 2 ? dt[1] : '0' + dt[1]}-${dt[0].length === 2 ? dt[0] : '0' + dt[0]}`;
-      const hourFormated = new Date(date).toLocaleTimeString().length === 8
-        ? new Date(date).toLocaleTimeString()
-        : '0' + new Date(date).toLocaleTimeString();
-      return `${dateFormated}T${hourFormated}`
-    }
-
-  }
 }

@@ -4,7 +4,7 @@ export default class Task{
     public username: string
     public title?: string
     public value: number
-    public date:  Date
+    public date:  string
     public image?: string
     public isPayed?: boolean
 }

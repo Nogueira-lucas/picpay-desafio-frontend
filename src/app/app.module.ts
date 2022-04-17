@@ -26,12 +26,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {
-  NgxMatDatetimePickerModule, 
-  NgxMatNativeDateModule, 
-  NgxMatTimepickerModule 
-} from '@angular-material-components/datetime-picker';
-
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 @NgModule({
   declarations: [	
@@ -66,7 +61,7 @@ import {
     MatSelectModule, 
     MatDatepickerModule,
     MatNativeDateModule,
-    NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule
+    CurrencyMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
