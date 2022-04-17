@@ -56,7 +56,6 @@ export class TableComponent implements OnInit {
   }
 
   getPayments(): void {
-    console.log("hey");
     this.isLoading = true;
     this.paymentsService.getPayments().subscribe((payments) => {
       this.payments = payments;

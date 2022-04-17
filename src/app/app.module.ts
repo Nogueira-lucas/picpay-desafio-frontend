@@ -23,6 +23,7 @@ import { TableComponent } from "./components/table/table.component";
 import { MyPaymentsComponent } from "./pages/my-payments/my-payments.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { PaymentModalComponent } from "./components/payment-modal/payment-modal.component";
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { PaymentModalComponent } from "./components/payment-modal/payment-modal.
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
+    AppRoutingModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
