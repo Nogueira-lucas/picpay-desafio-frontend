@@ -21,7 +21,7 @@ export class ApiService {
     return this.http.get(`http://localhost:3000/tasks`)
   }
 
-  getTasks(limit = 50, offset = 1, name = ''){
+  getTasks(limit = 5, offset = 1, name = ''){
     return this.http.get(`http://localhost:3000/tasks?_limit=${limit}&_page=${offset}&name_like=${name}&_sort=id&_order=desc`, {
       observe: 'response'
     })
