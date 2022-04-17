@@ -1,13 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { LayoutComponent } from 'src/layout/layout.component';
-import { HeaderComponent } from 'src/layout/header/header.component';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from 'src/pages/login/login.component';
 import { MyPaymentsComponent } from 'src/pages/my-payments/my-payments.component';
-import { ManagePaymentModalComponent } from 'src/components/manage-payment-modal/manage-payment-modal.component';
 import { AppRoutingModule } from './app.routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -28,6 +24,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { MatSortModule } from '@angular/material/sort';
+import { LayoutComponent } from 'src/layout/layout.component';
+import { HeaderComponent } from 'src/layout/header/header.component';
+import { AppComponent } from './app.component';
+import { ManagePaymentModalComponent } from 'src/components/manage-payment-modal/manage-payment-modal.component';
 
 @NgModule({
   declarations: [	

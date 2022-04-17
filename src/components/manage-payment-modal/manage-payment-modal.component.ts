@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
 import Task from 'src/models/task.model'
 import * as moment from 'moment'
-import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -53,8 +53,7 @@ export class ManagePaymentModalComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.setUserInfo()
-    
+    this.setUserInfo() 
   }
 
   setUserInfo(){
@@ -64,7 +63,6 @@ export class ManagePaymentModalComponent implements OnInit {
     } else if(this.data.isTaskEdit){
       let dateTime: moment.Moment = moment(this.data.taskToBeEditted.date)
       let time = dateTime.format("HH:mm:ss")
-
       this.taskFormGroup.controls['name'].setValue(this.data.taskToBeEditted.name) 
       this.taskFormGroup.controls['username'].setValue(this.data.taskToBeEditted.username) 
       this.taskFormGroup.controls['value'].setValue(this.data.taskToBeEditted.value)

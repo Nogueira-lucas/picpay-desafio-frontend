@@ -94,7 +94,7 @@ export class MyPaymentsComponent implements OnInit {
     }
 
     const dialogRef = this.dialog.open(ManagePaymentModalComponent, {
-      width: '550px',
+      width: '735px',
       maxWidth: '100%', 
       data: { 
         title: this.isTaskCreate? "Adicionar Pagamento": "Editar Pagamento",        

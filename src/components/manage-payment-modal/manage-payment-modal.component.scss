@@ -1,6 +1,5 @@
 @import "../../styles.scss";
 
-
 .header-modal {
     font-family: 'Montserrat';
     font-style: normal;
@@ -26,11 +25,13 @@
 .body-modal {
     padding: 24px;
 }
+
 .footer-modal {
     padding: 0 24px 24px;
-
+    display: flex;
+    justify-content: flex-end;
+    
     button {
-        display: block;
         height: 40px;
         width: 150px;
         line-height: 20px;
@@ -38,7 +39,6 @@
         color: #fff;
         border-radius: 4px;
         text-transform: uppercase;
-        margin-left: auto;
         font-weight: bold;
         cursor: pointer;
         &:disabled {
@@ -50,6 +50,7 @@
     .back-btn {
         color: $color-primary-darkest;
         background: $color-secondary-light;
+        margin-right: 10px;
     }
 
     .submit-btn {
