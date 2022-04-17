@@ -24,6 +24,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {
+  NgxMatDatetimePickerModule, 
+  NgxMatNativeDateModule, 
+  NgxMatTimepickerModule 
+} from '@angular-material-components/datetime-picker';
+
 
 @NgModule({
   declarations: [	
@@ -55,7 +63,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule, 
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

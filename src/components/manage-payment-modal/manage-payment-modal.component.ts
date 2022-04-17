@@ -48,8 +48,9 @@ export class ManagePaymentModalComponent implements OnInit {
     this.taskFormGroup = this.formBuilder.group({
       username: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
-      value: new FormControl('', [Validators.required]),
       date: new FormControl('', [Validators.required]),
+      time: new FormControl('', [Validators.required]),
+      value: new FormControl('', [Validators.required]),
       title: new FormControl('', [Validators.required]),
       isPayed: new FormControl('', [Validators.required])
     });

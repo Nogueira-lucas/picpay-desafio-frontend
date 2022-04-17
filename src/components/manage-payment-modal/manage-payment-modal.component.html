@@ -27,6 +27,22 @@
         <div class="form-row">
             <div class="form-control">
                 <mat-form-field appearance="outline">
+                    <mat-label>Data</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date" [readonly]="true">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="form-control">
+                <mat-form-field appearance="outline">
+                    <mat-label>Horário</mat-label>
+                    <input matInput type="time" formControlName="time" #time>                
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row" >
+            <div class="form-control">
+                <mat-form-field appearance="outline">
                     <mat-label>Valor</mat-label>
                     <input matInput placeholder="Valor" formControlName="value">
                     <mat-error>
@@ -36,24 +52,13 @@
             </div>
             <div class="form-control">
                 <mat-form-field appearance="outline">
-                    <mat-label>Data</mat-label>
-                    <input matInput placeholder="Data" formControlName="date">
-                    <mat-error>
-                        Campo <strong>obrigatório</strong>!
-                    </mat-error>
+                    <mat-label>Titulo</mat-label>
+                    <input matInput placeholder="Titulo" formControlName="title">
                 </mat-form-field>
             </div>
         </div>
+        
         <div class="form-row" >
-            <div class="form-control">
-                <mat-form-field appearance="outline">
-                    <mat-label>Titulo</mat-label>
-                    <input matInput placeholder="Titulo" formControlName="title">
-                    <mat-error>
-                        Campo <strong>obrigatório</strong>!
-                    </mat-error>
-                </mat-form-field>
-            </div>
             <div class="form-control">
                 <mat-form-field appearance="outline">
                     <mat-label>Pago</mat-label>
@@ -64,7 +69,9 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+            
         </div>
+        
     </form>
 
     <div *ngIf="data.isTaskRemove">        
@@ -72,7 +79,6 @@
         <p><b>Data:</b>{{" "}}{{data.taskToBeRemoved.date}}</p>
         <p><b>Valor:</b>{{" R$ "}}{{data.taskToBeRemoved.value}}</p>         
     </div>
-
 </div>
 <div class="footer-modal form-row">
     <button class="back-btn" matTooltip="Voltar" mat-button type="button" (click)="close()">

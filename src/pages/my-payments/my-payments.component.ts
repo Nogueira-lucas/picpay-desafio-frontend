@@ -6,13 +6,15 @@ import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatDialog } from '@angular/material/dialog'
 import { ManagePaymentModalComponent } from 'src/components/manage-payment-modal/manage-payment-modal.component'
+import { DateAdapter} from '@angular/material/core'
 import * as moment from 'moment'
 import Task from 'src/models/task.model'
 
 @Component({
   selector: 'app-my-payments',
   templateUrl: './my-payments.component.html',
-  styleUrls: ['./my-payments.component.scss']
+  styleUrls: ['./my-payments.component.scss'],
+  
 })
 export class MyPaymentsComponent implements OnInit {
 
@@ -30,8 +32,10 @@ export class MyPaymentsComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private authService: AuthService,
+    private adapter: DateAdapter<any>,
     public dialog: MatDialog,
   ) { 
+    this.adapter.setLocale('pt-br');
   }
   
   ngOnInit(): void {
