@@ -62,17 +62,17 @@ export class ManagePaymentModalComponent implements OnInit {
       this.selectedOption = this.selectOptions[0]   
     
     } else if(this.data.isTaskEdit){
-      let dateTime: moment.Moment = moment(this.data.taskToBeEditted.date)
+      /* let dateTime: moment.Moment = moment(this.data.taskToBeEditted.date)
       let date = new Date(this.data.taskToBeEditted.date)
       let time = date.getTime()
 
       
-      debugger;
+      debugger; */
       this.taskFormGroup.controls['name'].setValue(this.data.taskToBeEditted.name) 
       this.taskFormGroup.controls['username'].setValue(this.data.taskToBeEditted.username) 
       this.taskFormGroup.controls['value'].setValue(this.data.taskToBeEditted.value)
       this.taskFormGroup.controls['date'].setValue(this.data.taskToBeEditted.date)
-      this.taskFormGroup.controls['time'].setValue(time)
+      //this.taskFormGroup.controls['time'].setValue(time)
       this.taskFormGroup.controls['title'].setValue(this.data.taskToBeEditted.title)    
       this.taskFormGroup.controls['isPayed'].setValue(this.data.taskToBeEditted.isPayed)
       this.selectedOption = this.data.taskToBeEditted.isPayed? this.selectOptions[1] : this.selectOptions[0]    
