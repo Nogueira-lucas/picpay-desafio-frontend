@@ -16,14 +16,6 @@ import { EventsService } from "@src/app/services/events/events.service";
 })
 export class TableComponent implements OnInit {
   private eventSubscription: Subscription;
-  displayedColumns: string[] = [
-    "name",
-    "title",
-    "date",
-    "value",
-    "isPayed",
-    "actions",
-  ];
   dataSource: MatTableDataSource<Payment>;
   payments: Payment[];
   selectedPayment: Payment;
@@ -143,5 +135,9 @@ export class TableComponent implements OnInit {
     };
 
     return Events[event];
+  }
+
+  getDisplayedColumns(): string[] {
+    return ["name", "title", "date", "value", "isPayed", "actions"];
   }
 }
