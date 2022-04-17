@@ -1,1 +1,5 @@
-@import "../../theme/variables";
+@import "../../styles.scss";
+.mat-toolbar {
+    background: $color-primary-darker;
+    color: #fff
+ }

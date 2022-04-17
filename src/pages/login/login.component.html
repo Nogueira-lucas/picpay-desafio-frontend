@@ -1,25 +1,36 @@
-<p>login works!</p>
-<div class="header-page-container">
+<div class="login-container">
     <img src="../../assets/Logo_login.png" alt="login image">
     <div>        
         <h1>Bem vindo de volta</h1>
     </div>
+    <form (submit)="onSubmit()">
+        <div class="form-control">
+            <mat-form-field appearance="outline">
+                <mat-label>Usuário</mat-label>
+                <input matInput placeholder="Usuário">
+            </mat-form-field>
+        </div>
+        <div class="form-control">
+            <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input matInput placeholder="Senha">
+            </mat-form-field>
+        </div>
+    </form>
+    <div class="btn-submit-login-container">
+        <button class="btn-submit-login" matTooltip="Entrar" mat-button type="button" [routerLink]="['/home']">
+            Entrar
+            <mat-icon>account_circle</mat-icon>
+        </button>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Usuário</mat-label>
-        <input matInput placeholder="Ex. ium">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Senha</mat-label>
-        <input matInput placeholder="Ex. ium">
-    </mat-form-field>
-
-    <button matTooltip="Entrar" mat-button type="button" [routerLink]="['/home']">
-        Entrar
-        <mat-icon>account_circle</mat-icon>
-    </button>
-
+    </div>
+    
+    
 </div>
 
-<img src="../../assets/man-doing-online-payment 1.svg" alt="login image">
+<div class="img-container">
+    <img src="../../assets/man-doing-online-payment 1.svg" alt="login image">
+</div>
+
+
 

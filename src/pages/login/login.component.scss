@@ -1,0 +1,44 @@
+@import "../../styles.scss";
+
+.login-container {
+    position: absolute;
+    width: 540px;
+    height: 1024px;
+    left: 0px;
+    top: 0px;
+    background: #F2F2F2;
+
+    h1 {        
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 44px;
+        color: $color-primary-darkest;
+    }
+
+    .btn-submit-login {
+        display: block;
+        background-color: $color-primary-lighter;
+        width: 100%;
+        color: #fff;
+        text-transform: uppercase;
+        position: relative;
+        &:disabled {
+            opacity: 0.4;
+        }
+    }
+
+    .btn-submit-login-container {
+        position: relative;
+    }
+
+
+}
+.img-container {
+    position: absolute;
+    width: 737px;
+    height: 579px;
+    left: 639px;
+    top: 225px;
+}

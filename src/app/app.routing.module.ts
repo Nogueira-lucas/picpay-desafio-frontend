@@ -11,21 +11,17 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent
     },
+
     {
-        path: 'home',
-        component: MyPaymentsComponent
-    },
-    
-    /* {
-        path: 'my',
+        path: '',
         component: LayoutComponent,
         children:[
             {
-                path: 'payments',
+                path: 'home',
                 component: MyPaymentsComponent
             },
         ]
-    }, */
+    },
     {
         path: '**',
         redirectTo: 'login',
