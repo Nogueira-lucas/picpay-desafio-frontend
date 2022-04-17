@@ -13,6 +13,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatMenuModule } from "@angular/material/menu";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -54,6 +55,7 @@ import { AppRoutingModule } from "./app-routing.module";
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
+    MatMenuModule,
     AppRoutingModule,
   ],
   providers: [MatDatepickerModule, AuthGuardService],

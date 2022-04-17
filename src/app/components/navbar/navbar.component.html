@@ -4,6 +4,13 @@
   </h2>
 
   <div class="navbar-avatar">
-    <img src="{{ avatarImagePath }}" alt="" />
+    <img src="{{ avatarImagePath }}" alt="" [matMenuTriggerFor]="menu" />
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon> logout </mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
   </div>
 </div>
