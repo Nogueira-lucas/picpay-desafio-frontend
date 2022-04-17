@@ -6,6 +6,7 @@ import { PaymentsService } from "@src/app/services/payments/payments.service";
 import { SnackBarService } from "@src/app/services/snackbar/snackbar.service";
 import { TableComponent } from "../table/table.component";
 import { DateAdapter, MAT_DATE_LOCALE } from "@angular/material/core";
+import { throwError } from "rxjs";
 
 export interface ModalData {
   title: "Adicionar" | "Editar" | "Excluir";
@@ -75,27 +76,57 @@ export class PaymentModalComponent implements OnInit {
 
   updatePayment(payment: Payment) {
     payment.date = this.dateToIso(payment.date);
-    this.paymentsService.updatePayment(payment).subscribe(() => {
-      this.closeDialog();
-      this.snackBService.openSnackBar("Pagamento Atualizado", "Fechar", 3000);
-      this.sendEvent("refreshTable");
-    });
+    this.paymentsService.updatePayment(payment).subscribe(
+      () => {
+        this.closeDialog();
+        this.snackBService.openSnackBar(
+          "Pagamento Atualizado",
+          "Fechar",
+          3000,
+          "top"
+        );
+        this.sendEvent("refreshTable");
+      },
+      (error) => {
+        return throwError(error);
+      }
+    );
   }
 
   createPayment(payment: Payment) {
     payment.date = this.dateToIso(payment.date);
-    this.paymentsService.createPayment(payment).subscribe(() => {
-      this.closeDialog();
-      this.snackBService.openSnackBar("Pagamento Criado", "Fechar", 3000);
-      this.sendEvent("refreshTable");
-    });
+    this.paymentsService.createPayment(payment).subscribe(
+      () => {
+        this.closeDialog();
+        this.snackBService.openSnackBar(
+          "Pagamento Criado",
+          "Fechar",
+          3000,
+          "top"
+        );
+        this.sendEvent("refreshTable");
+      },
+      (error) => {
+        return throwError(error);
+      }
+    );
   }
 
   deletePayment(payment: Payment) {
-    this.paymentsService.deletePayment(payment).subscribe(() => {
-      this.closeDialog();
-      this.snackBService.openSnackBar("Pagamento Removido", "Fechar", 3000);
-      this.sendEvent("refreshTable");
-    });
+    this.paymentsService.deletePayment(payment).subscribe(
+      () => {
+        this.closeDialog();
+        this.snackBService.openSnackBar(
+          "Pagamento Removido",
+          "Fechar",
+          3000,
+          "top"
+        );
+        this.sendEvent("refreshTable");
+      },
+      (error) => {
+        return throwError(error);
+      }
+    );
   }
 }

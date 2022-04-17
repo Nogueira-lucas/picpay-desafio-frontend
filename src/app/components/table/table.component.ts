@@ -6,7 +6,7 @@ import { MatTable, MatTableDataSource } from "@angular/material/table";
 import { Payment } from "@src/app/models/payment-model";
 import { PaymentModalComponent } from "../payment-modal/payment-modal.component";
 import { PaymentsService } from "@src/app/services/payments/payments.service";
-import { Subscription } from "rxjs";
+import { Subscription, throwError } from "rxjs";
 import { EventsService } from "@src/app/services/events/events.service";
 
 @Component({
@@ -57,13 +57,18 @@ export class TableComponent implements OnInit {
 
   getPayments(): void {
     this.isLoading = true;
-    this.paymentsService.getPayments().subscribe((payments) => {
-      this.payments = payments;
-      this.dataSource = new MatTableDataSource(this.payments);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.isLoading = false;
-    });
+    this.paymentsService.getPayments().subscribe(
+      (payments) => {
+        this.payments = payments;
+        this.dataSource = new MatTableDataSource(this.payments);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.isLoading = false;
+      },
+      (error) => {
+        return throwError(error);
+      }
+    );
   }
 
   applyFilter(event: Event) {
@@ -113,12 +118,17 @@ export class TableComponent implements OnInit {
       autoFocus: false,
     };
 
-    this.paymentsService.getPayment(id).subscribe((payment) => {
-      this.selectedPayment = payment;
-      dialogConfig.data.payment = this.selectedPayment;
+    this.paymentsService.getPayment(id).subscribe(
+      (payment) => {
+        this.selectedPayment = payment;
+        dialogConfig.data.payment = this.selectedPayment;
 
-      this.dialog.open(PaymentModalComponent, dialogConfig);
-    });
+        this.dialog.open(PaymentModalComponent, dialogConfig);
+      },
+      (error) => {
+        return throwError(error);
+      }
+    );
   }
 
   refreshTable() {
