@@ -21,6 +21,7 @@ export class MyPaymentsComponent implements OnInit {
   isLoading: boolean = true
   isTaskCreate: boolean = false
   isTaskEdit: boolean = false
+  isTaskRemove: boolean = false
   filterOptions: any = {}
   displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions']
   taskDataSource: any = new MatTableDataSource([])  
@@ -95,23 +96,20 @@ export class MyPaymentsComponent implements OnInit {
       width: '550px',
       maxWidth: '100%', 
       data: { 
-        title: this.isTaskCreate? "Adicionar Pagamento": "Editar Pagamento",
+        title: this.isTaskCreate? "Adicionar Pagamento": "Editar Pagamento",        
+        isTaskEdit: this.isTaskEdit,
+        isTaskCreate: this.isTaskCreate,
         ...(this.isTaskEdit && {taskToBeEditted: task}),
       }
     })
     dialogRef.afterClosed().subscribe(result => {
       if(result != null){
         if(this.isTaskCreate){
-          let newTask: Task = {
-            username: result.username,
-            value: result.value,
-            date: result.date,
-            title: result.title
-          }
-          this.createTask(newTask)
+          
+          this.createTask(result.task)
   
         } else if(this.isTaskEdit){
-  
+          this.updateTask(result.taskId, result.task)
         }
       }
       this.isTaskCreate = false
@@ -132,10 +130,9 @@ export class MyPaymentsComponent implements OnInit {
     })
   }
 
-  updateTask(element: Task){
+  updateTask(taskId: number, updatedTask: Task){
     this.isLoading = true
-    this.taskService.updateTask(element.id, element).subscribe(response => {
-      console.log(response)
+    this.taskService.updateTask(taskId, updatedTask).subscribe(response => {
       this.listTasks()      
       this.isLoading = false
     }, error => {
@@ -143,6 +140,24 @@ export class MyPaymentsComponent implements OnInit {
       console.log(error.message)
     })
   }
+
+  openRemoveTaskModal(task: Task){
+    const dialogRef = this.dialog.open(ManagePaymentModalComponent, {
+      width: '400px',
+      maxWidth: '100%', 
+      data: { 
+        title: "Excluir Pagamento",
+        isTaskRemove: true,
+        taskToBeRemoved: task,
+      }
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null){
+        this.deleteTask(task.id)
+      }
+    })
+  }
+
 
   deleteTask(taskId: number){
     this.taskService.deleteTask(taskId).subscribe(response => {

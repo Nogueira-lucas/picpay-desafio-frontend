@@ -3,17 +3,28 @@
     <mat-icon  (click)="close()">close</mat-icon>
 </div>
 <div class="body-modal">
-    <form [formGroup]="taskFormGroup">
+    <form *ngIf="!data.isTaskRemove" [formGroup]="taskFormGroup">
         <div class="form-row">
             <div class="form-control">
                 <mat-form-field appearance="outline">
                     <mat-label>Usuário</mat-label>
-                    <input [(ngModel)]="data.username" matInput placeholder="Usuário" formControlName="username">
+                    <input matInput placeholder="Usuário" formControlName="name">
                     <mat-error>
                         Campo <strong>obrigatório</strong>!
                     </mat-error>
                 </mat-form-field>
             </div>
+            <div class="form-control">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome de usuário</mat-label>
+                    <input matInput placeholder="Nome de usuário" formControlName="username">
+                    <mat-error>
+                        Campo <strong>obrigatório</strong>!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
             <div class="form-control">
                 <mat-form-field appearance="outline">
                     <mat-label>Valor</mat-label>
@@ -23,8 +34,6 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-        </div>
-        <div class="form-row">
             <div class="form-control">
                 <mat-form-field appearance="outline">
                     <mat-label>Data</mat-label>
@@ -34,6 +43,8 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+        </div>
+        <div class="form-row" >
             <div class="form-control">
                 <mat-form-field appearance="outline">
                     <mat-label>Titulo</mat-label>
@@ -43,16 +54,38 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            <div class="form-control">
+                <mat-form-field appearance="outline">
+                    <mat-label>Pago</mat-label>
+                    <mat-select formControlName="isPayed" [(ngModel)]="selectedOption.value">
+                        <mat-option *ngFor="let option of selectOptions" [value]="option.value">
+                            {{option.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </div>
     </form>
+
+    <div *ngIf="data.isTaskRemove">        
+        <p><b>Usuário:</b>{{" "}}{{data.taskToBeRemoved.name}} </p>
+        <p><b>Data:</b>{{" "}}{{data.taskToBeRemoved.date}}</p>
+        <p><b>Valor:</b>{{" R$ "}}{{data.taskToBeRemoved.value}}</p>         
+    </div>
+
 </div>
 <div class="footer-modal form-row">
     <button class="back-btn" matTooltip="Voltar" mat-button type="button" (click)="close()">
         Cancelar
     </button>
-    <button class="submit-btn" mat-button type="button" 
+    <button *ngIf="!data.isTaskRemove" (click)="confirm()" class="submit-btn" mat-button type="button" 
         [disabled]="!taskFormGroup.controls.username.valid || !taskFormGroup.controls.value.valid || !taskFormGroup.controls.title.valid" >
         Salvar
+    </button>
+
+    <button *ngIf="data.isTaskRemove" (click)="confirm()" class="submit-btn" mat-button type="button" 
+        [disabled]="!data.isTaskRemove" >
+        Continuar
     </button>
 
 </div>

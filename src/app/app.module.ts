@@ -23,8 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms'
-
-
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [	
@@ -55,7 +54,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms'
     MatCardModule,
     MatMenuModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
