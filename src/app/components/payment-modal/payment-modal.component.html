@@ -28,10 +28,12 @@
             <mat-label>Valor*</mat-label>
             <input
               matInput
-              placeholder="Valor*"
+              placeholder="R$ 0.00"
               [(ngModel)]="data.payment.value"
               name="value"
               type="number"
+              min="0.00"
+              step="0.01"
             />
           </mat-form-field>
         </div>
@@ -111,6 +113,13 @@
           "
           class="paymentModal-form-buttonsWrapper-submit"
           type="submit"
+          [disabled]="
+            !data.payment.name ||
+            !data.payment.value ||
+            !data.payment.username ||
+            !data.payment.date ||
+            !data.payment.title
+          "
         >
           Editar
         </button>

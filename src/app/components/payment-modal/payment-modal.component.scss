@@ -47,6 +47,11 @@
 
       button {
         min-width: 120px;
+
+        &[disabled] {
+          background: var(--bluishGray);
+          cursor: not-allowed;
+        }
       }
       &-cancel {
         @include button(var(--gray), var(--black));
