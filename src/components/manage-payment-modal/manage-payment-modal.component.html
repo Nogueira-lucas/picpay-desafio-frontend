@@ -76,8 +76,8 @@
 
     <div *ngIf="data.isTaskRemove">        
         <p><b>Usuário:</b>{{" "}}{{data.taskToBeRemoved.name}} </p>
-        <p><b>Data:</b>{{" "}}{{data.taskToBeRemoved.date}}</p>
-        <p><b>Valor:</b>{{" R$ "}}{{data.taskToBeRemoved.value}}</p>         
+        <p><b>Data:</b>{{" "}}{{data.taskToBeRemoved.date | date:"dd/MM/yyyy HH:mm a"}}</p>
+        <p><b>Valor:</b>{{" "}}{{data.taskToBeRemoved.value | currency : 'BRL'}}</p>         
     </div>
 </div>
 <div class="footer-modal form-row">

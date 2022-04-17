@@ -27,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [	
@@ -61,7 +62,8 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
     MatSelectModule, 
     MatDatepickerModule,
     MatNativeDateModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core'
 import { TaskService } from 'src/services/task.service'
 import { AuthService } from 'src/services/auth.service'
 import { MatTableDataSource } from '@angular/material/table'
@@ -19,19 +19,21 @@ import Task from 'src/models/task.model'
 export class MyPaymentsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator
+  @ViewChild(MatSort) sort: MatSort;
 
   isLoading: boolean = true
   isTaskCreate: boolean = false
   isTaskEdit: boolean = false
   isTaskRemove: boolean = false
   filterOptions: any = {}
-  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions']
-  taskDataSource: any = new MatTableDataSource([])  
+  tasks: Task[] = []
+  displayedColumns: string[] = ['name', 'title', 'date', 'value', 'isPayed', 'actions']
+  taskDataSource: any = new MatTableDataSource(this.tasks)  
   errorTaskData: boolean = false
+  
 
   constructor(
     private taskService: TaskService,
-    private authService: AuthService,
     private adapter: DateAdapter<any>,
     public dialog: MatDialog,
   ) { 
@@ -50,8 +52,9 @@ export class MyPaymentsComponent implements OnInit {
     this.taskService.listAllTasks().subscribe((response: Task[]) => {
       this.taskDataSource = new MatTableDataSource(response)
       this.taskDataSource.paginator = this.paginator
+      this.taskDataSource.sort = this.sort;
+      this.taskDataSource.sortingDataAccessor = (data: Task, header: string) => data[header];
       this.errorTaskData = false
-      
       this.isLoading = false
     }, error => {
       console.log(error)
@@ -61,9 +64,7 @@ export class MyPaymentsComponent implements OnInit {
 
   listTasksWithPagination(event?: any){
     this.isLoading = true
-    
     let params = {}
-
     if(!event){
       params = {
         "page": 1,
@@ -171,15 +172,12 @@ export class MyPaymentsComponent implements OnInit {
     })
   }
 
-  
   search(event){
     
   }
   
   
-  
   onPaginateChange(event) {
-    debugger
     this.listTasksWithPagination()
     /* if (pageIndex !== event.pageIndex) {
       console.log(event.pageIndex)

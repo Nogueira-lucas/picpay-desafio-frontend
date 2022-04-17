@@ -91,16 +91,6 @@
       "isPayed": false
     },
     {
-      "id": 30,
-      "name": "Nicoline Squier",
-      "username": "nsquiert",
-      "title": "Senior Cost Accountant",
-      "value": 380,
-      "date": "2020-06-28T09:27:25Z",
-      "image": "https://robohash.org/etperspiciatisminima.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
       "id": 31,
       "name": "Margarethe Heart",
       "username": "mheartu",
@@ -479,16 +469,6 @@
       "date": "2020-09-14T15:27:20Z",
       "image": "https://robohash.org/ullamnisidolorem.png?size=150x150&set=set1",
       "isPayed": true
-    },
-    {
-      "id": 69,
-      "name": "Virginie Kaines",
-      "username": "vkaines1w",
-      "title": "Senior Quality Engineer",
-      "value": 17.41,
-      "date": "2020-10-04T08:24:58Z",
-      "image": "https://robohash.org/fugaquamest.png?size=150x150&set=set1",
-      "isPayed": false
     },
     {
       "id": 70,
