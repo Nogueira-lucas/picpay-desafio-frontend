@@ -16,6 +16,8 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 
+import { AuthGuardService } from "./services/authGuard/auth-guard.service";
+
 import { AppComponent } from "./app.component";
 import { LoginComponent } from "./components/login-form/login-form.component";
 import { LoginPageComponent } from "./pages/login-page/login-page.component";
@@ -23,7 +25,7 @@ import { TableComponent } from "./components/table/table.component";
 import { MyPaymentsComponent } from "./pages/my-payments/my-payments.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { PaymentModalComponent } from "./components/payment-modal/payment-modal.component";
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatSnackBarModule,
     AppRoutingModule,
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule, AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
