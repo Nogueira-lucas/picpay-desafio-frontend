@@ -6,12 +6,12 @@
         <div>        
             <h1>Bem vindo de volta</h1>
         </div>
-        <form [formGroup]="userLoginFormGroup" (submit)="onSubmit()">
+        <form [formGroup]="userLoginFormGroup">
             <div class="form-control">
                 <mat-form-field appearance="outline">
                     <mat-label>Usuário</mat-label>
                     <input matInput placeholder="Usuário" formControlName="username">
-                    <mat-error >
+                    <mat-error>
                         Campo <strong>obrigatório</strong>!
                     </mat-error>
                 </mat-form-field>
@@ -19,20 +19,26 @@
             <div class="form-control">
                 <mat-form-field appearance="outline">
                     <mat-label>Senha</mat-label>
-                    <input matInput placeholder="Senha" formControlName="password">
-                    <mat-icon matSuffix>remove_red_eye</mat-icon>
-                    <mat-error >
+                    <input matInput type="password" [type]="passIsHide? 'password' : 'text'" placeholder="Senha" formControlName="password">
+                    <mat-icon matSuffix (click)="showHidePass()">{{passIsHide? 'visibility_off': 'visibility'}}
+                    </mat-icon>
+                    <mat-error>
                         Campo <strong>obrigatório</strong>!
                     </mat-error>
                 </mat-form-field>
             </div>
+            <div @insertRemoveErrorMessageTrigger *ngIf="userLoginFormGroup.errors?.unauthenticated" class="login-error-message">
+                Usuário e/ou senha incorretos!
+            </div>
+            <div class="btn-submit-login-container">
+                <button class="btn-submit-login" mat-button type="button" 
+                    [disabled]="!userLoginFormGroup.controls.username.valid || !userLoginFormGroup.controls.password.valid" 
+                    (click)="login()"
+                >
+                    Entrar
+                </button>
+            </div>
         </form>
-        <div class="btn-submit-login-container">
-            <button class="btn-submit-login" matTooltip="Entrar" mat-button type="button" [routerLink]="['/home']">
-                Entrar
-            </button>
-    
-        </div>
     </div>      
 </div>
 

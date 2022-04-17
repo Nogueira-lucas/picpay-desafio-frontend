@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
 
+
 $color-primary-lighter: #007DFE;
 $color-primary-darker: #0e346a;
 $color-primary-darkest: #333333;
@@ -25,6 +26,98 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+
+.loading-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  width: 100%;
+}
+
+
+.header-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 16px;
+  
+  >div {
+    display: flex;
+    
+    &:last-child {
+      align-items: center;
+    }
+    
+    &:first-child {
+      align-items: initial;
+    }
+  }
+
+  mat-icon {
+    color: $color-primary-darkest;
+    font-size: 32px;
+    line-height: 40px;
+  }
+  
+  h1 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    color: $color-primary-darkest;
+    padding-left: 16px;
+  }
+  
+  
+}
+
+.page-content {
+  background: #fff;
+  overflow: auto;
+  border-radius: 8px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+  0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  max-width: 100vw;
+  
+  .mat-header-cell {
+    color: $color-primary-darkest;
+    font-size: 16px;
+    font-weight: 600 !important;
+  }
+  
+  .mat-column-actions {
+    width: 108px;
+    text-align: center;
+    
+    >div {
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    p {
+      padding-left: 28px;
+    }
+    
+    mat-icon {
+      color: $color-primary-darkest;
+      border-radius: 24px;
+      transition: all 0.3s ease;
+      font-size: 24px;
+      
+      &:first-child {
+        margin-right: 1px;
+      }
+      
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
 .mat-icon {
   color: $color-primary-light;
 }
@@ -45,110 +138,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
-.loading-page-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  width: 100%;
-}
-
-
-.header-page-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 32px 16px;
-
-  >div {
-    display: flex;
-
-    &:last-child {
-        align-items: center;
-    }
-
-    &:first-child {
-        align-items: initial;
-    }
-  }
-
-  mat-icon {
-    color: $color-primary-darkest;
-    font-size: 32px;
-    line-height: 40px;
-  }
-
-  h1 {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 44px;
-    color: $color-primary-darkest;
-    padding-left: 16px;
-  }
-
-  
-}
-
-.page-content {
-  background: #fff;
-  overflow: auto;
-  border-radius: 8px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-      0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  max-width: 100vw;
-
-  .mat-header-cell {
-      color: $color-primary-darkest;
-      font-size: 16px;
-      font-weight: 600 !important;
-  }
-
-  .mat-column-actions {
-      width: 108px;
-      text-align: center;
-      
-      >div {
-          display: flex;
-          justify-content: flex-end;
-      }
-
-      p {
-          padding-left: 28px;
-      }
-
-      mat-icon {
-          color: $color-primary-darkest;
-          border-radius: 24px;
-          transition: all 0.3s ease;
-          font-size: 24px;
-
-          &:first-child {
-              margin-right: 1px;
-          }
-
-          &:hover {
-              cursor: pointer;
-              transform: scale(1.2);
-          }
-      }
-  }
-}
-
-
 .form-control.form-control-file.ng-star-inserted {
   margin: 10px;
-
+  
 }
 
 .form-control {
   padding-bottom: 8px;
-
+  
   mat-form-field {
-      display: block;
-
-      .mat-form-field-appearance-outline .mat-form-field-outline {
+    display: block;
+    
+    .mat-form-field-appearance-outline .mat-form-field-outline {
           color: $color-primary-darker !important;
       }
   }
@@ -204,5 +205,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-weight: bold;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.login-error-message {
+  text-align: center;
+  color: rgba($color: #f00, $alpha: 0.6);
+  font-weight: bold;
+}
+

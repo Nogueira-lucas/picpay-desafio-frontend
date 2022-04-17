@@ -1,29 +1,33 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import Account from 'src/models/account.model';
 import UserLogin from 'src/models/user-login.model';
-import { AccountService } from 'src/services/account.service';
 import { AuthService } from 'src/services/auth.service';
-
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('insertRemoveErrorMessageTrigger', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('100ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('100ms', style({ opacity: 0 }))
+      ])
+    ]),
+  ],
 })
 export class LoginComponent implements OnInit {
 
+  passIsHide: boolean = true;  
   userLoginFormGroup: FormGroup;
-
-  usernameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-  ]);
+  usernameFormControl = new FormControl('', [Validators.required,]);
+  passwordFormControl = new FormControl('', [Validators.required,]);
 
   constructor(
     private router: Router,
@@ -39,10 +43,13 @@ export class LoginComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {  
   }
-
+  
+  showHidePass() {
+    this.passIsHide = !this.passIsHide
+  }
+  
   userLoginFormGroupHasError(control: any, error: string) {
     return this.userLoginFormGroup.controls[control].hasError(error);
   }
@@ -53,26 +60,17 @@ export class LoginComponent implements OnInit {
 
   login(){
     const login: UserLogin = {
-      email: "usuario@gmail.com",
-      password: "usuario"
+      email: this.userLoginFormGroup.controls['username'].value,
+      password:  this.userLoginFormGroup.controls['password'].value
     }
-
     this.authService.login(login)
     console.log(localStorage)
     
     if(localStorage.length > 0){
       this.goToPayments()
     } else {
-      this.snackBar.open("Credenciais incorretas!", 'Ok', {
-        duration: 5000,
-      });
+      this.userLoginFormGroup.setErrors({ unauthenticated: true });
     }
 
   }
-
-  onSubmit(){
-
-  }
-
-
 }
