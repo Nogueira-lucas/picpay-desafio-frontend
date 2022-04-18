@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from 'rxjs/operators';
 import { Subscription } from "rxjs";
+import { ButtonConfig } from "src/app/_components/button/buttonConfig";
 
 @Component({
     templateUrl: 'login.component.html',
@@ -16,6 +17,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     account$: Subscription;
 
+    loginButtonConfig: ButtonConfig;
+
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
@@ -24,27 +27,42 @@ export class LoginComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-        this.loginForm = this.formBuilder.group({
-            email: ['', Validators.required],
-            password: ['', Validators.required]
-        });
+        this.setupForm()        
     }
 
     get formControls() { return this.loginForm.controls; }
 
+    setupForm(): void {
+        this.loginForm = this.formBuilder.group({
+            email: ['', Validators.required],
+            password: ['', Validators.required]
+        });
+
+        this.loginButtonConfig = {
+            text: "Entrar",
+            primary: true
+        }
+    }
+
     onSubmit() {
-        this.account$ = this.accountService.login(this.formControls.email.value, this.formControls.password.value)
+        this.loading = true;
+        
+        setTimeout(() => {
+            this.account$ = this.accountService.login(this.formControls.email.value, this.formControls.password.value)
             .pipe(first())
             .subscribe({
                 next: () => {
                     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
                     this.router.navigateByUrl(returnUrl);
+                    this.loading = false;
                 },
                 error: error => {
                     console.error(error);
                     this.loading = false;
                 }
             });
+        }, 1000)
+        
     }
 
     ngOnDestroy() {

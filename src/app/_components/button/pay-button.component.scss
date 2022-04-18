@@ -1,0 +1,20 @@
+@import '../../_shared/styleConfig.scss';
+
+.btn {
+    background-color: $default-color;
+    height: 36px;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    @include button-text();
+    
+    &.primary {
+        background-color: $primary-color;
+        color: white;
+    }
+
+    &:disabled {
+        background-color: rgb($primary-color, 50%);
+        cursor: not-allowed;
+    }
+}

@@ -18,7 +18,7 @@
                     <input type="password" formControlName="password" />
                 </div>
 
-                <button [disabled]="loading">Entrar</button>
+                <pay-button [buttonConfig]="loginButtonConfig" (onClick)="onSubmit()" [disabled]="loading">Entrar</pay-button>
             </form>
 
         </div>
