@@ -8,6 +8,7 @@ import { PaymentModalComponent } from "../payment-modal/payment-modal.component"
 import { PaymentsService } from "@src/app/services/payments/payments.service";
 import { Subscription, throwError } from "rxjs";
 import { EventsService } from "@src/app/services/events/events.service";
+import { FilterObject } from "@src/app/models/filterObject";
 
 @Component({
   selector: "app-table",
@@ -21,14 +22,10 @@ export class TableComponent implements OnInit {
   selectedPayment: Payment;
   isLoading: Boolean = true;
   eventReceived: string;
-  filter: string;
+  filterObject: FilterObject = new FilterObject();
 
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.dataSource.paginator = mp;
-  }
-  @ViewChild(MatSort, { static: false }) set content(sort: MatSort) {
-    this.dataSource.sort = sort;
-  }
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
 
   constructor(
@@ -57,12 +54,29 @@ export class TableComponent implements OnInit {
       (payments) => {
         this.payments = payments;
         this.dataSource = new MatTableDataSource(this.payments);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         this.isLoading = false;
       },
       (error) => {
         return throwError(error);
       }
     );
+  }
+
+  filterTableByDate() {
+    if (this.filterObject.startDate && this.filterObject.endDate) {
+      this.dataSource = new MatTableDataSource<Payment>(
+        this.payments.filter(
+          (payment) =>
+            new Date(payment.date) >= new Date(this.filterObject.startDate) &&
+            new Date(payment.date) <= new Date(this.filterObject.endDate)
+        )
+      );
+    }
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.filterObject.query = "";
   }
 
   applyFilter(event: Event) {
@@ -127,7 +141,7 @@ export class TableComponent implements OnInit {
 
   refreshTable() {
     this.dataSource.filter = "";
-    this.filter = "";
+    this.filterObject = new FilterObject();
     this.getPayments();
   }
 

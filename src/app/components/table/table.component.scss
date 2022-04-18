@@ -28,6 +28,26 @@ table {
         margin-right: 8px;
       }
     }
+
+    &-moreFilters {
+      font-family: "Lato";
+      font-weight: 600;
+      margin-right: auto;
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+
+      .mat-icon {
+        font-size: 15px;
+        height: 15px;
+        width: 15px;
+      }
+    }
   }
 
   td,
