@@ -165,8 +165,9 @@ export class MyPaymentsComponent implements OnInit {
     })
   }
 
-  search(event){
-    
+  search(event: any){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.taskDataSource.filter = filterValue.trim().toLowerCase();
   }
   
   

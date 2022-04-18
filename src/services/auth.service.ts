@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import UserLogin from 'src/models/user-login.model';
 import Account from 'src/models/account.model';
 
@@ -13,7 +14,7 @@ export class AuthService {
     accounts: Account[] = []
     fakeJwtToken: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 
-    constructor(private http: HttpClient, private router: Router) { 
+    constructor(private http: HttpClient, private router: Router, public jwtHelper: JwtHelperService) { 
         this.listAccounts().subscribe((accounts: Account[]) => {
            this.accounts = accounts;
         }, error => {
@@ -39,7 +40,7 @@ export class AuthService {
     }
 
     setToken(token: string) {
-        localStorage.setItem('accessToken', token);
+        localStorage.setItem('token', token);
     }
 
     createToken(){
@@ -47,7 +48,11 @@ export class AuthService {
     }
 
     getToken() {
-        return localStorage.getItem('accessToken');
+        return localStorage.getItem('token');
     }
 
+    isAuthenticated(): boolean {
+        const token = localStorage.getItem('token');
+        return !this.jwtHelper.isTokenExpired(token);
+    }
 }

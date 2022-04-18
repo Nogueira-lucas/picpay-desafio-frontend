@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import UserLogin from 'src/models/user-login.model';
 import { AuthService } from 'src/services/auth.service';
+import UserLogin from 'src/models/user-login.model';
 
 @Component({
   selector: 'app-login',
@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit {
       password:  this.userLoginFormGroup.controls['password'].value
     }
     this.authService.login(login)
-    console.log(localStorage)
     
     if(localStorage.length > 0){
       this.goToPayments()

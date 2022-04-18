@@ -28,6 +28,11 @@ import { LayoutComponent } from 'src/layout/layout.component';
 import { HeaderComponent } from 'src/layout/header/header.component';
 import { AppComponent } from './app.component';
 import { ManagePaymentModalComponent } from 'src/components/manage-payment-modal/manage-payment-modal.component';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
 
 @NgModule({
   declarations: [	
@@ -40,6 +45,13 @@ import { ManagePaymentModalComponent } from 'src/components/manage-payment-modal
 
    ],
   imports: [
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["https://localhost:4200"],
+        disallowedRoutes: ["https://localhost:4200/home"],
+      },
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

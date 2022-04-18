@@ -3,7 +3,6 @@
     <div class="header-page-container">
         <div>
             <mat-icon>attach_money</mat-icon>
-            <!-- <mat-icon>account_balance</mat-icon> -->
             <h1>Meus Pagamentos</h1>
         </div>
     </div>
@@ -15,25 +14,12 @@
     <div class="table-container">
         <div class="filters-container">
             <div class="search-btn-container">
-                <div class="form-control ">
+                <div class="form-control">
                     <mat-form-field appearance="outline">
                         <mat-label>Pesquisar</mat-label>
-                        <input matInput (keyup)="search($event)" placeholder="Pesquisar por {nome do filtro}">
+                        <input matInput (keyup)="search($event)" placeholder="Pesquisa por usuário/título/data/valor">
                         <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
-                    <!-- <button class="btn-form-back">
-                        Filtrar
-                        <mat-icon matTooltip="Filtrar">
-                            cancel
-                        </mat-icon>
-                        <mat-form-field appearance="outline">
-                            <mat-select [(value)]="filterOptions[0].name">
-                                <mat-option *ngFor="let option of filterOptions" [value]="option.name">
-                                  {{option.name}}
-                                </mat-option>
-                              </mat-select>
-                        </mat-form-field>
-                    </button> -->
                 </div>
             </div>
             
@@ -44,15 +30,6 @@
                 [pageSizeOptions]="[5, 10, 15, 20, 25]"  
                 showFirstLastButtons
             ></mat-paginator>
-
-           <!--  <mat-paginator 
-                #MatPaginator  
-                length="taskDataSource?.data?.length"
-                [pageIndex]="1"
-                [pageSizeOptions]="[5, 10, 15, 20, 25]"  
-                (page)="onPaginateChange($event)" 
-                showFirstLastButtons
-            ></mat-paginator> -->
         </div>
         <table mat-table [dataSource]="taskDataSource" matSort #matSort="matSort">
             <ng-container matColumnDef="name">
