@@ -47,21 +47,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     onSubmit() {
         this.loading = true;
         
-        setTimeout(() => {
-            this.account$ = this.accountService.login(this.formControls.email.value, this.formControls.password.value)
-            .pipe(first())
-            .subscribe({
-                next: () => {
-                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                    this.router.navigateByUrl(returnUrl);
-                    this.loading = false;
-                },
-                error: error => {
-                    console.error(error);
-                    this.loading = false;
-                }
-            });
-        }, 1000)
+        this.account$ = this.accountService.login(this.formControls.email.value, this.formControls.password.value)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+                this.router.navigateByUrl(returnUrl);
+                this.loading = false;
+            },
+            error: error => {
+                console.error(error);
+                this.loading = false;
+            }
+        });
         
     }
 
