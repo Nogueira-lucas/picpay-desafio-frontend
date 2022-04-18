@@ -7,7 +7,6 @@ import { MatSort } from '@angular/material/sort'
 import { MatDialog } from '@angular/material/dialog'
 import { ManagePaymentModalComponent } from 'src/components/manage-payment-modal/manage-payment-modal.component'
 import { DateAdapter} from '@angular/material/core'
-import * as moment from 'moment'
 import Task from 'src/models/task.model'
 
 @Component({
@@ -41,7 +40,6 @@ export class MyPaymentsComponent implements OnInit {
   
   ngOnInit(): void {
     this.filterOptions = { name: "Usuario", value: null }
-    //this.listTasksWithPagination()
     this.listTasks()
   }
 
@@ -170,14 +168,6 @@ export class MyPaymentsComponent implements OnInit {
     this.taskDataSource.filter = filterValue.trim().toLowerCase();
   }
   
-  
-  onPaginateChange(event) {
-    this.listTasksWithPagination()
-    /* if (pageIndex !== event.pageIndex) {
-      console.log(event.pageIndex)
-      pageIndex = event.pageIndex
-    } */
-  }
 }
 
 
