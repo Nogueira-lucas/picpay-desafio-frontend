@@ -23,8 +23,12 @@ export class TableComponent implements OnInit {
   eventReceived: string;
   filter: string;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.dataSource.paginator = mp;
+  }
+  @ViewChild(MatSort, { static: false }) set content(sort: MatSort) {
+    this.dataSource.sort = sort;
+  }
   @ViewChild(MatTable) table: MatTable<any>;
 
   constructor(
@@ -53,8 +57,6 @@ export class TableComponent implements OnInit {
       (payments) => {
         this.payments = payments;
         this.dataSource = new MatTableDataSource(this.payments);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
         this.isLoading = false;
       },
       (error) => {
