@@ -1,3 +1,5 @@
+@import './assets/styles/scss/variables';
+
 * {
   box-sizing: border-box;
 }
@@ -7,4 +9,5 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  background: $background-color-primary;
 }
