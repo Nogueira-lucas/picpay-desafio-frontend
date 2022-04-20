@@ -1,10 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+$main-font: "Montserrat";
+$details-font: "Roboto";
+$grid-font: "Lato";
+
+$default-color: #F5F5F5;
+$primary-color: #007DFE;
+
+
 * {
   box-sizing: border-box;
 }
 
 html,
 body {
-  font-family: sans-serif;
+  font-family: $main-font;
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  color: #333333;
+  margin-bottom: 1.25em;
 }
