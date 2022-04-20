@@ -4,19 +4,19 @@ import { CommonModule } from '@angular/common';
 
 import { AccountRoutingModule } from './account-routing.module';
 import { LoginComponent } from './login/login.component';
-import { PayButtonComponent } from '../_components/button/pay-button.component';
-import { PayInputComponent } from '../_components/input/pay-input.component';
+import { PayButtonModule } from '../_components/button/pay-button.module';
+import { PayInputModule } from '../_components/input/pay-input.module';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        AccountRoutingModule
+        AccountRoutingModule,
+        PayButtonModule,
+        PayInputModule
     ],
     declarations: [
-        LoginComponent,
-        PayButtonComponent,
-        PayInputComponent
+        LoginComponent
     ]
 })
 export class AccountModule { }
