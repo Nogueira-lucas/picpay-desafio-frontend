@@ -1,3 +1,59 @@
-<p>
-  login works!
-</p>
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 contents login-leftCol">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="mb-4">
+              <img src="assets/images/logos/payfriends-logo.png"/>
+              <h5 class="login-form-text fw-bold my-3">
+                Bem vindo de volta
+              </h5>
+            </div>
+            <form action="#" method="post">
+              <mat-form-field class="w-100 mb-2" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                       placeholder="Ex. email@exemplo.com">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Insira um email válido
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Email é <strong>obrigatório</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="w-100 mb-3" appearance="fill">
+                <mat-label>Senha</mat-label>
+                <input [type]="hide ? 'password' : 'text'" matInput [formControl]="senhaFormControl" [errorStateMatcher]="matcher">
+                <mat-icon matSuffix (click)="toggleHide()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+                <mat-error *ngIf="senhaFormControl.hasError('minlength') && !senhaFormControl.hasError('required')">
+                      Senha deve ter no mínimo 6 caracteres
+                </mat-error>
+                <mat-error *ngIf="senhaFormControl.hasError('required')">
+                  Senha é <strong>obrigatória</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <input
+              [disabled]="!emailFormControl.valid || !senhaFormControl.valid"
+                type="submit"
+                value="ENTRAR"
+                class="btn btn-block btn-primary w-100"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-7 login-rightCol d-flex">
+        <img
+          src="assets/images/login-humaans.svg"
+          alt="Image"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+</div>

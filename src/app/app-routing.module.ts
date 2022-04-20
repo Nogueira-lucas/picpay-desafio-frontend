@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/core/guards/auth.guard';
 
 const routes: Routes = [
-  //create one route login and one main that needs authguard authentication
   {
     path: '',
     loadChildren: () => import('./pages/components/login/login.module').then( m => m.LoginModule)
   },
   {
     path: 'main',
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./pages/components/main/main.module').then( m => m.MainModule)
   },
   {
@@ -20,9 +19,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule
-  ]
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
