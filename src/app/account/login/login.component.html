@@ -8,16 +8,8 @@
             <h1>Bem-vindo de volta</h1>
 
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div>
-                    <label for="email">E-mail</label>
-                    <input type="email" formControlName="email" />
-                </div>
-
-                <div>
-                    <label for="password">Senha</label>
-                    <input type="password" formControlName="password" />
-                </div>
-
+                <pay-input [inputConfig]="emailInputConfig"></pay-input>
+                <pay-input [inputConfig]="passwordInputConfig"></pay-input>
                 <pay-button [buttonConfig]="loginButtonConfig" (onClick)="onSubmit()" [disabled]="loading">Entrar</pay-button>
             </form>
 

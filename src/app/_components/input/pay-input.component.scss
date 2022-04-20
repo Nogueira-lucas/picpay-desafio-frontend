@@ -1,0 +1,43 @@
+.pay-input {
+    margin-bottom: 0.5em;
+    transition: all .3s;
+
+    input {
+        width: 100%;
+        background: white;
+        padding: 1.2em;
+
+        border: solid 1px;
+        border-radius: 3px;
+        border-color: rgba(0, 0, 0, 0.12);
+
+        &::placeholder {
+            color: transparent;
+        }
+
+        &:focus {
+            box-shadow: none;
+            outline: none;
+            border-color: rgba(0, 0, 0, 0.40);
+        }
+
+        &:focus+label,
+        &:-webkit-autofill+label,
+        &:not(:placeholder-shown)+label {
+            transform: translate(0.7em, -5.1em);
+        }
+    }
+
+    label {
+        color: rgba(0, 0, 0, 0.6);
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        background-color: inherit;
+
+        transform: translate(1em, -2.6em);
+        transform-origin: 0 0;
+        transition: all .3s;
+    }
+
+}

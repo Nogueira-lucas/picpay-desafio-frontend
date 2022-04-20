@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AccountRoutingModule } from './account-routing.module';
 import { LoginComponent } from './login/login.component';
 import { PayButtonComponent } from '../_components/button/pay-button.component';
+import { PayInputComponent } from '../_components/input/pay-input.component';
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { PayButtonComponent } from '../_components/button/pay-button.component';
     ],
     declarations: [
         LoginComponent,
-        PayButtonComponent
+        PayButtonComponent,
+        PayInputComponent
     ]
 })
 export class AccountModule { }

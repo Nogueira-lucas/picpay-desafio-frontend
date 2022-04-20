@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { first } from 'rxjs/operators';
 import { Subscription } from "rxjs";
 import { ButtonConfig } from "src/app/_components/button/buttonConfig";
+import { InputConfig } from "src/app/_components/input/inputConfig";
 
 @Component({
     templateUrl: 'login.component.html',
@@ -18,6 +19,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     account$: Subscription;
 
     loginButtonConfig: ButtonConfig;
+
+    emailInputConfig: InputConfig;
+    passwordInputConfig: InputConfig;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -42,9 +46,22 @@ export class LoginComponent implements OnInit, OnDestroy {
             text: "Entrar",
             primary: true
         }
+
+        this.emailInputConfig = {
+            label: "Email",
+            controlName: "email",
+            type: "text"
+        }
+        
+        this.passwordInputConfig = {
+            label: "Senha",
+            controlName: "password",
+            type: "password"
+        }
     }
 
     onSubmit() {
+        if (this.formControls.email.value === "" || this.formControls.password.value === "") return;
         this.loading = true;
         
         this.account$ = this.accountService.login(this.formControls.email.value, this.formControls.password.value)

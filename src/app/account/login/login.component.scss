@@ -1,6 +1,10 @@
 .login {
     display: flex;
     align-items: center;
+
+    h1 {
+        margin-bottom: 1.25em;
+    }
     
     .form-container {
         position: relative;
