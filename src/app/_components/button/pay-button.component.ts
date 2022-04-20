@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ButtonConfig } from './buttonConfig';
+import { ButtonConfig } from './ButtonConfig';
 
 @Component({
   selector: 'pay-button',
@@ -8,8 +8,8 @@ import { ButtonConfig } from './buttonConfig';
 })
 export class PayButtonComponent implements OnInit {
   
+  @Input() config: ButtonConfig;
   @Input() disabled: boolean;
-  @Input() buttonConfig: ButtonConfig;
   
   @Output() onClick = new EventEmitter<any>();
 
@@ -18,7 +18,7 @@ export class PayButtonComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    if (this.buttonConfig.primary) this.class += "primary";
+    if (this.config.primary) this.class += "primary";
   }
 
   onClickButton(event) {

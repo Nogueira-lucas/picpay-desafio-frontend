@@ -1,4 +1,4 @@
 export class ButtonConfig {
-    text: string = "Salvar";
+    label: string = "Salvar";
     primary?: boolean = false;
 }

@@ -1,7 +1,7 @@
 <div class="pay-input">
-    <input [formControlName]="inputConfig.controlName"
-        [type]="inputConfig.type"
+    <input [formControlName]="config.controlName"
+        [type]="config.type"
         [placeholder]="placeholder"
         (change)="valueChange.emit()" />
-    <label class="floating-label">{{inputConfig.label}}</label>
+    <label class="floating-label">{{config.label}}</label>
 </div>

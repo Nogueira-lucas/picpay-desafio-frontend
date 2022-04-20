@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from 'rxjs/operators';
 import { Subscription } from "rxjs";
-import { ButtonConfig } from "src/app/_components/button/buttonConfig";
-import { InputConfig } from "src/app/_components/input/inputConfig";
+import { ButtonConfig } from "src/app/_components/button/ButtonConfig";
+import { InputConfig } from "src/app/_components/input/InputConfig";
 
 @Component({
     templateUrl: 'login.component.html',
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         });
 
         this.loginButtonConfig = {
-            text: "Entrar",
+            label: "Entrar",
             primary: true
         }
 

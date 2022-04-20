@@ -8,9 +8,9 @@
             <h1>Bem-vindo de volta</h1>
 
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <pay-input [inputConfig]="emailInputConfig"></pay-input>
-                <pay-input [inputConfig]="passwordInputConfig"></pay-input>
-                <pay-button [buttonConfig]="loginButtonConfig" (onClick)="onSubmit()" [disabled]="loading">Entrar</pay-button>
+                <pay-input [config]="emailInputConfig"></pay-input>
+                <pay-input [config]="passwordInputConfig"></pay-input>
+                <pay-button [config]="loginButtonConfig" (onClick)="onSubmit()" [disabled]="loading"></pay-button>
             </form>
 
         </div>

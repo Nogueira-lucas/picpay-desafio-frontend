@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
-import { InputConfig } from './inputConfig';
+import { InputConfig } from './InputConfig';
 
 @Component({
     selector: 'pay-input',
@@ -15,7 +15,7 @@ import { InputConfig } from './inputConfig';
 })
 export class PayInputComponent implements OnInit {
 
-    @Input() inputConfig: InputConfig;
+    @Input() config: InputConfig;
     @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
     placeholder: string;
@@ -23,7 +23,7 @@ export class PayInputComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
-        this.placeholder = this.inputConfig.placeholder ? this.inputConfig.placeholder : "Insira um(a) " + this.inputConfig.label
+        this.placeholder = this.config.placeholder ? this.config.placeholder : "Insira um(a) " + this.config.label
     }
 
 }
