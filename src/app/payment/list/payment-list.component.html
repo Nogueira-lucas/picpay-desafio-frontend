@@ -1,4 +1,4 @@
-<div class="payment-container">
+<div class="payment-list-container">
 
     <div class="table-header">
         <input />
@@ -20,8 +20,10 @@
             <td>{{ payment.value }}</td>
             <td>{{ payment.title }}</td>
             <td colspan="1">Editar</td>
-            <td colspan="1">Excluir</td>
+            <td colspan="1" (click)="openDeleteModal(payment)">Excluir</td>
         </tr>
 
     </table>
 </div>
+
+<ng-container #deletePayment></ng-container>

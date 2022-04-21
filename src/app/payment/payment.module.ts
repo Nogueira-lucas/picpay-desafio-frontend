@@ -4,19 +4,26 @@ import { CommonModule } from '@angular/common';
 
 import { PaymentComponent } from './payment.component';
 import { PaymentListComponent } from './list/payment-list.component';
+import { PaymentDeleteComponent } from './delete/payment-delete.component';
+import { PayModalModule } from '../_components/modal/pay-modal.module';
+import { PayButtonModule } from '../_components/button/pay-button.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        PayModalModule,
+        PayButtonModule
     ],
     declarations: [
         PaymentComponent,
-        PaymentListComponent
+        PaymentListComponent,
+        PaymentDeleteComponent
     ],
     exports: [
         PaymentComponent,
-        PaymentListComponent
+        PaymentListComponent,
+        PaymentDeleteComponent
     ]
 })
 export class PaymentModule { }

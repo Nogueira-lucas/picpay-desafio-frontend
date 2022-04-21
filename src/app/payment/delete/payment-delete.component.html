@@ -1,0 +1,18 @@
+<pay-modal class="delete-payment-modal" id="delete-payment-modal">
+
+    <div class="modal-header">
+        <h2>Excluir pagamento</h2>
+    </div>
+
+    <div class="modal-content">
+        <p>{{ payment.name }}</p>
+        <p>{{ payment.date }}</p>
+        <p>{{ payment.value }}</p>
+    </div>
+
+    <div class="modal-footer">
+        <pay-button [config]="cancelModalConfig" (onClick)="cancelModal()"></pay-button>
+        <pay-button [config]="submitModalConfig" (onClick)="submitModal()"></pay-button>
+    </div>
+    
+</pay-modal>

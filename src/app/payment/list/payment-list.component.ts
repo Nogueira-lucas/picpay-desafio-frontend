@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { PaymentParams } from 'src/app/_models/listRequest';
 import { Payment } from 'src/app/_models/payment';
 import { PaymentService } from 'src/app/_services/payment.service';
+import { PaymentDeleteComponent } from '../delete/payment-delete.component';
 
 @Component({
     selector: 'payment-list',
@@ -9,6 +10,8 @@ import { PaymentService } from 'src/app/_services/payment.service';
     styleUrls: ['payment-list.component.scss']
 })
 export class PaymentListComponent implements OnInit {
+
+    @ViewChild("deletePayment", { read: ViewContainerRef }) deleteModalComponent: ViewContainerRef;
 
     paymentList: Payment[];
     params: PaymentParams;
@@ -18,7 +21,10 @@ export class PaymentListComponent implements OnInit {
 
     activePage = 1;
 
-    constructor(private paymentService: PaymentService) { }
+    constructor(
+        private paymentService: PaymentService,
+        private componentFactory: ComponentFactoryResolver
+    ) { }
 
     ngOnInit(): void {
 
@@ -29,5 +35,11 @@ export class PaymentListComponent implements OnInit {
         this.paymentService.getAllPaginated(this.params).subscribe(paymentList => {
             this.paymentList = paymentList;
         })
+    }
+
+    openDeleteModal(payment) {
+        const deleteFactory = this.componentFactory.resolveComponentFactory(PaymentDeleteComponent)
+        const componentRef = this.deleteModalComponent.createComponent(deleteFactory)
+        componentRef.instance.payment = payment;
     }
 }
