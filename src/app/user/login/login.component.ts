@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { AccountService } from "../../_services/account.service";
+import { UserService as UserService } from "../../_services/user.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from 'rxjs/operators';
@@ -11,12 +11,12 @@ import { InputConfig } from "src/app/_components/input/InputConfig";
     templateUrl: 'login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class UserComponent implements OnInit, OnDestroy {
 
     loginForm: FormGroup;
     loading = false;
 
-    account$: Subscription;
+    user$: Subscription;
 
     loginButtonConfig: ButtonConfig;
 
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private accountService: AccountService
+        private userService: UserService
     ) { }
 
     ngOnInit(): void {
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (this.f.email.value === "" || this.f.password.value === "") return;
         this.loading = true;
         
-        this.account$ = this.accountService.login(this.f.email.value, this.f.password.value)
+        this.user$ = this.userService.login(this.f.email.value, this.f.password.value)
         .pipe(first())
         .subscribe({
             next: () => {
@@ -81,6 +81,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if (this.account$ != null) this.account$.unsubscribe();
+        if (this.user$ != null) this.user$.unsubscribe();
     }
 }

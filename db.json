@@ -1,5 +1,5 @@
 {
-    "tasks": [
+    "payments": [
       {
           "id": 1,
           "name": "Pennie Dumphries",
@@ -1701,7 +1701,7 @@
           "isPayed": true
       }
     ],
-    "account": [
+    "users": [
       {
         "id": 0,
         "name": "usuario",

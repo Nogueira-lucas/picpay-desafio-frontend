@@ -1,4 +1,4 @@
-export class Tasks {
+export class Payment {
     id: number;
     name: string;
     username: string;

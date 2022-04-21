@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { AccountRoutingModule } from './account-routing.module';
-import { LoginComponent } from './login/login.component';
+import { UserRoutingModule } from './user-routing.module';
+import { UserComponent } from './login/login.component';
 import { PayButtonModule } from '../_components/button/pay-button.module';
 import { PayInputModule } from '../_components/input/pay-input.module';
 
@@ -11,12 +11,12 @@ import { PayInputModule } from '../_components/input/pay-input.module';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        AccountRoutingModule,
+        UserRoutingModule,
         PayButtonModule,
         PayInputModule
     ],
     declarations: [
-        LoginComponent
+        UserComponent
     ]
 })
-export class AccountModule { }
+export class UserModule { }
