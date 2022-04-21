@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ButtonConfig } from '../_components/button/ButtonConfig';
+import { PayModalService } from '../_components/modal/pay-modal.service';
 
 @Component({
     templateUrl: 'home.component.html',
@@ -9,7 +10,7 @@ export class HomeComponent implements OnInit {
 
     addButtonConfig: ButtonConfig;
 
-    constructor() { }
+    constructor(private payModalService: PayModalService) { }
 
     ngOnInit() {
         this.addButtonConfig = {
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
         }
     }
 
-    addTask() {
-        // TODO abertura de modal: adicionar tarefa
+    openModal(modalId) {
+        this.payModalService.open(modalId);
     }
 }
