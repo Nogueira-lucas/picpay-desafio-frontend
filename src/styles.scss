@@ -1,13 +1,7 @@
+@import "app/app.component.scss";
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-$main-font: "Montserrat";
-$details-font: "Roboto";
-$grid-font: "Lato";
-
-$default-color: #F5F5F5;
-$primary-color: #007DFE;
-
 
 * {
   box-sizing: border-box;
@@ -16,6 +10,7 @@ $primary-color: #007DFE;
 html,
 body {
   font-family: $main-font;
+  background-color: $default-background-color;
   margin: 0;
   padding: 0;
 }
