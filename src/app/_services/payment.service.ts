@@ -19,7 +19,12 @@ export class PaymentService {
         return this.httpClient.get<Payment[]>(this.serviceUrl + urlParams)
     }
 
-    delete(id) {
+    create(payment: Payment) {
+        if (!payment) return;
+        return this.httpClient.post<Payment>(this.serviceUrl, payment)
+    }
+
+    delete(id: number) {
         if (!id) return;
         return this.httpClient.delete<Payment>(this.serviceUrl + id)
     }

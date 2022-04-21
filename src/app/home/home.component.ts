@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonConfig } from '../_components/button/ButtonConfig';
 import { InputConfig } from '../_components/input/InputConfig';
 import { PayModalService } from '../_components/modal/pay-modal.service';
+import { Payment } from '../_models/payment';
+import { PaymentService } from '../_services/payment.service';
 
 @Component({
     templateUrl: 'home.component.html',
@@ -27,6 +29,7 @@ export class HomeComponent implements OnInit {
 
     constructor(
         private payModalService: PayModalService,
+        private paymentService: PaymentService,
         private formBuilder: FormBuilder
     ) { }
 
@@ -47,15 +50,15 @@ export class HomeComponent implements OnInit {
 
     setupModalForm() {
         this.modalForm = this.formBuilder.group({
-            user: ["", Validators.required],
+            name: ["", Validators.required],
             value: ["", Validators.required],
             date: ["", Validators.required],
             title: [""],
         });
-        
+
         this.userInputConfig = {
             label: "Usuário",
-            controlName: "user",
+            controlName: "name",
             type: "text"
         }
         this.valueInputConfig = {
@@ -88,7 +91,28 @@ export class HomeComponent implements OnInit {
     }
 
     submitModal() {
-        // TODO adicionar tarefa
+        this.modalLoading = true;
+
+        const newPayment = this.newPaymentFrom(this.f)
+
+        this.paymentService.create(newPayment).subscribe(response => {
+            this.modalLoading = false;
+            this.payModalService.close(this.modalId);
+        })
+    }
+
+    private newPaymentFrom(groupForm): Payment {
+        const newPayment = new Payment()
+
+        newPayment.name = groupForm.name.value
+        newPayment.username = ""
+        newPayment.title = groupForm.title.value
+        newPayment.value = groupForm.value.value
+        newPayment.date = groupForm.date.value
+        newPayment.image = ""
+        newPayment.isPayed = false
+
+        return newPayment;
     }
 
 }
