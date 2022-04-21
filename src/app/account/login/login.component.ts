@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.setupForm()        
     }
 
-    get formControls() { return this.loginForm.controls; }
+    get f() { return this.loginForm.controls; }
 
     setupForm(): void {
         this.loginForm = this.formBuilder.group({
@@ -61,10 +61,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     onSubmit() {
-        if (this.formControls.email.value === "" || this.formControls.password.value === "") return;
+        if (this.f.email.value === "" || this.f.password.value === "") return;
         this.loading = true;
         
-        this.account$ = this.accountService.login(this.formControls.email.value, this.formControls.password.value)
+        this.account$ = this.accountService.login(this.f.email.value, this.f.password.value)
         .pipe(first())
         .subscribe({
             next: () => {

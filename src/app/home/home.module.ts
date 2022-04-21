@@ -6,6 +6,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { PayButtonModule } from '../_components/button/pay-button.module';
 import { PayModalModule } from '../_components/modal/pay-modal.module';
+import { PayInputModule } from '../_components/input/pay-input.module';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { PayModalModule } from '../_components/modal/pay-modal.module';
         HomeRoutingModule,
         ReactiveFormsModule,
         PayButtonModule,
-        PayModalModule
+        PayModalModule,
+        PayInputModule
     ]
 })
 export class HomeModule { }

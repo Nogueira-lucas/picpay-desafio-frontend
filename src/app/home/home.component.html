@@ -5,7 +5,7 @@
 <main class="home-main">
     <section class="section-main">
         <h1 class="home-title">Meus pagamentos</h1>
-        <pay-button class="add-button-task" [config]="addButtonConfig" (onClick)="openModal('addTaskModal')"></pay-button>
+        <pay-button class="add-button-task" [config]="addButtonConfig" (onClick)="openModal()"></pay-button>
     </section>
 
     <div class="grid-container">
@@ -14,5 +14,24 @@
 </main>
 
 <pay-modal id="addTaskModal">
-    <h2>Adicionar pagamento</h2>
+    <div class="modal-header">
+        <h2>Adicionar pagamento</h2>
+    </div>
+
+    <div class="modal-content">
+        <form [formGroup]="modalForm">
+
+            <pay-input [config]="userInputConfig"></pay-input>
+            <pay-input [config]="valueInputConfig"></pay-input>
+
+            <pay-input [config]="dateInputConfig"></pay-input>
+            <pay-input [config]="titleInputConfig"></pay-input>
+
+            <div class="modal-footer">
+                <pay-button [config]="cancelModalConfig" (onClick)="cancelModal()" [disabled]="modalLoading"></pay-button>
+                <pay-button [config]="subitModalConfig" (onClick)="submitModal()" [disabled]="modalLoading"></pay-button>
+            </div>
+        </form>
+    </div>
+
 </pay-modal>
