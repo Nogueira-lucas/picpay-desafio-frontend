@@ -1,0 +1,27 @@
+<div class="payment-container">
+
+    <div class="table-header">
+        <input />
+        <button>Filtros</button>
+
+    </div>
+
+    <table>
+        <tr>
+            <th>Usuário</th>
+            <th>Pago</th>
+            <th>Valor</th>
+            <th>Título</th>
+        </tr>
+
+        <tr *ngFor="let payment of paymentList;">
+            <td>{{ payment.name }}</td>
+            <td>{{ payment.isPayed }}</td>
+            <td>{{ payment.value }}</td>
+            <td>{{ payment.title }}</td>
+            <td colspan="1">Editar</td>
+            <td colspan="1">Excluir</td>
+        </tr>
+
+    </table>
+</div>
