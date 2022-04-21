@@ -19,6 +19,11 @@ export class PaymentService {
         return this.httpClient.get<Payment[]>(this.serviceUrl + urlParams)
     }
 
+    delete(id) {
+        if (!id) return;
+        return this.httpClient.delete<Payment>(this.serviceUrl + id)
+    }
+
     private buildUrlParams(params: PaymentParams) {
         let urlParams = "";
 

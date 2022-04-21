@@ -44,8 +44,16 @@ export class PaymentDeleteComponent implements OnInit, AfterViewInit {
     }
 
     submitModal() {
-        this.paymentService.delete(this.payment.id)
+        this.deletePayment();
         this.payModalService.close(this.deleteModalId);
+    }
+
+    deletePayment() {
+        this.paymentService.delete(this.payment.id).subscribe(data => {
+            console.log(data);
+        }, err => {
+            console.log(err);
+        })
     }
 
 }
