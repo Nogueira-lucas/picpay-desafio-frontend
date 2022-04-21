@@ -25,7 +25,7 @@ export class UserService {
         return this.userSubject.value;
     }
 
-    login(email, password) {
+    login(email, password): Observable<User> {
 
         // TODO improve login request
         if (!password) return;
