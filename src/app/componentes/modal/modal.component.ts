@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal',
@@ -14,11 +15,24 @@ export class ModalComponent implements OnInit {
   description: string = 'Modal';
 
   @Input()
-  btnFechar: string = 'Modal';
+  data: any[] = [];
+
+  @Input()
+  btnFechar: string = 'Cancelar';
   
-  constructor() { }
+  @Input()
+  btnConfirmar: string = 'Confirmar';
+
+  @Output()
+  confirmar = new EventEmitter();
+
+  constructor(public dialogRef: MatDialogRef<ModalComponent>) { }
 
   ngOnInit() {
   }
 
+  confirmarClick(){
+    this.confirmar.emit();
+    this.dialogRef.close();
+  }
 }

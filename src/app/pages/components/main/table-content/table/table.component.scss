@@ -34,6 +34,12 @@
         border-radius: 50%;
         background-color: $background-color-primary;
     }
+    &-icon{
+        color: $danger;
+        &-payed{
+            color: $success;
+        }
+    }
 }
 
 /* Column Widths */
@@ -57,4 +63,8 @@ table {
 
 .w-20{
     width: 20%;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }

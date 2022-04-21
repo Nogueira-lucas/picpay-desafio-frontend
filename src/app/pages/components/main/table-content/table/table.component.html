@@ -52,15 +52,17 @@
       <!-- Pago Column -->
       <ng-container matColumnDef="pago">
         <th mat-header-cell *matHeaderCellDef>Pago</th>
-        <td mat-cell *matCellDef="let row">{{row.isPayed}}</td>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon class="material-icons-outlined table-icon" [ngClass]="{'table-icon-payed' : row.isPayed}">{{row.isPayed ? 'done' : 'close'}}</mat-icon>
+        </td>
       </ng-container>
 
       <!-- Ações Column -->
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row" class="w-20 text-end">
-          <mat-icon class="material-icons-outlined" class="me-2">edit</mat-icon>
-          <mat-icon class="material-icons-outlined">cancel</mat-icon>
+          <mat-icon class="material-icons-outlined" class="me-2 cursor-pointer">edit</mat-icon>
+          <mat-icon class="material-icons-outlined cursor-pointer" (click)="removerUsuario(row.id)">cancel</mat-icon>
         </td>
       </ng-container>
 

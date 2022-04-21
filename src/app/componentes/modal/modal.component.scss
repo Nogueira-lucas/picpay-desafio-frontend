@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+@import '../../../assets/styles/scss/variables';
+
+.modal{
+    &-title{
+        font-size: 22px;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+    }
+    &-buttons{
+        display: flex;
+        place-content: center;
+        place-content: space-evenly;
+    }
+}
