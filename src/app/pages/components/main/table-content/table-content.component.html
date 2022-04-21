@@ -1,0 +1,22 @@
+<div class="container" (window:resize)="onResize($event)">
+  <div class="row d-block d-md-flex">
+    <div class="col-6 table-leftCol">
+      <span class="table-title">Meus pagamentos</span>
+    </div>
+    <div class="col-6 table-rightCol">
+      <button class="btn btn-primary" [ngClass]="{'w-100' : isMobile}">ADICIONAR PAGAMENTO</button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!isMobile">
+    <div class="col-12">
+      <app-table></app-table>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isMobile">
+    <div class="col-12">
+      <app-cards></app-cards>
+    </div>
+  </div>
+</div>

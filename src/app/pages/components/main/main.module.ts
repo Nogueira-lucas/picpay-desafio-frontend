@@ -6,8 +6,11 @@ import { MainComponent } from './main.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { CountdownModule } from 'ngx-countdown';
+import { TableContentComponent } from './table-content/table-content.component';
+import { TableComponent } from './table-content/table/table.component';
+import { CardsComponent } from './table-content/cards/cards.component';
 
 @NgModule({
   imports: [
@@ -21,6 +24,11 @@ import { CountdownModule } from 'ngx-countdown';
     MatMenuModule,
     //endregion Material Modules
   ],
-  declarations: [MainComponent]
+  declarations: [
+    MainComponent,
+    TableContentComponent,
+    TableComponent,
+    CardsComponent
+  ]
 })
 export class MainModule { }

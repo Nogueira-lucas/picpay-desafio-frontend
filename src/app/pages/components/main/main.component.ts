@@ -23,13 +23,11 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // const expiration = new Date(this._localStorageService.get('expirationTime'))
-    // const dif = expiration.getTime() - this.dateNow.getTime();
-    // const Seconds_from_T1_to_T2 = dif / 1000;
-    // const Seconds_Between_Dates = Math.abs(Seconds_from_T1_to_T2);
-    // this.config = {
-    //   leftTime: Seconds_Between_Dates
-    // }
+    const expiration = this._localStorageService.get('expirationTime');
+    this.dateCountdown = new Date(parseInt(expiration));
+    const diff = this.dateCountdown.getTime() - this.dateNow.getTime();
+    const Seconds_Between_Dates = Math.abs(diff / 1000);
+    this.config.leftTime = Seconds_Between_Dates;
   }
 
   logout(){

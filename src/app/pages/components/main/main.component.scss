@@ -1,14 +1,14 @@
 @import '../../../../assets/styles/scss/variables';
-
-.container{
-    max-width: inherit;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Varela+Round&display=swap');
 
 .mat-menu-panel{
     margin-top: 1rem !important;
 }
 
 .main{
+    &-container {
+        max-width: inherit;
+    }
     &-logo{
         cursor: pointer;
     }
@@ -83,5 +83,11 @@
         &-avatar{
             width: 10%;
         }
+    }
+}
+
+@media screen and (min-width: $xl){
+    .table-container {
+        max-width: inherit;
     }
 }
