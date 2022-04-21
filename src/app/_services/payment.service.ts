@@ -24,6 +24,11 @@ export class PaymentService {
         return this.httpClient.post<Payment>(this.serviceUrl, payment)
     }
 
+    update(payment: Payment) {
+        if (!payment) return;
+        return this.httpClient.put<Payment>(this.serviceUrl  + payment.id, payment)
+    }
+
     delete(id: number) {
         if (!id) return;
         return this.httpClient.delete<Payment>(this.serviceUrl + id)
