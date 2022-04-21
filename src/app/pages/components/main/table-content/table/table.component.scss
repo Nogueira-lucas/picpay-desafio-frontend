@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+@import '../../../../../../assets/styles/scss/variables';
+
+/* Estrutura */
+.table{
+    &-container{
+        position: relative;
+    }
+    &-table-container{
+        position: relative;
+        min-height: 200px;
+        max-height: 400px;
+        overflow: auto;
+    }
+    &-loading-shade{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 56px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &-rate-limit-reached{
+        max-width: 360px;
+        text-align: center;
+    }
+    &-avatar{
+        width:6%;
+        height: 6%;
+        border-radius: 50%;
+        background-color: $background-color-primary;
+    }
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}
+
+::ng-deep .mat-form-field-infix{
+    display: flex !important;
+    width: 100% !important;
+}
+
+table {
+  width: 100%;
+}
+
+.w-20{
+    width: 20%;
+}
