@@ -18,9 +18,33 @@
         background-color: $w;
         height: 100vh;
         place-self: center;
+        justify-content: center;
     }
     &-leftCol{
         place-self: center;
+    }
+    &-registrar{
+        display: flex;
+        place-content: center;
+        &-link{
+            color: $link-color-primary;
+        }
+    }
+    &-error{
+        color: $danger;
+        line-height: 20px;
+        position: absolute;
+        width: 100%;
+        top: 38px;
+        left: -12px;
+        &-cadastro{
+            color: $danger;
+            font-size: 15px;
+            display: flex;
+            justify-content:center;
+            top: 0px;
+            left: 0px;
+        }
     }
 }
 

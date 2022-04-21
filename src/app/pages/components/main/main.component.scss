@@ -1,0 +1,87 @@
+@import '../../../../assets/styles/scss/variables';
+
+.container{
+    max-width: inherit;
+}
+
+.mat-menu-panel{
+    margin-top: 1rem !important;
+}
+
+.main{
+    &-logo{
+        cursor: pointer;
+    }
+    
+    &-header{
+        background-color: $header-color-primary !important;
+        height: 90px;
+    }
+    &-avatar{
+        border-radius: 50%;
+        width: 5%;
+        cursor: pointer;
+    }
+    &-leftCol{
+        align-self: center;
+    }
+    &-rightCol{
+        text-align: right;
+        align-self: center;
+    }
+    &-more{
+        &-button{
+            background: transparent !important;
+            border: none !important;
+        }
+        &-icon{
+            color: $w;
+            position: relative;
+            top: 8px;
+        }
+    }
+}
+
+@media screen and (max-width: $sm){
+    .main{
+        &-header{
+            height: 50px;
+        }
+        &-avatar{
+            width: 10%;
+        }
+    }
+}
+
+@media screen and (max-width: $md){
+    .main{
+        &-header{
+            height: 50px;
+        }
+        &-avatar{
+            width: 15%;
+        }
+    }
+}
+
+@media screen and (max-width: $lg){
+    .main{
+        &-header{
+            height: 50px;
+        }
+        &-avatar{
+            width: 10%;
+        }
+    }
+}
+
+@media screen and (max-width: $xl){
+    .main{
+        &-header{
+            height: 50px;
+        }
+        &-avatar{
+            width: 10%;
+        }
+    }
+}

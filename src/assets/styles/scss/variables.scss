@@ -35,6 +35,16 @@ $picpay-desafio-frontend-theme: mat.define-light-theme((
 
 //#region colors
 $w: #fff;
+$danger: red;
 
 $background-color-primary: #F2F2F2;
+$header-color-primary: #002D69;
+$link-color-primary: #007DFE;
+//#endregion
+
+//#region bootstrap breakpoints
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
 //#endregion

@@ -20,10 +20,7 @@ export class LocalStorageService {
   }
 
   get(key: string): any {
-    if (this.storage) {
-      return JSON.parse(this.storage.getItem(key) || '{}');
-    }
-    return null;
+    return localStorage.getItem(key);
   }
 
   remove(key: string): boolean {

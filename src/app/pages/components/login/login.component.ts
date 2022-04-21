@@ -1,6 +1,11 @@
+import { Router } from '@angular/router';
+import { ModalComponent } from './../../../componentes/modal/modal.component';
+import { LocalStorageService } from './../../../../core/services/local-storage.service';
+import { AuthService } from './../../../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +14,207 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class LoginComponent implements OnInit {
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  senhaFormControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  loginForm = this._formBuilder.group(
+    {
+      emailFormControl: ['', [Validators.required, Validators.email]],
+      senhaFormControl: ['', [Validators.required, Validators.minLength(6)]]
+    });
+ 
+  cadastroForm: FormGroup;
 
   matcher = new MyErrorStateMatcher();
   hide: boolean = true;
+  emailErrorMessage: string = '';
+  passwordErrorMessage: string = ''
+  confirmPasswordErrorMessage: string = ''
+  userExistsErrorMessage: string = ''
+  userExists: boolean = false;
+  guid: string = '';
+  wrongPassword: boolean = false;
+  openRegistrar: boolean = false;
 
-  constructor() { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _authService: AuthService, 
+    private _localStorageService: LocalStorageService,
+    public dialog: MatDialog,
+    private _router: Router
+    ) {}
 
   ngOnInit() {
-    console.log('LoginComponent');
+    if(this._localStorageService.get('accessToken') && this._authService.isTokenValid()){
+      this._router.navigate(['/main']);
+    }
+
+    this.cadastroForm = this._formBuilder.group({
+      nameFormControl: ['', Validators.required],
+      emailFormControl: ['', [Validators.required, Validators.email]],
+      senhaFormControl: ['', [Validators.required, Validators.minLength(6)]],
+      confirmaSenhaFormControl: ['', [ Validators.required ]]
+    }, {
+        validator: MustMatch('senhaFormControl', 'confirmaSenhaFormControl')
+    });  
+  }
+
+  emailError(){
+    if (this.loginForm.get('emailFormControl').hasError('required')) {
+      this.emailErrorMessage = 'Campo obrigatório';
+      return true;
+    }
+    else if (this.loginForm.get('emailFormControl').hasError('email')) {
+      this.emailErrorMessage = 'Email inválido';
+      return true;
+    }
+    else {
+      this.emailErrorMessage = '';
+      return false;
+    }
+  }
+
+  passwordError(){
+    if (this.loginForm.get('senhaFormControl').hasError('required')) {
+      this.passwordErrorMessage = 'Campo obrigatório';
+      this.wrongPassword = false;
+      return true;
+    }
+    else if (this.loginForm.get('senhaFormControl').hasError('minlength')) {
+      this.passwordErrorMessage = 'Mínimo de 6 caracteres';
+      this.wrongPassword = false;
+      return true;
+    }
+    else {
+      this.passwordErrorMessage = '';
+      return false;
+    }
+  }
+
+  confirmPasswordError(){
+    if (this.cadastroForm.get('confirmaSenhaFormControl').hasError('required')) {
+      this.confirmPasswordErrorMessage = 'Campo obrigatório';
+      this.wrongPassword = false;
+      return true;
+    }
+    else if (this.cadastroForm.get('confirmaSenhaFormControl').hasError('minlength')) {
+      this.confirmPasswordErrorMessage = 'Mínimo de 6 caracteres';
+      this.wrongPassword = false;
+      return true;
+    }
+    else if (this.cadastroForm.get('confirmaSenhaFormControl').value !== this.cadastroForm.get('senhaFormControl').value) {
+      this.confirmPasswordErrorMessage = 'Senhas não conferem';
+      this.wrongPassword = false;
+      return true;
+    }
+    else {
+      this.confirmPasswordErrorMessage = '';
+      return false;
+    }
   }
 
   toggleHide() {
     this.hide = !this.hide;
   }
 
+  toggleRegistrar(){
+    this.openRegistrar = !this.openRegistrar;
+  }
+
+  login(){
+    this._authService.login()
+    .subscribe(
+      (response: any) => {
+        if(response.length > 0) {
+          if(response.find(x => x.email == this.loginForm.value.emailFormControl) && response.find(x => x.password == this.loginForm.value.senhaFormControl)){
+            let token = this.generateGuid();
+            let expirationTime = this._authService.generateExpirationTime();
+            this._localStorageService.set('accessToken', token);
+            this._localStorageService.set('expirationTime', expirationTime);
+            this._localStorageService.set('user', response[0]);
+            this._router.navigate(['/main'])
+          }
+          else{
+            this.wrongPassword = true;
+          }
+        }
+        else{
+          this.wrongPassword = true;
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  registrar(){
+    let user = {
+      nome: this.cadastroForm.get('nameFormControl').value,
+      email: this.cadastroForm.get('emailFormControl').value,
+      password: this.cadastroForm.get('senhaFormControl').value
+    }
+
+    this._authService.getUsers().subscribe(
+      (response: any) => {
+        if(response.length > 0) {
+          if(response.find(x => x.email == user.email)){
+            this.userExistsErrorMessage = 'Usuário já cadastrado!';
+            this.userExists = true;
+          }
+          else{
+            if(!this.userExists){
+              this._authService.registrar(user)
+              .subscribe(
+                (response: any) => {
+                  let token = this.generateGuid();
+                  let expirationTime = this._authService.generateExpirationTime();
+                  this._localStorageService.set('accessToken', token);
+                  this._localStorageService.set('expirationTime', expirationTime);
+                  this._localStorageService.set('user', response);
+                  this._router.navigate(['/main'])
+                },
+                (error) => {
+                  console.log(error);
+                }
+              );
+            }
+          }
+        }
+      });
+  }
+  
+  generateGuid(){
+    return this.guid = this._authService.generateGuid();
+  }
+
+  get confirmaSenhaFormControl(){
+    return this.cadastroForm.get('confirmaSenhaFormControl');
+  }
+
+  get senhaFormControl(){
+    return this.cadastroForm.get('senhaFormControl  ');
+  }
 }
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
+export function MustMatch(controlName: string, matchingControlName: string) {
+  return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+          return;
+      }
+
+      // set error on matchingControl if validation fails
+      if (control.value !== matchingControl.value) {
+          matchingControl.setErrors({ mustMatch: true });
+      } else {
+          matchingControl.setErrors(null);
+      }
   }
 }
