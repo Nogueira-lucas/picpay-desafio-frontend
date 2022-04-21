@@ -5,13 +5,13 @@
 <main class="home-main">
     <section class="section-main">
         <h1 class="home-title">Meus pagamentos</h1>
-        <pay-button class="add-button-task" [config]="addButtonConfig" (onClick)="openModal()"></pay-button>
+        <pay-button class="add-button-payment" [config]="addButtonConfig" (onClick)="openModal()"></pay-button>
     </section>
 
     <payments></payments>
 </main>
 
-<pay-modal id="add-task-modal">
+<pay-modal id="add-payment-modal">
     <div class="modal-header">
         <h2>Adicionar pagamento</h2>
     </div>

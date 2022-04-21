@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     cancelModalConfig: ButtonConfig;
     submitModalConfig: ButtonConfig;
 
-    modalId = "add-task-modal"
+    modalId = "add-payment-modal"
 
     modalLoading = false;
 

@@ -9,6 +9,7 @@ import { PayModalModule } from '../_components/modal/pay-modal.module';
 import { PayButtonModule } from '../_components/button/pay-button.module';
 import { PaymentEditComponent } from './edit/payment-edit.component';
 import { PayInputModule } from '../_components/input/pay-input.module';
+import { PaymentAddComponent } from './add/payment-add.component';
 
 @NgModule({
     imports: [
@@ -21,12 +22,14 @@ import { PayInputModule } from '../_components/input/pay-input.module';
     declarations: [
         PaymentComponent,
         PaymentListComponent,
+        PaymentAddComponent,
         PaymentEditComponent,
         PaymentDeleteComponent
     ],
     exports: [
         PaymentComponent,
         PaymentListComponent,
+        PaymentAddComponent,
         PaymentEditComponent,
         PaymentDeleteComponent
     ]

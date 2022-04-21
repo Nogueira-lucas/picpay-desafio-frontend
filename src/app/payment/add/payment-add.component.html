@@ -1,0 +1,22 @@
+<pay-modal class="add-payment-modal" id="add-payment-modal">
+
+    <div class="modal-header">
+        <h2>Adicionar pagamento</h2>
+    </div>
+
+    <div class="modal-content">
+        <form [formGroup]="addForm">
+            <pay-input [config]="userInputConfig"></pay-input>
+            <pay-input [config]="valueInputConfig"></pay-input>
+
+            <pay-input [config]="dateInputConfig"></pay-input>
+            <pay-input [config]="titleInputConfig"></pay-input>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <pay-button [config]="cancelModalConfig" (onClick)="closeModal()"></pay-button>
+        <pay-button [config]="submitModalConfig" (onClick)="submitModal()"></pay-button>
+    </div>
+    
+</pay-modal>

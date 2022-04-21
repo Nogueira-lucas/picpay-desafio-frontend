@@ -2,6 +2,7 @@ import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRe
 import { PaymentParams } from 'src/app/_models/listRequest';
 import { Payment } from 'src/app/_models/payment';
 import { PaymentService } from 'src/app/_services/payment.service';
+import { PaymentAddComponent } from '../add/payment-add.component';
 import { PaymentDeleteComponent } from '../delete/payment-delete.component';
 import { PaymentEditComponent } from '../edit/payment-edit.component';
 
@@ -12,8 +13,9 @@ import { PaymentEditComponent } from '../edit/payment-edit.component';
 })
 export class PaymentListComponent implements OnInit {
 
-    @ViewChild("deletePayment", { read: ViewContainerRef }) deleteModalComponent: ViewContainerRef;
+    @ViewChild("addPayment", { read: ViewContainerRef }) addModalComponent: ViewContainerRef;
     @ViewChild("editPayment", { read: ViewContainerRef }) editModalComponent: ViewContainerRef;
+    @ViewChild("deletePayment", { read: ViewContainerRef }) deleteModalComponent: ViewContainerRef;
 
     paymentList: Payment[];
     params: PaymentParams;
@@ -39,6 +41,12 @@ export class PaymentListComponent implements OnInit {
         this.paymentService.getAllPaginated(this.params).subscribe(paymentList => {
             this.paymentList = paymentList;
         })
+    }
+
+    openAddModal(payment) {
+        const addFactory = this.componentFactory.resolveComponentFactory(PaymentAddComponent)
+        const componentRef = this.editModalComponent.createComponent(addFactory)
+        componentRef.instance.payment = payment;
     }
 
     openEditModal(payment) {
