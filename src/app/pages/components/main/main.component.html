@@ -7,12 +7,13 @@
             <img
             src="assets/images/logos/payfriends-logo-white.png"
             alt="PayFriends"
-            class="main-logo"/>
+            class="main-logo"
+            routerLink="pagamentos"/>
           </div>
 
           <div class="col-6 main-rightCol">
             <div class="main-more">
-              <img src="../../../../assets/images/profile/cat.png" alt="Avatar" class="main-avatar">
+              <img routerLink="perfil" src="../../../../assets/images/profile/cat.png" alt="Avatar" class="main-avatar">
               <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="More options" class="main-more-button">
                 <mat-icon class="main-more-icon">more_vert</mat-icon>
               </button>
@@ -41,6 +42,6 @@
   </p>
 
   <div class="container table-container">
-    <app-table-content></app-table-content>
+    <router-outlet></router-outlet>
   </div>
 </div>

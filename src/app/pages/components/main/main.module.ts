@@ -26,9 +26,6 @@ import { CardsComponent } from './table-content/cards/cards.component';
   ],
   declarations: [
     MainComponent,
-    TableContentComponent,
-    TableComponent,
-    CardsComponent
   ]
 })
 export class MainModule { }
