@@ -1,0 +1,50 @@
+@import "../app.component.scss";
+
+.home-header {
+    background-color: #002D69;
+    height: 10vh;
+    padding: 0 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .profile {
+        height: 50px;
+        width: 50px;
+        background-color: white;
+        border: solid 1px black;
+        border-radius: 100%;
+    }
+}
+
+.home-main {
+    background-color: $default-background-color;
+    height: 90vh;
+    padding: 25px 48px;
+    flex: 1 1 auto;
+
+    .section-main {
+        display: flex;
+        justify-content: space-between;
+
+        .home-title {
+            margin: 25px 0;
+            align-self: center;
+        }
+
+        .add-button-task {
+            align-self: flex-end;
+        }
+
+    }
+
+    .grid-container {
+        width: 100%;
+        
+        // Estilo para teste
+        background-color: white;
+        margin: 20px 0;
+        height: 50px;
+    }
+}
