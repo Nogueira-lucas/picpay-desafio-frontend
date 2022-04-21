@@ -19,9 +19,9 @@ export class HomeComponent implements OnInit {
     titleInputConfig: InputConfig;
 
     cancelModalConfig: ButtonConfig;
-    subitModalConfig: ButtonConfig;
+    submitModalConfig: ButtonConfig;
 
-    modalId = "addTaskModal"
+    modalId = "add-task-modal"
 
     modalLoading = false;
 
@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
         this.cancelModalConfig = {
             label: "Cancelar"
         }
-        this.subitModalConfig = {
+        this.submitModalConfig = {
             label: "Adicionar Pagamento",
             primary: true
         }

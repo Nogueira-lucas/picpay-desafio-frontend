@@ -11,7 +11,7 @@
     <payments></payments>
 </main>
 
-<pay-modal id="addTaskModal">
+<pay-modal id="add-task-modal">
     <div class="modal-header">
         <h2>Adicionar pagamento</h2>
     </div>
@@ -27,7 +27,7 @@
 
             <div class="modal-footer">
                 <pay-button [config]="cancelModalConfig" (onClick)="cancelModal()" [disabled]="modalLoading"></pay-button>
-                <pay-button [config]="subitModalConfig" (onClick)="submitModal()" [disabled]="modalLoading"></pay-button>
+                <pay-button [config]="submitModalConfig" (onClick)="submitModal()" [disabled]="modalLoading"></pay-button>
             </div>
         </form>
     </div>
