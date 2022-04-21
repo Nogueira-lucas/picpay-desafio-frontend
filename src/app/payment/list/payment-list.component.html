@@ -5,21 +5,23 @@
         <button>Filtros</button>
     </div>
 
-    <table>
+    <table class="table-list">
         <tr>
-            <th>Usuário</th>
-            <th>Pago</th>
-            <th>Valor</th>
-            <th>Título</th>
+            <th class="table-columns">Usuário</th>
+            <th class="table-columns">Pago</th>
+            <th class="table-columns">Valor</th>
+            <th class="table-columns">Título</th>
+            <th class="table-columns"></th>
+            <th class="table-columns"></th>
         </tr>
 
         <tr *ngFor="let payment of paymentList;">
-            <td>{{ payment.name }}</td>
-            <td>{{ payment.isPayed }}</td>
-            <td>{{ payment.value }}</td>
-            <td>{{ payment.title }}</td>
-            <td colspan="1" (click)="openEditModal(payment)">Editar</td>
-            <td colspan="1" (click)="openDeleteModal(payment)">Excluir</td>
+            <td class="table-items">{{ payment.name }}</td>
+            <td class="table-items">{{ payment.isPayed }}</td>
+            <td class="table-items">{{ payment.value }}</td>
+            <td class="table-items">{{ payment.title }}</td>
+            <td class="table-items" colspan="1" (click)="openEditModal(payment)">Editar</td>
+            <td class="table-items" colspan="1" (click)="openDeleteModal(payment)">Excluir</td>
         </tr>
 
     </table>

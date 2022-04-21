@@ -1,7 +1,22 @@
 .payment-list-container {
     width: 100%;
-    
-    // Estilo para teste
     background-color: white;
-    margin: 20px 0;
+    
+    .table-header {
+        height: 64px;   
+    }
+
+    .table-list {
+        width: 100%;
+
+        .table-columns {
+            border-bottom: solid 1px black;
+            margin: 10;
+        }
+
+        .table-items {
+            padding: 10px;
+        }
+
+    }
 }
