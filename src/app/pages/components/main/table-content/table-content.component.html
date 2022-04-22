@@ -4,13 +4,12 @@
       <span class="table-title">Meus pagamentos</span>
     </div>
     <div class="col-6 table-rightCol">
-      <button class="btn btn-primary" [ngClass]="{'w-100' : isMobile}">ADICIONAR PAGAMENTO</button>
     </div>
   </div>
 
   <div class="row" *ngIf="!isMobile">
     <div class="col-12">
-      <app-table></app-table>
+      <app-table [isMobile]="isMobile"></app-table>
     </div>
   </div>
 

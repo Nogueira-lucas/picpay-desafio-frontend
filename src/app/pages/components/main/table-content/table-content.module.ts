@@ -5,7 +5,7 @@ import { TableContentRoutingModule } from './table/table-content.routing';
 import { CardsComponent } from './cards/cards.component';
 import { TableContentComponent } from './table-content.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { TableComponent } from './table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -31,6 +31,10 @@ import { MatDialogModule } from '@angular/material/dialog';
       TableContentComponent,
       TableComponent,
       CardsComponent
+    ],
+    providers: [
+        DatePipe,
+        CurrencyPipe
     ]
 })
 export class TableContentModule { }

@@ -6,12 +6,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
+@UntilDestroy()
 export class LoginComponent implements OnInit {
 
   loginForm = this._formBuilder.group(
@@ -120,6 +123,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     this._authService.login()
+    .pipe(untilDestroyed(this))
     .subscribe(
       (response: any) => {
         if(response.length > 0) {
@@ -152,7 +156,7 @@ export class LoginComponent implements OnInit {
       password: this.cadastroForm.get('senhaFormControl').value
     }
 
-    this._authService.getUsers().subscribe(
+    this._authService.getUsers().pipe(untilDestroyed(this)).subscribe(
       (response: any) => {
         if(response.length > 0) {
           if(response.find(x => x.email == user.email)){
@@ -162,6 +166,7 @@ export class LoginComponent implements OnInit {
           else{
             if(!this.userExists){
               this._authService.registrar(user)
+              .pipe(untilDestroyed(this))
               .subscribe(
                 (response: any) => {
                   let token = this.generateGuid();
