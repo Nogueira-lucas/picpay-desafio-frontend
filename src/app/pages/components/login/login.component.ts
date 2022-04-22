@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { ModalComponent } from './../../../componentes/modal/modal.component';
 import { LocalStorageService } from './../../../../core/services/local-storage.service';
 import { AuthService } from './../../../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
