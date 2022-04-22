@@ -1,4 +1,4 @@
-import { PagamentoModel } from './../../../core/model/pagamento.model';
+import { PagamentoInserirModel, PagamentoModel } from './../../../core/model/pagamento.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -41,6 +41,7 @@ export class ModalComponent implements OnInit {
     {
       nome: ['', Validators.required],
       usuario: ['', [Validators.required]],
+      image: [''],
       titulo: ['', [Validators.required]],
       data: ['', [Validators.required]],
       valor: ['', [Validators.required]],
@@ -56,6 +57,7 @@ export class ModalComponent implements OnInit {
     if(this.operacao === 'editar'){
       this.modalForm.get('nome').setValue(this.data.name);
       this.modalForm.get('usuario').setValue(this.data.username);
+      this.modalForm.get('image').setValue(this.data.image);
       this.modalForm.get('titulo').setValue(this.data.title);
       this.modalForm.get('data').setValue(this.data.date);
       this.modalForm.get('valor').setValue(this.data.value);
@@ -70,30 +72,51 @@ export class ModalComponent implements OnInit {
     else if(this.operacao === 'apagar'){
       this.submitFormApagar();
     }
+    else if(this.operacao === 'adicionar'){
+      this.submitFormAdicionar();
+    }
   }
 
   submitFormEditar(){
-    let pagamento: PagamentoModel = new PagamentoModel();
-    pagamento.id = this.data.id;
-    pagamento.name = this.modalForm.get('nome').value;
-    pagamento.username = this.modalForm.get('usuario').value;
-    pagamento.title = this.modalForm.get('titulo').value;
-    pagamento.value = this.modalForm.get('valor').value;
-    pagamento.date = this.modalForm.get('data').value;
-    pagamento.isPayed = JSON.parse(this.modalForm.get('pago').value);
-    pagamento.image = this.data.image;
+    let pagamento: PagamentoModel = new PagamentoModel(
+      this.data.id,
+      this.modalForm.get('nome').value,
+      this.modalForm.get('usuario').value,
+      this.modalForm.get('titulo').value,
+      this.modalForm.get('valor').value,
+      this.modalForm.get('data').value,
+      this.modalForm.get('image').value ? this.modalForm.get('image').value : this.data.image,
+      JSON.parse(this.modalForm.get('pago').value),
+    );
     this.novoItem.emit(pagamento);
-    this.dialogRef.close();
+    this.closeDialog();
   }
 
   submitFormApagar(){
     this.confirmar.emit();
-    this.dialogRef.close();
+  }
+
+  submitFormAdicionar(){
+    let pagamento: PagamentoModel = new PagamentoInserirModel(
+      this.modalForm.get('nome').value,
+      this.modalForm.get('usuario').value,
+      this.modalForm.get('titulo').value,
+      this.modalForm.get('valor').value,
+      this.modalForm.get('data').value,
+      this.modalForm.get('image').value,
+      JSON.parse(this.modalForm.get('pago').value),
+    );
+    this.novoItem.emit(pagamento);
+    this.closeDialog()
   }
 
   toggleIsPayed(input: any){
     if(input.type == 'checkbox'){
       this.modalForm.get('pago').setValue(input.isPayed = !input.isPayed);
     }
+  }
+
+  closeDialog(){
+    this.dialogRef.close();
   }
 }

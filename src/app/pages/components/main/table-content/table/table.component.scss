@@ -8,9 +8,9 @@
     }
     &-table-container{
         position: relative;
-        min-height: 200px;
-        max-height: 400px;
+        min-height: fit-content;
         overflow: auto;
+        margin-bottom: 3rem;
     }
     &-loading-shade{
         position: absolute;
@@ -31,6 +31,8 @@
     &-avatar{
         width:6%;
         height: 6%;
+        max-width: 150px;
+        max-height: 150px;
         border-radius: 50%;
         background-color: $background-color-primary;
     }
@@ -38,6 +40,12 @@
         color: $danger;
         &-payed{
             color: $success;
+        }
+        &-search{
+            color: $b;
+            position: absolute;
+            top: 15px;
+            right: 75%;
         }
     }
     &-rightCol{
@@ -70,4 +78,18 @@ table {
 
 .cursor-pointer{
     cursor: pointer;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.bg-white{
+    background-color: $w;
+}
+
+@media screen and (max-width: $xl){
+    .table-icon-search{
+        display: none;
+    }
 }

@@ -31,4 +31,16 @@ export class TasksService {
       isPayed: pagamento.isPayed
     })
   }
+
+  postTask(pagamento: PagamentoModel){
+    return this.http.post('http://localhost:3000/tasks', {
+      name: pagamento.name,
+      username: pagamento.username,
+      title: pagamento.title,
+      image: pagamento.image,
+      date: pagamento.date,
+      value: pagamento.value,
+      isPayed: pagamento.isPayed
+    })
+  }
 }

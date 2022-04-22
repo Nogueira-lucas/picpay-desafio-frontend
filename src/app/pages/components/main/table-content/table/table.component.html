@@ -1,14 +1,9 @@
 <div class="row">
   <div class="col-6">
-    <mat-form-field class="center mt-5">
-      <mat-label>Pesquisar por usuário</mat-label>
-      <input type="text" matInput [(ngModel)]="searchTerm" (keyup)="searchUser()">
-      <mat-icon >search</mat-icon>
-    </mat-form-field>
   </div>
 
-  <div class="col-6 text-end position-relative table-rightCol">
-    <button class="btn btn-primary" [ngClass]="{'w-100' : isMobile}">ADICIONAR PAGAMENTO</button>
+  <div class="col-6 text-end mb-4">
+    <button class="btn btn-primary" [ngClass]="{'w-100' : isMobile}" (click)="adicionarPagamento()">ADICIONAR PAGAMENTO</button>
   </div>
 </div>
 
@@ -22,15 +17,34 @@
   </div>
 
   <div class="table-table-container">
-    <table mat-table [dataSource]="dataSource" class="table-table"
-           matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+    <div class="row w-100 align-center bg-white m-0">
+      <div class="col-6">
+        <div>
+          <div class="form-group">
+            <input type="text"  placeholder="Pesquisar por usuário"
+            (keyup)="searchUser()" 
+            [(ngModel)]="searchTerm" 
+            class="form-control w-50 ms-3" />
+          </div>
+          <mat-icon class="table-icon-search">search</mat-icon>
+        </div>
+      </div>
 
-      <!-- Usuário Column -->
-      <ng-container matColumnDef="usuario">
-        <th mat-header-cell *matHeaderCellDef>Usuário</th>
+      <div class="col-6">
+        <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 10, 20, 30]" showFirstLastButtons aria-label="Tabela de usuários"></mat-paginator>
+      </div>
+
+    </div>
+    
+    <table mat-table [dataSource]="dataSource" class="table-table"
+      matSort (matSortChange)="announceSortChange($event)">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Usuário</th>
         <td mat-cell *matCellDef="let row">
           <div class="d-flex">
-            <img [src]="row.image" class="table-avatar mt-2 me-2">
+            <img *ngIf="row.image.length > 0" [src]="row.image" class="table-avatar mt-2 me-2">
             <div class="d-block">
               <span>{{row.name}}</span>
               <p>@{{row.username}}</p>
@@ -39,26 +53,26 @@
         </td>
       </ng-container>
 
-      <!-- Título Column -->
-      <ng-container matColumnDef="titulo">
-        <th mat-header-cell *matHeaderCellDef>Título</th>
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by title">Título</th>
         <td mat-cell *matCellDef="let row">{{row.title}}</td>
       </ng-container>
 
       <!-- Data Column -->
-      <ng-container matColumnDef="data">
-        <th mat-header-cell *matHeaderCellDef>Data</th>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date">Data</th>
         <td mat-cell *matCellDef="let row">{{row.date | date}}</td>
       </ng-container>
 
        <!-- Valor Column -->
-       <ng-container matColumnDef="valor">
-        <th mat-header-cell *matHeaderCellDef>Valor</th>
-        <td mat-cell *matCellDef="let row">{{row.value}}</td>
+       <ng-container matColumnDef="value">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by value">Valor</th>
+        <td mat-cell *matCellDef="let row">R$ {{row.value}}</td>
       </ng-container>
 
       <!-- Pago Column -->
-      <ng-container matColumnDef="pago">
+      <ng-container matColumnDef="paid">
         <th mat-header-cell *matHeaderCellDef>Pago</th>
         <td mat-cell *matCellDef="let row">
           <mat-icon class="material-icons-outlined table-icon" [ngClass]="{'table-icon-payed' : row.isPayed}">{{row.isPayed ? 'done' : 'close'}}</mat-icon>
@@ -78,6 +92,4 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-
-  <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 10, 20, 30]" showFirstLastButtons aria-label="Tabela de usuários"></mat-paginator>
 </div>
