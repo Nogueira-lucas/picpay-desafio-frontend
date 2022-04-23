@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { PagamentoInserirModel, PagamentoModel } from './../../../core/model/pagamento.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -17,9 +18,6 @@ export class ModalComponent implements OnInit {
   description: string = '';
 
   @Input()
-  data: PagamentoModel;
-
-  @Input()
   inputGroup: any[] = [];
 
   @Input()
@@ -37,6 +35,8 @@ export class ModalComponent implements OnInit {
   @Output() 
   novoItem = new EventEmitter<PagamentoModel>();
 
+  data: any = {};
+
   modalForm = this._formBuilder.group(
     {
       nome: ['', Validators.required],
@@ -50,18 +50,22 @@ export class ModalComponent implements OnInit {
   
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _localStorageService: LocalStorageService
     ) { }
 
   ngOnInit() {
     if(this.operacao == 'editar'){
+      var isPayed = this.data.isPayed ? true : false;
+      
+      this.data = JSON.parse(this._localStorageService.get('data'));
       this.modalForm.get('nome').setValue(this.data.name);
       this.modalForm.get('usuario').setValue(this.data.username);
       this.modalForm.get('image').setValue(this.data.image);
       this.modalForm.get('titulo').setValue(this.data.title);
       this.modalForm.get('data').setValue(this.data.date);
       this.modalForm.get('valor').setValue(this.data.value);
-      this.modalForm.get('pago').setValue(this.data.isPayed);
+      this.modalForm.get('pago').setValue(isPayed);
     }
   }
 

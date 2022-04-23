@@ -5,7 +5,7 @@
         <button class="btn btn-primary w-100" (click)="adicionar()">ADICIONAR PAGAMENTO</button>
       </div>
       <div class="form-group">
-        <input type="text"  placeholder="Pesquisar por usuário" 
+        <input type="text"  [placeholder]="getPlaceholder()" 
         [(ngModel)]="searchTerm"
         (keyup)="search()" 
         class="form-control" />
@@ -29,6 +29,7 @@
               <span>Título: {{item.title}}</span>
               <span>Valor: {{item.value}}</span>
               <span>Data: {{item.date | date}}</span>
+              <span>Hora: {{item.date | date: 'HH:mm':'GMT'}}</span>
               <span>Pago
                 <mat-icon class="material-icons-outlined card-icon" [ngClass]="{'card-icon-payed' : item.isPayed}">{{item.isPayed ? 'done' : 'close'}}</mat-icon>
               </span>

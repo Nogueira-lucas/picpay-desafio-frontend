@@ -4,9 +4,9 @@
       "id": 9,
       "name": "Sibelle Domenico",
       "username": "sdomenico8",
-      "title": "Assistant Managerr",
+      "title": "Assistant Manager",
       "image": "https://robohash.org/quismaximefuga.png?size=150x150&set=set1",
-      "date": "2022-04-24",
+      "date": "2022-04-22T19:16",
       "value": "100",
       "isPayed": true
     },
@@ -26,9 +26,9 @@
       "username": "lmaccaghana",
       "title": "Account Representative II",
       "image": "https://robohash.org/omniseasapiente.png?size=150x150&set=set1",
-      "date": "2020-09-12T13:20:55Z",
+      "date": "2020-09-12T13:20:55.000Z",
       "value": 427.95,
-      "isPayed": true
+      "isPayed": false
     },
     {
       "id": 12,
@@ -45,10 +45,10 @@
       "name": "Deck Balaisot",
       "username": "dbalaisotc",
       "title": "Desktop Support Technician",
-      "value": 25.91,
-      "date": "2021-05-25T14:51:59Z",
       "image": "https://robohash.org/cupiditatehicquaerat.png?size=150x150&set=set1",
-      "isPayed": true
+      "date": "2021-05-25T14:51:59.000Z",
+      "value": 25.91,
+      "isPayed": false
     },
     {
       "id": 14,
@@ -1618,16 +1618,6 @@
       "value": 207.4,
       "date": "2021-05-05T10:22:13Z",
       "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 171,
-      "name": "Thiago",
-      "username": "talcaras",
-      "title": "Desenvolvedor",
-      "image": "https://ru-static.z-dn.net/files/d72/89f739187beb8234b854e294ac5a3775.jpg",
-      "date": "2022-04-25",
-      "value": "1250",
       "isPayed": true
     }
   ],

@@ -23,6 +23,8 @@ export class CardsComponent implements OnInit {
   dialogRef!: MatDialogRef<ModalComponent>;
   qtdItens: number = 10;
   noMoreResults: boolean = false;
+  selectedFilter: string = 'user';
+  filterOptions: string[] = ['user', 'title', 'value', 'date'];
 
   constructor(
     private _tableService: TableService,
@@ -82,7 +84,7 @@ export class CardsComponent implements OnInit {
   }
 
   search(){
-    this._tableService.searchUser(this.searchTerm);
+    this._tableService.search(this.searchTerm, this.selectedFilter);
   }
 
   adicionar(){
@@ -99,5 +101,20 @@ export class CardsComponent implements OnInit {
     this._tableService.removerPagamento(item);
     this.searchTerm = '';
     this.search();
+  }
+
+  getPlaceholder(){
+    if(this.selectedFilter == 'user'){
+      return 'Pesquisar por usuário';
+    }
+    else if(this.selectedFilter == 'title'){
+      return 'Pesquisar por título';
+    }
+    else if(this.selectedFilter == 'date'){
+      return 'Pesquisar por data';
+    }
+    else if(this.selectedFilter == 'value'){
+      return 'Pesquisar por valor';
+    }
   }
 }

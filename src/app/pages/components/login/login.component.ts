@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Valida
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +41,8 @@ export class LoginComponent implements OnInit {
     private _authService: AuthService, 
     private _localStorageService: LocalStorageService,
     public dialog: MatDialog,
-    private _router: Router
+    private _router: Router, 
+    private _snackBar: MatSnackBar
     ) {}
 
   ngOnInit() {
@@ -148,7 +150,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        console.log(error);
+        this.openSnackBar();
       }
     );
   }
@@ -181,7 +183,7 @@ export class LoginComponent implements OnInit {
                   this._router.navigate(['/main'])
                 },
                 (error) => {
-                  console.log(error);
+                  this.openSnackBar();
                 }
               );
             }
@@ -201,6 +203,13 @@ export class LoginComponent implements OnInit {
   get senhaFormControl(){
     return this.cadastroForm.get('senhaFormControl  ');
   }
+
+  openSnackBar() {
+    this._snackBar.open('Erro ao consultar usuários, tente novamente', 'Fechar', {
+      duration: 4000,
+    });
+  }
+
 }
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {

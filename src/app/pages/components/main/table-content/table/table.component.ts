@@ -20,6 +20,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 export class TableComponent implements OnInit, AfterViewInit  {
 
   displayedColumns: string[] = ['name', 'title', 'date', 'value', 'paid', 'acoes'];
+  filterOptions: string[] = ['user', 'title', 'value', 'date'];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -27,6 +28,7 @@ export class TableComponent implements OnInit, AfterViewInit  {
   dataSource = new MatTableDataSource(this.data);
   dataConst: any[] = [];
   searchTerm: string = '';
+  selectedFilter: string = 'user';
   dialogRef!: MatDialogRef<ModalComponent>;
   qtdItens: number = 10;
   noMoreResults: boolean = false;
@@ -98,7 +100,7 @@ export class TableComponent implements OnInit, AfterViewInit  {
   }
 
   search(){
-    this._tableService.searchUser(this.searchTerm);
+    this._tableService.search(this.searchTerm, this.selectedFilter);
   }
 
   adicionar(){
@@ -123,5 +125,25 @@ export class TableComponent implements OnInit, AfterViewInit  {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  getPlaceholder(){
+    if(this.selectedFilter == 'user'){
+      return 'Pesquisar por usuário';
+    }
+    else if(this.selectedFilter == 'title'){
+      return 'Pesquisar por título';
+    }
+    else if(this.selectedFilter == 'date'){
+      return 'Pesquisar por data';
+    }
+    else if(this.selectedFilter == 'value'){
+      return 'Pesquisar por valor';
+    }
+  }
+
+  changeSelectedFilter(filter: string){
+    this.selectedFilter = filter;
+    this.getPlaceholder();
   }
 }

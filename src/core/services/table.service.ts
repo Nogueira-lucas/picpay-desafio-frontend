@@ -1,3 +1,4 @@
+import { LocalStorageService } from './local-storage.service';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalComponent } from './../../app/componentes/modal/modal.component';
@@ -34,7 +35,8 @@ export class TableService {
     public dialog: MatDialog,
     public datepipe: DatePipe,
     public currencyPipe: CurrencyPipe,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private _localStorageService: LocalStorageService
   ) {}
 
   getTasks() {
@@ -84,7 +86,7 @@ export class TableService {
       },
       {
         name: 'date',
-        type: 'date',
+        type: 'datetime-local',
         label: 'Data',
         placeholder: 'Data',
         formControlName: 'data'
@@ -107,12 +109,47 @@ export class TableService {
     ]
   }
 
+  search(searchTerm: string, selectedFilter: string){
+    if(selectedFilter == 'user'){
+      this.searchUser(searchTerm);
+    }
+    if(selectedFilter == 'title'){
+      this.searchTitle(searchTerm);
+    }
+    if(selectedFilter == 'value'){
+      this.searchValue(searchTerm);
+    }
+    if(selectedFilter == 'date'){
+      this.searchDate(searchTerm);
+    }
+  }
+
   searchUser(searchTerm: string){
     this.dataSource.data = this.data.filter(item => item.username.includes(searchTerm) || item.name.toLowerCase().includes(searchTerm.toLowerCase()));
     this.resultsLength = this.dataSource.data.length;
 
-    this.emitDataSourceChanged();
-    this.emitResultsLengthChanged();
+    this.emit();
+  }
+
+  searchTitle(searchTerm: string){
+    this.dataSource.data = this.data.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    this.resultsLength = this.dataSource.data.length;
+
+    this.emit();
+  }
+
+  searchValue(searchTerm: string){
+    this.dataSource.data = this.data.filter(item => item.value.toString().includes(searchTerm));
+    this.resultsLength = this.dataSource.data.length;
+
+    this.emit();
+  }
+
+  searchDate(searchTerm: string){
+    this.dataSource.data = this.data.filter(item => this.datepipe.transform(item.date, 'dd/MM/yyyy').includes(searchTerm));
+    this.resultsLength = this.dataSource.data.length;
+
+    this.emit();
   }
 
   removerPagamento(data: any){
@@ -122,7 +159,7 @@ export class TableService {
     this.dialogRef.componentInstance.title = 'Excluir pagamento';
     this.dialogRef.componentInstance.operacao = 'apagar';
     this.inputGroup[6].isPayed = data.isPayed;
-    this.dialogRef.componentInstance.data = data;
+    this._localStorageService.set('data', data);
     this.dialogRef.componentInstance.description = 
     'Usuário: ' + data.name + ' - @' + data.username + '<br>' +
     'Data: ' + this.datepipe.transform(data.date, 'dd/MM/yyyy') + '<br>' +
@@ -144,7 +181,7 @@ export class TableService {
     });
     this.dialogRef.componentInstance.title = 'Editar pagamento';
     this.dialogRef.componentInstance.operacao = 'editar';
-    this.dialogRef.componentInstance.data = data;
+    this._localStorageService.set('data', data);
     this.dialogRef.componentInstance.description = '';
     this.dialogRef.componentInstance.inputGroup = this.inputGroup;
 
@@ -189,6 +226,11 @@ export class TableService {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  emit(){
+    this.emitDataSourceChanged();
+    this.emitResultsLengthChanged();
   }
 
   emitDataSourceChanged(){
