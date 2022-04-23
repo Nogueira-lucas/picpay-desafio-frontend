@@ -5,6 +5,7 @@ import { PaymentService } from 'src/app/_services/payment.service';
 import { PaymentAddComponent } from '../add/payment-add.component';
 import { PaymentDeleteComponent } from '../delete/payment-delete.component';
 import { PaymentEditComponent } from '../edit/payment-edit.component';
+import { faAngleLeft, faAngleRight, faTrashCan, faPencil } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'payment-list',
@@ -15,6 +16,10 @@ export class PaymentListComponent implements OnInit {
 
     @ViewChild("editPayment", { read: ViewContainerRef }) editModalComponent: ViewContainerRef;
     @ViewChild("deletePayment", { read: ViewContainerRef }) deleteModalComponent: ViewContainerRef;
+
+
+    faTrashCan = faTrashCan;
+    faPencil = faPencil;
 
     paymentList: Payment[];
     params: PaymentParams;

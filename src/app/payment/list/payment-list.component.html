@@ -20,8 +20,8 @@
             <td class="table-items">{{ payment.isPayed }}</td>
             <td class="table-items">{{ payment.value }}</td>
             <td class="table-items">{{ payment.title }}</td>
-            <td class="table-items" colspan="1" (click)="openEditModal(payment)">Editar</td>
-            <td class="table-items" colspan="1" (click)="openDeleteModal(payment)">Excluir</td>
+            <fa-icon class="table-items" [icon]="faPencil" (click)="openEditModal(payment)"></fa-icon>
+            <fa-icon class="table-items" [icon]="faTrashCan" (click)="openDeleteModal(payment)"></fa-icon>
         </tr>
 
     </table>

@@ -10,6 +10,7 @@ import { PayButtonModule } from '../_components/button/pay-button.module';
 import { PaymentEditComponent } from './edit/payment-edit.component';
 import { PayInputModule } from '../_components/input/pay-input.module';
 import { PaymentAddComponent } from './add/payment-add.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { PaymentAddComponent } from './add/payment-add.component';
         ReactiveFormsModule,
         PayModalModule,
         PayInputModule,
-        PayButtonModule
+        PayButtonModule,
+        FontAwesomeModule
     ],
     declarations: [
         PaymentComponent,
