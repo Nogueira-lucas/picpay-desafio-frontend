@@ -1,26 +1,44 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-10">
       <h1 class="modal-title" mat-dialog-title>{{title}}</h1>
       <div class="modal-description my-3" mat-dialog-content [innerHTML]="description"></div>
     </div>
-    
+
     <div class="col-12" *ngIf="inputGroup.length > 0">
       <form [formGroup]="modalForm">
         <div class="modal-body">
           <div class="container">
-            <div class="form-group my-2" *ngFor="let input of inputGroup">
-              <label [for]="input.name">{{input.label}}</label>
-              <input *ngIf="operacao == 'editar'" [type]="input.type" 
-              [ngClass]="{'form-control': input.type != 'checkbox'}" 
-              [checked]="data.isPayed"
-              (click)="toggleIsPayed(input)" 
-              [formControlName]="input.formControlName" />
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <div class="row justify-content-center">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group my-2" *ngFor="let input of inputGroup | slice: 0:4">
+                      <label [for]="input.name">{{input.label}}</label>
+                      <input *ngIf="operacao == 'editar'" [type]="input.type"
+                        [ngClass]="{'form-control': input.type != 'checkbox'}" [checked]="data.isPayed"
+                        (click)="toggleIsPayed(input)" [formControlName]="input.formControlName" />
 
-              <input *ngIf="operacao == 'adicionar'" [type]="input.type"
-              [ngClass]="{'form-control': input.type != 'checkbox'}"
-              [formControlName]="input.formControlName"
-              (click)="toggleIsPayed(input)">
+                      <input *ngIf="operacao == 'adicionar'" [type]="input.type"
+                        [ngClass]="{'form-control': input.type != 'checkbox'}" [formControlName]="input.formControlName"
+                        (click)="toggleIsPayed(input)">
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-group my-2" *ngFor="let input of inputGroup | slice: 4">
+                      <label [for]="input.name">{{input.label}}</label>
+                      <input *ngIf="operacao == 'editar'" [type]="input.type"
+                        [ngClass]="{'form-control': input.type != 'checkbox'}" [checked]="data.isPayed"
+                        (click)="toggleIsPayed(input)" [formControlName]="input.formControlName" />
+
+                      <input *ngIf="operacao == 'adicionar'" [type]="input.type"
+                        [ngClass]="{'form-control': input.type != 'checkbox'}" [formControlName]="input.formControlName"
+                        (click)="toggleIsPayed(input)">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -29,7 +47,8 @@
 
     <div mat-dialog-actions class="modal-buttons">
       <button class="btn btn-secondary w-30" (click)="dialogRef.close(true)">{{btnFechar}}</button>
-      <button class="btn btn-primary w-30" (click)="confirmarClick()" *ngIf="btnConfirmar.length > 0">{{btnConfirmar}}</button>
+      <button class="btn btn-primary w-30" (click)="confirmarClick()"
+        *ngIf="btnConfirmar.length > 0">{{btnConfirmar}}</button>
     </div>
 
   </div>
