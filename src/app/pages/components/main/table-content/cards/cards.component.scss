@@ -23,3 +23,12 @@
         }
     }
 }
+
+div.dropdown:hover ul.dropdown-menu {
+    top: 46px; 
+    display: block; 
+}
+
+.align-center{
+    align-items: center;
+}

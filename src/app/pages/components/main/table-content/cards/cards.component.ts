@@ -117,4 +117,9 @@ export class CardsComponent implements OnInit {
       return 'Pesquisar por valor';
     }
   }
+
+  changeSelectedFilter(filter: string){
+    this.selectedFilter = filter;
+    this.getPlaceholder();
+  }
 }
