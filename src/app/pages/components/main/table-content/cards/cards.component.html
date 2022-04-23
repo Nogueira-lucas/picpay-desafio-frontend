@@ -1,10 +1,47 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <div class="container d-flex justify-content-center align-items-center">
-        <div class="card w-100">
-          
+      <div class="col-12 text-end mb-4">
+        <button class="btn btn-primary w-100" (click)="adicionar()">ADICIONAR PAGAMENTO</button>
+      </div>
+      <div class="form-group">
+        <input type="text"  placeholder="Pesquisar por usuário" 
+        [(ngModel)]="searchTerm"
+        (keyup)="search()" 
+        class="form-control" />
+      </div>
+      
+      <div class="container justify-content-center align-items-center">
+        <div class="card w-100 my-2" *ngFor="let item of data | slice: 0:qtdItens">
+          <div class="upper p-2 w-100">
+            <div>
+              <div class="d-flex flex-column">
+                <div class="d-flex">
+                  <img class="card-img" src="{{ item.image }}" alt="{{ item.name }}">
+                  <span class="card-title">{{ item.name }}</span>
+                </div>
+                <span>@{{item.username}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 w-100">
+            <div class="d-flex flex-column">
+              <span>Título: {{item.title}}</span>
+              <span>Valor: {{item.value}}</span>
+              <span>Data: {{item.date | date}}</span>
+              <span>Pago
+                <mat-icon class="material-icons-outlined card-icon" [ngClass]="{'card-icon-payed' : item.isPayed}">{{item.isPayed ? 'done' : 'close'}}</mat-icon>
+              </span>
+              <div class="d-flex">
+                <mat-icon class="material-icons-outlined" class="me-2 cursor-pointer" (click)="editar(item)">edit</mat-icon>
+                <mat-icon class="material-icons-outlined cursor-pointer" (click)="remover(item)">cancel</mat-icon>
+              </div>
+            </div>
+          </div>
         </div>
+        <button *ngIf="!noMoreResults" class="btn btn-primary" (click)="verMaisItens()">
+          Ver mais pagamentos
+        </button>
       </div>
     </div>
   </div>

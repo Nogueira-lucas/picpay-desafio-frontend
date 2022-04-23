@@ -1,3 +1,4 @@
+import { TableService } from 'src/core/services/table.service';
 import { ModalComponent } from './../../../../../componentes/modal/modal.component';
 import { TasksService } from './../../../../../../core/services/tasks.service';
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
@@ -22,18 +23,21 @@ export class TableComponent implements OnInit, AfterViewInit  {
 
   resultsLength = 0;
   isLoadingResults = true;
-  isRateLimitReached = false;
-  data: any[] = [];
-  dataConst: any[] = [];
+  data: any = [];
   dataSource = new MatTableDataSource(this.data);
+  dataConst: any[] = [];
   searchTerm: string = '';
   dialogRef!: MatDialogRef<ModalComponent>;
-  inputGroup: any[] = this.createInputGroup();
+  qtdItens: number = 10;
+  noMoreResults: boolean = false;
+  isRateLimitReached = false;
 
   @Input() isMobile: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   constructor(
+    private _tableService: TableService,
     private _tasksService: TasksService,
     public dialog: MatDialog,
     public datepipe: DatePipe,
@@ -44,6 +48,9 @@ export class TableComponent implements OnInit, AfterViewInit  {
   ngOnInit() {
     this.isLoadingResults = true;
     this.getTasks();
+    this._tableService.getTasks();
+    this.receiveResultsLength();
+    this.receiveDataSources();
   }
 
   ngAfterViewInit() {
@@ -51,59 +58,31 @@ export class TableComponent implements OnInit, AfterViewInit  {
     this.dataSource.sort = this.sort;
   }
 
-  createInputGroup(){
-    return [
-      {
-        name: 'name',
-        type: 'text',
-        label: 'Nome',
-        placeholder: 'Nome',
-        formControlName: 'nome'
-      },
-      {
-        name: 'username',
-        type: 'text',
-        label: 'Usuário',
-        placeholder: 'Usuário',
-        formControlName: 'usuario'
-      },
-      {
-        name: 'image',
-        type: 'text',
-        label: 'Imagem',
-        placeholder: 'Url do avatar',
-        formControlName: 'image'
-      },
-      {
-        name: 'title',
-        type: 'text',
-        label: 'Título',
-        placeholder: 'Título',
-        formControlName: 'titulo'
-      },
-      {
-        name: 'date',
-        type: 'date',
-        label: 'Data',
-        placeholder: 'Data',
-        formControlName: 'data'
-      },
-      {
-        name: 'value',
-        type: 'number',
-        label: 'Valor',
-        placeholder: 'Valor',
-        formControlName: 'valor'
-      },
-      {
-        name: 'isPayed',
-        type: 'checkbox',
-        label: 'Pago',
-        placeholder: 'Pago',
-        formControlName: 'pago',
-        isPayed: null,
+  receiveResultsLength() {
+    this._tableService.resultsLengthChanged.pipe(untilDestroyed(this)).subscribe(
+      (resultsLength: number) => {
+        this.resultsLength = resultsLength;
+        this.isLoadingResults = false;
+
+        if (this.resultsLength === 0) {
+          this.noMoreResults = true;
+        }
+        else {
+          this.noMoreResults = false;
+        }
       }
-    ]
+    );
+  }
+
+  receiveDataSources() {
+    this._tableService.dataSourceChanged.pipe(untilDestroyed(this)).subscribe(
+      (data: any) => {
+        this.data = data.filteredData;
+        this.dataSource.data = data.filteredData;
+        this.dataConst = data.filteredData;
+        this.isLoadingResults = false;
+      }
+    );
   }
 
   getTasks(){
@@ -118,88 +97,24 @@ export class TableComponent implements OnInit, AfterViewInit  {
     )
   }
 
-  searchUser(){
-    this.isLoadingResults = true;
-    this.dataSource.data = this.data.filter(item => item.username.includes(this.searchTerm) || item.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
-    this.resultsLength = this.dataSource.data.length;
-    this.isLoadingResults = false;
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  search(){
+    this._tableService.searchUser(this.searchTerm);
   }
 
-  removerPagamento(data: any){
-    this.isLoadingResults = true;
-    this.dialogRef = this.dialog.open(ModalComponent, {
-      disableClose: false,
-    });
-    this.dialogRef.componentInstance.title = 'Excluir pagamento';
-    this.dialogRef.componentInstance.operacao = 'apagar';
-    this.inputGroup[6].isPayed = data.isPayed;
-    this.dialogRef.componentInstance.data = data;
-    this.dialogRef.componentInstance.description = 
-    'Usuário: ' + data.name + ' - @' + data.username + '<br>' +
-    'Data: ' + this.datepipe.transform(data.date, 'dd/MM/yyyy') + '<br>' +
-    'Valor: ' + this.currencyPipe.transform(data.value, 'BRL', 'symbol', '1.2-2');
-    this.dialogRef.componentInstance.confirmar.pipe(untilDestroyed(this)).subscribe(() => {
-      this._tasksService.deleteTask(data.id).pipe(untilDestroyed(this)).subscribe(
-        (data: any) => {
-          this.getTasks();
-        }
-      )
-      this.dialogRef.close();
-    });
-    this.dialogAfterClosed();
+  adicionar(){
+    this._tableService.adicionarPagamento();
   }
 
-  editarPagamento(data: any){
-    this.isLoadingResults = true;
-    this.dialogRef = this.dialog.open(ModalComponent, {
-      disableClose: false,
-    });
-    this.dialogRef.componentInstance.title = 'Editar pagamento';
-    this.dialogRef.componentInstance.operacao = 'editar';
-    this.dialogRef.componentInstance.data = data;
-    this.dialogRef.componentInstance.description = '';
-    this.dialogRef.componentInstance.inputGroup = this.inputGroup;
-
-    this.dialogRef.componentInstance.novoItem.pipe(untilDestroyed(this))
-    .subscribe((data: any) => {
-      this._tasksService.putTask(data).pipe(untilDestroyed(this)).subscribe(
-        (data: any) => {
-          this.getTasks();
-        })
-    });
-    this.dialogAfterClosed();
+  editar(item: any){
+    this._tableService.editarPagamento(item);
+    this.searchTerm = '';
+    this.search();
   }
 
-  adicionarPagamento(){
-    this.isLoadingResults = true;
-    this.dialogRef = this.dialog.open(ModalComponent, {
-      disableClose: false,
-    });
-    this.dialogRef.componentInstance.title = 'Adicionar pagamento';
-    this.dialogRef.componentInstance.operacao = 'adicionar';
-    this.dialogRef.componentInstance.description = '';
-    this.dialogRef.componentInstance.inputGroup = this.inputGroup;
-
-    this.dialogRef.componentInstance.novoItem.pipe(untilDestroyed(this))
-    .subscribe((data: any) => {
-      this._tasksService.postTask(data).pipe(untilDestroyed(this)).subscribe(
-        (data: any) => {
-          this.getTasks();
-        })
-    });
-    this.dialogAfterClosed();
-  }
-
-  dialogAfterClosed(){
-    this.dialogRef.afterClosed().pipe(untilDestroyed(this)).subscribe(result => {
-      this.dialogRef = null;
-      this.isLoadingResults = false;
-      this.searchTerm = '';
-    });
+  remover(item: any){
+    this._tableService.removerPagamento(item);
+    this.searchTerm = '';
+    this.search();
   }
 
   announceSortChange(sortState: Sort) {

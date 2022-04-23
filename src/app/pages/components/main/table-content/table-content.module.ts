@@ -1,3 +1,4 @@
+import { TableService } from 'src/core/services/table.service';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -36,7 +37,8 @@ import { MatSortModule } from '@angular/material/sort';
     ],
     providers: [
         DatePipe,
-        CurrencyPipe
+        CurrencyPipe,
+        TableService,
     ]
 })
 export class TableContentModule { }

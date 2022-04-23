@@ -54,7 +54,7 @@ export class ModalComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    if(this.operacao === 'editar'){
+    if(this.operacao == 'editar'){
       this.modalForm.get('nome').setValue(this.data.name);
       this.modalForm.get('usuario').setValue(this.data.username);
       this.modalForm.get('image').setValue(this.data.image);
