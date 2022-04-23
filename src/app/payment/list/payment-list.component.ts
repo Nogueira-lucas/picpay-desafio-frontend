@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { PaymentParams } from 'src/app/_models/listRequest';
+import { JsonServerParams } from 'src/app/_models/json-server-params';
 import { Payment } from 'src/app/_models/payment';
 import { PaymentService } from 'src/app/_services/payment.service';
 import { PaymentAddComponent } from '../add/payment-add.component';
@@ -21,8 +21,11 @@ export class PaymentListComponent implements OnInit {
     faTrashCan = faTrashCan;
     faPencil = faPencil;
 
+    params: JsonServerParams;
+
     paymentList: Payment[];
-    params: PaymentParams;
+    totalCount: number;
+    paginationLink: any;
 
     search = "";
 
@@ -42,8 +45,10 @@ export class PaymentListComponent implements OnInit {
             limit: this.selectedLimit
         }
 
-        this.paymentService.getAllPaginated(this.params).subscribe(paymentList => {
-            this.paymentList = paymentList;
+        this.paymentService.getAllPaginated(this.params).subscribe(response => {
+            this.paymentList = response.items;
+            this.totalCount = response.totalCount;
+            this.paginationLink = response.link;
         });
     }
 
