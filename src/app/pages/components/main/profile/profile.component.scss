@@ -15,3 +15,77 @@
         font-family: 'Montserrat', sans-serif;
     }
 }
+
+.gradient{
+    height: 60px;
+    background: linear-gradient(to right, $background-color-primary 0%, #90BAE7 100%);
+}
+
+.profile {
+    position: absolute;
+    top: 17px;
+    left: 46.5%;
+    height: 90px;
+    width: 90px;
+    border: 3px solid $w;
+    border-radius: 50%
+}
+
+.btn-editar {
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 35px
+}
+
+.stats span {
+    font-size: 29px
+}
+
+#accordionEditar{
+    display: flex;
+    justify-content: center;
+    place-content: center;
+    mat-expansion-panel{
+        display: flex;
+        flex-direction: column;
+    }
+    .description{
+        justify-content: right;
+    }
+}
+
+.error-message{
+    color: $danger;
+}
+
+.align-center{
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: $xl){
+    .profile {
+        left: 45.5%;
+    }
+}
+
+@media screen and (max-width: $lg){
+    .profile {
+        left: 44.5%;
+    }
+}
+
+@media screen and (max-width: $md){
+    .profile {
+        left: 43.5%;
+    }
+}
+
+@media screen and (max-width: $sm){
+    .profile {
+        left: 42.5%;
+    }
+}

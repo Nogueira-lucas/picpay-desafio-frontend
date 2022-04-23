@@ -26,7 +26,7 @@
 
 input[type="checkbox"] {
     appearance: none;
-    background-color: #fff;
+    background-color: $w;
     margin: 0;
     font: inherit;
     color: currentColor;
@@ -43,7 +43,7 @@ input[type="checkbox"] {
 input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
-    background-color: #fff;
+    background-color: $w;
     margin: 0;
   
     font: inherit;

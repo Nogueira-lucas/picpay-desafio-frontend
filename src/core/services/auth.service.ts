@@ -1,3 +1,5 @@
+import { UserEditModel } from './../model/user.model';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
@@ -36,6 +38,10 @@ export class AuthService implements OnInit {
     return this.http.get('http://localhost:3000/account');
   }
 
+  getUserById(userId: number): Observable<Object> {
+    return this.http.get('http://localhost:3000/account/' + userId);
+  }
+
   generateGuid(){
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
       var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -68,5 +74,14 @@ export class AuthService implements OnInit {
     else {
       return false;
     }
+  }
+
+  updateUser(user: UserEditModel): Observable<Object> {
+    return this.http.put('http://localhost:3000/account/' + user.id, {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+    });
   }
 }

@@ -120,7 +120,7 @@ export class TableComponent implements OnInit, AfterViewInit  {
 
   searchUser(){
     this.isLoadingResults = true;
-    this.dataSource.data = this.data.filter(item => item.username.includes(this.searchTerm) || item.name.includes(this.searchTerm));
+    this.dataSource.data = this.data.filter(item => item.username.includes(this.searchTerm) || item.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
     this.resultsLength = this.dataSource.data.length;
     this.isLoadingResults = false;
 

@@ -1,9 +1,61 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <span class="profile-title">
-        Meu perfil
-      </span>
+      <span class="profile-title"> Meu perfil </span>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center">
+      <div class="card w-100">
+        <div class="upper">
+          <div class="img-fluid gradient"></div>    
+        </div>
+        <div class="user text-center">
+          <div class="profile">
+            <img
+              src="../../../../../assets/images/profile/cat.png"
+              class="rounded-circle"
+              width="80"
+            />
+          </div>
+        </div>
+        <div class="mt-5 text-center">
+          <h4 class="mb-0">{{userName}}</h4>
+          <span class="text-muted d-block mb-2">{{user.email}}</span>
+          
+          <mat-accordion id="accordionEditar" class="accordion-headers-align d-flex center">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Editar perfil
+                </mat-panel-title>
+                <mat-panel-description class="d-flex description">
+                  Alterar senha e/ou nome
+                  <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+          
+              <input class="form-control my-2" type="text" placeholder="Name" aria-label="Name" [(ngModel)]="user.name" (keyup)="validateName()"/>
+              <input class="form-control my-2" type="password" placeholder="Password" aria-label="Password" [(ngModel)]="newPassword" (keyup)="validatePassword()"/>
+
+              <div class="align-center">
+                <button [disabled]="errorMessage.length > 0 || errorMessageName.length > 0" class=" w-50 btn btn-primary" (click)="updateUser()">
+                  Salvar
+                </button>
+
+                <span *ngIf="errorMessage.length > 0" class="error-message my-2">{{errorMessage}}</span>
+                <span *ngIf="errorMessageName.length > 0" class="error-message my-2">{{errorMessageName}}</span>
+              </div>
+            </mat-expansion-panel>             
+          </mat-accordion>
+
+
+          <div class="mt-4 px-4">
+            <div class="stats">
+              <h6 class="mb-0">Pagamentos</h6>
+              <span>{{pagamentos.total}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

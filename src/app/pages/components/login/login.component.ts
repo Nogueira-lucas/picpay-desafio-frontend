@@ -126,12 +126,17 @@ export class LoginComponent implements OnInit {
     .subscribe(
       (response: any) => {
         if(response.length > 0) {
-          if(response.find(x => x.email == this.loginForm.value.emailFormControl) && response.find(x => x.password == this.loginForm.value.senhaFormControl)){
+          const userLogged = response.find(x => x.email == this.loginForm.value.emailFormControl && x.password == this.loginForm.value.senhaFormControl);
+          if(userLogged){
             let token = this.generateGuid();
             let expirationTime = this._authService.generateExpirationTime();
             this._localStorageService.set('accessToken', token);
             this._localStorageService.set('expirationTime', expirationTime);
-            this._localStorageService.set('user', response[0]);
+            this._localStorageService.set('user', {
+              id: userLogged.id,
+              name: userLogged.name,
+              email: userLogged.email
+            });
             this._router.navigate(['/main'])
           }
           else{

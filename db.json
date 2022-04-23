@@ -1385,9 +1385,9 @@
       "name": "Reggy Dunridge",
       "username": "rdunridge42",
       "title": "GIS Technical Architect",
-      "value": 492.43,
-      "date": "2020-03-19T22:02:42Z",
       "image": "https://robohash.org/saepeconsequaturat.png?size=150x150&set=set1",
+      "date": "2020-03-19T22:02:42Z",
+      "value": "492.44",
       "isPayed": false
     },
     {
@@ -1619,6 +1619,16 @@
       "date": "2021-05-05T10:22:13Z",
       "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
       "isPayed": true
+    },
+    {
+      "id": 171,
+      "name": "Thiago",
+      "username": "talcaras",
+      "title": "Desenvolvedor",
+      "image": "https://ru-static.z-dn.net/files/d72/89f739187beb8234b854e294ac5a3775.jpg",
+      "date": "2022-04-25",
+      "value": "1250",
+      "isPayed": true
     }
   ],
   "account": [
@@ -1629,10 +1639,10 @@
       "password": "usuario"
     },
     {
-      "nome": "Thiago",
+      "id": 1,
+      "name": "Thiago",
       "email": "thiago.alcaras@gmail.com",
-      "password": "teste123",
-      "id": 1
+      "password": "teste123"
     }
   ]
 }

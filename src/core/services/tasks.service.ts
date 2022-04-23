@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { PagamentoModel } from '../model/pagamento.model';
 
 @Injectable({
@@ -11,15 +12,15 @@ export class TasksService {
     private http: HttpClient
     ) { }
 
-  getTasks() {
+  getTasks(): Observable<Object> {
     return this.http.get('http://localhost:3000/tasks')
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: number): Observable<Object> {
     return this.http.delete('http://localhost:3000/tasks/' + id)
   }
 
-  putTask(pagamento: PagamentoModel) {
+  putTask(pagamento: PagamentoModel): Observable<Object> {
     return this.http.put('http://localhost:3000/tasks/' + pagamento.id, {
       id: pagamento.id,
       name: pagamento.name,
@@ -32,7 +33,7 @@ export class TasksService {
     })
   }
 
-  postTask(pagamento: PagamentoModel){
+  postTask(pagamento: PagamentoModel): Observable<Object> {
     return this.http.post('http://localhost:3000/tasks', {
       name: pagamento.name,
       username: pagamento.username,
