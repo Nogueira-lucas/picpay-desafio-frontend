@@ -20,7 +20,7 @@ export class PaymentAddComponent extends PaymentBaseComponent {
     valueInputConfig: InputConfig;
     dateInputConfig: InputConfig;
     titleInputConfig: InputConfig;
-    
+
     get f() { return this.addForm.controls; }
 
     ngOnInit(): void {
@@ -55,7 +55,7 @@ export class PaymentAddComponent extends PaymentBaseComponent {
         }
 
     }
-    
+
     submitModal() {
         this.payment = this.paymentFrom(this.f);
 

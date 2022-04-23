@@ -13,7 +13,6 @@ import { PaymentEditComponent } from '../edit/payment-edit.component';
 })
 export class PaymentListComponent implements OnInit {
 
-    @ViewChild("addPayment", { read: ViewContainerRef }) addModalComponent: ViewContainerRef;
     @ViewChild("editPayment", { read: ViewContainerRef }) editModalComponent: ViewContainerRef;
     @ViewChild("deletePayment", { read: ViewContainerRef }) deleteModalComponent: ViewContainerRef;
 
@@ -40,13 +39,7 @@ export class PaymentListComponent implements OnInit {
 
         this.paymentService.getAllPaginated(this.params).subscribe(paymentList => {
             this.paymentList = paymentList;
-        })
-    }
-
-    openAddModal(payment) {
-        const addFactory = this.componentFactory.resolveComponentFactory(PaymentAddComponent)
-        const componentRef = this.editModalComponent.createComponent(addFactory)
-        componentRef.instance.payment = payment;
+        });
     }
 
     openEditModal(payment) {

@@ -10,7 +10,7 @@ export abstract class PaymentBaseComponent implements OnInit, AfterViewInit {
 
     @Input() payment: Payment;
 
-    abstract modalId;
+    abstract modalId: string;
     
     cancelModalConfig: ButtonConfig;
     submitModalConfig: ButtonConfig;
@@ -36,10 +36,10 @@ export abstract class PaymentBaseComponent implements OnInit, AfterViewInit {
         this.modalService.open(this.modalId);
     }
 
-    closeModal() {
+    closeModal(): void {
         this.modalService.close(this.modalId);
     }
 
-    abstract submitModal(payment?: Payment);
+    abstract submitModal(payment?: Payment): void;
 
 }

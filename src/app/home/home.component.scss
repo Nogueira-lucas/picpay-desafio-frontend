@@ -21,21 +21,10 @@
 .home-main {
     background-color: $default-background-color;
     height: 90vh;
-    padding: 25px 48px;
-    flex: 1 1 auto;
+    padding: 0 48px 25px;
 
-    .section-main {
-        display: flex;
-        justify-content: space-between;
-
-        .home-title {
-            margin: 25px 0;
-            align-self: center;
-        }
-
-        .add-button-payment {
-            align-self: flex-end;
-        }
-
+    .home-title {
+        margin: 40px 0;
     }
+
 }

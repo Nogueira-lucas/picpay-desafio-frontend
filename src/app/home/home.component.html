@@ -3,33 +3,6 @@
     <div class="profile"></div>
 </header>
 <main class="home-main">
-    <section class="section-main">
-        <h1 class="home-title">Meus pagamentos</h1>
-        <pay-button class="add-button-payment" [config]="addButtonConfig" (onClick)="openModal()"></pay-button>
-    </section>
-
+    <h1 class="home-title">Meus pagamentos</h1>
     <payments></payments>
 </main>
-
-<pay-modal id="add-payment-modal">
-    <div class="modal-header">
-        <h2>Adicionar pagamento</h2>
-    </div>
-
-    <div class="modal-content">
-        <form [formGroup]="modalForm">
-
-            <pay-input [config]="userInputConfig"></pay-input>
-            <pay-input [config]="valueInputConfig"></pay-input>
-
-            <pay-input [config]="dateInputConfig"></pay-input>
-            <pay-input [config]="titleInputConfig"></pay-input>
-
-            <div class="modal-footer">
-                <pay-button [config]="cancelModalConfig" (onClick)="cancelModal()" [disabled]="modalLoading"></pay-button>
-                <pay-button [config]="submitModalConfig" (onClick)="submitModal()" [disabled]="modalLoading"></pay-button>
-            </div>
-        </form>
-    </div>
-
-</pay-modal>
