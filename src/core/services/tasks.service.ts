@@ -12,16 +12,16 @@ export class TasksService {
     private http: HttpClient
     ) { }
 
-  getTasks(): Observable<Object> {
-    return this.http.get('http://localhost:3000/tasks')
+  getTasks(): Observable<PagamentoModel[]> {
+    return this.http.get<PagamentoModel[]>('http://localhost:3000/tasks')
   }
 
-  deleteTask(id: number): Observable<Object> {
-    return this.http.delete('http://localhost:3000/tasks/' + id)
+  deleteTask(id: number): Observable<PagamentoModel> {
+    return this.http.delete<PagamentoModel>('http://localhost:3000/tasks/' + id)
   }
 
-  putTask(pagamento: PagamentoModel): Observable<Object> {
-    return this.http.put('http://localhost:3000/tasks/' + pagamento.id, {
+  putTask(pagamento: PagamentoModel): Observable<PagamentoModel> {
+    return this.http.put<PagamentoModel>('http://localhost:3000/tasks/' + pagamento.id, {
       id: pagamento.id,
       name: pagamento.name,
       username: pagamento.username,
@@ -33,8 +33,8 @@ export class TasksService {
     })
   }
 
-  postTask(pagamento: PagamentoModel): Observable<Object> {
-    return this.http.post('http://localhost:3000/tasks', {
+  postTask(pagamento: PagamentoModel): Observable<PagamentoModel> {
+    return this.http.post<PagamentoModel>('http://localhost:3000/tasks', {
       name: pagamento.name,
       username: pagamento.username,
       title: pagamento.title,

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { LocationModel } from '../model/location.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,41 +20,41 @@ export class AuthService implements OnInit {
     //Este service faz um fake JWT para simular autenticação baseando em local storage e expiration Time
   }
 
-  login() {
-    return this.http.get('http://localhost:3000/account');
+  login(): Observable<UserEditModel> {
+    return this.http.get<UserEditModel>('http://localhost:3000/account');
   }
 
-  registrar(user: any) {
-    return this.http.post('http://localhost:3000/account', user);
+  registrar(user: any): Observable<UserEditModel> {
+    return this.http.post<UserEditModel>('http://localhost:3000/account', user);
   }
 
-  logout() {
+  logout(): void {
     this._localStorageService.remove('accessToken');
     this._localStorageService.remove('expirationTime');
     this._localStorageService.remove('user');
     this._router.navigate(['/login']);
   }
 
-  getUsers(){
-    return this.http.get('http://localhost:3000/account');
+  getUsers(): Observable<UserEditModel[]>{
+    return this.http.get<UserEditModel[]>('http://localhost:3000/account');
   }
 
-  getUserById(userId: number): Observable<Object> {
-    return this.http.get('http://localhost:3000/account/' + userId);
+  getUserById(userId: number): Observable<UserEditModel> {
+    return this.http.get<UserEditModel>('http://localhost:3000/account/' + userId);
   }
 
-  generateGuid(){
+  generateGuid(): string{
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
       var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
   }
 
-  generateExpirationTime(){
+  generateExpirationTime(): number{
     return new Date().getTime() + 3600000;
   }
 
-  isTokenValid(){
+  isTokenValid(): boolean{
     let token = this._localStorageService.get('accessToken');
     if (token != null) {
       let expirationTime = this._localStorageService.get('expirationTime');
@@ -85,7 +86,7 @@ export class AuthService implements OnInit {
     });
   }
 
-  getLocation(): Observable<any>{
-    return this.http.get<any>('https://geolocation-db.com/json/')
+  getLocation(): Observable<LocationModel> {
+    return this.http.get<LocationModel>('https://geolocation-db.com/json/')
   }
 }

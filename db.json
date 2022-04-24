@@ -1623,6 +1623,12 @@
       "name": "Thiago",
       "email": "thiago.alcaras@gmail.com",
       "password": "teste123"
+    },
+    {
+      "name": "teste",
+      "email": "teste@teste.com",
+      "password": "teste1",
+      "id": 2
     }
   ]
 }

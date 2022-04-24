@@ -11,7 +11,7 @@ export class ThemeService {
     private _localStorageService: LocalStorageService
   ) {}
 
-  getDarkTheme(){
+  getDarkTheme(): boolean{
     this.darkMode = JSON.parse(this._localStorageService.get('darkMode'));
     if(this.darkMode){
       document.body.classList.add("dark-theme");

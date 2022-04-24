@@ -157,7 +157,7 @@ export class LoginComponent implements OnInit {
 
   registrar(){
     let user = {
-      nome: this.cadastroForm.get('nameFormControl').value,
+      name: this.cadastroForm.get('nameFormControl').value,
       email: this.cadastroForm.get('emailFormControl').value,
       password: this.cadastroForm.get('senhaFormControl').value
     }
