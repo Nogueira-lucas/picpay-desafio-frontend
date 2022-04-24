@@ -3,6 +3,9 @@
 
 /* Estrutura */
 .table{
+    &-dark{
+        background-color: $header-table-primary !important;
+    }
     &-container{
         position: relative;
     }
@@ -92,13 +95,17 @@ table {
     display: flex;
     align-items: center;
     width: fit-content;
-    //border: .5px solid $background-color-primary;
 }
 
 div.dropdown:hover ul.dropdown-menu {
     top: 46px; 
     display: block; 
 }
+
+::ng-deep .mat-header-row{
+    background-color: $header-table-primary !important;
+}
+
 
 @media screen and (max-width: $xl){
     .table-icon-search{

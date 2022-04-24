@@ -16,6 +16,9 @@
     &-header{
         background-color: $header-color-primary !important;
         height: 90px;
+        &-dark{
+            background-color: $header-color-primary-dark !important;
+        }
     }
     &-avatar{
         border-radius: 50%;

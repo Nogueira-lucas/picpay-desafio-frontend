@@ -1,6 +1,6 @@
 <div class="content">
   <p>
-    <mat-toolbar color="primary" class="main-header">
+    <mat-toolbar color="primary" class="main-header" [ngClass]="{'main-header-dark': darkMode}">
       <div class="container main-container">
         <div class="row">
           <div class="col-6 main-leftCol">
@@ -26,6 +26,10 @@
               <button mat-menu-item (click)="logout()">
                 <mat-icon>logout</mat-icon>
                 <span>Sair</span>
+              </button>
+              <button mat-menu-item (click)="toggleTheme()">
+                <mat-icon>{{darkMode ? 'light_mode' : 'dark_mode'}}</mat-icon>
+                <span> Alterar tema</span>
               </button>
               <button mat-menu-item disabled>
                 <mat-icon>timer</mat-icon>

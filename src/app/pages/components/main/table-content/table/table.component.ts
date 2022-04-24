@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../../../../../../core/services/local-storage.service';
 import { TableService } from 'src/core/services/table.service';
 import { ModalComponent } from './../../../../../componentes/modal/modal.component';
 import { TasksService } from './../../../../../../core/services/tasks.service';
@@ -33,6 +34,7 @@ export class TableComponent implements OnInit, AfterViewInit  {
   qtdItens: number = 10;
   noMoreResults: boolean = false;
   isRateLimitReached = false;
+  darkMode: boolean = false;
 
   @Input() isMobile: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -44,7 +46,8 @@ export class TableComponent implements OnInit, AfterViewInit  {
     public dialog: MatDialog,
     public datepipe: DatePipe,
     public currencyPipe: CurrencyPipe,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private _localStorageService: LocalStorageService
   ) { }
 
   ngOnInit() {
@@ -53,6 +56,7 @@ export class TableComponent implements OnInit, AfterViewInit  {
     this._tableService.getTasks();
     this.receiveResultsLength();
     this.receiveDataSources();
+    this.getDarkMode();
   }
 
   ngAfterViewInit() {
@@ -145,5 +149,9 @@ export class TableComponent implements OnInit, AfterViewInit  {
   changeSelectedFilter(filter: string){
     this.selectedFilter = filter;
     this.getPlaceholder();
+  }
+
+  getDarkMode() {
+    this.darkMode = this._localStorageService.get('darkMode');
   }
 }

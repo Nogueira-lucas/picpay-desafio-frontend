@@ -56,9 +56,9 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     if(this.operacao == 'editar'){
+      this.data = JSON.parse(this._localStorageService.get('data'));
       var isPayed = this.data.isPayed ? true : false;
       
-      this.data = JSON.parse(this._localStorageService.get('data'));
       this.modalForm.get('nome').setValue(this.data.name);
       this.modalForm.get('usuario').setValue(this.data.username);
       this.modalForm.get('image').setValue(this.data.image);
