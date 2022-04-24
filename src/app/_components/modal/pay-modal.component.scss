@@ -2,6 +2,9 @@ pay-modal {
     display: none;
 
     .pay-modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: fixed;
         top: 0;
         right: 0;
@@ -12,10 +15,24 @@ pay-modal {
         overflow: auto;
 
         .pay-modal-body {
+            display: inline-block;
             padding: 20px;
             background: #fff;
-            margin: 40px;
+
+            .pay-modal-header {
+
+            }
+
+            .pay-modal-content {
+                
+            }
+
+            .pay-modal-footer {
+                display: flex;
+                justify-content: space-between;
+            }
         }
+
     }
 
     .pay-modal-background {
@@ -30,6 +47,7 @@ pay-modal {
 
         z-index: 900;
     }
+
 }
 
 body.pay-modal-open {

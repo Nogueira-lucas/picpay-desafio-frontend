@@ -1,10 +1,10 @@
 <pay-modal class="edit-payment-modal" id="edit-payment-modal">
 
-    <div class="modal-header">
+    <div class="pay-modal-header">
         <h2>Alterar pagamento</h2>
     </div>
 
-    <div class="modal-content">
+    <div class="pay-modal-content">
         <form [formGroup]="editForm">
             <pay-input [config]="userInputConfig"></pay-input>
             <pay-input [config]="valueInputConfig"></pay-input>
@@ -14,7 +14,7 @@
         </form>
     </div>
 
-    <div class="modal-footer">
+    <div class="pay-modal-footer">
         <pay-button [config]="cancelModalConfig" (onClick)="closeModal()"></pay-button>
         <pay-button [config]="submitModalConfig" (onClick)="submitModal(payment)"></pay-button>
     </div>
