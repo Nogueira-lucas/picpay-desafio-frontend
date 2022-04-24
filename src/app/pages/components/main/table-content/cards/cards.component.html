@@ -1,9 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <div class="col-12 text-end mb-4">
-        <button class="btn btn-primary w-100" (click)="adicionar()">ADICIONAR PAGAMENTO</button>
-      </div>
       <div class="form-group">
         <input type="text"  [placeholder]="getPlaceholder()" 
         [(ngModel)]="searchTerm"
@@ -11,7 +8,7 @@
         class="form-control" />
       </div>
       
-      <div class="form-group filter-options px-2 my-1 py-1 dropdown">
+      <div class="form-group filter-options my-1 py-1 dropdown">
         <span class="d-flex form-control dropdown-toggle align-center">
           <mat-icon class="">filter_alt</mat-icon>
           Filtrar
@@ -36,31 +33,41 @@
         </ul>
       </div>
       
-      <div class="container justify-content-center align-items-center">
+      <div class="col-12 text-end mb-4">
+        <button class="btn btn-primary w-100" (click)="adicionar()">ADICIONAR PAGAMENTO</button>
+      </div>
+
+      <div class="justify-content-center align-items-center">
         <div class="card w-100 my-2" *ngFor="let item of data | slice: 0:qtdItens">
           <div class="upper p-2 w-100">
             <div>
               <div class="d-flex flex-column">
                 <div class="d-flex">
                   <img class="card-img" src="{{ item.image }}" alt="{{ item.name }}">
-                  <span class="card-title">{{ item.name }}</span>
+                  <div class="d-flex flex-column">
+                    <span class="card-title">{{ item.name }}</span>
+                    <span>@{{item.username}}</span>
+                  </div>
                 </div>
-                <span>@{{item.username}}</span>
               </div>
             </div>
           </div>
           <div class="p-2 w-100">
             <div class="d-flex flex-column">
-              <span>Título: {{item.title}}</span>
-              <span>Valor: {{item.value}}</span>
-              <span>Data: {{item.date | date}}</span>
-              <span>Hora: {{item.date | date: 'HH:mm':'GMT'}}</span>
-              <span>Pago
+              <span class="fw-bold">Título: <span class="fw-normal">{{item.title}}</span></span>
+              <span class="fw-bold">Valor: <span class="fw-normal">{{item.value}}</span></span>
+              <span class="fw-bold">Data: <span class="fw-normal">{{item.date | date}}</span></span>
+              <span class="fw-bold">Hora: <span class="fw-normal">{{item.date | date: 'HH:mm':'GMT'}}</span></span>
+              <span class="d-flex align-center fw-bold">Pago
                 <mat-icon class="material-icons-outlined card-icon" [ngClass]="{'card-icon-payed' : item.isPayed}">{{item.isPayed ? 'done' : 'close'}}</mat-icon>
               </span>
-              <div class="d-flex">
-                <mat-icon class="material-icons-outlined" class="me-2 cursor-pointer" (click)="editar(item)">edit</mat-icon>
-                <mat-icon class="material-icons-outlined cursor-pointer" (click)="remover(item)">cancel</mat-icon>
+              <div class="d-flex justify-content-around">
+                <button class="btn btn-secondary btn-warning w-30 card-icon" (click)="editar(item)">
+                  <mat-icon class="material-icons-outlined" class="me-2 cursor-pointer card-icon-edit">edit</mat-icon>
+                </button>
+                <button class="btn btn-primary btn-danger w-30" (click)="remover(item)">
+                  <mat-icon class="material-icons-outlined cursor-pointer" >cancel</mat-icon>
+                </button>
               </div>
             </div>
           </div>

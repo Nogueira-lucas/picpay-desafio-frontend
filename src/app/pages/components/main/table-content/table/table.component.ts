@@ -33,7 +33,6 @@ export class TableComponent implements OnInit, AfterViewInit  {
   dialogRef!: MatDialogRef<ModalComponent>;
   qtdItens: number = 10;
   noMoreResults: boolean = false;
-  isRateLimitReached = false;
   darkMode: boolean = false;
 
   @Input() isMobile: boolean = false;

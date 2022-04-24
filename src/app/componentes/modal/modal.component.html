@@ -15,13 +15,9 @@
                   <div class="col-12 col-md-6">
                     <div class="form-group my-2" *ngFor="let input of inputGroup | slice: 0:4">
                       <label [for]="input.name">{{input.label}}</label>
-                      <input *ngIf="operacao == 'editar'" [type]="input.type"
-                        [ngClass]="{'form-control': input.type != 'checkbox'}" [checked]="data.isPayed"
+                      <input [type]="input.type"
+                        [ngClass]="{'form-control': input.type != 'checkbox'}" [checked]="operacao == 'editar' ? data.isPayed : false"
                         (click)="toggleIsPayed(input)" [formControlName]="input.formControlName" />
-
-                      <input *ngIf="operacao == 'adicionar'" [type]="input.type"
-                        [ngClass]="{'form-control': input.type != 'checkbox'}" [formControlName]="input.formControlName"
-                        (click)="toggleIsPayed(input)">
                     </div>
                   </div>
 
@@ -46,8 +42,8 @@
     </div>
 
     <div mat-dialog-actions class="modal-buttons">
-      <button class="btn btn-secondary w-30" (click)="dialogRef.close(true)">{{btnFechar}}</button>
-      <button class="btn btn-primary w-30" (click)="confirmarClick()"
+      <button class="btn btn-secondary" (click)="dialogRef.close(true)">{{btnFechar}}</button>
+      <button class="btn btn-primary" (click)="confirmarClick()"
         *ngIf="btnConfirmar.length > 0">{{btnConfirmar}}</button>
     </div>
 

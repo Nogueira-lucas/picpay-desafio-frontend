@@ -40,6 +40,7 @@ export class MainComponent implements OnInit {
   }
 
   toggleTheme(): void{
+    this.darkMode = !this.darkMode;
     this._themeService.toggleTheme();
   }
 }

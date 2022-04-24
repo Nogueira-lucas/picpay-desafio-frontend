@@ -57,15 +57,17 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
     if(this.operacao == 'editar'){
       this.data = JSON.parse(this._localStorageService.get('data'));
-      var isPayed = this.data.isPayed ? true : false;
-      
+
+      if(this.data.date.length > 16){
+        this.data.date = this.data.date.slice(0,16);
+      }      
       this.modalForm.get('nome').setValue(this.data.name);
       this.modalForm.get('usuario').setValue(this.data.username);
       this.modalForm.get('image').setValue(this.data.image);
       this.modalForm.get('titulo').setValue(this.data.title);
       this.modalForm.get('data').setValue(this.data.date);
       this.modalForm.get('valor').setValue(this.data.value);
-      this.modalForm.get('pago').setValue(isPayed);
+      this.modalForm.get('pago').setValue(this.data.isPayed);
     }
   }
 

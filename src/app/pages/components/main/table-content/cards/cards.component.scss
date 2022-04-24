@@ -1,5 +1,6 @@
 @import '../../../../../../assets/styles/scss/variables';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 
 .card{
     &-title{
@@ -8,9 +9,11 @@
         font-family: 'Montserrat', sans-serif;
     }
     &-img{
-        max-width: 10%;
+        max-width: 13%;
     }
     &-icon{
+        align-items: center;
+        place-content: center;
         color: $danger;
         &-payed{
             color: $success;
@@ -20,6 +23,9 @@
             position: absolute;
             top: 15px;
             right: 75%;
+        }
+        &-edit{
+            color: $b;
         }
     }
 }
@@ -31,4 +37,8 @@ div.dropdown:hover ul.dropdown-menu {
 
 .align-center{
     align-items: center;
+}
+
+.w-30{
+    width: 30%;
 }

@@ -20,10 +20,6 @@
     }
 }
 
-.w-30{
-    width: 30%;
-}
-
 input[type="checkbox"] {
     appearance: none;
     background-color: $w;
@@ -83,3 +79,9 @@ input[type="checkbox"] {
     cursor: not-allowed;
   }
 //#endregion
+
+@media screen and (min-width: $md){
+  .btn-secondary, .btn-primary {
+    width: 30%
+  }
+}
