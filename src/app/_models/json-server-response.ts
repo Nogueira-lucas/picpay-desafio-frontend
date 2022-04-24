@@ -1,11 +1,11 @@
 export class JsonServerResponse {
     totalCount: number;
     items: any;
-    link: any;
+    link: string;
 
     constructor(body, totalCount, link) {
         this.items = body;
-        this.totalCount = totalCount;
+        this.totalCount = parseInt(totalCount);
         this.link = link;
     }
 }

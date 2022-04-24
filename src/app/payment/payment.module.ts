@@ -11,6 +11,7 @@ import { PaymentEditComponent } from './edit/payment-edit.component';
 import { PayInputModule } from '../_components/input/pay-input.module';
 import { PaymentAddComponent } from './add/payment-add.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         PayModalModule,
         PayInputModule,
         PayButtonModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        NgxPaginationModule
     ],
     declarations: [
         PaymentComponent,

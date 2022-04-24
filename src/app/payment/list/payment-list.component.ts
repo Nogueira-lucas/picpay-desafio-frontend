@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { JsonServerParams } from 'src/app/_models/json-server-params';
 import { Payment } from 'src/app/_models/payment';
 import { PaymentService } from 'src/app/_services/payment.service';
@@ -10,7 +10,8 @@ import { faAngleLeft, faAngleRight, faTrashCan, faPencil } from '@fortawesome/fr
 @Component({
     selector: 'payment-list',
     templateUrl: 'payment-list.component.html',
-    styleUrls: ['payment-list.component.scss']
+    styleUrls: ['payment-list.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class PaymentListComponent implements OnInit {
 
@@ -29,10 +30,12 @@ export class PaymentListComponent implements OnInit {
 
     search = "";
 
-    selectedLimit = 20;
-    limitOptions: [5, 10, 15, 20, 25];
+    selectedLimit = 5;
+    limitOptions: [5, 10, 15, 20];
 
-    activePage = 1;
+    currentPage = 1;
+    pagesAmount = [1];
+
 
     constructor(
         private paymentService: PaymentService,
@@ -40,16 +43,15 @@ export class PaymentListComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.params = {
-            page: this.activePage,
-            limit: this.selectedLimit
+        this.loadTable();
         }
 
-        this.paymentService.getAllPaginated(this.params).subscribe(response => {
-            this.paymentList = response.items;
-            this.totalCount = response.totalCount;
-            this.paginationLink = response.link;
-        });
+
+    pageChange($event) {
+        this.currentPage = $event;
+        this.loadTable()
+    }
+
     }
 
     openEditModal(payment) {
@@ -63,4 +65,21 @@ export class PaymentListComponent implements OnInit {
         const componentRef = this.deleteModalComponent.createComponent(deleteFactory)
         componentRef.instance.payment = payment;
     }
+
+    private loadTable() {
+        this.params = {
+            page: this.currentPage,
+            limit: this.selectedLimit
+        }
+
+        this.paymentService.getAllPaginated(this.params).subscribe(response => {
+            this.paymentList = response.items;
+            this.totalCount = response.totalCount;
+            this.paginationLink = response.link;
+
+            let pagesAmount = (this.totalCount / this.selectedLimit).toFixed();
+            this.pagesAmount = new Array(parseInt(pagesAmount, 10));
+        });
+    }
+
 }

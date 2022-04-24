@@ -1,8 +1,17 @@
 <div class="payment-list-container">
 
     <div class="table-header">
-        <input />
-        <button>Filtros</button>
+        <div class="table-filter">
+        </div>
+
+        <div class="table-pagination">
+
+
+            <pagination-controls class="page-control"
+                previousLabel=""
+                nextLabel=""
+                (pageChange)="pageChange($event)"></pagination-controls>
+        </div>
     </div>
 
     <table class="table-list">

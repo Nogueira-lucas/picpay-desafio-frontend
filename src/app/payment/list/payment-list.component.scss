@@ -3,7 +3,25 @@
     background-color: white;
     
     .table-header {
-        height: 64px;   
+
+        .page-control .ngx-pagination {
+            display: inline-block;
+
+            .current {
+                background: $primary-button-color;
+                padding: 4px 8px;
+                border-radius: 6px;
+            }
+
+            a {
+                padding: 4px 8px;
+                border-radius: 6px;
+
+                &:hover {
+                    border-radius: 6px;
+                }
+            }
+        }
     }
 
     .table-list {
