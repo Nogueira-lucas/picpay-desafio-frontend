@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { LocationModel } from '../model/location.model';
-
+import { environment } from '../../environments/environment';
+const API_URL = environment.apiUrl + 'account/';
 @Injectable({
   providedIn: 'root',
 })
@@ -22,11 +23,11 @@ export class AuthService implements OnInit {
   }
 
   login(): Observable<UserEditModel> {
-    return this.http.get<UserEditModel>('http://localhost:3000/account');
+    return this.http.get<UserEditModel>(API_URL);
   }
 
   registrar(user: any): Observable<UserEditModel> {
-    return this.http.post<UserEditModel>('http://localhost:3000/account', user);
+    return this.http.post<UserEditModel>(API_URL, user);
   }
 
   logout(): void {
@@ -37,11 +38,11 @@ export class AuthService implements OnInit {
   }
 
   getUsers(): Observable<UserEditModel[]>{
-    return this.http.get<UserEditModel[]>('http://localhost:3000/account');
+    return this.http.get<UserEditModel[]>(API_URL);
   }
 
   getUserById(userId: number): Observable<UserEditModel> {
-    return this.http.get<UserEditModel>('http://localhost:3000/account/' + userId);
+    return this.http.get<UserEditModel>(API_URL + userId);
   }
 
   generateGuid(): string{
@@ -79,7 +80,7 @@ export class AuthService implements OnInit {
   }
 
   updateUser(user: UserEditModel): Observable<Object> {
-    return this.http.put('http://localhost:3000/account/' + user.id, {
+    return this.http.put(API_URL + user.id, {
       id: user.id,
       name: user.name,
       email: user.email,
@@ -88,6 +89,6 @@ export class AuthService implements OnInit {
   }
 
   getLocation(): Observable<LocationModel> {
-    return this.http.get<LocationModel>('https://geolocation-db.com/json/')
+    return this.http.get<LocationModel>(environment.apiGeoLocation);
   }
 }
