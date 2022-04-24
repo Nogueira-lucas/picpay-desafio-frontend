@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { PaymentComponent } from './payment.component';
@@ -11,16 +11,19 @@ import { PaymentEditComponent } from './edit/payment-edit.component';
 import { PayInputModule } from '../_components/input/pay-input.module';
 import { PaymentAddComponent } from './add/payment-add.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         ReactiveFormsModule,
         PayModalModule,
         PayInputModule,
         PayButtonModule,
         FontAwesomeModule,
+        SelectDropDownModule,
         NgxPaginationModule
     ],
     declarations: [

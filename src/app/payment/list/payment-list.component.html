@@ -2,11 +2,21 @@
 
     <div class="table-header">
         <div class="table-filter">
+            <div class="quicksearch">
+                <input (change)="changeQuickSearch($event)" placeholder="Pesquisar por usuário"/>
+            </div>
+            <pay-button class="filter-button" [config]="filterButton"></pay-button>
         </div>
 
         <div class="table-pagination">
 
-
+            <div class="select-limit">
+                <label for="limit">Exibir </label>
+                <select class="select" [ngModel]="selectedLimit" (ngModelChange)="limitChange($event)">
+                    <option *ngFor="let limit of limitOptions" [ngValue]="limit">{{limit.description}}</option>
+                </select>
+            </div>
+            
             <pagination-controls class="page-control"
                 previousLabel=""
                 nextLabel=""
@@ -16,21 +26,41 @@
 
     <table class="table-list">
         <tr>
-            <th class="table-columns">Usuário</th>
-            <th class="table-columns">Pago</th>
-            <th class="table-columns">Valor</th>
-            <th class="table-columns">Título</th>
-            <th class="table-columns"></th>
-            <th class="table-columns"></th>
+            <th *ngFor="let column of columns"
+                class="column-names"
+                [width]="column.width"
+                [ngClass]="column.sortable"
+                (click)="sortColumn($event)">
+                {{column.label}}
+            </th>
         </tr>
 
-        <tr *ngFor="let payment of paymentList;">
-            <td class="table-items">{{ payment.name }}</td>
-            <td class="table-items">{{ payment.isPayed }}</td>
-            <td class="table-items">{{ payment.value }}</td>
+        <tr *ngFor="let payment of paymentList | paginate: {itemsPerPage: selectedLimit.value, currentPage: currentPage, totalItems: totalCount};
+            let even = even; let odd = odd;"
+            [ngClass]="{ odd: odd, even: even }">
+
+            <td class="table-items">
+                {{ payment.name }} <br>
+                <span class="detail-item">
+                    @{{ payment.username }}
+                </span>
+            </td>
+            <td class="table-items">{{ payment.value | currency: 'R$ ' }}</td>
+            <td class="table-items">
+                <span *ngIf="payment.isPayed;else notPayed" class="flag paid">Pago</span>
+                <ng-template #notPayed><span class="flag pending">Pendente</span></ng-template>
+            </td>
+            <td class="table-items">
+                {{ payment.date | date: 'mediumDate' }} <br>
+                <span class="detail-item">
+                    {{ payment.date | date: 'shortTime' }}
+                </span>
+            </td>
             <td class="table-items">{{ payment.title }}</td>
-            <fa-icon class="table-items" [icon]="faPencil" (click)="openEditModal(payment)"></fa-icon>
-            <fa-icon class="table-items" [icon]="faTrashCan" (click)="openDeleteModal(payment)"></fa-icon>
+            <td class="table-actions">
+                <fa-icon class="table-items" [icon]="faPencil" (click)="openEditModal(payment)"></fa-icon>
+                <fa-icon class="table-items" [icon]="faTrashCan" (click)="openDeleteModal(payment)"></fa-icon>
+            </td>
         </tr>
 
     </table>

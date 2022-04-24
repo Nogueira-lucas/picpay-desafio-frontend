@@ -1,24 +1,90 @@
+@import '../../app.component.scss';
+
 .payment-list-container {
+    font-family: $table-font;
+    color: $body-text;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 14px;
+
     width: 100%;
     background-color: white;
-    
+
     .table-header {
+        display: flex;
+        margin: 10px;
+        justify-content: space-between;
+        align-items: center;
 
-        .page-control .ngx-pagination {
-            display: inline-block;
+        .table-filter {
+            display: flex;
 
-            .current {
-                background: $primary-button-color;
-                padding: 4px 8px;
-                border-radius: 6px;
+            .quicksearch {
+                position: relative;
+                display: inline;
+
+                input {
+                    padding: 7px;
+                    border: $table-input-border;
+                    border-radius: 6px;
+                }
+
+                &::placeholder {
+                    color: $secondary-text;
+                }
+
+                &::after {
+                    position: absolute;
+                    content: url('../../../assets/home/search.svg');
+                    top: 50%;
+                    right: 5px;
+                    transform: translateY(-50%);
+                }
             }
 
-            a {
-                padding: 4px 8px;
+            .filter-button {
+                display: inline-block;
+                position: relative;
                 border-radius: 6px;
+                width: 100px;
+                transform: scale(0.8);
+            }
+        }
 
-                &:hover {
+        .table-pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .select-limit {
+                // color: $secondary-text;
+                font-weight: 500;
+                
+                .select {
+                    border: $table-input-border;
+                    background-color: white;
                     border-radius: 6px;
+                    padding: 4px 8px;
+                    width: 120px;
+                }
+            }
+
+            .page-control .ngx-pagination {
+                padding: 0;
+
+                .current {
+                    background: $primary-button-color;
+                    padding: 4px 8px;
+                    border-radius: 6px;
+                }
+
+                a {
+                    padding: 4px 8px;
+                    border-radius: 6px;
+
+                    &:hover {
+                        border-radius: 6px;
+                    }
                 }
             }
         }
@@ -26,15 +92,65 @@
 
     .table-list {
         width: 100%;
+        font-weight: 400;
 
-        .table-columns {
+        .column-names {
+            text-align: inherit;
+            padding: 17px;
             border-bottom: solid 1px black;
-            margin: 10;
+
+            &.sortable::after {
+                cursor: pointer;
+                content: "<>";
+            }
+
+            &.ascending::after {
+                cursor: pointer;
+                content: "<";
+            }
+
+            &.descending::after {
+                cursor: pointer;
+                content: ">";
+            }
         }
 
         .table-items {
+            font-size: 15px;
             padding: 10px;
+
+            .detail-item {
+                font-size: 12px;
+                color: $secondary-text;
+            }
         }
 
+        .table-actions {
+            cursor: pointer;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .odd {
+            background-color: #F5F8FA;
+        }
+
+    }
+}
+
+.flag {
+    font-size: 12px;
+    font-weight: 600;
+    -webkit-text-stroke: solid 0.1px black;
+    color: white;
+    padding: 6px;
+    border-radius: 6px;
+
+    &.paid {
+        background-color: #337c24;
+    }
+
+    &.pending {
+        background-color: orange;
     }
 }
