@@ -14,6 +14,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatFormFieldModule,
     MatDialogModule,
     MatSortModule,
+    MatSnackBarModule
     //endregion Material Modules
   ],
   declarations: [

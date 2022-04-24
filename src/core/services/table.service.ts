@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LocalStorageService } from './local-storage.service';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -36,7 +37,8 @@ export class TableService {
     public datepipe: DatePipe,
     public currencyPipe: CurrencyPipe,
     private _liveAnnouncer: LiveAnnouncer,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private _snackBar: MatSnackBar
   ) {}
 
   getTasks() {
@@ -167,6 +169,7 @@ export class TableService {
     this.dialogRef.componentInstance.confirmar.pipe(untilDestroyed(this)).subscribe(() => {
       this._tasksService.deleteTask(data.id).pipe(untilDestroyed(this)).subscribe(
         (data: any) => {
+          this.openSnackBar('Operação realizada com sucesso!');
           this.getTasks();
         }
       )
@@ -189,6 +192,7 @@ export class TableService {
     .subscribe((data: any) => {
       this._tasksService.putTask(data).pipe(untilDestroyed(this)).subscribe(
         (data: any) => {
+          this.openSnackBar('Operação realizada com sucesso!');
           this.getTasks();
         })
     });
@@ -208,6 +212,7 @@ export class TableService {
     .subscribe((data: any) => {
       this._tasksService.postTask(data).pipe(untilDestroyed(this)).subscribe(
         (data: any) => {
+          this.openSnackBar('Operação realizada com sucesso!');
           this.getTasks();
         })
     });
@@ -239,5 +244,11 @@ export class TableService {
 
   emitResultsLengthChanged(){
     this.resultsLengthChanged.emit(this.resultsLength);
+  }
+
+  openSnackBar(message: string){
+    this._snackBar.open(message, 'Fechar', {
+      duration: 4000,
+    });
   }
 }
