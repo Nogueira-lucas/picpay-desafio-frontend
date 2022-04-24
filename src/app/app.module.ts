@@ -1,3 +1,4 @@
+import { ThemeService } from './../core/services/theme.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 
@@ -22,6 +23,7 @@ registerLocaleData(localePt);
   ],
   providers: [
     AuthGuard,
+    ThemeService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }  
   ],
   bootstrap: [AppComponent]

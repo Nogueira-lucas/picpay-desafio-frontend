@@ -1,3 +1,4 @@
+import { ThemeService } from './../../../../core/services/theme.service';
 import { LocalStorageService } from './../../../../core/services/local-storage.service';
 import { AuthService } from './../../../../core/services/auth.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -20,7 +21,8 @@ export class MainComponent implements OnInit {
   
   constructor(
     private _authService: AuthService,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private _themeService: ThemeService
   ) { }
 
   ngOnInit() {
@@ -30,14 +32,7 @@ export class MainComponent implements OnInit {
     const Seconds_Between_Dates = Math.abs(diff / 1000);
     this.config.leftTime = Seconds_Between_Dates;
 
-    this.darkMode = JSON.parse(this._localStorageService.get('darkMode'));
-    if(this.darkMode){
-      document.body.classList.add("dark-theme");
-    }
-    else{
-      document.body.classList.remove("dark-theme");
-    }
-    this._localStorageService.set('darkMode', this.darkMode);
+    this.darkMode = this._themeService.getDarkTheme();
   }
 
   logout(): void{
@@ -45,8 +40,6 @@ export class MainComponent implements OnInit {
   }
 
   toggleTheme(): void{
-    document.body.classList.toggle("dark-theme");
-    this.darkMode = !this.darkMode;
-    this._localStorageService.set('darkMode', this.darkMode);
+    this._themeService.toggleTheme();
   }
 }

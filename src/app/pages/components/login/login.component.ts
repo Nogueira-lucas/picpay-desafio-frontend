@@ -1,13 +1,12 @@
-import { Router } from '@angular/router';
-import { LocalStorageService } from './../../../../core/services/local-storage.service';
-import { AuthService } from './../../../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AuthService } from './../../../../core/services/auth.service';
+import { LocalStorageService } from './../../../../core/services/local-storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -35,6 +34,7 @@ export class LoginComponent implements OnInit {
   guid: string = '';
   wrongPassword: boolean = false;
   openRegistrar: boolean = false;
+  darkMode: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,

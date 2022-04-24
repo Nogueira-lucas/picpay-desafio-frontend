@@ -38,11 +38,11 @@
                 value="ENTRAR"
                 class="btn btn-block btn-primary w-100"
               />
-              <span class="login-registrar my-1">
+              <p class="login-registrar my-1">
                 Não possui conta?
                 <a class="login-registrar-link"
                 (click)="toggleRegistrar()">Cadastre-se.</a>
-              </span>
+              </p>
             </form>
 
             <form *ngIf="openRegistrar" action="#" method="post" [formGroup]="cadastroForm" (ngSubmit)="login()">
@@ -84,11 +84,11 @@
                 value="REGISTRAR"
                 class="btn btn-block btn-primary w-100"
               />
-              <span class="login-registrar my-1">
+              <p class="login-registrar my-1">
                 Já possui conta? 
                 <a class="login-registrar-link"
                 (click)="toggleRegistrar()">Faça o login.</a>
-              </span>
+              </p>
               <small class="login-error-cadastro" *ngIf="userExists">
                 {{userExistsErrorMessage}}
               </small>

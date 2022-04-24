@@ -1,8 +1,8 @@
-import { LocalStorageService } from './../../../core/services/local-storage.service';
-import { PagamentoInserirModel, PagamentoModel } from './../../../core/model/pagamento.model';
-import { FormBuilder, Validators } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { PagamentoInserirModel, PagamentoModel } from './../../../core/model/pagamento.model';
+import { LocalStorageService } from './../../../core/services/local-storage.service';
 
 @Component({
   selector: 'app-modal',
