@@ -84,6 +84,7 @@ export class TableComponent implements OnInit, AfterViewInit  {
         this.data = data.filteredData;
         this.dataSource.data = data.filteredData;
         this.dataConst = data.filteredData;
+        this.searchTable();
         this.isLoadingResults = false;
       }
     );
@@ -99,6 +100,41 @@ export class TableComponent implements OnInit, AfterViewInit  {
         this.resultsLength = data.length;
       }
     )
+  }
+
+  searchTable() {
+    if(this.selectedFilter == 'user'){
+      this.searchUser();
+    }
+    if(this.selectedFilter == 'title'){
+      this.searchTitle();
+    }
+    if(this.selectedFilter == 'value'){
+      this.searchValue();
+    }
+    if(this.selectedFilter == 'date'){
+      this.searchDate();
+    }
+  }
+
+  searchUser(){
+    this.dataSource.data = this.data.filter(item => item.username.includes(this.searchTerm) || item.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    this.resultsLength = this.dataSource.data.length;
+  }
+
+  searchTitle(){
+    this.dataSource.data = this.data.filter(item => item.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    this.resultsLength = this.dataSource.data.length;
+  }
+
+  searchValue(){
+    this.dataSource.data = this.data.filter(item => item.value.toString().includes(this.searchTerm));
+    this.resultsLength = this.dataSource.data.length;
+  }
+
+  searchDate(){
+    this.dataSource.data = this.data.filter(item => this.datepipe.transform(item.date, 'dd/MM/yyyy').includes(this.searchTerm));
+    this.resultsLength = this.dataSource.data.length;
   }
 
   search(): void{

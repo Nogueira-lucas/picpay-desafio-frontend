@@ -247,7 +247,7 @@ export class TableService {
         this.openSnackBar('Erro ao realizar a operação!');
       })
   }
-  
+
   dialogAfterClosed(){
     this.dialogRef.afterClosed().pipe(untilDestroyed(this)).subscribe(result => {
       this.dialogRef = null;
@@ -269,7 +269,6 @@ export class TableService {
 
   emitDataSourceChanged(){
     this.dataSourceChanged.emit(this.dataSource);
-    this.search(this.searchTerm, this.selectedFilter);
   }
 
   emitResultsLengthChanged(){
