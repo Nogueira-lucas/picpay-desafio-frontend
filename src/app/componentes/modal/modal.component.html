@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-10">
-      <h1 class="modal-title" mat-dialog-title>{{title}}</h1>
+      <p class="modal-title" mat-dialog-title>{{title}}</p>
       <div class="modal-description my-3" mat-dialog-content [innerHTML]="description"></div>
     </div>
 
@@ -43,7 +43,7 @@
 
     <div mat-dialog-actions class="modal-buttons">
       <button class="btn btn-secondary" (click)="dialogRef.close(true)">{{btnFechar}}</button>
-      <button class="btn btn-primary" (click)="confirmarClick()"
+      <button class="btn btn-primary" [disabled]="formInvalid()" (click)="confirmarClick()"
         *ngIf="btnConfirmar.length > 0">{{btnConfirmar}}</button>
     </div>
 

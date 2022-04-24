@@ -110,7 +110,7 @@ export class ModalComponent implements OnInit {
       this.modalForm.get('valor').value,
       this.modalForm.get('data').value,
       this.modalForm.get('image').value,
-      JSON.parse(this.modalForm.get('pago').value),
+      this.modalForm.get('pago').value ? JSON.parse(this.modalForm.get('pago').value) : false,
     );
     this.novoItem.emit(pagamento);
     this.closeDialog()
@@ -124,5 +124,21 @@ export class ModalComponent implements OnInit {
 
   closeDialog(){
     this.dialogRef.close();
+  }
+
+  formInvalid(){
+    if(this.operacao == 'apagar'){
+      return false;
+    }
+
+    if(this.modalForm.get('nome').value.length > 0 
+      && this.modalForm.get('usuario').value.length > 0
+      && this.modalForm.get('titulo').value.length > 0
+      && this.modalForm.get('valor').value.toString().length > 0
+      && this.modalForm.get('data').value.length > 0
+      ){
+        return false;
+      }
+      return true;
   }
 }

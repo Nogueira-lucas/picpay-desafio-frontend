@@ -59,14 +59,14 @@ export class TableService {
       {
         name: 'name',
         type: 'text',
-        label: 'Nome',
+        label: 'Nome*',
         placeholder: 'Nome',
         formControlName: 'nome'
       },
       {
         name: 'username',
         type: 'text',
-        label: 'Usuário',
+        label: 'Usuário*',
         placeholder: 'Usuário',
         formControlName: 'usuario'
       },
@@ -88,21 +88,21 @@ export class TableService {
       {
         name: 'title',
         type: 'text',
-        label: 'Título',
+        label: 'Título*',
         placeholder: 'Título',
         formControlName: 'titulo'
       },
       {
         name: 'date',
         type: 'datetime-local',
-        label: 'Data',
+        label: 'Data*',
         placeholder: 'Data',
         formControlName: 'data'
       },
       {
         name: 'value',
         type: 'number',
-        label: 'Valor',
+        label: 'Valor*',
         placeholder: 'Valor',
         formControlName: 'valor'
       }

@@ -191,16 +191,6 @@
       "isPayed": false
     },
     {
-      "id": 28,
-      "name": "Bathsheba Eschelle",
-      "username": "bescheller",
-      "title": "Health Coach II",
-      "value": 247.23,
-      "date": "2020-03-14T14:49:39Z",
-      "image": "https://robohash.org/autettempora.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 29,
       "name": "Mirelle Malin",
       "username": "mmalins",

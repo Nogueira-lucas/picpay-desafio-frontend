@@ -55,7 +55,7 @@
           <div class="p-2 w-100">
             <div class="d-flex flex-column">
               <span class="fw-bold">Título: <span class="fw-normal">{{item.title}}</span></span>
-              <span class="fw-bold">Valor: <span class="fw-normal">{{item.value}}</span></span>
+              <span class="fw-bold">Valor: <span class="fw-normal">{{item.value | currency: 'BRL'}}</span></span>
               <span class="fw-bold">Data: <span class="fw-normal">{{item.date | date}}</span></span>
               <span class="fw-bold">Hora: <span class="fw-normal">{{item.date | date: 'HH:mm':'GMT'}}</span></span>
               <span class="d-flex align-center fw-bold">Pago

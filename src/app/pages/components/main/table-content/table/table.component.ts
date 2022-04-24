@@ -10,7 +10,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
