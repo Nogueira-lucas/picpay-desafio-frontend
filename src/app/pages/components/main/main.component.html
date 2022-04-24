@@ -45,7 +45,10 @@
     </mat-toolbar>
   </p>
 
-  <div class="container table-container">
+  <div class="container table-container area">
+    <ul class="circles">
+      <li *ngFor="let number of numbers" [ngClass]="{'dark': darkMode}"></li>
+    </ul>
     <router-outlet></router-outlet>
   </div>
 </div>

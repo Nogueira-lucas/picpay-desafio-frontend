@@ -69,6 +69,9 @@ export class ModalComponent implements OnInit {
       this.modalForm.get('valor').setValue(this.data.value);
       this.modalForm.get('pago').setValue(this.data.isPayed);
     }
+    else if(this.operacao == 'adicionar'){
+      this.modalForm.get('data').setValue(new Date().toISOString().slice(0,16));
+    }
   }
 
   confirmarClick(){

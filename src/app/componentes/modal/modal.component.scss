@@ -19,6 +19,15 @@
         font-weight: 400;
         font-size: 16px;
     }
+    &-paid{
+      &-input{
+        display: flex;
+        align-items: center;
+        & > label{
+          margin-right: .5rem;
+        }
+      }
+    }
 }
 
 input[type="checkbox"] {

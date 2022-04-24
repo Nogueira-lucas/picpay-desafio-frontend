@@ -18,7 +18,8 @@ export class MainComponent implements OnInit {
   dateNow: Date = new Date();
   dateCountdown: Date;
   darkMode: boolean = false;
-  
+  numbers: number[] = [1,2,3,4,5,6,7,8,9,10];
+
   constructor(
     private _authService: AuthService,
     private _localStorageService: LocalStorageService,
