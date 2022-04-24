@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { ButtonConfig } from '../_components/button/ButtonConfig';
+import { ButtonConfig } from '../_components/button/button-config';
 import { PaymentAddComponent } from './add/payment-add.component';
 
 @Component({

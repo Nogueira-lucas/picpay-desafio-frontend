@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from 'rxjs/operators';
 import { Subscription } from "rxjs";
-import { ButtonConfig } from "src/app/_components/button/ButtonConfig";
-import { InputConfig } from "src/app/_components/input/InputConfig";
+import { ButtonConfig } from "src/app/_components/button/button-config";
+import { InputConfig } from "src/app/_components/input/input-config";
 
 @Component({
     templateUrl: 'login.component.html',

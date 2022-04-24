@@ -1,6 +1,6 @@
 import { AfterViewInit, Directive, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ButtonConfig } from 'src/app/_components/button/ButtonConfig';
+import { ButtonConfig } from 'src/app/_components/button/button-config';
 import { PayModalService } from 'src/app/_components/modal/pay-modal.service';
 import { Payment } from 'src/app/_models/payment';
 import { PaymentService } from 'src/app/_services/payment.service';

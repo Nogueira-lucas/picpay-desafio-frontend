@@ -1,6 +1,6 @@
 import { AfterContentInit, AfterViewChecked, Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { InputConfig } from 'src/app/_components/input/InputConfig';
+import { InputConfig } from 'src/app/_components/input/input-config';
 import { Payment } from 'src/app/_models/payment';
 import { PaymentBaseComponent } from '../payment-base.component';
 

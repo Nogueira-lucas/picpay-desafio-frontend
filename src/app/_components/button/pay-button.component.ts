@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ButtonConfig } from './ButtonConfig';
+import { ButtonConfig } from './button-config';
 
 @Component({
   selector: 'pay-button',

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
-import { InputConfig } from './InputConfig';
+import { InputConfig } from './input-config';
 
 @Component({
     selector: 'pay-input',

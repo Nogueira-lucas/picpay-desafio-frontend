@@ -5,7 +5,7 @@ import { PaymentService } from 'src/app/_services/payment.service';
 import { PaymentAddComponent } from '../add/payment-add.component';
 import { PaymentDeleteComponent } from '../delete/payment-delete.component';
 import { PaymentEditComponent } from '../edit/payment-edit.component';
-import { faAngleLeft, faAngleRight, faTrashCan, faPencil } from '@fortawesome/free-solid-svg-icons';
+import { ButtonConfig } from 'src/app/_components/button/button-config';
 
 @Component({
     selector: 'payment-list',
