@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     });  
   }
 
-  emailError(){
+  emailError(): boolean{
     if (this.loginForm.get('emailFormControl').hasError('required')) {
       this.emailErrorMessage = 'Campo obrigatório';
       return true;
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  passwordError(){
+  passwordError(): boolean{
     if (this.loginForm.get('senhaFormControl').hasError('required')) {
       this.passwordErrorMessage = 'Campo obrigatório';
       this.wrongPassword = false;
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  confirmPasswordError(){
+  confirmPasswordError(): boolean{
     if (this.cadastroForm.get('confirmaSenhaFormControl').hasError('required')) {
       this.confirmPasswordErrorMessage = 'Campo obrigatório';
       this.wrongPassword = false;
@@ -114,15 +114,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  toggleHide() {
+  toggleHide(): void {
     this.hide = !this.hide;
   }
 
-  toggleRegistrar(){
+  toggleRegistrar(): void{
     this.openRegistrar = !this.openRegistrar;
   }
 
-  login(){
+  login(): void{
     this._authService.login()
     .pipe(untilDestroyed(this))
     .subscribe(
@@ -155,7 +155,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  registrar(){
+  registrar(): void{
     let user = {
       name: this.cadastroForm.get('nameFormControl').value,
       email: this.cadastroForm.get('emailFormControl').value,
@@ -192,11 +192,11 @@ export class LoginComponent implements OnInit {
       });
   }
   
-  generateGuid(){
+  generateGuid(): string{
     return this.guid = this._authService.generateGuid();
   }
 
-  get confirmaSenhaFormControl(){
+  get confirmaSenhaFormControl() {
     return this.cadastroForm.get('confirmaSenhaFormControl');
   }
 

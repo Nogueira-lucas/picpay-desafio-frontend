@@ -42,7 +42,7 @@ export class CardsComponent implements OnInit {
     this.receiveDataSources();
   }
 
-  getTasks() {
+  getTasks(): void {
     this._tasksService
       .getTasks()
       .pipe(untilDestroyed(this))
@@ -53,7 +53,7 @@ export class CardsComponent implements OnInit {
       });
   }
 
-  receiveResultsLength() {
+  receiveResultsLength(): void {
     this._tableService.resultsLengthChanged.pipe(untilDestroyed(this)).subscribe(
       (resultsLength: number) => {
         this.resultsLength = resultsLength;
@@ -69,7 +69,7 @@ export class CardsComponent implements OnInit {
     );
   }
 
-  receiveDataSources() {
+  receiveDataSources(): void {
     this._tableService.dataSourceChanged.pipe(untilDestroyed(this)).subscribe(
       (data: any) => {
         this.data = data.filteredData;
@@ -79,37 +79,37 @@ export class CardsComponent implements OnInit {
     );
   }
 
-  verMaisItens(){
+  verMaisItens(): void{
     this.qtdItens += 10;
   }
 
-  search(){
+  search(): void{
     this._tableService.search(this.searchTerm, this.selectedFilter);
   }
 
-  adicionar(){
+  adicionar(): void{
     this._tableService.adicionarPagamento();
   }
 
-  editar(item: any){
+  editar(item: any): void{
     this._tableService.editarPagamento(item);
     this.searchTerm = '';
     this.search();
   }
 
-  remover(item: any){
+  remover(item: any): void{
     this._tableService.removerPagamento(item);
     this.searchTerm = '';
     this.search();
   }
 
-  patchIsPayed(item: any){
+  patchIsPayed(item: any): void{
     this.isLoadingResults = true;
     item.isPayed = !item.isPayed;
     this._tableService.patchIsPayed(item);
   }
   
-  getPlaceholder(){
+  getPlaceholder(): string{
     if(this.selectedFilter == 'user'){
       return 'Pesquisar por usuário';
     }
@@ -124,7 +124,7 @@ export class CardsComponent implements OnInit {
     }
   }
 
-  changeSelectedFilter(filter: string){
+  changeSelectedFilter(filter: string): void{
     this.selectedFilter = filter;
     this.getPlaceholder();
   }
