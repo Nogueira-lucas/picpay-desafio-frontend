@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
   wrongPassword: boolean = false;
   openRegistrar: boolean = false;
   darkMode: boolean = false;
+  submitted: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -122,7 +123,7 @@ export class LoginComponent implements OnInit {
     this.openRegistrar = !this.openRegistrar;
   }
 
-  login(): void{
+  login(): void {
     this._authService.login()
     .pipe(untilDestroyed(this))
     .subscribe(
@@ -148,11 +149,14 @@ export class LoginComponent implements OnInit {
         else{
           this.wrongPassword = true;
         }
+        this.submitted = true;
       },
       (error) => {
         this.openSnackBar();
+        this.submitted = true;
       }
     );
+    this.submitted = true;
   }
 
   registrar(): void{
@@ -189,7 +193,12 @@ export class LoginComponent implements OnInit {
             }
           }
         }
-      });
+        this.submitted = true;
+      }, error => {
+        this.openSnackBar();
+        this.submitted = true;
+      })
+      this.submitted = true;
   }
   
   generateGuid(): string{

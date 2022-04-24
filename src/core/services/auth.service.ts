@@ -10,6 +10,7 @@ import { LocationModel } from '../model/location.model';
   providedIn: 'root',
 })
 export class AuthService implements OnInit {
+  
   constructor(
     private http: HttpClient,
     private _localStorageService: LocalStorageService,
