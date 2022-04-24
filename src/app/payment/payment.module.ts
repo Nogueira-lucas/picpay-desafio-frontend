@@ -11,7 +11,6 @@ import { PaymentEditComponent } from './edit/payment-edit.component';
 import { PayInputModule } from '../_components/input/pay-input.module';
 import { PaymentAddComponent } from './add/payment-add.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UserModule } from '../user/user.module';
 
@@ -24,7 +23,6 @@ import { UserModule } from '../user/user.module';
         PayInputModule,
         PayButtonModule,
         FontAwesomeModule,
-        SelectDropDownModule,
         NgxPaginationModule,
         UserModule
     ],
