@@ -12,7 +12,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     FormsModule,
     //region Material Modules
     MatExpansionModule,
-    MatIconModule,
+    MatIconModule
     //endregion
   ],
   declarations: [ProfileComponent]
