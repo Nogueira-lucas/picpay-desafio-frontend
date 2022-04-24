@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   apiUrl: 'https://fake-dbjson-ta.herokuapp.com/',
   apiGeoLocation: 'https://geolocation-db.com/json/'
 };
