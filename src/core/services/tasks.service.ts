@@ -19,7 +19,7 @@ export class TasksService {
   }
 
   deleteTask(id: number): Observable<PagamentoModel> {
-    return this.http.delete<PagamentoModel>('http://localhost:3000/tasks/' + id)
+    return this.http.delete<PagamentoModel>(API_URL + id)
   }
 
   putTask(pagamento: PagamentoModel): Observable<PagamentoModel> {
