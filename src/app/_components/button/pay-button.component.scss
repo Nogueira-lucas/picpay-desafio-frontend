@@ -1,6 +1,7 @@
 @import "../../../styles.scss";
 
 .btn {
+    cursor: pointer;
     background-color: $default-button-color;
     height: 36px;
     width: 100%;
@@ -18,7 +19,11 @@
     }
 
     &:disabled {
-        background-color: rgb($primary-button-color, 50%);
+        filter: grayscale(80%);
         cursor: not-allowed;
+    }
+
+    &:hover {
+        filter: brightness(80%)
     }
 }
