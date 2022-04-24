@@ -67,7 +67,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Usuário</th>
-        <td mat-cell *matCellDef="let row">
+        <td mat-cell *matCellDef="let row" class="w-30">
           <div class="d-flex">
             <img *ngIf="row.image.length > 0" [src]="row.image" class="table-avatar mt-2 me-2">
             <div class="d-flex flex-column">
@@ -81,7 +81,7 @@
       <!-- Title Column -->
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by title">Título</th>
-        <td mat-cell *matCellDef="let row">{{row.title}}</td>
+        <td mat-cell *matCellDef="let row" class="w-20">{{row.title}}</td>
       </ng-container>
 
       <!-- Data Column -->
