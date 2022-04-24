@@ -109,15 +109,17 @@ export class TableComponent implements OnInit, AfterViewInit  {
     this._tableService.adicionarPagamento();
   }
 
+  adicionarMesmoUsuario(item: any): void{
+    this._tableService.adicionarPagamentoMesmoUsuario(item);
+  }
+
   editar(item: any): void{
     this._tableService.editarPagamento(item);
-    this.searchTerm = '';
     this.search();
   }
 
   remover(item: any): void{
     this._tableService.removerPagamento(item);
-    this.searchTerm = '';
     this.search();
   }
 

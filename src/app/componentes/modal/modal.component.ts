@@ -54,7 +54,7 @@ export class ModalComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    if(this.operacao == 'editar'){
+    if(this.operacao == 'editar' || this.operacao == 'adicionar-mesmo-usuario'){
       this.data = JSON.parse(this._localStorageService.get('data'));
 
       if(this.data && this.data.date.length > 16){
@@ -64,7 +64,7 @@ export class ModalComponent implements OnInit {
       this.modalForm.get('usuario').setValue(this.data?.username);
       this.modalForm.get('image').setValue(this.data?.image);
       this.modalForm.get('titulo').setValue(this.data?.title);
-      this.modalForm.get('data').setValue(this.data?.date);
+      this.operacao == 'editar' ? this.modalForm.get('data').setValue(this.data?.date) : this.modalForm.get('data').setValue(new Date().toISOString().slice(0,16));
       this.modalForm.get('valor').setValue(this.data?.value);
     }
     else if(this.operacao == 'adicionar'){
@@ -81,6 +81,9 @@ export class ModalComponent implements OnInit {
     }
     else if(this.operacao === 'adicionar'){
       this.submitFormAdicionar();
+    }
+    else if(this.operacao === 'adicionar-mesmo-usuario'){
+      this.submitFormAdicionarMesmoUsuario();
     }
   }
 
@@ -116,6 +119,20 @@ export class ModalComponent implements OnInit {
     this.closeDialog()
   }
 
+  submitFormAdicionarMesmoUsuario(){
+    let pagamento: PagamentoModel = new PagamentoInserirModel(
+      this.modalForm.get('nome').value,
+      this.modalForm.get('usuario').value,
+      this.modalForm.get('titulo').value,
+      this.modalForm.get('valor').value,
+      this.modalForm.get('data').value,
+      this.modalForm.get('image').value,
+      true,
+    );
+    this.novoItem.emit(pagamento);
+    this.closeDialog()
+  }
+  
   closeDialog(){
     this.dialogRef.close();
   }

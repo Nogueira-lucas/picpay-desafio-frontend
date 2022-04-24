@@ -62,7 +62,7 @@
     </div>
     
     <table mat-table [dataSource]="dataSource" class="table-table"
-      matSort (matSortChange)="announceSortChange($event)">
+      matSort matSortActive="date" matSortDirection="desc" matSortDisableClear (matSortChange)="announceSortChange($event)">
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
@@ -115,6 +115,7 @@
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row" class="w-20 text-end">
+          <mat-icon matTooltip="Adicionar para este usuário" class="material-icons-outlined" class="me-2 cursor-pointer" (click)="adicionarMesmoUsuario(row)">add</mat-icon>
           <mat-icon matTooltip="Editar" class="material-icons-outlined" class="me-2 cursor-pointer" (click)="editar(row)">edit</mat-icon>
           <mat-icon matTooltip="Apagar" class="material-icons-outlined cursor-pointer" (click)="remover(row)">cancel</mat-icon>
         </td>

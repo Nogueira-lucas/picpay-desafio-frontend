@@ -59,10 +59,10 @@ export class CardsComponent implements OnInit {
         this.resultsLength = resultsLength;
         this.isLoadingResults = false;
 
-        if (this.resultsLength === 0) {
+        if(this.resultsLength < this.qtdItens){
           this.noMoreResults = true;
         }
-        else {
+        else{
           this.noMoreResults = false;
         }
       }
@@ -127,5 +127,9 @@ export class CardsComponent implements OnInit {
   changeSelectedFilter(filter: string): void{
     this.selectedFilter = filter;
     this.getPlaceholder();
+  }
+
+  adicionarMesmoUsuario(item: any): void{
+    this._tableService.adicionarPagamentoMesmoUsuario(item);
   }
 }

@@ -43,7 +43,7 @@
             <div>
               <div class="d-flex flex-column">
                 <div class="d-flex">
-                  <img class="card-img" src="{{ item.image }}" alt="{{ item.name }}">
+                  <img class="card-img" *ngIf="item.image" src="{{ item.image }}">
                   <div class="d-flex flex-column">
                     <span class="card-title">{{ item.name }}</span>
                     <span class="card-username">@{{item.username}}</span>
@@ -59,15 +59,18 @@
               <span class="fw-bold">Data: <span class="fw-normal">{{item.date | date}}</span></span>
               <span class="fw-bold">Hora: <span class="fw-normal">{{item.date | date: 'HH:mm':'GMT'}}</span></span>
               <span class="d-flex align-center fw-bold">Pago: 
-                <div class="form-check">
+                <div class="form-check ms-1">
                   <input class="form-check-input" type="checkbox" [checked]="item.isPayed" id="checkboxPayed" (click)="patchIsPayed(item)">
                 </div>
               </span>
               <div class="d-flex justify-content-around">
-                <button class="btn btn-secondary btn-warning w-30 card-icon" (click)="editar(item)">
-                  <mat-icon class="material-icons-outlined" class="me-2 cursor-pointer card-icon-edit">edit</mat-icon>
+                <button class="btn btn-primary w-20 card-icon" (click)="adicionarMesmoUsuario(item)">
+                  <mat-icon class="material-icons-outlined" class="cursor-pointer card-icon-edit">add</mat-icon>
                 </button>
-                <button class="btn btn-primary btn-danger w-30" (click)="remover(item)">
+                <button class="btn btn-secondary btn-warning w-20 card-icon" (click)="editar(item)">
+                  <mat-icon class="material-icons-outlined" class="cursor-pointer card-icon-edit">edit</mat-icon>
+                </button>
+                <button class="btn btn-primary btn-danger w-20" (click)="remover(item)">
                   <mat-icon class="material-icons-outlined cursor-pointer" >cancel</mat-icon>
                 </button>
               </div>

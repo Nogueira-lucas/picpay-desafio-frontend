@@ -20,6 +20,7 @@ export class TableService {
   data: any[] = [];
   dataConst: any[] = [];
   searchTerm: string = '';
+  selectedFilter: string = 'user';
   dialogRef!: MatDialogRef<ModalComponent>;
   dataSource = new MatTableDataSource(this.data);
   resultsLength = 0;
@@ -104,43 +105,46 @@ export class TableService {
   }
 
   search(searchTerm: string, selectedFilter: string){
-    if(selectedFilter == 'user'){
-      this.searchUser(searchTerm);
+    this.selectedFilter = selectedFilter
+    this.searchTerm = searchTerm;
+
+    if(this.selectedFilter == 'user'){
+      this.searchUser();
     }
-    if(selectedFilter == 'title'){
-      this.searchTitle(searchTerm);
+    if(this.selectedFilter == 'title'){
+      this.searchTitle();
     }
-    if(selectedFilter == 'value'){
-      this.searchValue(searchTerm);
+    if(this.selectedFilter == 'value'){
+      this.searchValue();
     }
-    if(selectedFilter == 'date'){
-      this.searchDate(searchTerm);
+    if(this.selectedFilter == 'date'){
+      this.searchDate();
     }
   }
 
-  searchUser(searchTerm: string){
-    this.dataSource.data = this.data.filter(item => item.username.includes(searchTerm) || item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  searchUser(){
+    this.dataSource.data = this.data.filter(item => item.username.includes(this.searchTerm) || item.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
     this.resultsLength = this.dataSource.data.length;
 
     this.emit();
   }
 
-  searchTitle(searchTerm: string){
-    this.dataSource.data = this.data.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  searchTitle(){
+    this.dataSource.data = this.data.filter(item => item.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
     this.resultsLength = this.dataSource.data.length;
 
     this.emit();
   }
 
-  searchValue(searchTerm: string){
-    this.dataSource.data = this.data.filter(item => item.value.toString().includes(searchTerm));
+  searchValue(){
+    this.dataSource.data = this.data.filter(item => item.value.toString().includes(this.searchTerm));
     this.resultsLength = this.dataSource.data.length;
 
     this.emit();
   }
 
-  searchDate(searchTerm: string){
-    this.dataSource.data = this.data.filter(item => this.datepipe.transform(item.date, 'dd/MM/yyyy').includes(searchTerm));
+  searchDate(){
+    this.dataSource.data = this.data.filter(item => this.datepipe.transform(item.date, 'dd/MM/yyyy').includes(this.searchTerm));
     this.resultsLength = this.dataSource.data.length;
 
     this.emit();
@@ -149,6 +153,7 @@ export class TableService {
   removerPagamento(data: any){
     this.dialogRef = this.dialog.open(ModalComponent, {
       disableClose: false,
+      maxHeight: '90vh'
     });
     this.dialogRef.componentInstance.title = 'Excluir pagamento';
     this.dialogRef.componentInstance.operacao = 'apagar';
@@ -172,6 +177,7 @@ export class TableService {
   editarPagamento(data: any){
     this.dialogRef = this.dialog.open(ModalComponent, {
       disableClose: false,
+      maxHeight: '90vh'
     });
     this.dialogRef.componentInstance.title = 'Editar pagamento';
     this.dialogRef.componentInstance.operacao = 'editar';
@@ -193,6 +199,7 @@ export class TableService {
   adicionarPagamento(){
     this.dialogRef = this.dialog.open(ModalComponent, {
       disableClose: false,
+      maxHeight: '90vh'
     });
     this.dialogRef.componentInstance.title = 'Adicionar pagamento';
     this.dialogRef.componentInstance.operacao = 'adicionar';
@@ -210,6 +217,28 @@ export class TableService {
     this.dialogAfterClosed();
   }
 
+  adicionarPagamentoMesmoUsuario(item: any){
+    this.dialogRef = this.dialog.open(ModalComponent, {
+      disableClose: false,
+      maxHeight: '90vh',
+    });
+    this.dialogRef.componentInstance.title = 'Adicionar pagamento';
+    this.dialogRef.componentInstance.operacao = 'adicionar-mesmo-usuario';
+    this.dialogRef.componentInstance.description = '';
+    this._localStorageService.set('data', item);
+    this.dialogRef.componentInstance.inputGroup = this.inputGroup;
+
+    this.dialogRef.componentInstance.novoItem.pipe(untilDestroyed(this))
+    .subscribe((data: any) => {
+      this._tasksService.postTask(data).pipe(untilDestroyed(this)).subscribe(
+        (data: any) => {
+          this.openSnackBar('Operação realizada com sucesso!');
+          this.getTasks();
+        })
+    });
+    this.dialogAfterClosed();
+  }
+  
   patchIsPayed(data: any){
     this._tasksService.patchIsPayed(data).pipe(untilDestroyed(this)).subscribe(
       (data: any) => {
@@ -218,6 +247,7 @@ export class TableService {
         this.openSnackBar('Erro ao realizar a operação!');
       })
   }
+  
   dialogAfterClosed(){
     this.dialogRef.afterClosed().pipe(untilDestroyed(this)).subscribe(result => {
       this.dialogRef = null;
@@ -239,6 +269,7 @@ export class TableService {
 
   emitDataSourceChanged(){
     this.dataSourceChanged.emit(this.dataSource);
+    this.search(this.searchTerm, this.selectedFilter);
   }
 
   emitResultsLengthChanged(){
