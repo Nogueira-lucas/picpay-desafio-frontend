@@ -3,7 +3,10 @@
     <div class="table-header">
         <div class="table-filter">
             <div class="quicksearch">
-                <input (change)="changeQuickSearch($event)" placeholder="Pesquisar por usuário"/>
+                <input
+                    [(ngModel)]="search"
+                    (ngModelChange)="changeQuickSearch($event)"
+                    placeholder="Pesquisar por usuário"/>
             </div>
             <pay-button class="filter-button" [config]="filterButton"></pay-button>
         </div>

@@ -6,10 +6,9 @@ import { JsonServerResponse } from '../_models/json-server-response';
 export class JsonServerProvider {
 
     makeParams(params: JsonServerParams): string {
-        let urlParams = '';
-
-        urlParams += '?_page=' + params.page;
-        urlParams += '&_limit=' + params.limit;
+        let urlParams = "?"
+        urlParams += this.buildParams(params);
+        urlParams += this.buildPagination(params);
 
         return urlParams;
     }
@@ -20,6 +19,20 @@ export class JsonServerProvider {
             response.headers.get('X-Total-Count'),
             response.headers.get('link')
         )
+    }
+
+    private buildParams(params) {
+        let urlParams = "";
+
+        if (params.user) {
+            urlParams += 'name_like=' + params.user;
+        }
+
+        return urlParams;
+    }
+
+    private buildPagination(params) {
+        return '&_page=' + params.page + '&_limit=' + params.limit;
     }
 
 }

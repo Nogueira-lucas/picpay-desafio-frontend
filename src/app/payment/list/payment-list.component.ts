@@ -69,7 +69,9 @@ export class PaymentListComponent implements OnInit {
     }
 
     changeQuickSearch($event) {
-        
+        this.search = $event;
+        this.currentPage = 1;
+        this.loadTable();
     }
 
     limitChange($event) {
@@ -100,6 +102,7 @@ export class PaymentListComponent implements OnInit {
 
     private loadTable() {
         this.params = {
+            user: this.search,
             page: this.currentPage,
             limit: this.selectedLimit.value
         }
