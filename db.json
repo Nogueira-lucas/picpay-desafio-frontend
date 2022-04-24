@@ -1620,7 +1620,7 @@
     },
     {
       "id": 1,
-      "name": "Thiago",
+      "name": "Thiago Alcarás",
       "email": "thiago.alcaras@gmail.com",
       "password": "teste123"
     },
@@ -1629,6 +1629,12 @@
       "email": "teste@teste.com",
       "password": "teste123",
       "id": 2
+    },
+    {
+      "name": "teste",
+      "email": "thiago_alcaras@hotmail.com",
+      "password": "teste123",
+      "id": 3
     }
   ]
 }

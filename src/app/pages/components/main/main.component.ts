@@ -29,6 +29,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.darkMode = this._themeService.getDarkTheme();
+    this.getConfig();
   }
 
   ngAfterViewInit(){
@@ -48,6 +49,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.dateCountdown = new Date(parseInt(this.expirationTime));
     const diff = this.dateCountdown.getTime() - this.dateNow.getTime();
     const Seconds_Between_Dates = Math.abs(diff / 1000);
-    this.config.leftTime = Seconds_Between_Dates;
+    this.config = {
+      leftTime: Seconds_Between_Dates,
+    };
   }
 }
