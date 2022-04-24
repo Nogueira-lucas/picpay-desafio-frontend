@@ -1,9 +1,11 @@
+import { UserEditModel } from './../../../../../core/model/user.model';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
 import { AuthService } from './../../../../../core/services/auth.service';
 import { TasksService } from './../../../../../core/services/tasks.service';
 import { LocalStorageService } from './../../../../../core/services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
+import { LocationModel } from 'src/core/model/location.model';
 
 @Component({
   selector: 'app-profile',
@@ -14,23 +16,19 @@ import { Component, OnInit } from '@angular/core';
 @UntilDestroy()
 export class ProfileComponent implements OnInit {
 
-  user: any = {
-    id: 0,
-    name: '',
-    email: '',
-    password: ''
-  }
+  user: UserEditModel;
   pagamentos: any = {
     total: 0,
     pagas: 0,
     pendentes: 0
   };
-
+  localization: LocationModel;
   userLogged: any;
   userName: string = '';
   errorMessage: string = '';
   errorMessageName: string = '';
   newPassword: string = '';
+  loading: boolean = true;
 
   constructor(
     private _localStorageService: LocalStorageService,
@@ -40,8 +38,10 @@ export class ProfileComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.getUser();
     this.getPayments();
+    this.getLocation();
   }
 
   getUser() {
@@ -55,6 +55,13 @@ export class ProfileComponent implements OnInit {
   getPayments() {
     this._tasksService.getTasks().subscribe((payments: any) => {
       this.pagamentos.total = payments.length;
+    });
+  }
+
+  getLocation(){
+    this._authService.getLocation().pipe(untilDestroyed(this)).subscribe((location: any) => {
+      this.localization = location;
+      this.loading = false;
     });
   }
 

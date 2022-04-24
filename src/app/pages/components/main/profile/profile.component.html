@@ -17,9 +17,15 @@
             />
           </div>
         </div>
-        <div class="mt-5 text-center">
+
+        <div class="d-flex align-center my-5" *ngIf="loading">
+          <mat-progress-spinner mode="indeterminate" diameter=50 class="spinner" color="primary"></mat-progress-spinner>
+        </div>
+
+        <div class="mt-5 text-center" *ngIf="!loading">
           <h4 class="mb-0">{{userName}}</h4>
           <span class="text-muted d-block mb-2">{{user.email}}</span>
+          <span class="text-muted d-block mb-2">{{localization.city}} - {{localization.state}}</span>
           
           <mat-accordion id="accordionEditar" class="accordion-headers-align d-flex center">
             <mat-expansion-panel hideToggle>

@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile.component';
 import { ProfileRoutingModule } from './profile.routing';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -12,7 +14,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     FormsModule,
     //region Material Modules
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
     //endregion
   ],
   declarations: [ProfileComponent]

@@ -66,6 +66,11 @@
     align-items: center;
 }
 
+.spinner{
+    width: 30px;
+    height: 30px;
+}
+
 @media screen and (max-width: $xl){
     .profile {
         left: 45.5%;

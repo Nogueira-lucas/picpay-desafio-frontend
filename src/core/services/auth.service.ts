@@ -84,4 +84,8 @@ export class AuthService implements OnInit {
       password: user.password,
     });
   }
+
+  getLocation(): Observable<any>{
+    return this.http.get<any>('https://geolocation-db.com/json/')
+  }
 }
