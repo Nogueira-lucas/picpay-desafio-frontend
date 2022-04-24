@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser() {
-    const id = JSON.parse(this._localStorageService.get('user')).id;
+    const id = JSON.parse(this._localStorageService.get('user'))?.id;
     this.userLogged = this._authService.getUserById(id).pipe(untilDestroyed(this)).subscribe((user: any) => {
       this.user = user;
       this.userName = user.name;

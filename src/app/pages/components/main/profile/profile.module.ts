@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile.component';
 import { ProfileRoutingModule } from './profile.routing';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [

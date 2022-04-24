@@ -57,15 +57,15 @@ export class ModalComponent implements OnInit {
     if(this.operacao == 'editar'){
       this.data = JSON.parse(this._localStorageService.get('data'));
 
-      if(this.data.date.length > 16){
+      if(this.data && this.data.date.length > 16){
         this.data.date = this.data.date.slice(0,16);
       }      
-      this.modalForm.get('nome').setValue(this.data.name);
-      this.modalForm.get('usuario').setValue(this.data.username);
-      this.modalForm.get('image').setValue(this.data.image);
-      this.modalForm.get('titulo').setValue(this.data.title);
-      this.modalForm.get('data').setValue(this.data.date);
-      this.modalForm.get('valor').setValue(this.data.value);
+      this.modalForm.get('nome').setValue(this.data?.name);
+      this.modalForm.get('usuario').setValue(this.data?.username);
+      this.modalForm.get('image').setValue(this.data?.image);
+      this.modalForm.get('titulo').setValue(this.data?.title);
+      this.modalForm.get('data').setValue(this.data?.date);
+      this.modalForm.get('valor').setValue(this.data?.value);
     }
     else if(this.operacao == 'adicionar'){
       this.modalForm.get('data').setValue(new Date().toISOString().slice(0,16));
@@ -125,7 +125,7 @@ export class ModalComponent implements OnInit {
       return false;
     }
 
-    if(this.modalForm.get('nome').value.length > 0 
+    if(this.modalForm.get('nome').value?.length > 0 
       && this.modalForm.get('usuario').value.length > 0
       && this.modalForm.get('titulo').value.length > 0
       && this.modalForm.get('valor').value.toString().length > 0
