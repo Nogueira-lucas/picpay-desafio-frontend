@@ -13,6 +13,7 @@ import { PaymentAddComponent } from './add/payment-add.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UserModule } from '../user/user.module';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         PayButtonModule,
         FontAwesomeModule,
         SelectDropDownModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        UserModule
     ],
     declarations: [
         PaymentComponent,

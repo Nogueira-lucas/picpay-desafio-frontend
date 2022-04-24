@@ -1,0 +1,17 @@
+<pay-modal class="profile-modal" id="profile-modal">
+
+    <div class="modal-header">
+        <h2>Perfil</h2>
+    </div>
+
+    <div class="modal-content">
+        <p>{{ user.name }}</p>
+        <p>{{ user.email }}</p>
+    </div>
+
+    <div class="modal-footer">
+        <pay-button [config]="closeConfig" (onClick)="closeModal()"></pay-button>
+        <pay-button [config]="logoutConfig" (onClick)="logout()"></pay-button>
+    </div>
+    
+</pay-modal>

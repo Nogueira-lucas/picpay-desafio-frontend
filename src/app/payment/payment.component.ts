@@ -9,7 +9,7 @@ import { PaymentAddComponent } from './add/payment-add.component';
 })
 export class PaymentComponent implements OnInit {
 
-    @ViewChild("addPayment", { read: ViewContainerRef }) addModalComponent: ViewContainerRef;
+    @ViewChild('addPayment', { read: ViewContainerRef }) addModalComponent: ViewContainerRef;
 
     addButtonConfig: ButtonConfig;
 
@@ -17,8 +17,8 @@ export class PaymentComponent implements OnInit {
 
     ngOnInit(): void {
         this.addButtonConfig = {
-            label: "Adicionar Pagamento",
-            primary: true
+            label: 'Adicionar Pagamento',
+            type: 'primary'
         }
     }
 

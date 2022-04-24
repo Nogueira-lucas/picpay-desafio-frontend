@@ -1,4 +1,4 @@
-@import "../../../styles.scss";
+@import "../../app.component.scss";
 
 .btn {
     cursor: pointer;
@@ -16,6 +16,11 @@
     &.primary {
         background-color: $primary-button-color;
         color: white;
+    }
+
+    &.danger {
+        color: white;
+        background-color: $danger-button-color;
     }
 
     &:disabled {

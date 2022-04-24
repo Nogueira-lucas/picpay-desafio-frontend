@@ -6,6 +6,6 @@ export class InputConfig {
 }
 
 enum InputTypes {
-    Text = "text",
-    Password = "password"
+    Text = 'text',
+    Password = 'password'
 }

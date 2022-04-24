@@ -23,12 +23,12 @@ export abstract class PaymentBaseComponent implements OnInit, AfterViewInit {
 
     ngOnInit(): void {
         this.cancelModalConfig = {
-            label: "Cancelar"
+            label: 'Cancelar'
         }
 
         this.submitModalConfig = {
-            label: "Salvar",
-            primary: true
+            label: 'Salvar',
+            type: 'primary'
         }
     }
 

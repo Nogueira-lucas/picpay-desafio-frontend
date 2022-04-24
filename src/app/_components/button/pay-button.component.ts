@@ -13,12 +13,12 @@ export class PayButtonComponent implements OnInit {
   
   @Output() onClick = new EventEmitter<any>();
 
-  class = "";
+  class = '';
   
   constructor() {}
 
   ngOnInit(): void {
-    if (this.config.primary) this.class += "primary";
+    this.class = this.config.type;
   }
 
   onClickButton(event) {

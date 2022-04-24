@@ -1,8 +1,12 @@
 <header class="home-header">
     <img src="../../assets/home/home-logo.png" />
-    <div class="profile"></div>
+    <div class="profile-container" (click)="onProfileClick()">
+        <img src="../../assets/home/nullAvatar.png" />
+    </div>
 </header>
 <main class="home-main">
     <h1 class="home-title">Meus pagamentos</h1>
     <payments></payments>
 </main>
+
+<ng-container #profile></ng-container>

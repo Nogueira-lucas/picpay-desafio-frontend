@@ -43,25 +43,25 @@ export class UserComponent implements OnInit, OnDestroy {
         });
 
         this.loginButtonConfig = {
-            label: "Entrar",
-            primary: true
+            label: 'Entrar',
+            type: 'primary'
         }
 
         this.emailInputConfig = {
-            label: "Email",
-            controlName: "email",
-            type: "text"
+            label: 'Email',
+            controlName: 'email',
+            type: 'text'
         }
         
         this.passwordInputConfig = {
-            label: "Senha",
-            controlName: "password",
-            type: "password"
+            label: 'Senha',
+            controlName: 'password',
+            type: 'password'
         }
     }
 
     onSubmit() {
-        if (this.f.email.value === "" || this.f.password.value === "") return;
+        if (this.f.email.value === '' || this.f.password.value === '') return;
         this.loading = true;
         
         this.user$ = this.userService.login(this.f.email.value, this.f.password.value)

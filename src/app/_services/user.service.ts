@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from "src/environments/environment";
 
 import { User } from "../_models/user";
+import { Router } from "@angular/router";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -15,7 +16,8 @@ export class UserService {
     public user: Observable<User>;
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private router: Router
     ) {
         this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
@@ -41,6 +43,12 @@ export class UserService {
                     return userList[0];
                 })
             );
+    }
+
+    logout() {
+        localStorage.removeItem('user');
+        this.userSubject.next(null);
+        this.router.navigate(['/user/login']);
     }
 
 }
