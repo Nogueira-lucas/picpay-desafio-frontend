@@ -1607,7 +1607,7 @@
       "image": "https://robohash.org/undeanimiea.png?size=150x150&set=set1",
       "date": "2022-04-24T23:20",
       "value": "300",
-      "isPayed": false,
+      "isPayed": true,
       "id": 173
     }
   ],

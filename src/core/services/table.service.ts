@@ -52,8 +52,7 @@ export class TableService {
         this.dataSource.data = this.data;
         this.resultsLength = data.length;
 
-        this.emitDataSourceChanged();
-        this.emitResultsLengthChanged();
+        this.emit();
       });
   }
 
@@ -120,34 +119,27 @@ export class TableService {
     if(this.selectedFilter == 'date'){
       this.searchDate();
     }
+    this.emit();
   }
 
   searchUser(){
     this.dataSource.data = this.data.filter(item => item.username.includes(this.searchTerm) || item.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
     this.resultsLength = this.dataSource.data.length;
-
-    this.emit();
   }
 
   searchTitle(){
     this.dataSource.data = this.data.filter(item => item.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
     this.resultsLength = this.dataSource.data.length;
-
-    this.emit();
   }
 
   searchValue(){
     this.dataSource.data = this.data.filter(item => item.value.toString().includes(this.searchTerm));
     this.resultsLength = this.dataSource.data.length;
-
-    this.emit();
   }
 
   searchDate(){
     this.dataSource.data = this.data.filter(item => this.datepipe.transform(item.date, 'dd/MM/yyyy').includes(this.searchTerm));
     this.resultsLength = this.dataSource.data.length;
-
-    this.emit();
   }
 
   removerPagamento(data: any){
