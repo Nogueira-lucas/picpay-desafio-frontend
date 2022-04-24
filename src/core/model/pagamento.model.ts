@@ -6,7 +6,7 @@ export class PagamentoModel {
     value: number;
     date: Date;
     image?: string;
-    isPayed: boolean;
+    isPayed?: boolean;
 
     constructor(
         id: string,

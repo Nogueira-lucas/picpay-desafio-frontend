@@ -13,24 +13,18 @@
               <div class="col-12">
                 <div class="row justify-content-center">
                   <div class="col-12 col-md-6">
-                    <div class="form-group my-2" [id]="input.name" [ngClass]="{'modal-paid-input' : input.type == 'checkbox'}" *ngFor="let input of inputGroup | slice: 0:4">
+                    <div class="form-group my-2" [id]="input.name" *ngFor="let input of inputGroup | slice: 0:3">
                       <label [for]="input.name">{{input.label}}</label>
                       <input [type]="input.type"
-                        [ngClass]="{'form-control': input.type != 'checkbox'}" [checked]="operacao == 'editar' ? data.isPayed : false"
-                        (click)="toggleIsPayed(input)" [formControlName]="input.formControlName" />
+                        class="form-control" [formControlName]="input.formControlName" />
                     </div>
                   </div>
 
                   <div class="col-12 col-md-6">
-                    <div class="form-group my-2" #input.name *ngFor="let input of inputGroup | slice: 4">
+                    <div class="form-group my-2" [id]="input.name" *ngFor="let input of inputGroup | slice: 3">
                       <label [for]="input.name">{{input.label}}</label>
-                      <input *ngIf="operacao == 'editar'" [type]="input.type"
-                        [ngClass]="{'form-control': input.type != 'checkbox'}" [checked]="data.isPayed"
-                        (click)="toggleIsPayed(input)" [formControlName]="input.formControlName" />
-
-                      <input *ngIf="operacao == 'adicionar'" [type]="input.type"
-                        [ngClass]="{'form-control': input.type != 'checkbox'}" [formControlName]="input.formControlName"
-                        (click)="toggleIsPayed(input)">
+                      <input [type]="input.type"
+                        class="form-control" [formControlName]="input.formControlName" />
                     </div>
                   </div>
                 </div>

@@ -103,6 +103,12 @@ export class CardsComponent implements OnInit {
     this.search();
   }
 
+  patchIsPayed(item: any){
+    this.isLoadingResults = true;
+    item.isPayed = !item.isPayed;
+    this._tableService.patchIsPayed(item);
+  }
+  
   getPlaceholder(){
     if(this.selectedFilter == 'user'){
       return 'Pesquisar por usuário';

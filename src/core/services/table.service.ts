@@ -80,14 +80,6 @@ export class TableService {
         formControlName: 'image'
       },
       {
-        name: 'isPayed',
-        type: 'checkbox',
-        label: 'Pago',
-        placeholder: 'Pago',
-        formControlName: 'pago',
-        isPayed: null,
-      },
-      {
         name: 'title',
         type: 'text',
         label: 'Título*',
@@ -160,7 +152,6 @@ export class TableService {
     });
     this.dialogRef.componentInstance.title = 'Excluir pagamento';
     this.dialogRef.componentInstance.operacao = 'apagar';
-    this.inputGroup[3].isPayed = data.isPayed;
     this._localStorageService.set('data', data);
     this.dialogRef.componentInstance.description = 
     'Usuário: ' + data.name + ' - @' + data.username + '<br>' +
@@ -190,7 +181,7 @@ export class TableService {
 
     this.dialogRef.componentInstance.novoItem.pipe(untilDestroyed(this))
     .subscribe((data: any) => {
-      this._tasksService.putTask(data).pipe(untilDestroyed(this)).subscribe(
+      this._tasksService.patchTask(data).pipe(untilDestroyed(this)).subscribe(
         (data: any) => {
           this.openSnackBar('Operação realizada com sucesso!');
           this.getTasks();
@@ -219,6 +210,14 @@ export class TableService {
     this.dialogAfterClosed();
   }
 
+  patchIsPayed(data: any){
+    this._tasksService.patchIsPayed(data).pipe(untilDestroyed(this)).subscribe(
+      (data: any) => {
+        this.getTasks();
+      }, error => {
+        this.openSnackBar('Erro ao realizar a operação!');
+      })
+  }
   dialogAfterClosed(){
     this.dialogRef.afterClosed().pipe(untilDestroyed(this)).subscribe(result => {
       this.dialogRef = null;

@@ -121,6 +121,12 @@ export class TableComponent implements OnInit, AfterViewInit  {
     this.search();
   }
 
+  patchIsPayed(item: any){
+    this.isLoadingResults = true;
+    item.isPayed = !item.isPayed;
+    this._tableService.patchIsPayed(item);
+  }
+
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);

@@ -45,7 +45,6 @@ export class ModalComponent implements OnInit {
       titulo: ['', [Validators.required]],
       data: ['', [Validators.required]],
       valor: ['', [Validators.required]],
-      pago: ['', [Validators.required]]
     });
   
   constructor(
@@ -67,7 +66,6 @@ export class ModalComponent implements OnInit {
       this.modalForm.get('titulo').setValue(this.data.title);
       this.modalForm.get('data').setValue(this.data.date);
       this.modalForm.get('valor').setValue(this.data.value);
-      this.modalForm.get('pago').setValue(this.data.isPayed);
     }
     else if(this.operacao == 'adicionar'){
       this.modalForm.get('data').setValue(new Date().toISOString().slice(0,16));
@@ -94,8 +92,7 @@ export class ModalComponent implements OnInit {
       this.modalForm.get('titulo').value,
       this.modalForm.get('valor').value,
       this.modalForm.get('data').value,
-      this.modalForm.get('image').value ? this.modalForm.get('image').value : this.data.image,
-      JSON.parse(this.modalForm.get('pago').value),
+      this.modalForm.get('image').value ? this.modalForm.get('image').value : this.data.image
     );
     this.novoItem.emit(pagamento);
     this.closeDialog();
@@ -113,16 +110,10 @@ export class ModalComponent implements OnInit {
       this.modalForm.get('valor').value,
       this.modalForm.get('data').value,
       this.modalForm.get('image').value,
-      this.modalForm.get('pago').value ? JSON.parse(this.modalForm.get('pago').value) : false,
+      true,
     );
     this.novoItem.emit(pagamento);
     this.closeDialog()
-  }
-
-  toggleIsPayed(input: any){
-    if(input.type == 'checkbox'){
-      this.modalForm.get('pago').setValue(input.isPayed = !input.isPayed);
-    }
   }
 
   closeDialog(){

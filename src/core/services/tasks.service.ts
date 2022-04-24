@@ -33,6 +33,24 @@ export class TasksService {
     })
   }
 
+  patchTask(pagamento: PagamentoModel): Observable<PagamentoModel> {
+    return this.http.patch<PagamentoModel>('http://localhost:3000/tasks/' + pagamento.id, {
+      id: pagamento.id,
+      name: pagamento.name,
+      username: pagamento.username,
+      title: pagamento.title,
+      image: pagamento.image,
+      date: pagamento.date,
+      value: pagamento.value
+    })
+  }
+
+  patchIsPayed(data: any): Observable<PagamentoModel> {
+    return this.http.patch<PagamentoModel>('http://localhost:3000/tasks/' + data.id, {
+      isPayed: data.isPayed
+    })
+  }
+
   postTask(pagamento: PagamentoModel): Observable<PagamentoModel> {
     return this.http.post<PagamentoModel>('http://localhost:3000/tasks', {
       name: pagamento.name,
