@@ -100,7 +100,7 @@ export class PaymentListComponent implements OnInit {
         componentRef.instance.payment = payment;
     }
 
-    private loadTable() {
+    loadTable() {
         this.params = {
             user: this.search,
             page: this.currentPage,

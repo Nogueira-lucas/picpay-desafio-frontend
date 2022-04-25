@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ButtonConfig } from '../_components/button/button-config';
 import { PaymentAddComponent } from './add/payment-add.component';
+import { PaymentListComponent } from './list/payment-list.component';
 
 @Component({
     selector: 'payments',
@@ -10,6 +11,7 @@ import { PaymentAddComponent } from './add/payment-add.component';
 export class PaymentComponent implements OnInit {
 
     @ViewChild('addPayment', { read: ViewContainerRef }) addModalComponent: ViewContainerRef;
+    @ViewChild(PaymentListComponent) paymentListComponent: PaymentListComponent;
 
     addButtonConfig: ButtonConfig;
 
@@ -24,7 +26,7 @@ export class PaymentComponent implements OnInit {
 
     openAddModal(): void {
         const addFactory = this.componentFactory.resolveComponentFactory(PaymentAddComponent)
-        this.addModalComponent.createComponent(addFactory)
+        this.addModalComponent.createComponent(addFactory);
     }
 
 }

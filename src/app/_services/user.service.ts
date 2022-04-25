@@ -6,6 +6,7 @@ import { environment } from "src/environments/environment";
 
 import { User } from "../_models/user";
 import { Router } from "@angular/router";
+import { NotifierService } from 'angular-notifier';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -17,7 +18,8 @@ export class UserService {
 
     constructor(
         private http: HttpClient,
-        private router: Router
+        private router: Router,
+        private notifierService: NotifierService
     ) {
         this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
         this.user = this.userSubject.asObservable();
@@ -29,14 +31,21 @@ export class UserService {
 
     login(email, password): Observable<User> {
 
-        // TODO improve login request
         if (!password) return;
 
         return this.http.get<User[]>(`${this.serviceUrl}?email=${email}`)
             .pipe(
                 map(userList => {
-                    if (!userList.length) throw Error("Conta não encontrada");
-                    if (userList[0].password !== password) throw Error("Senha inválida");
+                    if (!userList.length) {
+                        const message = 'Conta não encontrada';
+                        this.notifierService.notify('warning', message);
+                        throw Error(message);
+                    }
+                    if (userList[0].password !== password) {
+                        const message = 'Senha inválida';
+                        this.notifierService.notify('warning', message);
+                        throw Error(message);
+                    }
 
                     userList[0].token = "fake-jwt-token"
 

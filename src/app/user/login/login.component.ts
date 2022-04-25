@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators';
 import { Subscription } from "rxjs";
 import { ButtonConfig } from "src/app/_components/button/button-config";
 import { InputConfig } from "src/app/_components/input/input-config";
+import { NotifierService } from 'angular-notifier';
 
 @Component({
     templateUrl: 'login.component.html',
@@ -27,11 +28,12 @@ export class UserComponent implements OnInit, OnDestroy {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private userService: UserService
+        private userService: UserService,
+        private notifierService: NotifierService
     ) { }
 
     ngOnInit(): void {
-        this.setupForm()        
+        this.setupForm()
     }
 
     get f() { return this.loginForm.controls; }
@@ -52,7 +54,7 @@ export class UserComponent implements OnInit, OnDestroy {
             controlName: 'email',
             type: 'text'
         }
-        
+
         this.passwordInputConfig = {
             label: 'Senha',
             controlName: 'password',
@@ -61,23 +63,27 @@ export class UserComponent implements OnInit, OnDestroy {
     }
 
     onSubmit() {
-        if (this.f.email.value === '' || this.f.password.value === '') return;
+        if (this.f.email.value === '' || this.f.password.value === '') {
+            this.notifierService.notify("warning", "E-mail e senha obrigatórios")
+            throw Error("Campos obrigatórios não preenchidos")
+        }
+
         this.loading = true;
-        
+
         this.user$ = this.userService.login(this.f.email.value, this.f.password.value)
-        .pipe(first())
-        .subscribe({
-            next: () => {
-                const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                this.router.navigateByUrl(returnUrl);
-                this.loading = false;
-            },
-            error: error => {
-                console.error(error);
-                this.loading = false;
-            }
-        });
-        
+            .pipe(first())
+            .subscribe({
+                next: () => {
+                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+                    this.router.navigateByUrl(returnUrl);
+                    this.loading = false;
+                },
+                error: error => {
+                    console.error(error);
+                    this.loading = false;
+                }
+            });
+
     }
 
     ngOnDestroy() {

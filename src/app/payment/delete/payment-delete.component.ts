@@ -14,7 +14,8 @@ export class PaymentDeleteComponent extends PaymentBaseComponent {
     modalId = "delete-payment-modal";
     
     submitModal() {
-        super.paymentService.delete(this.payment.id).subscribe(data => {
+        this.paymentService.delete(this.payment.id).subscribe(data => {
+            super.notifySuccess();
             super.closeModal();
         }, err => {
             super.closeModal();

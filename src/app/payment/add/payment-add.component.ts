@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { InputConfig } from 'src/app/_components/input/input-config';
 import { Payment } from 'src/app/_models/payment';
@@ -41,15 +41,15 @@ export class PaymentAddComponent extends PaymentBaseComponent {
         this.valueInputConfig = {
             label: "Valor",
             controlName: "value",
-            type: "text"
+            type: "number"
         }
         this.dateInputConfig = {
             label: "Data",
             controlName: "date",
-            type: "text"
+            type: "date"
         }
         this.titleInputConfig = {
-            label: "Título",
+            label: "Título (Opcional)",
             controlName: "title",
             type: "text"
         }
@@ -60,6 +60,7 @@ export class PaymentAddComponent extends PaymentBaseComponent {
         this.payment = this.paymentFrom(this.f);
 
         this.paymentService.create(this.payment).subscribe(() => {
+            super.notifySuccess();
             super.closeModal();
         }, err => {
             super.closeModal();
@@ -68,6 +69,8 @@ export class PaymentAddComponent extends PaymentBaseComponent {
 
     paymentFrom(groupForm): Payment {
         const newPayment = new Payment()
+
+        if (groupForm.name.value === "" || groupForm.value.value === "" || groupForm.date.value === "") super.notify("warning", "Revisar campos obrigatórios.")
 
         newPayment.name = groupForm.name.value;
         newPayment.username = "";

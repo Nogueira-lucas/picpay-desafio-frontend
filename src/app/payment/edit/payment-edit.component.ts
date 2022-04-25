@@ -41,15 +41,15 @@ export class PaymentEditComponent extends PaymentBaseComponent {
         this.valueInputConfig = {
             label: "Valor",
             controlName: "value",
-            type: "text"
+            type: "number"
         }
         this.dateInputConfig = {
             label: "Data",
             controlName: "date",
-            type: "text"
+            type: "date"
         }
         this.titleInputConfig = {
-            label: "Título",
+            label: "Título (Opcional)",
             controlName: "title",
             type: "text"
         }
@@ -68,6 +68,8 @@ export class PaymentEditComponent extends PaymentBaseComponent {
 
     paymentFrom(groupForm, id): Payment {
         const newPayment = new Payment()
+
+        if (groupForm.name.value === "" || groupForm.value.value === "" || groupForm.date.value === "") super.notify("warning", "Revisar campos obrigatórios.")
 
         newPayment.id = id;
         newPayment.name = groupForm.name.value;
