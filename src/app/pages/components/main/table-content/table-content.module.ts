@@ -17,6 +17,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { getPtPaginatorIntl } from 'src/core/utils/paginator';
+import { SortByPipe } from 'src/core/pipes/orderby.pipe';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { getPtPaginatorIntl } from 'src/core/utils/paginator';
   declarations: [
       TableContentComponent,
       TableComponent,
-      CardsComponent
+      CardsComponent,
+      SortByPipe
     ],
     providers: [
         DatePipe,
