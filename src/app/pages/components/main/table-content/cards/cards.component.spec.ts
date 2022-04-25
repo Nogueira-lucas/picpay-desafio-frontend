@@ -16,6 +16,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { getPtPaginatorIntl } from 'src/core/utils/paginator';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { SortByPipe } from 'src/core/pipes/orderby.pipe';
+
 
 describe ("CardsComponent", () => {
     let component: CardsComponent;
@@ -23,7 +25,7 @@ describe ("CardsComponent", () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [CardsComponent],
+            declarations: [CardsComponent, SortByPipe],
             imports: [
                 CommonModule,
                 FormsModule,
