@@ -38,6 +38,8 @@ export class UserService {
                     if (!userList.length) throw Error("Conta não encontrada");
                     if (userList[0].password !== password) throw Error("Senha inválida");
 
+                    userList[0].token = "fake-jwt-token"
+
                     localStorage.setItem('user', JSON.stringify(userList[0]));
                     this.userSubject.next(userList[0]);
                     return userList[0];
