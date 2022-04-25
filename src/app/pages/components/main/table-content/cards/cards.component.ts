@@ -38,8 +38,8 @@ export class CardsComponent implements OnInit {
     this.isLoadingResults = true;
     this.getTasks();
     this._tableService.getTasks();
-    this.receiveResultsLength();
     this.receiveDataSources();
+    this.receiveResultsLength();
   }
 
   getTasks(): void {
