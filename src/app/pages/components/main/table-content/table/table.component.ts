@@ -196,4 +196,9 @@ export class TableComponent implements OnInit, AfterViewInit  {
   getDarkMode(): void {
     this.darkMode = this._localStorageService.get('darkMode');
   }
+
+  clearSearch(){
+    this.searchTerm = '';
+    this.search();
+  }
 }

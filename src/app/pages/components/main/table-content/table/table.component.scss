@@ -51,6 +51,11 @@
             right: 75%;
         }
     }
+    &-clear{
+        text-decoration: underline;
+        font-size: 13px;
+        cursor: pointer;
+    }
     &-rightCol{
         bottom: -60px;
     }

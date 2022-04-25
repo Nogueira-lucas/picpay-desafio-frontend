@@ -50,6 +50,8 @@
                   </li>
                 </ul>
               </div>
+
+              <span class="table-clear" *ngIf="searchTerm.length > 0" (click)="clearSearch()">Limpar resultados</span>
             </div>
           </div>
         </div>
