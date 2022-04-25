@@ -34,7 +34,22 @@ describe ("MainComponent", () => {
                 SharedModule,
                 HttpClientModule,
                 RouterModule,
-                RouterTestingModule
+                RouterTestingModule.withRoutes(
+                    [{
+                        path: 'main', 
+                        component: MainComponent,
+                        children: [
+                            { 
+                                path: 'perfil',
+                                loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+                            },
+                            {
+                                path: 'pagamentos',
+                                loadChildren: () => import('./table-content/table-content.module').then(m => m.TableContentModule)
+                            },
+                        ]
+                    }]
+                  )
             ],
             providers: [
                 LocalStorageService,
