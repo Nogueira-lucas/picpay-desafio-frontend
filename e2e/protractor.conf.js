@@ -13,8 +13,8 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    browserName: 'chrome'
-  },
+    browserName: 'chrome' 
+    },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
@@ -27,6 +27,7 @@ exports.config = {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.json')
     });
+    // @ts-ignore
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };

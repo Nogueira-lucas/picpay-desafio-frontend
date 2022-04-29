@@ -1,0 +1,14 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__row {
+    display: flex;
+    gap: 40px;
+
+    mat-form-field {
+      flex: 1;
+    }
+  }
+}
