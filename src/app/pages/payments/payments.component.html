@@ -1,9 +1,16 @@
 <div class="payments">
+  
     <mat-toolbar color="primary">
         <mat-toolbar-row>
             <span class="payments-pay_span">Pay</span>
             <span class="payments-friends_span">Friends</span>
+            <span class="spacer"></span>
+            <button mat-icon-button class="payments-logout_button" (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Sair</span>
+            </button>
         </mat-toolbar-row>
+
     </mat-toolbar>
 
     <div class="payments-container">
@@ -20,10 +27,13 @@
             <input matInput [formControl]="filterInputForm" placeholder="Pesquisar por usuário">
           </mat-form-field>
 
-          <button mat-raised-button color="secondary" [disabled]="!filterInputForm.value"
-            (click)="filterByUsername()">
-            <mat-icon>search</mat-icon>Filtrar
-          </button>
+          <div class="payments-container-table_header-search_bar-options">
+            <button mat-raised-button color="secondary" [disabled]="!filterInputForm.value"
+              (click)="filterByUsername()">
+              <mat-icon>search</mat-icon>Filtrar
+            </button>
+            <a *ngIf="filterInputForm.value" (click)="init()">Limpar filtro</a>
+          </div>
         </div>
 
         <div>

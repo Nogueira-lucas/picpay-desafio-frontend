@@ -9,6 +9,7 @@ import { CreatePaymentModalComponent } from 'src/app/components/create-payment-m
 import { DeletePaymentModalComponent } from 'src/app/components/delete-payment-modal/delete-payment-modal.component';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/services/auth.service';
 
 const minWidth = '500px'
 @Component({
@@ -30,11 +31,13 @@ export class PaymentsComponent {
   constructor(
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private service: PaymentsService) {
+    private service: PaymentsService,
+    private authService: AuthService) {
     this.init()
   }
   
   init() {
+    this.filterInputForm.setValue('')
     this.service.allPayments().subscribe(res => {
       this.dataSource = new MatTableDataSource<PaymentsInterface>(res);
     }, err => {}, ()=> {
@@ -95,5 +98,9 @@ export class PaymentsComponent {
         this.dataSource.sort = this.sort;
       })
     })
+  }
+
+  logout() {
+    this.authService.logout()
   }
 }

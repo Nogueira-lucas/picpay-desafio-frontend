@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../authguard';
 import { PagesComponent } from './pages.component';
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
       {
         path: 'payments',
         loadChildren: () => import('./payments/payments.module')
-          .then(m => m.PaymentsModule)
+          .then(m => m.PaymentsModule),
+          canActivate: [AuthGuard]
       }
     ]
   }

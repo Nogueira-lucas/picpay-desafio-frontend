@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
+import { AuthService } from "src/app/services/auth.service";
 const urlImage = '../../../assets/payfriends-image.png' 
 // src/app/assets/payfriends-image.png
 
@@ -24,4 +25,13 @@ export class LoginComponent {
     })
 
     matcher = new MyErrorStateMatcher();
+
+    constructor(private authService: AuthService) {
+
+    }
+
+    login() {
+      if(this.loginForm.valid)
+        this.authService.login(this.loginForm.get('email').value, this.loginForm.get('senha').value)
+    }
 }

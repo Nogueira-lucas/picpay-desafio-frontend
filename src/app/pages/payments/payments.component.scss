@@ -1,6 +1,14 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
 .payments {
     background-color: #F2F2F2;
     height: 100%;
+
+    &-logout_button {
+        margin-right: 3%;
+    }
 
     &-pay_span {
         font-weight: bold;
@@ -55,7 +63,22 @@
             &-search_bar {
                 display: flex;
                 gap: 1.2em;
-                align-items: baseline;     
+                align-items: baseline;   
+                
+                &-options {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 8px;
+                    align-items: baseline;
+
+                    a {
+                        cursor: pointer;  
+                    }
+
+                    a:hover {
+                        text-decoration: underline;
+                    }
+                }
             }
         }
     }
