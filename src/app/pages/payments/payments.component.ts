@@ -28,7 +28,6 @@ export class PaymentsComponent implements AfterViewInit {
   @ContentChildren(MatHeaderRowDef) headerRowDefs: QueryList<MatHeaderRowDef>;
   @ContentChildren(MatRowDef) rowDefs: QueryList<MatRowDef<any>>;
   @ContentChildren(MatColumnDef) columnDefs: QueryList<MatColumnDef>;
-  // @ContentChild(MatNoDataRow) noDataRow: MatNoDataRow;
 
   @ViewChild(MatTable) table: MatTable<any>;
 
@@ -41,7 +40,6 @@ export class PaymentsComponent implements AfterViewInit {
     private service: PaymentsService,
     private authService: AuthService) {
     this.init()
-    
   }
   ngAfterViewInit(): void {
     

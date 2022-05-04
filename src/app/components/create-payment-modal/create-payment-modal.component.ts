@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PaymentsInterface } from 'src/app/models/payments.interfaces';
 import { PaymentsService } from 'src/app/services/payments.service';
+import { create, update } from './commands';
 
 @Component({
   selector: 'app-create-payment-modal',
@@ -35,7 +36,7 @@ export class CreatePaymentModalComponent implements OnInit {
           username: response.username,
           value: response.value,
           date: response.date,
-          title: response.title
+          title: response.title,
         })
       },
       err => {
@@ -48,34 +49,10 @@ export class CreatePaymentModalComponent implements OnInit {
   }
 
   execute() {
-    this.data.id? this.update() : this.create()
-  }
-
-  update() {
-    this.service.updateBy(this.data.id, this.form.value)
-      .subscribe(res => {
-        this.isLoading = true
-      }, err => {
-        this.isLoading = false
-        this.snackBar.open('erro ao atualizar', 'fechar', { duration: 3000})
-      }, () => {
-        this.isLoading = false
-        this.dialogRef.close()
-        this.snackBar.open('pagamento atualizado com sucesso', 'fechar', { duration: 3000})
-      })
-  }
-
-  create() {
-    this.service.createPayment(this.form.value)
-      .subscribe(res => {
-        this.isLoading = true
-      }, err => {
-        this.isLoading = false
-        this.snackBar.open('erro ao salvar', 'fechar', { duration: 3000})
-      }, () => {
-        this.isLoading = false
-        this.dialogRef.close()
-        this.snackBar.open('pagamento gravado com sucesso', 'fechar', { duration: 3000})
-      })
+    if(this.data.id) {
+      update()
+    } else {
+      create()
+    }
   }
 }

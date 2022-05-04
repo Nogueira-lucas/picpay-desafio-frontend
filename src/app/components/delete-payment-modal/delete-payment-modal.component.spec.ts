@@ -1,8 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from 'src/app/app-routing.module';
@@ -19,6 +20,7 @@ const maskConfig: Partial<IConfig> = {
 describe('DeletePaymentModalComponent', () => {
   let component: DeletePaymentModalComponent;
   let fixture: ComponentFixture<DeletePaymentModalComponent>;
+  let debugElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -38,8 +40,7 @@ describe('DeletePaymentModalComponent', () => {
         {
           provide: MAT_DIALOG_DATA, useValue: {
             data: {
-              id: 55,
-              name: 'Lucas'
+              id: 0
             }
           }
         }
@@ -52,9 +53,22 @@ describe('DeletePaymentModalComponent', () => {
     fixture = TestBed.createComponent(DeletePaymentModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    debugElement = fixture.debugElement;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should be able delete a payment', async () => {
+    const excluirSpy = spyOn(component, 'excluirPagamento')
+
+    await component.ngOnInit()
+    
+    await debugElement   
+    .query(By.css('.btnExcluir'))
+    .triggerEventHandler('click', null);
+
+    expect(excluirSpy).toHaveBeenCalled()
+  })
 });

@@ -6,33 +6,37 @@
         <div class="payment-modal-content-input_row">
             <mat-form-field appearance="outline">
                 <mat-label>Usuário</mat-label>
-                <input formControlName="username" matInput placeholder="obrigatório">
+                <input formControlName="username" id="txtUser"
+                    matInput placeholder="obrigatório">
             </mat-form-field>
             <mat-form-field appearance="outline" floatLabel="always">
                 <mat-label>Valor</mat-label>
-                <input formControlName="value" type="number" matInput placeholder="0">
+                <input formControlName="value" id="txtValor"
+                    type="number" matInput placeholder="0">
                 <span matPrefix>R$&nbsp;</span>
             </mat-form-field>
         </div>
 
         <div class="payment-modal-content-input_row">
             <mat-form-field appearance="outline">
-                <mat-label>Choose a date</mat-label>
-                <input matInput formControlName="date" [matDatepicker]="picker">
-                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-label>Selecione a data:</mat-label>
+                <input matInput formControlName="date" id="txtDate"
+                    [matDatepicker]="picker">
+                <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Título</mat-label>
-                <input matInput formControlName="title">
+                <input matInput formControlName="title" id="txtTitle">
             </mat-form-field>
         </div>
     </form>
 
     <div class="payment-modal-options">
         <button mat-raised-button color="secondary" (click)="dialogRef.close()">Cancelar</button>
-        <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="execute()">Enviar</button>
+        <button mat-raised-button color="primary" class="payment-modal-options-submit"
+            [disabled]="form.invalid" (click)="execute()">Enviar</button>
     </div>
 </div>
 

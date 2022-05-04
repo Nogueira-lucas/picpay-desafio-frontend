@@ -1,21 +1,17 @@
-import { HttpClientModule } from '@angular/common/http';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { CreatePaymentModalComponent } from 'src/app/components/create-payment-modal/create-payment-modal.component';
 import { MaterialModule } from 'src/app/material.module';
 import { PaymentsService } from 'src/app/services/payments.service';
 import { PaymentsComponent } from './payments.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-const maskConfig: Partial<IConfig> = {
-  validation: false,
-};
 
-describe('CreatePaymentModalComponent', () => {
+describe('PaymentsComponent', () => {
+  let debugElement: DebugElement;
   let component: PaymentsComponent;
   let fixture: ComponentFixture<PaymentsComponent>;
 
@@ -27,34 +23,36 @@ describe('CreatePaymentModalComponent', () => {
         AppRoutingModule,
         BrowserAnimationsModule,
         MaterialModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         ReactiveFormsModule,
-        NgxMaskModule.forRoot(maskConfig),
       ],
       providers: [
-        PaymentsService,
-        { provide: MatDialogRef, useValue: {} },
-        {
-          provide: MAT_DIALOG_DATA, useValue: {
-            data: {
-              id: 55
-            }
-          }
-        }
+        PaymentsService
       ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreatePaymentModalComponent);
+    fixture = TestBed.createComponent(PaymentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    debugElement = fixture.debugElement;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
-  it('')
+
+  it('should load stream', async () => {
+    expect(component.dataSource)
+  })
+
+  it('should get by user name', async () => {
+    const filterSpy = spyOn(component, 'filterByUsername') 
+    await component.filterInputForm.setValue('gdeex7')
+    await component.filterByUsername()
+    expect(filterSpy).not.toThrow()
+    expect(filterSpy).toHaveBeenCalled()
+  })
 });

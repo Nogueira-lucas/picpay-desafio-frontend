@@ -9,7 +9,7 @@
     </div>
     <div class="delete-payment-option">
         <button mat-raised-button color="secondary" (click)="dialogRef.close()">Cancelar</button>
-        <button mat-raised-button color="primary" (click)="excluirPagamento()">Excluir</button>
+        <button mat-raised-button color="primary" (click)="excluirPagamento()" class="btnExcluir">Excluir</button>
     </div>
 </div>
 <mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
