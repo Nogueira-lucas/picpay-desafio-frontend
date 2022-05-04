@@ -1,1 +1,15 @@
-<p>delete-payment-modal works!</p>
+<div class="delete-payment" *ngIf="!isLoading">
+    <div class="delete-payment-header">
+        <h2>Excluir pagamento</h2>
+    </div>
+    <div class="delete-payment-content">
+        <p>Usuário: {{payment.name}}</p>
+        <p>Data: {{payment.date | date: 'd/m/y'}}</p>
+        <p>Valor: {{ (payment.value | currency: 'BRL').replace('.', ',')}}</p>
+    </div>
+    <div class="delete-payment-option">
+        <button mat-raised-button color="secondary" (click)="dialogRef.close()">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="excluirPagamento()">Excluir</button>
+    </div>
+</div>
+<mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>

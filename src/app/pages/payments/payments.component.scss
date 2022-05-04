@@ -1,0 +1,62 @@
+.payments {
+    background-color: #F2F2F2;
+    height: 100%;
+
+    &-pay_span {
+        font-weight: bold;
+    }
+
+    &-friends_span {
+        font-weight: 100;
+    }
+
+    &-container {
+        margin: 2% auto;
+        max-width: 90%;
+
+        &-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        &-table {
+            width: 100%;
+            background-color: #fff;
+
+            tr {
+                height: auto;
+            }
+
+            &-user {
+                display: flex;
+                flex-direction: column;
+                min-height: 5vh;
+
+                &-nick {
+                    font-size: 1em;
+                    color: #636363;
+                    margin: 0;
+                }
+            }
+
+            &-options-icons {
+                display: flex;
+                gap: 1vw;
+                cursor: pointer;
+            }
+        }
+
+        &-table_header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+
+            &-search_bar {
+                display: flex;
+                gap: 1.2em;
+                align-items: baseline;     
+            }
+        }
+    }
+}

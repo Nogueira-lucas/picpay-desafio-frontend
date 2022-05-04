@@ -1,1 +1,98 @@
-<span>payments page works!</span>
+<div class="payments">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span class="payments-pay_span">Pay</span>
+            <span class="payments-friends_span">Friends</span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="payments-container">
+        <div class="payments-container-header">
+            <h1 class="title">Meus Pagamentos</h1>
+        </div>
+    </div>
+
+    <div class="payments-container">
+      <div class="payments-container-table_header">
+        <div class="payments-container-table_header-search_bar">
+          <mat-form-field appearance="outline">
+            <mat-label>Pesquisar por usuário</mat-label>
+            <input matInput [formControl]="filterInputForm" placeholder="Pesquisar por usuário">
+          </mat-form-field>
+
+          <button mat-raised-button color="secondary" [disabled]="!filterInputForm.value"
+            (click)="filterByUsername()">
+            <mat-icon>search</mat-icon>Filtrar
+          </button>
+        </div>
+
+        <div>
+          <button mat-raised-button color="primary" (click)="openPaymentModal()">ADICIONAR PAGAMENTO</button>
+        </div>
+      </div>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons 
+        aria-label="Selecione o período das páginas">
+      </mat-paginator>
+
+      <table mat-table [dataSource]="dataSource" matSort
+        class="payments-container-table" *ngIf="dataSource">
+        <ng-container matColumnDef="user">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Usuário </th>
+          <td mat-cell *matCellDef="let element" 
+            class="payments-container-table-user"> 
+            <span>{{element.name.split(' ')[0]}}</span>
+            <span class="payments-container-table-user-nick"> 
+              @{{element.username}}
+            </span>
+          </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Título </th>
+          <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="data">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Data </th>
+          <td mat-cell *matCellDef="let element" class="payments-container-table-user">
+            <span> {{element.date | date }}</span>
+            <span class="payments-container-table-user-nick"> 
+              {{element.date | date: 'shortTime'}}
+            </span>
+          </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="value">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Valor </th>
+          <td mat-cell *matCellDef="let element"> {{(element.value | currency:'BRL').replace('.', ',')}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="payed">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Pago</th>
+          <td mat-cell *matCellDef="let element"> 
+            <mat-checkbox [checked]="element.isPayed" color="primary" disabled="true"></mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element"> 
+            <div class="payments-container-table-options-icons">
+              <mat-icon (click)="openPaymentModal(element)">edit</mat-icon>
+              <mat-icon (click)="openDeletePaymentModal(element.id)">cancel</mat-icon>
+            </div>
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </div>
+</div>
+
+<mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>

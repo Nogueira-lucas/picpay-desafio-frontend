@@ -1,1 +1,39 @@
-<p>create-payment-modal works!</p>
+<div class="payment-modal" *ngIf="!isLoading">
+    <div class="payment-modal-header">
+        <h2>{{ data.id? 'Editar Pagamento': 'Adicionar pagamento'}}</h2>
+    </div>
+    <form [formGroup]="form" class="payment-modal-content">
+        <div class="payment-modal-content-input_row">
+            <mat-form-field appearance="outline">
+                <mat-label>Usuário</mat-label>
+                <input formControlName="user" matInput placeholder="obrigatório">
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Valor</mat-label>
+                <input formControlName="value" matInput placeholder="0">
+                <span matPrefix>R$&nbsp;</span>
+            </mat-form-field>
+        </div>
+
+        <div class="payment-modal-content-input_row">
+            <mat-form-field appearance="outline">
+                <mat-label>Choose a date</mat-label>
+                <input matInput formControlName="date" [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Título</mat-label>
+                <input matInput formControlName="title">
+            </mat-form-field>
+        </div>
+    </form>
+
+    <div class="payment-modal-options">
+        <button mat-raised-button color="secondary" (click)="dialogRef.close()">Cancelar</button>
+        <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="execute()">Enviar</button>
+    </div>
+</div>
+
+<mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
