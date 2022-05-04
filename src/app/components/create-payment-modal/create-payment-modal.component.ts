@@ -13,7 +13,7 @@ import { PaymentsService } from 'src/app/services/payments.service';
 export class CreatePaymentModalComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
-    user: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
     value: new FormControl('', [Validators.required]),
     date: new FormControl('', [Validators.required]),
     title: new FormControl('')
@@ -32,7 +32,7 @@ export class CreatePaymentModalComponent implements OnInit {
       .subscribe(response => { 
         this.isLoading = true;
         this.form.patchValue({
-          user: response.username,
+          username: response.username,
           value: response.value,
           date: response.date,
           title: response.title
