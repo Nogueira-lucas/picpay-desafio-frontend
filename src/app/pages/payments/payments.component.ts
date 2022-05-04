@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, ContentChildren, QueryList, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { PaymentsInterface } from 'src/app/models/payments.interfaces';
 import { PaymentsService } from 'src/app/services/payments.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatColumnDef, MatHeaderRowDef, MatNoDataRow, MatRowDef, MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePaymentModalComponent } from 'src/app/components/create-payment-modal/create-payment-modal.component';
@@ -17,13 +17,20 @@ const minWidth = '500px'
   templateUrl: './payments.component.html',
   styleUrls: ['./payments.component.scss']
 })
-export class PaymentsComponent {
+export class PaymentsComponent implements AfterViewInit {
   isLoading: boolean = false
 
-  displayedColumns: string[] = ['user', 'title', 'data', 'value', 'payed', 'options'];
+  displayedColumns: string[] = ['username', 'title', 'date', 'value', 'isPayed', 'options'];
   dataSource: any;
 
   filterInputForm = new FormControl('')
+
+  @ContentChildren(MatHeaderRowDef) headerRowDefs: QueryList<MatHeaderRowDef>;
+  @ContentChildren(MatRowDef) rowDefs: QueryList<MatRowDef<any>>;
+  @ContentChildren(MatColumnDef) columnDefs: QueryList<MatColumnDef>;
+  // @ContentChild(MatNoDataRow) noDataRow: MatNoDataRow;
+
+  @ViewChild(MatTable) table: MatTable<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -34,13 +41,20 @@ export class PaymentsComponent {
     private service: PaymentsService,
     private authService: AuthService) {
     this.init()
+    
+  }
+  ngAfterViewInit(): void {
+    
+    this.columnDefs.forEach(columnDef => this.table.addColumnDef(columnDef));
+    this.rowDefs.forEach(rowDef => this.table.addRowDef(rowDef));
+    this.headerRowDefs.forEach(headerRowDef => this.table.addHeaderRowDef(headerRowDef));
+    // this.table.setNoDataRow(this.noDataRow);
   }
   
   init() {
     this.filterInputForm.setValue('')
     this.service.allPayments().subscribe(res => {
       this.dataSource = new MatTableDataSource<PaymentsInterface>(res);
-    }, err => {}, ()=> {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
@@ -76,6 +90,7 @@ export class PaymentsComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
+      this.init()
     })
   }
 

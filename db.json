@@ -6,9 +6,10 @@
       "username": "gdeex7",
       "title": "Marketing Assistant",
       "value": 354.56,
-      "date": "2020-09-12T05:18:50Z",
+      "date": "2021-09-12T03:00:00.000Z",
       "image": "https://robohash.org/asinthic.png?size=150x150&set=set1",
-      "isPayed": true
+      "isPayed": true,
+      "user": "gdeex7"
     },
     {
       "id": 9,
@@ -1055,10 +1056,11 @@
       "name": "Carolyne Tutsell",
       "username": "ctutsell37",
       "title": "GIS Technical Architect",
-      "value": 2.3,
+      "value": 4.7,
       "date": "2020-02-20T03:38:24Z",
       "image": "https://robohash.org/deseruntdoloribusin.png?size=150x150&set=set1",
-      "isPayed": true
+      "isPayed": true,
+      "user": "ctutsell37"
     },
     {
       "id": 117,
@@ -1599,20 +1601,6 @@
       "date": "2021-05-05T10:22:13Z",
       "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
       "isPayed": true
-    },
-    {
-      "user": "lucastdm",
-      "value": "2333.00",
-      "date": "2022-05-19T03:00:00.000Z",
-      "title": "",
-      "id": 171
-    },
-    {
-      "user": "lucasteste",
-      "value": "23",
-      "date": "2020-02-05T03:00:00.000Z",
-      "title": "teste",
-      "id": 172
     }
   ],
   "account": [

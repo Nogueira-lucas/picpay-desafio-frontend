@@ -1,9 +1,13 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { OStore } from "@fireflysemantics/slice";
 import { Observable, of, throwError } from "rxjs";
 import { map } from "rxjs/operators";
+import { environment } from "src/environments/environment";
+import { AccountInterface } from "../models/account.interface";
+import { AccountService } from "./account.service";
 
 
 /** mock de chaves JWT e mensagens de erro*/
@@ -13,6 +17,8 @@ export const AUTHENTICATION_ERROR_MESSAGE = 'Invalid username or password';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
+
+    base = environment.baseUrl;
 
     public ostore = new OStore({ email: 
       {
@@ -27,6 +33,7 @@ export class AuthService {
     public authenticationError$:Observable<string | boolean>;
 
     constructor(
+      private service: AccountService,
       private snackBar: MatSnackBar,
       private router: Router) {
         //INICIALIZANDO OBJEST STORE
@@ -61,10 +68,10 @@ export class AuthService {
          * Mock server authentication call
          */
         private authenticate(email:string, password:string) {
-            // Mock Authentication Check
-            if (email !== 'admin@gmail.com') {
-                return throwError(AUTHENTICATION_ERROR_MESSAGE);
-            }
-            return of({ email: email });
+          //Mock Authentication Check
+          if (email !== 'usuario@gmail.com') {
+              return throwError(AUTHENTICATION_ERROR_MESSAGE);
+          }
+          return of({ email: email });
         }
 }

@@ -15,7 +15,7 @@ export class DeletePaymentModalComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(
-    private snackBar: MatSnackBar,
+    private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PaymentsInterface>,
     @Inject(MAT_DIALOG_DATA) public data: PaymentsInterface,
     private service : PaymentsService) { }
@@ -28,7 +28,7 @@ export class DeletePaymentModalComponent implements OnInit {
       },
       err => {
         this.isLoading = false
-        this.snackBar.open('erro ao carregar', 'fechar', { duration: 3000})
+        this._snackBar.open('erro ao carregar', 'fechar', { duration: 3000})
       }, () => {
         this.isLoading = false
       })
@@ -39,11 +39,11 @@ export class DeletePaymentModalComponent implements OnInit {
       this.isLoading = true
     }, err => {
       this.isLoading = false
-      this.snackBar.open('erro ao carregar', 'fechar', { duration: 3000})
+      this._snackBar.open('erro ao carregar', 'fechar', { duration: 3000})
     }, () => {
       this.dialogRef.close()
       this.isLoading = false
-      this.snackBar.open('pagamento excluído com sucesso', 'fechar', { duration: 3000})
+      this._snackBar.open('pagamento excluído com sucesso', 'fechar', { duration: 3000})
     })
   }
 

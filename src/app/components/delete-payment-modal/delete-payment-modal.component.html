@@ -3,9 +3,9 @@
         <h2>Excluir pagamento</h2>
     </div>
     <div class="delete-payment-content">
-        <p>Usuário: {{payment.name}}</p>
-        <p>Data: {{payment.date | date: 'd/m/y'}}</p>
-        <p>Valor: {{ (payment.value | currency: 'BRL').replace('.', ',')}}</p>
+        <p>Usuário: {{payment?.name}}</p>
+        <p>Data: {{payment?.date | date: 'd/m/y'}}</p>
+        <p>Valor: {{ (payment?.value | currency: 'BRL')?.replace('.', ',')}}</p>
     </div>
     <div class="delete-payment-option">
         <button mat-raised-button color="secondary" (click)="dialogRef.close()">Cancelar</button>
