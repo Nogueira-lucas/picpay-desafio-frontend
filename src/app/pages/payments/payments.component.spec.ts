@@ -45,7 +45,7 @@ describe('PaymentsComponent', () => {
   });
 
   it('should load stream', async () => {
-    expect(component.dataSource)
+    expect(component.dataSource).not.toBeFalse()
   })
 
   it('should get by user name', async () => {

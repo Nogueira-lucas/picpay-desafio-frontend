@@ -35,8 +35,13 @@
 
     <div class="payment-modal-options">
         <button mat-raised-button color="secondary" (click)="dialogRef.close()">Cancelar</button>
-        <button mat-raised-button color="primary" class="payment-modal-options-submit"
-            [disabled]="form.invalid" (click)="execute()">Enviar</button>
+
+        <button *ngIf="data.id" mat-raised-button color="primary" id="btnEdit"
+            class="payment-modal-options-update"
+            [disabled]="form.invalid" (click)="update()">Atualizar</button>
+
+        <button *ngIf="!data.id" mat-raised-button color="primary" class="payment-modal-options-submit"
+            [disabled]="form.invalid" (click)="create()">Enviar</button>
     </div>
 </div>
 

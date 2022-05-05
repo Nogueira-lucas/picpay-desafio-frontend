@@ -42,7 +42,13 @@ describe('CreatePaymentModalComponent', () => {
         {provide: MatDialogRef, useValue: dialogMock},
         {
           provide: MAT_DIALOG_DATA, useValue: {
-            data: {}
+            data: {
+              id: 55,
+              username: 'lucas',
+              value: 999.00,
+              date: new Date(),
+              title: 'teste do modal'
+            }
           }
         }
       ]
@@ -62,36 +68,41 @@ describe('CreatePaymentModalComponent', () => {
   })
   
   it('should be able create a new payment', async () => {
-    const executeSpy = spyOn(component, 'execute')
-    await component.form.patchValue({
+    const createSpy = spyOn(component, 'create')
+    component.form.patchValue({
       username: 'lucas',
       value: 999.00,
       date: new Date(),
       title: 'teste do modal'
     })
    
-    await debugElement   
+    debugElement   
       .query(By.css('.payment-modal-options-submit'))
       .triggerEventHandler('click', null);
 
-    await expect(executeSpy).toHaveBeenCalled()
+    await expect(createSpy).toHaveBeenCalled()
   })
 
-  it('should be able edit a payment', async () => {
-    component.data.id = 177
-    const executeSpy = spyOn(component, 'execute')
-    await component.form.patchValue({
-      username: 'lucas',
-      value: 999.00,
-      date: new Date(),
-      title: 'teste do modal'
-    })
-   
-    await debugElement   
-      .query(By.css('.payment-modal-options-submit'))
-      .triggerEventHandler('click', null);
+  it('should be able edit a payment', () => {
+    component.data.id = 77
+    spyOn(component, 'update')
 
-    await expect(executeSpy).toHaveBeenCalled()
+    const formValue = {
+      ...component.data,
+      username: 'teste modal update'
+    }
+    fixture.detectChanges()
+
+    component.form.patchValue(formValue)
+   
+    let button = fixture.debugElement.query(By.css('#btnEdit'))
+    button.triggerEventHandler('click', null)
+    
+    fixture.detectChanges()
+
+    fixture.whenStable().then(() => {
+      expect(component.update).toHaveBeenCalled()
+    });
   })
 
 });
